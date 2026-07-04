@@ -674,20 +674,21 @@ per-input statistic beyond mean $D$ is the natural follow-up
 (Appendix~\ref{app:deferred}).
 
 \paragraph{NIAH-MK3 is capacity-bound scorer-independently, but only at
-aggressive compression.} At $\ge 4\times$ compression ($b \le 0.25$) NIAH-MK3
-collapses to chance for every scorer and allocation we tested in a clean
-per-head harness: the four attention-score evictors, per-head SnapKV with
-Ada-KV, and a faithful ManifoldKV+Ada-KV geometry
-scorer~\citep{arxiv260208343,arxiv240711550} that \emph{does} rescue single-key
-NIAH ($0.88$--$0.94$, validating the implementation) yet never exceeds per-head
-SnapKV on MK3 and collapses to $0$ at $b \le 0.25$ (Appendix~\ref{app:deferred}).
-So the multi-needle capacity limit is real and not an artifact of weak attention
-scoring. One honest caveat: at $2\times$ compression ($b = 0.5$) per-head SnapKV
-does \emph{not} collapse MK3, so the collapse our matrix and showcase report at
-moderate budgets is partly an artifact of the single-mask attention pooling in
-our default evictor; the scorer-independent capacity-bound regime is
-$\ge 4\times$ compression, which is where the gate's protection matters and
-where our showcase should be read.
+aggressive compression.} To rule out a scorer-specific effect we re-implemented
+ManifoldKV~\citep{arxiv260208343} faithfully, with Ada-KV per-head budget
+allocation~\citep{arxiv240711550} realized exactly by per-head masking. The
+scorer is demonstrably competent: it reproduces ManifoldKV's signature multi-key
+advantage on \emph{two}-key NIAH, holding $0.72$ accuracy at $50\%$ cache where
+SnapKV collapses to $0.16$. Yet the same scorer does not rescue three-key
+NIAH-MK3: below $25\%$ budget it falls to chance like every attention-score
+evictor, and never exceeds a per-head SnapKV baseline
+(Appendix~\ref{app:deferred}). NIAH-MK3 is thus capacity-bound independently of
+the scoring family. One honest caveat: in a clean per-head harness SnapKV does
+\emph{not} collapse MK3 at $2\times$ compression ($b = 0.5$), so the
+moderate-budget collapse our matrix and showcase report is partly an artifact of
+the single-mask attention pooling in our default evictor; the scorer-independent
+capacity-bound regime is $\ge 4\times$ compression, which is where the gate's
+protection matters and where our showcase should be read.
 
 Further limitations, all in Appendix~\ref{app:deferred}: single-seed greedy runs
 with low-powered per-cell partition calls (the claim rests on the pooled
