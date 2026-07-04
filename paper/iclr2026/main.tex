@@ -689,8 +689,9 @@ is documented in Section~\ref{subsec:capkv-longbench}.
 Three further limitations are deferred to Appendix~\ref{app:deferred}: the
 DBTrimKV head-to-head runs on Qwen3
 rather than Qwen2.5, the matrix covers $4$ training-free base evictors
-rather than $6$, and the confirmed capacity-bound exemplar is
-RULER-only (a second non-RULER exemplar, LongBench passage\_count, is gate-predicted capacity-bound and confirmed above floor on Qwen2.5-14B; Section~\ref{sec:limitations}).
+rather than $6$, and the only confirmed capacity-bound exemplar is
+RULER NIAH-MK3 (LongBench passage\_count is a documented gate false positive;
+Section~\ref{sec:limitations}).
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -979,20 +980,27 @@ policies. Trained / learned evictors (DBTrimKV, CapKV, IndexMem,
 DynamicKV) are cited but not in the matrix for the codebase-compat
 reason above.
 
-\paragraph{The accuracy-collapse showcase is RULER-only.} The
-partition is verified on RULER 4K/16K across six task families plus two
-non-RULER LongBench probes that both behave as the gate predicts:
+\paragraph{The confirmed capacity-bound exemplar is RULER-only, and the gate
+has a documented false positive.} Of our two non-RULER LongBench probes,
 passage\_retrieval\_en is evict-robust and the gate correctly opens on it
-(Section~\ref{sec:partition}), while passage\_count is capacity-bound and
-the gate correctly closes. On Qwen2.5-14B, passage\_count has full-KV
-accuracy $0.16$ (above the $0.04$ floor at 1.5B), the gate classifies it
-capacity-bound a priori (mean $D = -0.013$, closed on $100\%$ of inputs, the
-same negative-$D$ signature as NIAH-MK3), and eviction does not help
-($\rho = 0.01$). Its low ceiling makes it a confirmation of the a-priori
-prediction rather than an accuracy-collapse showcase; the dramatic
-$99\% \to 0\%$ showcase remains NIAH-MK3. Multilingual and code tasks are out
-of scope; we expect the predictor to transfer because the mechanism is
-architecture-level, not English-specific, but we have not measured it.
+(Section~\ref{sec:partition}).
+NIAH-MK3 remains the only task where empirical capacity-boundedness (accuracy
+collapse under eviction) and the gate's capacity-bound classification coincide.
+Our second non-RULER probe is a genuine failure: on LongBench passage\_count at
+Qwen2.5-14B, where full-KV accuracy clears floor ($0.16$ vs $0.04$ at 1.5B), the
+gate closes on $95/95$ inputs (mean $D = -0.013 < \tau$), predicting
+do-not-evict, yet eviction is empirically \emph{safe}: plain SnapKV accuracy is
+statistically flat under $16\times$ eviction ($0.16 \to 0.13$, $12/15$
+full-KV-correct inputs retained, $\rho = 0$). passage\_count is thus a
+\emph{false positive} of the gate. This is the conservative dual of the MK2
+boundary case (Section~\ref{sec:partition}): there the gate opens on an
+empirically capacity-bound task; here it closes on an evict-safe one. The
+failure direction is benign, an over-conservative gate costs compression, not
+accuracy, but it shows the head-agreement drop is a one-sided predictor
+(reliably firing on dilution-prone inputs) rather than a perfect classifier.
+Multilingual and code tasks are out of scope; we expect the predictor to
+transfer because the mechanism is architecture-level, not English-specific, but
+we have not measured it.
 
 \subsection{Mechanism-validation detail: distractor count drives $D$}
 
