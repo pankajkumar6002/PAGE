@@ -1,0 +1,1000 @@
+{"id": 0, "task": "qa_2", "budget": 1.0, "T": 16091, "n_kept": 16091, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 0, "task": "qa_2", "budget": 0.875, "T": 16091, "n_kept": 14079, "gold": ["yes"], "pred": "no", "correct": false}
+{"id": 0, "task": "qa_2", "budget": 0.75, "T": 16091, "n_kept": 12068, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 0, "task": "qa_2", "budget": 0.625, "T": 16091, "n_kept": 10056, "gold": ["yes"], "pred": "no", "correct": false}
+{"id": 0, "task": "qa_2", "budget": 0.5, "T": 16091, "n_kept": 8045, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 0, "task": "qa_2", "budget": 0.375, "T": 16091, "n_kept": 6034, "gold": ["yes"], "pred": "no", "correct": false}
+{"id": 0, "task": "qa_2", "budget": 0.25, "T": 16091, "n_kept": 4022, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 0, "task": "qa_2", "budget": 0.1875, "T": 16091, "n_kept": 3017, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 0, "task": "qa_2", "budget": 0.125, "T": 16091, "n_kept": 2011, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 0, "task": "qa_2", "budget": 0.0625, "T": 16091, "n_kept": 1005, "gold": ["yes"], "pred": "no", "correct": false}
+{"id": 1, "task": "qa_2", "budget": 1.0, "T": 16501, "n_kept": 16501, "gold": ["Chief of Protocol"], "pred": "Lady Principal", "correct": false}
+{"id": 1, "task": "qa_2", "budget": 0.875, "T": 16501, "n_kept": 14438, "gold": ["Chief of Protocol"], "pred": "Secretary of State for Constitutional Affairs", "correct": false}
+{"id": 1, "task": "qa_2", "budget": 0.75, "T": 16501, "n_kept": 12375, "gold": ["Chief of Protocol"], "pred": "Secretary of State for Constitutional Affairs", "correct": false}
+{"id": 1, "task": "qa_2", "budget": 0.625, "T": 16501, "n_kept": 10313, "gold": ["Chief of Protocol"], "pred": "Secretary of State for Constitutional Affairs", "correct": false}
+{"id": 1, "task": "qa_2", "budget": 0.5, "T": 16501, "n_kept": 8250, "gold": ["Chief of Protocol"], "pred": "Secretary of State for Constitutional Affairs", "correct": false}
+{"id": 1, "task": "qa_2", "budget": 0.375, "T": 16501, "n_kept": 6187, "gold": ["Chief of Protocol"], "pred": "Secretary of State for Constitutional Affairs", "correct": false}
+{"id": 1, "task": "qa_2", "budget": 0.25, "T": 16501, "n_kept": 4125, "gold": ["Chief of Protocol"], "pred": "Secretary of State for Constitutional Affairs", "correct": false}
+{"id": 1, "task": "qa_2", "budget": 0.1875, "T": 16501, "n_kept": 3093, "gold": ["Chief of Protocol"], "pred": "Secretary of State for Constitutional Affairs", "correct": false}
+{"id": 1, "task": "qa_2", "budget": 0.125, "T": 16501, "n_kept": 2062, "gold": ["Chief of Protocol"], "pred": "Secretary of State for State Affairs", "correct": false}
+{"id": 1, "task": "qa_2", "budget": 0.0625, "T": 16501, "n_kept": 1031, "gold": ["Chief of Protocol"], "pred": "Secretary of State", "correct": false}
+{"id": 2, "task": "qa_2", "budget": 1.0, "T": 17040, "n_kept": 17040, "gold": ["Animorphs"], "pred": "The Hork-Bajir Chronicles", "correct": false}
+{"id": 2, "task": "qa_2", "budget": 0.875, "T": 17040, "n_kept": 14910, "gold": ["Animorphs"], "pred": "The Hork-Bajir Chronicles", "correct": false}
+{"id": 2, "task": "qa_2", "budget": 0.75, "T": 17040, "n_kept": 12780, "gold": ["Animorphs"], "pred": "The Hork-Bajir Chronicles", "correct": false}
+{"id": 2, "task": "qa_2", "budget": 0.625, "T": 17040, "n_kept": 10650, "gold": ["Animorphs"], "pred": "The Hork-Bajir Chronicles", "correct": false}
+{"id": 2, "task": "qa_2", "budget": 0.5, "T": 17040, "n_kept": 8520, "gold": ["Animorphs"], "pred": "The Hork-Bajir Chronicles", "correct": false}
+{"id": 2, "task": "qa_2", "budget": 0.375, "T": 17040, "n_kept": 6390, "gold": ["Animorphs"], "pred": "The Hork-Bajir Chronicles", "correct": false}
+{"id": 2, "task": "qa_2", "budget": 0.25, "T": 17040, "n_kept": 4260, "gold": ["Animorphs"], "pred": "The Divide trilogy", "correct": false}
+{"id": 2, "task": "qa_2", "budget": 0.1875, "T": 17040, "n_kept": 3195, "gold": ["Animorphs"], "pred": "The Divide trilogy", "correct": false}
+{"id": 2, "task": "qa_2", "budget": 0.125, "T": 17040, "n_kept": 2130, "gold": ["Animorphs"], "pred": "The Divide trilogy", "correct": false}
+{"id": 2, "task": "qa_2", "budget": 0.0625, "T": 17040, "n_kept": 1065, "gold": ["Animorphs"], "pred": "The Divide trilogy", "correct": false}
+{"id": 3, "task": "qa_2", "budget": 1.0, "T": 16792, "n_kept": 16792, "gold": ["no"], "pred": "no", "correct": true}
+{"id": 3, "task": "qa_2", "budget": 0.875, "T": 16792, "n_kept": 14693, "gold": ["no"], "pred": "no", "correct": true}
+{"id": 3, "task": "qa_2", "budget": 0.75, "T": 16792, "n_kept": 12594, "gold": ["no"], "pred": "no", "correct": true}
+{"id": 3, "task": "qa_2", "budget": 0.625, "T": 16792, "n_kept": 10495, "gold": ["no"], "pred": "no", "correct": true}
+{"id": 3, "task": "qa_2", "budget": 0.5, "T": 16792, "n_kept": 8396, "gold": ["no"], "pred": "no", "correct": true}
+{"id": 3, "task": "qa_2", "budget": 0.375, "T": 16792, "n_kept": 6297, "gold": ["no"], "pred": "no", "correct": true}
+{"id": 3, "task": "qa_2", "budget": 0.25, "T": 16792, "n_kept": 4198, "gold": ["no"], "pred": "no", "correct": true}
+{"id": 3, "task": "qa_2", "budget": 0.1875, "T": 16792, "n_kept": 3148, "gold": ["no"], "pred": "no", "correct": true}
+{"id": 3, "task": "qa_2", "budget": 0.125, "T": 16792, "n_kept": 2099, "gold": ["no"], "pred": "no", "correct": true}
+{"id": 3, "task": "qa_2", "budget": 0.0625, "T": 16792, "n_kept": 1049, "gold": ["no"], "pred": "no", "correct": true}
+{"id": 4, "task": "qa_2", "budget": 1.0, "T": 16984, "n_kept": 16984, "gold": ["Greenwich Village, New York City"], "pred": "New York City", "correct": false}
+{"id": 4, "task": "qa_2", "budget": 0.875, "T": 16984, "n_kept": 14861, "gold": ["Greenwich Village, New York City"], "pred": "New York City", "correct": false}
+{"id": 4, "task": "qa_2", "budget": 0.75, "T": 16984, "n_kept": 12738, "gold": ["Greenwich Village, New York City"], "pred": "New York City", "correct": false}
+{"id": 4, "task": "qa_2", "budget": 0.625, "T": 16984, "n_kept": 10615, "gold": ["Greenwich Village, New York City"], "pred": "New York City", "correct": false}
+{"id": 4, "task": "qa_2", "budget": 0.5, "T": 16984, "n_kept": 8492, "gold": ["Greenwich Village, New York City"], "pred": "New York City", "correct": false}
+{"id": 4, "task": "qa_2", "budget": 0.375, "T": 16984, "n_kept": 6369, "gold": ["Greenwich Village, New York City"], "pred": "New York City", "correct": false}
+{"id": 4, "task": "qa_2", "budget": 0.25, "T": 16984, "n_kept": 4246, "gold": ["Greenwich Village, New York City"], "pred": "New York City", "correct": false}
+{"id": 4, "task": "qa_2", "budget": 0.1875, "T": 16984, "n_kept": 3184, "gold": ["Greenwich Village, New York City"], "pred": "New York City", "correct": false}
+{"id": 4, "task": "qa_2", "budget": 0.125, "T": 16984, "n_kept": 2123, "gold": ["Greenwich Village, New York City"], "pred": "New York City", "correct": false}
+{"id": 4, "task": "qa_2", "budget": 0.0625, "T": 16984, "n_kept": 1061, "gold": ["Greenwich Village, New York City"], "pred": "Greenwich Village", "correct": false}
+{"id": 5, "task": "qa_2", "budget": 1.0, "T": 15672, "n_kept": 15672, "gold": ["YG Entertainment"], "pred": "YG Entertainment", "correct": true}
+{"id": 5, "task": "qa_2", "budget": 0.875, "T": 15672, "n_kept": 13713, "gold": ["YG Entertainment"], "pred": "YG Entertainment", "correct": true}
+{"id": 5, "task": "qa_2", "budget": 0.75, "T": 15672, "n_kept": 11754, "gold": ["YG Entertainment"], "pred": "YG Entertainment", "correct": true}
+{"id": 5, "task": "qa_2", "budget": 0.625, "T": 15672, "n_kept": 9795, "gold": ["YG Entertainment"], "pred": "YG Entertainment", "correct": true}
+{"id": 5, "task": "qa_2", "budget": 0.5, "T": 15672, "n_kept": 7836, "gold": ["YG Entertainment"], "pred": "YG Entertainment", "correct": true}
+{"id": 5, "task": "qa_2", "budget": 0.375, "T": 15672, "n_kept": 5877, "gold": ["YG Entertainment"], "pred": "YG Entertainment", "correct": true}
+{"id": 5, "task": "qa_2", "budget": 0.25, "T": 15672, "n_kept": 3918, "gold": ["YG Entertainment"], "pred": "YG Entertainment", "correct": true}
+{"id": 5, "task": "qa_2", "budget": 0.1875, "T": 15672, "n_kept": 2938, "gold": ["YG Entertainment"], "pred": "YG Entertainment", "correct": true}
+{"id": 5, "task": "qa_2", "budget": 0.125, "T": 15672, "n_kept": 1959, "gold": ["YG Entertainment"], "pred": "YG Entertainment", "correct": true}
+{"id": 5, "task": "qa_2", "budget": 0.0625, "T": 15672, "n_kept": 979, "gold": ["YG Entertainment"], "pred": "YG Entertainment", "correct": true}
+{"id": 6, "task": "qa_2", "budget": 1.0, "T": 15886, "n_kept": 15886, "gold": ["Eenasul Fateh"], "pred": "Eenasul Fateh", "correct": true}
+{"id": 6, "task": "qa_2", "budget": 0.875, "T": 15886, "n_kept": 13900, "gold": ["Eenasul Fateh"], "pred": "Eenasul Fateh", "correct": true}
+{"id": 6, "task": "qa_2", "budget": 0.75, "T": 15886, "n_kept": 11914, "gold": ["Eenasul Fateh"], "pred": "Eenasul Fateh", "correct": true}
+{"id": 6, "task": "qa_2", "budget": 0.625, "T": 15886, "n_kept": 9928, "gold": ["Eenasul Fateh"], "pred": "Eenasul Fateh", "correct": true}
+{"id": 6, "task": "qa_2", "budget": 0.5, "T": 15886, "n_kept": 7943, "gold": ["Eenasul Fateh"], "pred": "Eenasul Fateh", "correct": true}
+{"id": 6, "task": "qa_2", "budget": 0.375, "T": 15886, "n_kept": 5957, "gold": ["Eenasul Fateh"], "pred": "Eenasul Fateh", "correct": true}
+{"id": 6, "task": "qa_2", "budget": 0.25, "T": 15886, "n_kept": 3971, "gold": ["Eenasul Fateh"], "pred": "Eenasul Fateh", "correct": true}
+{"id": 6, "task": "qa_2", "budget": 0.1875, "T": 15886, "n_kept": 2978, "gold": ["Eenasul Fateh"], "pred": "Eenasul Fateh", "correct": true}
+{"id": 6, "task": "qa_2", "budget": 0.125, "T": 15886, "n_kept": 1985, "gold": ["Eenasul Fateh"], "pred": "Eenasul Fateh", "correct": true}
+{"id": 6, "task": "qa_2", "budget": 0.0625, "T": 15886, "n_kept": 992, "gold": ["Eenasul Fateh"], "pred": "Eenasul Fateh", "correct": true}
+{"id": 7, "task": "qa_2", "budget": 1.0, "T": 16429, "n_kept": 16429, "gold": ["3,677 seated"], "pred": "1,400", "correct": false}
+{"id": 7, "task": "qa_2", "budget": 0.875, "T": 16429, "n_kept": 14375, "gold": ["3,677 seated"], "pred": "1,400", "correct": false}
+{"id": 7, "task": "qa_2", "budget": 0.75, "T": 16429, "n_kept": 12321, "gold": ["3,677 seated"], "pred": "1,400", "correct": false}
+{"id": 7, "task": "qa_2", "budget": 0.625, "T": 16429, "n_kept": 10268, "gold": ["3,677 seated"], "pred": "1,400", "correct": false}
+{"id": 7, "task": "qa_2", "budget": 0.5, "T": 16429, "n_kept": 8214, "gold": ["3,677 seated"], "pred": "1,400", "correct": false}
+{"id": 7, "task": "qa_2", "budget": 0.375, "T": 16429, "n_kept": 6160, "gold": ["3,677 seated"], "pred": "1,400", "correct": false}
+{"id": 7, "task": "qa_2", "budget": 0.25, "T": 16429, "n_kept": 4107, "gold": ["3,677 seated"], "pred": "1,400", "correct": false}
+{"id": 7, "task": "qa_2", "budget": 0.1875, "T": 16429, "n_kept": 3080, "gold": ["3,677 seated"], "pred": "1,400", "correct": false}
+{"id": 7, "task": "qa_2", "budget": 0.125, "T": 16429, "n_kept": 2053, "gold": ["3,677 seated"], "pred": "1,400", "correct": false}
+{"id": 7, "task": "qa_2", "budget": 0.0625, "T": 16429, "n_kept": 1026, "gold": ["3,677 seated"], "pred": "1,400", "correct": false}
+{"id": 8, "task": "qa_2", "budget": 1.0, "T": 17160, "n_kept": 17160, "gold": ["Terry Richardson"], "pred": "Annie Morton", "correct": false}
+{"id": 8, "task": "qa_2", "budget": 0.875, "T": 17160, "n_kept": 15015, "gold": ["Terry Richardson"], "pred": "Annie Morton", "correct": false}
+{"id": 8, "task": "qa_2", "budget": 0.75, "T": 17160, "n_kept": 12870, "gold": ["Terry Richardson"], "pred": "Annie Morton", "correct": false}
+{"id": 8, "task": "qa_2", "budget": 0.625, "T": 17160, "n_kept": 10725, "gold": ["Terry Richardson"], "pred": "Annie Morton", "correct": false}
+{"id": 8, "task": "qa_2", "budget": 0.5, "T": 17160, "n_kept": 8580, "gold": ["Terry Richardson"], "pred": "Annie Morton", "correct": false}
+{"id": 8, "task": "qa_2", "budget": 0.375, "T": 17160, "n_kept": 6435, "gold": ["Terry Richardson"], "pred": "Annie Morton", "correct": false}
+{"id": 8, "task": "qa_2", "budget": 0.25, "T": 17160, "n_kept": 4290, "gold": ["Terry Richardson"], "pred": "Annie Morton", "correct": false}
+{"id": 8, "task": "qa_2", "budget": 0.1875, "T": 17160, "n_kept": 3217, "gold": ["Terry Richardson"], "pred": "Annie Morton", "correct": false}
+{"id": 8, "task": "qa_2", "budget": 0.125, "T": 17160, "n_kept": 2145, "gold": ["Terry Richardson"], "pred": "Annie Morton", "correct": false}
+{"id": 8, "task": "qa_2", "budget": 0.0625, "T": 17160, "n_kept": 1072, "gold": ["Terry Richardson"], "pred": "Annie Morton", "correct": false}
+{"id": 9, "task": "qa_2", "budget": 1.0, "T": 17186, "n_kept": 17186, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 9, "task": "qa_2", "budget": 0.875, "T": 17186, "n_kept": 15037, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 9, "task": "qa_2", "budget": 0.75, "T": 17186, "n_kept": 12889, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 9, "task": "qa_2", "budget": 0.625, "T": 17186, "n_kept": 10741, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 9, "task": "qa_2", "budget": 0.5, "T": 17186, "n_kept": 8593, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 9, "task": "qa_2", "budget": 0.375, "T": 17186, "n_kept": 6444, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 9, "task": "qa_2", "budget": 0.25, "T": 17186, "n_kept": 4296, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 9, "task": "qa_2", "budget": 0.1875, "T": 17186, "n_kept": 3222, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 9, "task": "qa_2", "budget": 0.125, "T": 17186, "n_kept": 2148, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 9, "task": "qa_2", "budget": 0.0625, "T": 17186, "n_kept": 1074, "gold": ["yes"], "pred": "No", "correct": false}
+{"id": 10, "task": "qa_2", "budget": 1.0, "T": 17091, "n_kept": 17091, "gold": ["Kansas Song"], "pred": "Kansas Song", "correct": true}
+{"id": 10, "task": "qa_2", "budget": 0.875, "T": 17091, "n_kept": 14954, "gold": ["Kansas Song"], "pred": "Kansas Song", "correct": true}
+{"id": 10, "task": "qa_2", "budget": 0.75, "T": 17091, "n_kept": 12818, "gold": ["Kansas Song"], "pred": "Kansas Song", "correct": true}
+{"id": 10, "task": "qa_2", "budget": 0.625, "T": 17091, "n_kept": 10681, "gold": ["Kansas Song"], "pred": "Kansas Song", "correct": true}
+{"id": 10, "task": "qa_2", "budget": 0.5, "T": 17091, "n_kept": 8545, "gold": ["Kansas Song"], "pred": "Kansas Song", "correct": true}
+{"id": 10, "task": "qa_2", "budget": 0.375, "T": 17091, "n_kept": 6409, "gold": ["Kansas Song"], "pred": "Kansas Song", "correct": true}
+{"id": 10, "task": "qa_2", "budget": 0.25, "T": 17091, "n_kept": 4272, "gold": ["Kansas Song"], "pred": "Kansas Song", "correct": true}
+{"id": 10, "task": "qa_2", "budget": 0.1875, "T": 17091, "n_kept": 3204, "gold": ["Kansas Song"], "pred": "Kansas Song", "correct": true}
+{"id": 10, "task": "qa_2", "budget": 0.125, "T": 17091, "n_kept": 2136, "gold": ["Kansas Song"], "pred": "Kansas Song", "correct": true}
+{"id": 10, "task": "qa_2", "budget": 0.0625, "T": 17091, "n_kept": 1068, "gold": ["Kansas Song"], "pred": "Kansas Song", "correct": true}
+{"id": 11, "task": "qa_2", "budget": 1.0, "T": 16834, "n_kept": 16834, "gold": ["David Weissman"], "pred": "David Weissman", "correct": true}
+{"id": 11, "task": "qa_2", "budget": 0.875, "T": 16834, "n_kept": 14729, "gold": ["David Weissman"], "pred": "David Weissman", "correct": true}
+{"id": 11, "task": "qa_2", "budget": 0.75, "T": 16834, "n_kept": 12625, "gold": ["David Weissman"], "pred": "David Weissman", "correct": true}
+{"id": 11, "task": "qa_2", "budget": 0.625, "T": 16834, "n_kept": 10521, "gold": ["David Weissman"], "pred": "David Weissman", "correct": true}
+{"id": 11, "task": "qa_2", "budget": 0.5, "T": 16834, "n_kept": 8417, "gold": ["David Weissman"], "pred": "David Weissman", "correct": true}
+{"id": 11, "task": "qa_2", "budget": 0.375, "T": 16834, "n_kept": 6312, "gold": ["David Weissman"], "pred": "David Weissman", "correct": true}
+{"id": 11, "task": "qa_2", "budget": 0.25, "T": 16834, "n_kept": 4208, "gold": ["David Weissman"], "pred": "David Weissman", "correct": true}
+{"id": 11, "task": "qa_2", "budget": 0.1875, "T": 16834, "n_kept": 3156, "gold": ["David Weissman"], "pred": "David Weissman", "correct": true}
+{"id": 11, "task": "qa_2", "budget": 0.125, "T": 16834, "n_kept": 2104, "gold": ["David Weissman"], "pred": "David Weissman", "correct": true}
+{"id": 11, "task": "qa_2", "budget": 0.0625, "T": 16834, "n_kept": 1052, "gold": ["David Weissman"], "pred": "David Weissman", "correct": true}
+{"id": 12, "task": "qa_2", "budget": 1.0, "T": 16884, "n_kept": 16884, "gold": ["1999"], "pred": "1999", "correct": true}
+{"id": 12, "task": "qa_2", "budget": 0.875, "T": 16884, "n_kept": 14773, "gold": ["1999"], "pred": "1999", "correct": true}
+{"id": 12, "task": "qa_2", "budget": 0.75, "T": 16884, "n_kept": 12663, "gold": ["1999"], "pred": "1999", "correct": true}
+{"id": 12, "task": "qa_2", "budget": 0.625, "T": 16884, "n_kept": 10552, "gold": ["1999"], "pred": "1999", "correct": true}
+{"id": 12, "task": "qa_2", "budget": 0.5, "T": 16884, "n_kept": 8442, "gold": ["1999"], "pred": "1999", "correct": true}
+{"id": 12, "task": "qa_2", "budget": 0.375, "T": 16884, "n_kept": 6331, "gold": ["1999"], "pred": "1999", "correct": true}
+{"id": 12, "task": "qa_2", "budget": 0.25, "T": 16884, "n_kept": 4221, "gold": ["1999"], "pred": "1999", "correct": true}
+{"id": 12, "task": "qa_2", "budget": 0.1875, "T": 16884, "n_kept": 3165, "gold": ["1999"], "pred": "1999", "correct": true}
+{"id": 12, "task": "qa_2", "budget": 0.125, "T": 16884, "n_kept": 2110, "gold": ["1999"], "pred": "1999", "correct": true}
+{"id": 12, "task": "qa_2", "budget": 0.0625, "T": 16884, "n_kept": 1055, "gold": ["1999"], "pred": "1999", "correct": true}
+{"id": 13, "task": "qa_2", "budget": 1.0, "T": 15627, "n_kept": 15627, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 13, "task": "qa_2", "budget": 0.875, "T": 15627, "n_kept": 13673, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 13, "task": "qa_2", "budget": 0.75, "T": 15627, "n_kept": 11720, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 13, "task": "qa_2", "budget": 0.625, "T": 15627, "n_kept": 9766, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 13, "task": "qa_2", "budget": 0.5, "T": 15627, "n_kept": 7813, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 13, "task": "qa_2", "budget": 0.375, "T": 15627, "n_kept": 5860, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 13, "task": "qa_2", "budget": 0.25, "T": 15627, "n_kept": 3906, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 13, "task": "qa_2", "budget": 0.1875, "T": 15627, "n_kept": 2930, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 13, "task": "qa_2", "budget": 0.125, "T": 15627, "n_kept": 1953, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 13, "task": "qa_2", "budget": 0.0625, "T": 15627, "n_kept": 976, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 14, "task": "qa_2", "budget": 1.0, "T": 16089, "n_kept": 16089, "gold": ["from 1986 to 2013"], "pred": "1945\u20131969", "correct": false}
+{"id": 14, "task": "qa_2", "budget": 0.875, "T": 16089, "n_kept": 14077, "gold": ["from 1986 to 2013"], "pred": "1945\u20131969", "correct": false}
+{"id": 14, "task": "qa_2", "budget": 0.75, "T": 16089, "n_kept": 12066, "gold": ["from 1986 to 2013"], "pred": "1945\u20131969", "correct": false}
+{"id": 14, "task": "qa_2", "budget": 0.625, "T": 16089, "n_kept": 10055, "gold": ["from 1986 to 2013"], "pred": "1945\u20131969", "correct": false}
+{"id": 14, "task": "qa_2", "budget": 0.5, "T": 16089, "n_kept": 8044, "gold": ["from 1986 to 2013"], "pred": "1945\u20131969", "correct": false}
+{"id": 14, "task": "qa_2", "budget": 0.375, "T": 16089, "n_kept": 6033, "gold": ["from 1986 to 2013"], "pred": "1945\u20131969", "correct": false}
+{"id": 14, "task": "qa_2", "budget": 0.25, "T": 16089, "n_kept": 4022, "gold": ["from 1986 to 2013"], "pred": "1992\u20131996", "correct": false}
+{"id": 14, "task": "qa_2", "budget": 0.1875, "T": 16089, "n_kept": 3016, "gold": ["from 1986 to 2013"], "pred": "1992\u20131996", "correct": false}
+{"id": 14, "task": "qa_2", "budget": 0.125, "T": 16089, "n_kept": 2011, "gold": ["from 1986 to 2013"], "pred": "1945\u20131969", "correct": false}
+{"id": 14, "task": "qa_2", "budget": 0.0625, "T": 16089, "n_kept": 1005, "gold": ["from 1986 to 2013"], "pred": "1945\u20131969", "correct": false}
+{"id": 15, "task": "qa_2", "budget": 1.0, "T": 17147, "n_kept": 17147, "gold": ["9,984"], "pred": "United States", "correct": false}
+{"id": 15, "task": "qa_2", "budget": 0.875, "T": 17147, "n_kept": 15003, "gold": ["9,984"], "pred": "United States", "correct": false}
+{"id": 15, "task": "qa_2", "budget": 0.75, "T": 17147, "n_kept": 12860, "gold": ["9,984"], "pred": "United States", "correct": false}
+{"id": 15, "task": "qa_2", "budget": 0.625, "T": 17147, "n_kept": 10716, "gold": ["9,984"], "pred": "United States", "correct": false}
+{"id": 15, "task": "qa_2", "budget": 0.5, "T": 17147, "n_kept": 8573, "gold": ["9,984"], "pred": "United States", "correct": false}
+{"id": 15, "task": "qa_2", "budget": 0.375, "T": 17147, "n_kept": 6430, "gold": ["9,984"], "pred": "United States", "correct": false}
+{"id": 15, "task": "qa_2", "budget": 0.25, "T": 17147, "n_kept": 4286, "gold": ["9,984"], "pred": "United States", "correct": false}
+{"id": 15, "task": "qa_2", "budget": 0.1875, "T": 17147, "n_kept": 3215, "gold": ["9,984"], "pred": "United States", "correct": false}
+{"id": 15, "task": "qa_2", "budget": 0.125, "T": 17147, "n_kept": 2143, "gold": ["9,984"], "pred": "United States", "correct": false}
+{"id": 15, "task": "qa_2", "budget": 0.0625, "T": 17147, "n_kept": 1071, "gold": ["9,984"], "pred": "United States", "correct": false}
+{"id": 16, "task": "qa_2", "budget": 1.0, "T": 17124, "n_kept": 17124, "gold": ["the North Atlantic Conference"], "pred": "North Atlantic Conference", "correct": false}
+{"id": 16, "task": "qa_2", "budget": 0.875, "T": 17124, "n_kept": 14983, "gold": ["the North Atlantic Conference"], "pred": "North Atlantic Conference", "correct": false}
+{"id": 16, "task": "qa_2", "budget": 0.75, "T": 17124, "n_kept": 12843, "gold": ["the North Atlantic Conference"], "pred": "North Atlantic Conference", "correct": false}
+{"id": 16, "task": "qa_2", "budget": 0.625, "T": 17124, "n_kept": 10702, "gold": ["the North Atlantic Conference"], "pred": "North Atlantic Conference", "correct": false}
+{"id": 16, "task": "qa_2", "budget": 0.5, "T": 17124, "n_kept": 8562, "gold": ["the North Atlantic Conference"], "pred": "North Atlantic Conference", "correct": false}
+{"id": 16, "task": "qa_2", "budget": 0.375, "T": 17124, "n_kept": 6421, "gold": ["the North Atlantic Conference"], "pred": "North Atlantic Conference", "correct": false}
+{"id": 16, "task": "qa_2", "budget": 0.25, "T": 17124, "n_kept": 4281, "gold": ["the North Atlantic Conference"], "pred": "North Atlantic Conference", "correct": false}
+{"id": 16, "task": "qa_2", "budget": 0.1875, "T": 17124, "n_kept": 3210, "gold": ["the North Atlantic Conference"], "pred": "North Atlantic Conference", "correct": false}
+{"id": 16, "task": "qa_2", "budget": 0.125, "T": 17124, "n_kept": 2140, "gold": ["the North Atlantic Conference"], "pred": "North Atlantic Conference", "correct": false}
+{"id": 16, "task": "qa_2", "budget": 0.0625, "T": 17124, "n_kept": 1070, "gold": ["the North Atlantic Conference"], "pred": "North Atlantic Conference", "correct": false}
+{"id": 17, "task": "qa_2", "budget": 1.0, "T": 16318, "n_kept": 16318, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 17, "task": "qa_2", "budget": 0.875, "T": 16318, "n_kept": 14278, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 17, "task": "qa_2", "budget": 0.75, "T": 16318, "n_kept": 12238, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 17, "task": "qa_2", "budget": 0.625, "T": 16318, "n_kept": 10198, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 17, "task": "qa_2", "budget": 0.5, "T": 16318, "n_kept": 8159, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 17, "task": "qa_2", "budget": 0.375, "T": 16318, "n_kept": 6119, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 17, "task": "qa_2", "budget": 0.25, "T": 16318, "n_kept": 4079, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 17, "task": "qa_2", "budget": 0.1875, "T": 16318, "n_kept": 3059, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 17, "task": "qa_2", "budget": 0.125, "T": 16318, "n_kept": 2039, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 17, "task": "qa_2", "budget": 0.0625, "T": 16318, "n_kept": 1019, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 18, "task": "qa_2", "budget": 1.0, "T": 16524, "n_kept": 16524, "gold": ["1969 until 1974"], "pred": "1970s", "correct": false}
+{"id": 18, "task": "qa_2", "budget": 0.875, "T": 16524, "n_kept": 14458, "gold": ["1969 until 1974"], "pred": "1970s", "correct": false}
+{"id": 18, "task": "qa_2", "budget": 0.75, "T": 16524, "n_kept": 12393, "gold": ["1969 until 1974"], "pred": "1970s", "correct": false}
+{"id": 18, "task": "qa_2", "budget": 0.625, "T": 16524, "n_kept": 10327, "gold": ["1969 until 1974"], "pred": "1970s", "correct": false}
+{"id": 18, "task": "qa_2", "budget": 0.5, "T": 16524, "n_kept": 8262, "gold": ["1969 until 1974"], "pred": "1970s", "correct": false}
+{"id": 18, "task": "qa_2", "budget": 0.375, "T": 16524, "n_kept": 6196, "gold": ["1969 until 1974"], "pred": "1970s", "correct": false}
+{"id": 18, "task": "qa_2", "budget": 0.25, "T": 16524, "n_kept": 4131, "gold": ["1969 until 1974"], "pred": "1970s", "correct": false}
+{"id": 18, "task": "qa_2", "budget": 0.1875, "T": 16524, "n_kept": 3098, "gold": ["1969 until 1974"], "pred": "1970s", "correct": false}
+{"id": 18, "task": "qa_2", "budget": 0.125, "T": 16524, "n_kept": 2065, "gold": ["1969 until 1974"], "pred": "1973\u20131977", "correct": false}
+{"id": 18, "task": "qa_2", "budget": 0.0625, "T": 16524, "n_kept": 1032, "gold": ["1969 until 1974"], "pred": "1973\u20131977", "correct": false}
+{"id": 19, "task": "qa_2", "budget": 1.0, "T": 16916, "n_kept": 16916, "gold": ["Robert Erskine Childers DSC"], "pred": "Henry Roth", "correct": false}
+{"id": 19, "task": "qa_2", "budget": 0.875, "T": 16916, "n_kept": 14801, "gold": ["Robert Erskine Childers DSC"], "pred": "Henry Roth", "correct": false}
+{"id": 19, "task": "qa_2", "budget": 0.75, "T": 16916, "n_kept": 12687, "gold": ["Robert Erskine Childers DSC"], "pred": "Henry Roth", "correct": false}
+{"id": 19, "task": "qa_2", "budget": 0.625, "T": 16916, "n_kept": 10572, "gold": ["Robert Erskine Childers DSC"], "pred": "Henry Roth", "correct": false}
+{"id": 19, "task": "qa_2", "budget": 0.5, "T": 16916, "n_kept": 8458, "gold": ["Robert Erskine Childers DSC"], "pred": "Henry Roth", "correct": false}
+{"id": 19, "task": "qa_2", "budget": 0.375, "T": 16916, "n_kept": 6343, "gold": ["Robert Erskine Childers DSC"], "pred": "Henry Roth", "correct": false}
+{"id": 19, "task": "qa_2", "budget": 0.25, "T": 16916, "n_kept": 4229, "gold": ["Robert Erskine Childers DSC"], "pred": "Henry Roth", "correct": false}
+{"id": 19, "task": "qa_2", "budget": 0.1875, "T": 16916, "n_kept": 3171, "gold": ["Robert Erskine Childers DSC"], "pred": "Henry Roth", "correct": false}
+{"id": 19, "task": "qa_2", "budget": 0.125, "T": 16916, "n_kept": 2114, "gold": ["Robert Erskine Childers DSC"], "pred": "Henry Roth", "correct": false}
+{"id": 19, "task": "qa_2", "budget": 0.0625, "T": 16916, "n_kept": 1057, "gold": ["Robert Erskine Childers DSC"], "pred": "Henry Roth", "correct": false}
+{"id": 20, "task": "qa_2", "budget": 1.0, "T": 16096, "n_kept": 16096, "gold": ["Pedro Rodr\u00edguez"], "pred": "Sergio P\u00e9rez", "correct": false}
+{"id": 20, "task": "qa_2", "budget": 0.875, "T": 16096, "n_kept": 14084, "gold": ["Pedro Rodr\u00edguez"], "pred": "Sergio P\u00e9rez", "correct": false}
+{"id": 20, "task": "qa_2", "budget": 0.75, "T": 16096, "n_kept": 12072, "gold": ["Pedro Rodr\u00edguez"], "pred": "Sergio P\u00e9rez", "correct": false}
+{"id": 20, "task": "qa_2", "budget": 0.625, "T": 16096, "n_kept": 10060, "gold": ["Pedro Rodr\u00edguez"], "pred": "Sergio P\u00e9rez", "correct": false}
+{"id": 20, "task": "qa_2", "budget": 0.5, "T": 16096, "n_kept": 8048, "gold": ["Pedro Rodr\u00edguez"], "pred": "Sergio P\u00e9rez", "correct": false}
+{"id": 20, "task": "qa_2", "budget": 0.375, "T": 16096, "n_kept": 6036, "gold": ["Pedro Rodr\u00edguez"], "pred": "Sergio P\u00e9rez", "correct": false}
+{"id": 20, "task": "qa_2", "budget": 0.25, "T": 16096, "n_kept": 4024, "gold": ["Pedro Rodr\u00edguez"], "pred": "Sergio P\u00e9rez", "correct": false}
+{"id": 20, "task": "qa_2", "budget": 0.1875, "T": 16096, "n_kept": 3018, "gold": ["Pedro Rodr\u00edguez"], "pred": "Sergio P\u00e9rez", "correct": false}
+{"id": 20, "task": "qa_2", "budget": 0.125, "T": 16096, "n_kept": 2012, "gold": ["Pedro Rodr\u00edguez"], "pred": "Sergio P\u00e9rez", "correct": false}
+{"id": 20, "task": "qa_2", "budget": 0.0625, "T": 16096, "n_kept": 1006, "gold": ["Pedro Rodr\u00edguez"], "pred": "Sergio P\u00e9rez", "correct": false}
+{"id": 21, "task": "qa_2", "budget": 1.0, "T": 17183, "n_kept": 17183, "gold": ["Sonic"], "pred": "Tigger", "correct": false}
+{"id": 21, "task": "qa_2", "budget": 0.875, "T": 17183, "n_kept": 15035, "gold": ["Sonic"], "pred": "Tigger", "correct": false}
+{"id": 21, "task": "qa_2", "budget": 0.75, "T": 17183, "n_kept": 12887, "gold": ["Sonic"], "pred": "Tigger", "correct": false}
+{"id": 21, "task": "qa_2", "budget": 0.625, "T": 17183, "n_kept": 10739, "gold": ["Sonic"], "pred": "Tigger", "correct": false}
+{"id": 21, "task": "qa_2", "budget": 0.5, "T": 17183, "n_kept": 8591, "gold": ["Sonic"], "pred": "Tigger", "correct": false}
+{"id": 21, "task": "qa_2", "budget": 0.375, "T": 17183, "n_kept": 6443, "gold": ["Sonic"], "pred": "Tigger", "correct": false}
+{"id": 21, "task": "qa_2", "budget": 0.25, "T": 17183, "n_kept": 4295, "gold": ["Sonic"], "pred": "Tigger", "correct": false}
+{"id": 21, "task": "qa_2", "budget": 0.1875, "T": 17183, "n_kept": 3221, "gold": ["Sonic"], "pred": "Tigger", "correct": false}
+{"id": 21, "task": "qa_2", "budget": 0.125, "T": 17183, "n_kept": 2147, "gold": ["Sonic"], "pred": "Tigger", "correct": false}
+{"id": 21, "task": "qa_2", "budget": 0.0625, "T": 17183, "n_kept": 1073, "gold": ["Sonic"], "pred": "Tigger", "correct": false}
+{"id": 22, "task": "qa_2", "budget": 1.0, "T": 15804, "n_kept": 15804, "gold": ["keyboard function keys"], "pred": "Apple Remote Desktop", "correct": false}
+{"id": 22, "task": "qa_2", "budget": 0.875, "T": 15804, "n_kept": 13828, "gold": ["keyboard function keys"], "pred": "Apple Remote Desktop", "correct": false}
+{"id": 22, "task": "qa_2", "budget": 0.75, "T": 15804, "n_kept": 11853, "gold": ["keyboard function keys"], "pred": "Apple Remote Desktop", "correct": false}
+{"id": 22, "task": "qa_2", "budget": 0.625, "T": 15804, "n_kept": 9877, "gold": ["keyboard function keys"], "pred": "Apple Remote Desktop", "correct": false}
+{"id": 22, "task": "qa_2", "budget": 0.5, "T": 15804, "n_kept": 7902, "gold": ["keyboard function keys"], "pred": "Apple Remote Desktop", "correct": false}
+{"id": 22, "task": "qa_2", "budget": 0.375, "T": 15804, "n_kept": 5926, "gold": ["keyboard function keys"], "pred": "Apple Remote Desktop", "correct": false}
+{"id": 22, "task": "qa_2", "budget": 0.25, "T": 15804, "n_kept": 3951, "gold": ["keyboard function keys"], "pred": "Apple Remote Desktop", "correct": false}
+{"id": 22, "task": "qa_2", "budget": 0.1875, "T": 15804, "n_kept": 2963, "gold": ["keyboard function keys"], "pred": "Apple Remote Desktop", "correct": false}
+{"id": 22, "task": "qa_2", "budget": 0.125, "T": 15804, "n_kept": 1975, "gold": ["keyboard function keys"], "pred": "Apple Remote Desktop", "correct": false}
+{"id": 22, "task": "qa_2", "budget": 0.0625, "T": 15804, "n_kept": 987, "gold": ["keyboard function keys"], "pred": "Apple Remote Desktop", "correct": false}
+{"id": 23, "task": "qa_2", "budget": 1.0, "T": 15322, "n_kept": 15322, "gold": ["Badly Drawn Boy"], "pred": "Wolf Alice", "correct": false}
+{"id": 23, "task": "qa_2", "budget": 0.875, "T": 15322, "n_kept": 13406, "gold": ["Badly Drawn Boy"], "pred": "Wolf Alice", "correct": false}
+{"id": 23, "task": "qa_2", "budget": 0.75, "T": 15322, "n_kept": 11491, "gold": ["Badly Drawn Boy"], "pred": "Wolf Alice", "correct": false}
+{"id": 23, "task": "qa_2", "budget": 0.625, "T": 15322, "n_kept": 9576, "gold": ["Badly Drawn Boy"], "pred": "Wolf Alice", "correct": false}
+{"id": 23, "task": "qa_2", "budget": 0.5, "T": 15322, "n_kept": 7661, "gold": ["Badly Drawn Boy"], "pred": "Wolf Alice", "correct": false}
+{"id": 23, "task": "qa_2", "budget": 0.375, "T": 15322, "n_kept": 5745, "gold": ["Badly Drawn Boy"], "pred": "Wolf Alice", "correct": false}
+{"id": 23, "task": "qa_2", "budget": 0.25, "T": 15322, "n_kept": 3830, "gold": ["Badly Drawn Boy"], "pred": "Wolf Alice", "correct": false}
+{"id": 23, "task": "qa_2", "budget": 0.1875, "T": 15322, "n_kept": 2872, "gold": ["Badly Drawn Boy"], "pred": "Wolf Alice", "correct": false}
+{"id": 23, "task": "qa_2", "budget": 0.125, "T": 15322, "n_kept": 1915, "gold": ["Badly Drawn Boy"], "pred": "Wolf Alice", "correct": false}
+{"id": 23, "task": "qa_2", "budget": 0.0625, "T": 15322, "n_kept": 957, "gold": ["Badly Drawn Boy"], "pred": "Wolf Alice", "correct": false}
+{"id": 24, "task": "qa_2", "budget": 1.0, "T": 16368, "n_kept": 16368, "gold": ["World's Best Goalkeeper"], "pred": "Peter Schmeichel", "correct": false}
+{"id": 24, "task": "qa_2", "budget": 0.875, "T": 16368, "n_kept": 14322, "gold": ["World's Best Goalkeeper"], "pred": "Peter Schmeichel", "correct": false}
+{"id": 24, "task": "qa_2", "budget": 0.75, "T": 16368, "n_kept": 12276, "gold": ["World's Best Goalkeeper"], "pred": "Peter Schmeichel", "correct": false}
+{"id": 24, "task": "qa_2", "budget": 0.625, "T": 16368, "n_kept": 10230, "gold": ["World's Best Goalkeeper"], "pred": "Peter Schmeichel", "correct": false}
+{"id": 24, "task": "qa_2", "budget": 0.5, "T": 16368, "n_kept": 8184, "gold": ["World's Best Goalkeeper"], "pred": "Peter Schmeichel", "correct": false}
+{"id": 24, "task": "qa_2", "budget": 0.375, "T": 16368, "n_kept": 6138, "gold": ["World's Best Goalkeeper"], "pred": "Peter Schmeichel", "correct": false}
+{"id": 24, "task": "qa_2", "budget": 0.25, "T": 16368, "n_kept": 4092, "gold": ["World's Best Goalkeeper"], "pred": "Peter Schmeichel", "correct": false}
+{"id": 24, "task": "qa_2", "budget": 0.1875, "T": 16368, "n_kept": 3069, "gold": ["World's Best Goalkeeper"], "pred": "Peter Schmeichel", "correct": false}
+{"id": 24, "task": "qa_2", "budget": 0.125, "T": 16368, "n_kept": 2046, "gold": ["World's Best Goalkeeper"], "pred": "Peter Schmeichel", "correct": false}
+{"id": 24, "task": "qa_2", "budget": 0.0625, "T": 16368, "n_kept": 1023, "gold": ["World's Best Goalkeeper"], "pred": "Peter Schmeichel", "correct": false}
+{"id": 25, "task": "qa_2", "budget": 1.0, "T": 15706, "n_kept": 15706, "gold": ["Barton Lee Hazlewood"], "pred": "Greg Tribbett\nDenis Latin", "correct": false}
+{"id": 25, "task": "qa_2", "budget": 0.875, "T": 15706, "n_kept": 13742, "gold": ["Barton Lee Hazlewood"], "pred": "Greg Tribbett\nDenis Latin", "correct": false}
+{"id": 25, "task": "qa_2", "budget": 0.75, "T": 15706, "n_kept": 11779, "gold": ["Barton Lee Hazlewood"], "pred": "Greg Tribbett\nDenis Latin", "correct": false}
+{"id": 25, "task": "qa_2", "budget": 0.625, "T": 15706, "n_kept": 9816, "gold": ["Barton Lee Hazlewood"], "pred": "Greg Tribbett\nDenis Latin", "correct": false}
+{"id": 25, "task": "qa_2", "budget": 0.5, "T": 15706, "n_kept": 7853, "gold": ["Barton Lee Hazlewood"], "pred": "Greg Tribbett\nDenis Latin", "correct": false}
+{"id": 25, "task": "qa_2", "budget": 0.375, "T": 15706, "n_kept": 5889, "gold": ["Barton Lee Hazlewood"], "pred": "Greg Tribbett\nDenis Latin", "correct": false}
+{"id": 25, "task": "qa_2", "budget": 0.25, "T": 15706, "n_kept": 3926, "gold": ["Barton Lee Hazlewood"], "pred": "Greg Tribbett\nDenis Latin", "correct": false}
+{"id": 25, "task": "qa_2", "budget": 0.1875, "T": 15706, "n_kept": 2944, "gold": ["Barton Lee Hazlewood"], "pred": "Greg Tribbett\nDenis Latin", "correct": false}
+{"id": 25, "task": "qa_2", "budget": 0.125, "T": 15706, "n_kept": 1963, "gold": ["Barton Lee Hazlewood"], "pred": "Greg Tribbett", "correct": false}
+{"id": 25, "task": "qa_2", "budget": 0.0625, "T": 15706, "n_kept": 981, "gold": ["Barton Lee Hazlewood"], "pred": "Greg Tribbett\nDenis Holland", "correct": false}
+{"id": 26, "task": "qa_2", "budget": 1.0, "T": 17154, "n_kept": 17154, "gold": ["1838"], "pred": "1838", "correct": true}
+{"id": 26, "task": "qa_2", "budget": 0.875, "T": 17154, "n_kept": 15009, "gold": ["1838"], "pred": "1838", "correct": true}
+{"id": 26, "task": "qa_2", "budget": 0.75, "T": 17154, "n_kept": 12865, "gold": ["1838"], "pred": "1838", "correct": true}
+{"id": 26, "task": "qa_2", "budget": 0.625, "T": 17154, "n_kept": 10721, "gold": ["1838"], "pred": "1838", "correct": true}
+{"id": 26, "task": "qa_2", "budget": 0.5, "T": 17154, "n_kept": 8577, "gold": ["1838"], "pred": "1838", "correct": true}
+{"id": 26, "task": "qa_2", "budget": 0.375, "T": 17154, "n_kept": 6432, "gold": ["1838"], "pred": "1838", "correct": true}
+{"id": 26, "task": "qa_2", "budget": 0.25, "T": 17154, "n_kept": 4288, "gold": ["1838"], "pred": "1838", "correct": true}
+{"id": 26, "task": "qa_2", "budget": 0.1875, "T": 17154, "n_kept": 3216, "gold": ["1838"], "pred": "1838", "correct": true}
+{"id": 26, "task": "qa_2", "budget": 0.125, "T": 17154, "n_kept": 2144, "gold": ["1838"], "pred": "1838", "correct": true}
+{"id": 26, "task": "qa_2", "budget": 0.0625, "T": 17154, "n_kept": 1072, "gold": ["1838"], "pred": "1838", "correct": true}
+{"id": 27, "task": "qa_2", "budget": 1.0, "T": 15708, "n_kept": 15708, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 27, "task": "qa_2", "budget": 0.875, "T": 15708, "n_kept": 13744, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 27, "task": "qa_2", "budget": 0.75, "T": 15708, "n_kept": 11781, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 27, "task": "qa_2", "budget": 0.625, "T": 15708, "n_kept": 9817, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 27, "task": "qa_2", "budget": 0.5, "T": 15708, "n_kept": 7854, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 27, "task": "qa_2", "budget": 0.375, "T": 15708, "n_kept": 5890, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 27, "task": "qa_2", "budget": 0.25, "T": 15708, "n_kept": 3927, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 27, "task": "qa_2", "budget": 0.1875, "T": 15708, "n_kept": 2945, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 27, "task": "qa_2", "budget": 0.125, "T": 15708, "n_kept": 1963, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 27, "task": "qa_2", "budget": 0.0625, "T": 15708, "n_kept": 981, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 28, "task": "qa_2", "budget": 1.0, "T": 14176, "n_kept": 14176, "gold": ["Henry J. Kaiser"], "pred": "Henry J. Kaiser", "correct": true}
+{"id": 28, "task": "qa_2", "budget": 0.875, "T": 14176, "n_kept": 12404, "gold": ["Henry J. Kaiser"], "pred": "Henry J. Kaiser", "correct": true}
+{"id": 28, "task": "qa_2", "budget": 0.75, "T": 14176, "n_kept": 10632, "gold": ["Henry J. Kaiser"], "pred": "Henry J. Kaiser", "correct": true}
+{"id": 28, "task": "qa_2", "budget": 0.625, "T": 14176, "n_kept": 8860, "gold": ["Henry J. Kaiser"], "pred": "Henry J. Kaiser", "correct": true}
+{"id": 28, "task": "qa_2", "budget": 0.5, "T": 14176, "n_kept": 7088, "gold": ["Henry J. Kaiser"], "pred": "Henry J. Kaiser", "correct": true}
+{"id": 28, "task": "qa_2", "budget": 0.375, "T": 14176, "n_kept": 5316, "gold": ["Henry J. Kaiser"], "pred": "Henry J. Kaiser", "correct": true}
+{"id": 28, "task": "qa_2", "budget": 0.25, "T": 14176, "n_kept": 3544, "gold": ["Henry J. Kaiser"], "pred": "Henry J. Kaiser", "correct": true}
+{"id": 28, "task": "qa_2", "budget": 0.1875, "T": 14176, "n_kept": 2658, "gold": ["Henry J. Kaiser"], "pred": "Henry J. Kaiser", "correct": true}
+{"id": 28, "task": "qa_2", "budget": 0.125, "T": 14176, "n_kept": 1772, "gold": ["Henry J. Kaiser"], "pred": "Henry J. Kaiser", "correct": true}
+{"id": 28, "task": "qa_2", "budget": 0.0625, "T": 14176, "n_kept": 886, "gold": ["Henry J. Kaiser"], "pred": "Henry J. Kaiser", "correct": true}
+{"id": 29, "task": "qa_2", "budget": 1.0, "T": 16756, "n_kept": 16756, "gold": ["Arena of Khazan"], "pred": "Arena of Khazan", "correct": true}
+{"id": 29, "task": "qa_2", "budget": 0.875, "T": 16756, "n_kept": 14661, "gold": ["Arena of Khazan"], "pred": "Arena of Khazan", "correct": true}
+{"id": 29, "task": "qa_2", "budget": 0.75, "T": 16756, "n_kept": 12567, "gold": ["Arena of Khazan"], "pred": "Arena of Khazan", "correct": true}
+{"id": 29, "task": "qa_2", "budget": 0.625, "T": 16756, "n_kept": 10472, "gold": ["Arena of Khazan"], "pred": "Arena of Khazan", "correct": true}
+{"id": 29, "task": "qa_2", "budget": 0.5, "T": 16756, "n_kept": 8378, "gold": ["Arena of Khazan"], "pred": "Arena of Khazan", "correct": true}
+{"id": 29, "task": "qa_2", "budget": 0.375, "T": 16756, "n_kept": 6283, "gold": ["Arena of Khazan"], "pred": "Arena of Khazan", "correct": true}
+{"id": 29, "task": "qa_2", "budget": 0.25, "T": 16756, "n_kept": 4189, "gold": ["Arena of Khazan"], "pred": "Arena of Khazan", "correct": true}
+{"id": 29, "task": "qa_2", "budget": 0.1875, "T": 16756, "n_kept": 3141, "gold": ["Arena of Khazan"], "pred": "Arena of Khazan", "correct": true}
+{"id": 29, "task": "qa_2", "budget": 0.125, "T": 16756, "n_kept": 2094, "gold": ["Arena of Khazan"], "pred": "Arena of Khazan", "correct": true}
+{"id": 29, "task": "qa_2", "budget": 0.0625, "T": 16756, "n_kept": 1047, "gold": ["Arena of Khazan"], "pred": "Arena of Khazan", "correct": true}
+{"id": 30, "task": "qa_2", "budget": 1.0, "T": 14597, "n_kept": 14597, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 30, "task": "qa_2", "budget": 0.875, "T": 14597, "n_kept": 12772, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 30, "task": "qa_2", "budget": 0.75, "T": 14597, "n_kept": 10947, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 30, "task": "qa_2", "budget": 0.625, "T": 14597, "n_kept": 9123, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 30, "task": "qa_2", "budget": 0.5, "T": 14597, "n_kept": 7298, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 30, "task": "qa_2", "budget": 0.375, "T": 14597, "n_kept": 5473, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 30, "task": "qa_2", "budget": 0.25, "T": 14597, "n_kept": 3649, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 30, "task": "qa_2", "budget": 0.1875, "T": 14597, "n_kept": 2736, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 30, "task": "qa_2", "budget": 0.125, "T": 14597, "n_kept": 1824, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 30, "task": "qa_2", "budget": 0.0625, "T": 14597, "n_kept": 912, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 31, "task": "qa_2", "budget": 1.0, "T": 16216, "n_kept": 16216, "gold": ["Fujioka, Gunma"], "pred": "Japan", "correct": false}
+{"id": 31, "task": "qa_2", "budget": 0.875, "T": 16216, "n_kept": 14189, "gold": ["Fujioka, Gunma"], "pred": "Japan", "correct": false}
+{"id": 31, "task": "qa_2", "budget": 0.75, "T": 16216, "n_kept": 12162, "gold": ["Fujioka, Gunma"], "pred": "Japan", "correct": false}
+{"id": 31, "task": "qa_2", "budget": 0.625, "T": 16216, "n_kept": 10135, "gold": ["Fujioka, Gunma"], "pred": "Japan", "correct": false}
+{"id": 31, "task": "qa_2", "budget": 0.5, "T": 16216, "n_kept": 8108, "gold": ["Fujioka, Gunma"], "pred": "Japan", "correct": false}
+{"id": 31, "task": "qa_2", "budget": 0.375, "T": 16216, "n_kept": 6081, "gold": ["Fujioka, Gunma"], "pred": "Japan", "correct": false}
+{"id": 31, "task": "qa_2", "budget": 0.25, "T": 16216, "n_kept": 4054, "gold": ["Fujioka, Gunma"], "pred": "Japan", "correct": false}
+{"id": 31, "task": "qa_2", "budget": 0.1875, "T": 16216, "n_kept": 3040, "gold": ["Fujioka, Gunma"], "pred": "Japan", "correct": false}
+{"id": 31, "task": "qa_2", "budget": 0.125, "T": 16216, "n_kept": 2027, "gold": ["Fujioka, Gunma"], "pred": "Japan", "correct": false}
+{"id": 31, "task": "qa_2", "budget": 0.0625, "T": 16216, "n_kept": 1013, "gold": ["Fujioka, Gunma"], "pred": "Japan", "correct": false}
+{"id": 32, "task": "qa_2", "budget": 1.0, "T": 16843, "n_kept": 16843, "gold": ["Charles Eug\u00e8ne"], "pred": "Charles Nungesser", "correct": false}
+{"id": 32, "task": "qa_2", "budget": 0.875, "T": 16843, "n_kept": 14737, "gold": ["Charles Eug\u00e8ne"], "pred": "Charles Nungesser", "correct": false}
+{"id": 32, "task": "qa_2", "budget": 0.75, "T": 16843, "n_kept": 12632, "gold": ["Charles Eug\u00e8ne"], "pred": "Charles Nungesser", "correct": false}
+{"id": 32, "task": "qa_2", "budget": 0.625, "T": 16843, "n_kept": 10526, "gold": ["Charles Eug\u00e8ne"], "pred": "Charles Nungesser", "correct": false}
+{"id": 32, "task": "qa_2", "budget": 0.5, "T": 16843, "n_kept": 8421, "gold": ["Charles Eug\u00e8ne"], "pred": "Charles Nungesser", "correct": false}
+{"id": 32, "task": "qa_2", "budget": 0.375, "T": 16843, "n_kept": 6316, "gold": ["Charles Eug\u00e8ne"], "pred": "Charles Nungesser", "correct": false}
+{"id": 32, "task": "qa_2", "budget": 0.25, "T": 16843, "n_kept": 4210, "gold": ["Charles Eug\u00e8ne"], "pred": "Charles Nungesser", "correct": false}
+{"id": 32, "task": "qa_2", "budget": 0.1875, "T": 16843, "n_kept": 3158, "gold": ["Charles Eug\u00e8ne"], "pred": "Charles Nungesser", "correct": false}
+{"id": 32, "task": "qa_2", "budget": 0.125, "T": 16843, "n_kept": 2105, "gold": ["Charles Eug\u00e8ne"], "pred": "Charles Nungesser", "correct": false}
+{"id": 32, "task": "qa_2", "budget": 0.0625, "T": 16843, "n_kept": 1052, "gold": ["Charles Eug\u00e8ne"], "pred": "Charles Nungesser", "correct": false}
+{"id": 33, "task": "qa_2", "budget": 1.0, "T": 16779, "n_kept": 16779, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 33, "task": "qa_2", "budget": 0.875, "T": 16779, "n_kept": 14681, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 33, "task": "qa_2", "budget": 0.75, "T": 16779, "n_kept": 12584, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 33, "task": "qa_2", "budget": 0.625, "T": 16779, "n_kept": 10486, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 33, "task": "qa_2", "budget": 0.5, "T": 16779, "n_kept": 8389, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 33, "task": "qa_2", "budget": 0.375, "T": 16779, "n_kept": 6292, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 33, "task": "qa_2", "budget": 0.25, "T": 16779, "n_kept": 4194, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 33, "task": "qa_2", "budget": 0.1875, "T": 16779, "n_kept": 3146, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 33, "task": "qa_2", "budget": 0.125, "T": 16779, "n_kept": 2097, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 33, "task": "qa_2", "budget": 0.0625, "T": 16779, "n_kept": 1048, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 34, "task": "qa_2", "budget": 1.0, "T": 15694, "n_kept": 15694, "gold": ["Letters to Cleo"], "pred": "Screaming Trees", "correct": false}
+{"id": 34, "task": "qa_2", "budget": 0.875, "T": 15694, "n_kept": 13732, "gold": ["Letters to Cleo"], "pred": "Screaming Trees", "correct": false}
+{"id": 34, "task": "qa_2", "budget": 0.75, "T": 15694, "n_kept": 11770, "gold": ["Letters to Cleo"], "pred": "Screaming Trees", "correct": false}
+{"id": 34, "task": "qa_2", "budget": 0.625, "T": 15694, "n_kept": 9808, "gold": ["Letters to Cleo"], "pred": "Screaming Trees", "correct": false}
+{"id": 34, "task": "qa_2", "budget": 0.5, "T": 15694, "n_kept": 7847, "gold": ["Letters to Cleo"], "pred": "Screaming Trees", "correct": false}
+{"id": 34, "task": "qa_2", "budget": 0.375, "T": 15694, "n_kept": 5885, "gold": ["Letters to Cleo"], "pred": "Screaming Trees", "correct": false}
+{"id": 34, "task": "qa_2", "budget": 0.25, "T": 15694, "n_kept": 3923, "gold": ["Letters to Cleo"], "pred": "Screaming Trees", "correct": false}
+{"id": 34, "task": "qa_2", "budget": 0.1875, "T": 15694, "n_kept": 2942, "gold": ["Letters to Cleo"], "pred": "Screaming Trees", "correct": false}
+{"id": 34, "task": "qa_2", "budget": 0.125, "T": 15694, "n_kept": 1961, "gold": ["Letters to Cleo"], "pred": "Screaming Trees", "correct": false}
+{"id": 34, "task": "qa_2", "budget": 0.0625, "T": 15694, "n_kept": 980, "gold": ["Letters to Cleo"], "pred": "Screaming Trees", "correct": false}
+{"id": 35, "task": "qa_2", "budget": 1.0, "T": 17234, "n_kept": 17234, "gold": ["October 1922"], "pred": "1924", "correct": false}
+{"id": 35, "task": "qa_2", "budget": 0.875, "T": 17234, "n_kept": 15079, "gold": ["October 1922"], "pred": "1924", "correct": false}
+{"id": 35, "task": "qa_2", "budget": 0.75, "T": 17234, "n_kept": 12925, "gold": ["October 1922"], "pred": "1924", "correct": false}
+{"id": 35, "task": "qa_2", "budget": 0.625, "T": 17234, "n_kept": 10771, "gold": ["October 1922"], "pred": "1924", "correct": false}
+{"id": 35, "task": "qa_2", "budget": 0.5, "T": 17234, "n_kept": 8617, "gold": ["October 1922"], "pred": "1924", "correct": false}
+{"id": 35, "task": "qa_2", "budget": 0.375, "T": 17234, "n_kept": 6462, "gold": ["October 1922"], "pred": "1924", "correct": false}
+{"id": 35, "task": "qa_2", "budget": 0.25, "T": 17234, "n_kept": 4308, "gold": ["October 1922"], "pred": "1924", "correct": false}
+{"id": 35, "task": "qa_2", "budget": 0.1875, "T": 17234, "n_kept": 3231, "gold": ["October 1922"], "pred": "1924", "correct": false}
+{"id": 35, "task": "qa_2", "budget": 0.125, "T": 17234, "n_kept": 2154, "gold": ["October 1922"], "pred": "1924", "correct": false}
+{"id": 35, "task": "qa_2", "budget": 0.0625, "T": 17234, "n_kept": 1077, "gold": ["October 1922"], "pred": "1922", "correct": false}
+{"id": 36, "task": "qa_2", "budget": 1.0, "T": 15816, "n_kept": 15816, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 36, "task": "qa_2", "budget": 0.875, "T": 15816, "n_kept": 13839, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 36, "task": "qa_2", "budget": 0.75, "T": 15816, "n_kept": 11862, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 36, "task": "qa_2", "budget": 0.625, "T": 15816, "n_kept": 9885, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 36, "task": "qa_2", "budget": 0.5, "T": 15816, "n_kept": 7908, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 36, "task": "qa_2", "budget": 0.375, "T": 15816, "n_kept": 5931, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 36, "task": "qa_2", "budget": 0.25, "T": 15816, "n_kept": 3954, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 36, "task": "qa_2", "budget": 0.1875, "T": 15816, "n_kept": 2965, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 36, "task": "qa_2", "budget": 0.125, "T": 15816, "n_kept": 1977, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 36, "task": "qa_2", "budget": 0.0625, "T": 15816, "n_kept": 988, "gold": ["2000"], "pred": "2000", "correct": true}
+{"id": 37, "task": "qa_2", "budget": 1.0, "T": 14668, "n_kept": 14668, "gold": ["World War II"], "pred": "World War I", "correct": false}
+{"id": 37, "task": "qa_2", "budget": 0.875, "T": 14668, "n_kept": 12834, "gold": ["World War II"], "pred": "World War I", "correct": false}
+{"id": 37, "task": "qa_2", "budget": 0.75, "T": 14668, "n_kept": 11001, "gold": ["World War II"], "pred": "World War I", "correct": false}
+{"id": 37, "task": "qa_2", "budget": 0.625, "T": 14668, "n_kept": 9167, "gold": ["World War II"], "pred": "World War I", "correct": false}
+{"id": 37, "task": "qa_2", "budget": 0.5, "T": 14668, "n_kept": 7334, "gold": ["World War II"], "pred": "World War I", "correct": false}
+{"id": 37, "task": "qa_2", "budget": 0.375, "T": 14668, "n_kept": 5500, "gold": ["World War II"], "pred": "World War I", "correct": false}
+{"id": 37, "task": "qa_2", "budget": 0.25, "T": 14668, "n_kept": 3667, "gold": ["World War II"], "pred": "World War I", "correct": false}
+{"id": 37, "task": "qa_2", "budget": 0.1875, "T": 14668, "n_kept": 2750, "gold": ["World War II"], "pred": "World War I", "correct": false}
+{"id": 37, "task": "qa_2", "budget": 0.125, "T": 14668, "n_kept": 1833, "gold": ["World War II"], "pred": "World War I", "correct": false}
+{"id": 37, "task": "qa_2", "budget": 0.0625, "T": 14668, "n_kept": 916, "gold": ["World War II"], "pred": "World War I", "correct": false}
+{"id": 38, "task": "qa_2", "budget": 1.0, "T": 17171, "n_kept": 17171, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 38, "task": "qa_2", "budget": 0.875, "T": 17171, "n_kept": 15024, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 38, "task": "qa_2", "budget": 0.75, "T": 17171, "n_kept": 12878, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 38, "task": "qa_2", "budget": 0.625, "T": 17171, "n_kept": 10731, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 38, "task": "qa_2", "budget": 0.5, "T": 17171, "n_kept": 8585, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 38, "task": "qa_2", "budget": 0.375, "T": 17171, "n_kept": 6439, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 38, "task": "qa_2", "budget": 0.25, "T": 17171, "n_kept": 4292, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 38, "task": "qa_2", "budget": 0.1875, "T": 17171, "n_kept": 3219, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 38, "task": "qa_2", "budget": 0.125, "T": 17171, "n_kept": 2146, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 38, "task": "qa_2", "budget": 0.0625, "T": 17171, "n_kept": 1073, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 39, "task": "qa_2", "budget": 1.0, "T": 16781, "n_kept": 16781, "gold": ["New York City"], "pred": "Columbia", "correct": false}
+{"id": 39, "task": "qa_2", "budget": 0.875, "T": 16781, "n_kept": 14683, "gold": ["New York City"], "pred": "Columbia", "correct": false}
+{"id": 39, "task": "qa_2", "budget": 0.75, "T": 16781, "n_kept": 12585, "gold": ["New York City"], "pred": "Columbia", "correct": false}
+{"id": 39, "task": "qa_2", "budget": 0.625, "T": 16781, "n_kept": 10488, "gold": ["New York City"], "pred": "Columbia", "correct": false}
+{"id": 39, "task": "qa_2", "budget": 0.5, "T": 16781, "n_kept": 8390, "gold": ["New York City"], "pred": "Columbia", "correct": false}
+{"id": 39, "task": "qa_2", "budget": 0.375, "T": 16781, "n_kept": 6292, "gold": ["New York City"], "pred": "Columbia", "correct": false}
+{"id": 39, "task": "qa_2", "budget": 0.25, "T": 16781, "n_kept": 4195, "gold": ["New York City"], "pred": "Columbia", "correct": false}
+{"id": 39, "task": "qa_2", "budget": 0.1875, "T": 16781, "n_kept": 3146, "gold": ["New York City"], "pred": "Columbia", "correct": false}
+{"id": 39, "task": "qa_2", "budget": 0.125, "T": 16781, "n_kept": 2097, "gold": ["New York City"], "pred": "Columbia", "correct": false}
+{"id": 39, "task": "qa_2", "budget": 0.0625, "T": 16781, "n_kept": 1048, "gold": ["New York City"], "pred": "Columbia", "correct": false}
+{"id": 40, "task": "qa_2", "budget": 1.0, "T": 16725, "n_kept": 16725, "gold": ["Scotch Collie"], "pred": "Scotch Collie", "correct": true}
+{"id": 40, "task": "qa_2", "budget": 0.875, "T": 16725, "n_kept": 14634, "gold": ["Scotch Collie"], "pred": "Scotch Collie", "correct": true}
+{"id": 40, "task": "qa_2", "budget": 0.75, "T": 16725, "n_kept": 12543, "gold": ["Scotch Collie"], "pred": "Scotch Collie", "correct": true}
+{"id": 40, "task": "qa_2", "budget": 0.625, "T": 16725, "n_kept": 10453, "gold": ["Scotch Collie"], "pred": "Scotch Collie", "correct": true}
+{"id": 40, "task": "qa_2", "budget": 0.5, "T": 16725, "n_kept": 8362, "gold": ["Scotch Collie"], "pred": "Scotch Collie", "correct": true}
+{"id": 40, "task": "qa_2", "budget": 0.375, "T": 16725, "n_kept": 6271, "gold": ["Scotch Collie"], "pred": "Scotch Collie", "correct": true}
+{"id": 40, "task": "qa_2", "budget": 0.25, "T": 16725, "n_kept": 4181, "gold": ["Scotch Collie"], "pred": "Scotch Collie", "correct": true}
+{"id": 40, "task": "qa_2", "budget": 0.1875, "T": 16725, "n_kept": 3135, "gold": ["Scotch Collie"], "pred": "Scotch Collie", "correct": true}
+{"id": 40, "task": "qa_2", "budget": 0.125, "T": 16725, "n_kept": 2090, "gold": ["Scotch Collie"], "pred": "Scotch Collie", "correct": true}
+{"id": 40, "task": "qa_2", "budget": 0.0625, "T": 16725, "n_kept": 1045, "gold": ["Scotch Collie"], "pred": "Scotch Collie", "correct": true}
+{"id": 41, "task": "qa_2", "budget": 1.0, "T": 15788, "n_kept": 15788, "gold": ["Mumbai"], "pred": "Kochi", "correct": false}
+{"id": 41, "task": "qa_2", "budget": 0.875, "T": 15788, "n_kept": 13814, "gold": ["Mumbai"], "pred": "Kochi", "correct": false}
+{"id": 41, "task": "qa_2", "budget": 0.75, "T": 15788, "n_kept": 11841, "gold": ["Mumbai"], "pred": "Kochi", "correct": false}
+{"id": 41, "task": "qa_2", "budget": 0.625, "T": 15788, "n_kept": 9867, "gold": ["Mumbai"], "pred": "Kochi", "correct": false}
+{"id": 41, "task": "qa_2", "budget": 0.5, "T": 15788, "n_kept": 7894, "gold": ["Mumbai"], "pred": "Kochi", "correct": false}
+{"id": 41, "task": "qa_2", "budget": 0.375, "T": 15788, "n_kept": 5920, "gold": ["Mumbai"], "pred": "Kochi", "correct": false}
+{"id": 41, "task": "qa_2", "budget": 0.25, "T": 15788, "n_kept": 3947, "gold": ["Mumbai"], "pred": "Kochi", "correct": false}
+{"id": 41, "task": "qa_2", "budget": 0.1875, "T": 15788, "n_kept": 2960, "gold": ["Mumbai"], "pred": "Kochi", "correct": false}
+{"id": 41, "task": "qa_2", "budget": 0.125, "T": 15788, "n_kept": 1973, "gold": ["Mumbai"], "pred": "Kochi", "correct": false}
+{"id": 41, "task": "qa_2", "budget": 0.0625, "T": 15788, "n_kept": 986, "gold": ["Mumbai"], "pred": "Kochi", "correct": false}
+{"id": 42, "task": "qa_2", "budget": 1.0, "T": 14819, "n_kept": 14819, "gold": ["1962"], "pred": "1962", "correct": true}
+{"id": 42, "task": "qa_2", "budget": 0.875, "T": 14819, "n_kept": 12966, "gold": ["1962"], "pred": "1962", "correct": true}
+{"id": 42, "task": "qa_2", "budget": 0.75, "T": 14819, "n_kept": 11114, "gold": ["1962"], "pred": "1962", "correct": true}
+{"id": 42, "task": "qa_2", "budget": 0.625, "T": 14819, "n_kept": 9261, "gold": ["1962"], "pred": "1962", "correct": true}
+{"id": 42, "task": "qa_2", "budget": 0.5, "T": 14819, "n_kept": 7409, "gold": ["1962"], "pred": "1962", "correct": true}
+{"id": 42, "task": "qa_2", "budget": 0.375, "T": 14819, "n_kept": 5557, "gold": ["1962"], "pred": "1962", "correct": true}
+{"id": 42, "task": "qa_2", "budget": 0.25, "T": 14819, "n_kept": 3704, "gold": ["1962"], "pred": "1962", "correct": true}
+{"id": 42, "task": "qa_2", "budget": 0.1875, "T": 14819, "n_kept": 2778, "gold": ["1962"], "pred": "1962", "correct": true}
+{"id": 42, "task": "qa_2", "budget": 0.125, "T": 14819, "n_kept": 1852, "gold": ["1962"], "pred": "1962", "correct": true}
+{"id": 42, "task": "qa_2", "budget": 0.0625, "T": 14819, "n_kept": 926, "gold": ["1962"], "pred": "1962", "correct": true}
+{"id": 43, "task": "qa_2", "budget": 1.0, "T": 15288, "n_kept": 15288, "gold": ["sovereignty"], "pred": "Ethiopian sovereignty and freedom from colonization", "correct": true}
+{"id": 43, "task": "qa_2", "budget": 0.875, "T": 15288, "n_kept": 13377, "gold": ["sovereignty"], "pred": "Ethiopian sovereignty and freedom from colonization", "correct": true}
+{"id": 43, "task": "qa_2", "budget": 0.75, "T": 15288, "n_kept": 11466, "gold": ["sovereignty"], "pred": "Ethiopian sovereignty and freedom from colonization", "correct": true}
+{"id": 43, "task": "qa_2", "budget": 0.625, "T": 15288, "n_kept": 9555, "gold": ["sovereignty"], "pred": "Ethiopian sovereignty and freedom from colonization", "correct": true}
+{"id": 43, "task": "qa_2", "budget": 0.5, "T": 15288, "n_kept": 7644, "gold": ["sovereignty"], "pred": "Ethiopian sovereignty and freedom from colonization", "correct": true}
+{"id": 43, "task": "qa_2", "budget": 0.375, "T": 15288, "n_kept": 5733, "gold": ["sovereignty"], "pred": "Ethiopian sovereignty and freedom from colonization", "correct": true}
+{"id": 43, "task": "qa_2", "budget": 0.25, "T": 15288, "n_kept": 3822, "gold": ["sovereignty"], "pred": "Ethiopian sovereignty and freedom from colonization", "correct": true}
+{"id": 43, "task": "qa_2", "budget": 0.1875, "T": 15288, "n_kept": 2866, "gold": ["sovereignty"], "pred": "Ethiopian sovereignty and freedom from colonization", "correct": true}
+{"id": 43, "task": "qa_2", "budget": 0.125, "T": 15288, "n_kept": 1911, "gold": ["sovereignty"], "pred": "Ethiopian sovereignty and freedom from colonization", "correct": true}
+{"id": 43, "task": "qa_2", "budget": 0.0625, "T": 15288, "n_kept": 955, "gold": ["sovereignty"], "pred": "Ethiopian sovereignty and freedom from colonization", "correct": true}
+{"id": 44, "task": "qa_2", "budget": 1.0, "T": 17195, "n_kept": 17195, "gold": ["Nelson Rockefeller"], "pred": "Alfred Balk served as the secretary of the Committee on the Employment of Minority Groups in the News Media under Nelson Rockefeller.", "correct": true}
+{"id": 44, "task": "qa_2", "budget": 0.875, "T": 17195, "n_kept": 15045, "gold": ["Nelson Rockefeller"], "pred": "Alfred Balk served as the secretary of the Committee on the Employment of Minority Groups in the News Media under Nelson Rockefeller.", "correct": true}
+{"id": 44, "task": "qa_2", "budget": 0.75, "T": 17195, "n_kept": 12896, "gold": ["Nelson Rockefeller"], "pred": "Alfred Balk served as the secretary of the Committee on the Employment of Minority Groups in the News Media under Nelson Rockefeller.", "correct": true}
+{"id": 44, "task": "qa_2", "budget": 0.625, "T": 17195, "n_kept": 10746, "gold": ["Nelson Rockefeller"], "pred": "Alfred Balk served as the secretary of the Committee on the Employment of Minority Groups in the News Media under Nelson Rockefeller.", "correct": true}
+{"id": 44, "task": "qa_2", "budget": 0.5, "T": 17195, "n_kept": 8597, "gold": ["Nelson Rockefeller"], "pred": "Alfred Balk served as the secretary of the Committee on the Employment of Minority Groups in the News Media under Nelson Rockefeller.", "correct": true}
+{"id": 44, "task": "qa_2", "budget": 0.375, "T": 17195, "n_kept": 6448, "gold": ["Nelson Rockefeller"], "pred": "Alfred Balk served as the secretary of the Committee on the Employment of Minority Groups in the News Media under Nelson Rockefeller.", "correct": true}
+{"id": 44, "task": "qa_2", "budget": 0.25, "T": 17195, "n_kept": 4298, "gold": ["Nelson Rockefeller"], "pred": "Alfred Balk served as the secretary of the Committee on the Employment of Minority Groups in the News Media under Nelson Rockefeller.", "correct": true}
+{"id": 44, "task": "qa_2", "budget": 0.1875, "T": 17195, "n_kept": 3224, "gold": ["Nelson Rockefeller"], "pred": "Alfred Balk served as the secretary of the Committee on the Employment of Minority Groups in the News Media under Nelson Rockefeller.", "correct": true}
+{"id": 44, "task": "qa_2", "budget": 0.125, "T": 17195, "n_kept": 2149, "gold": ["Nelson Rockefeller"], "pred": "Alfred Balk served as the secretary of the Committee on the Employment of Minority Groups in the News Media under Nelson Rockefeller.", "correct": true}
+{"id": 44, "task": "qa_2", "budget": 0.0625, "T": 17195, "n_kept": 1074, "gold": ["Nelson Rockefeller"], "pred": "Alfred Balk served as the secretary of the Committee on the Employment of Minority Groups in the News Media under Nelson Rockefeller.", "correct": true}
+{"id": 45, "task": "qa_2", "budget": 1.0, "T": 15802, "n_kept": 15802, "gold": ["Yellowcraig"], "pred": "Dirleton Castle", "correct": false}
+{"id": 45, "task": "qa_2", "budget": 0.875, "T": 15802, "n_kept": 13826, "gold": ["Yellowcraig"], "pred": "Dirleton Castle", "correct": false}
+{"id": 45, "task": "qa_2", "budget": 0.75, "T": 15802, "n_kept": 11851, "gold": ["Yellowcraig"], "pred": "Dirleton Castle", "correct": false}
+{"id": 45, "task": "qa_2", "budget": 0.625, "T": 15802, "n_kept": 9876, "gold": ["Yellowcraig"], "pred": "Dirleton Castle", "correct": false}
+{"id": 45, "task": "qa_2", "budget": 0.5, "T": 15802, "n_kept": 7901, "gold": ["Yellowcraig"], "pred": "Dirleton Castle", "correct": false}
+{"id": 45, "task": "qa_2", "budget": 0.375, "T": 15802, "n_kept": 5925, "gold": ["Yellowcraig"], "pred": "Dirleton Castle", "correct": false}
+{"id": 45, "task": "qa_2", "budget": 0.25, "T": 15802, "n_kept": 3950, "gold": ["Yellowcraig"], "pred": "Dirleton Castle", "correct": false}
+{"id": 45, "task": "qa_2", "budget": 0.1875, "T": 15802, "n_kept": 2962, "gold": ["Yellowcraig"], "pred": "Dirleton Castle", "correct": false}
+{"id": 45, "task": "qa_2", "budget": 0.125, "T": 15802, "n_kept": 1975, "gold": ["Yellowcraig"], "pred": "Dirleton Castle", "correct": false}
+{"id": 45, "task": "qa_2", "budget": 0.0625, "T": 15802, "n_kept": 987, "gold": ["Yellowcraig"], "pred": "Dirleton Castle", "correct": false}
+{"id": 46, "task": "qa_2", "budget": 1.0, "T": 16869, "n_kept": 16869, "gold": ["Phil Spector"], "pred": "Phil Spector", "correct": true}
+{"id": 46, "task": "qa_2", "budget": 0.875, "T": 16869, "n_kept": 14760, "gold": ["Phil Spector"], "pred": "Phil Spector", "correct": true}
+{"id": 46, "task": "qa_2", "budget": 0.75, "T": 16869, "n_kept": 12651, "gold": ["Phil Spector"], "pred": "Phil Spector", "correct": true}
+{"id": 46, "task": "qa_2", "budget": 0.625, "T": 16869, "n_kept": 10543, "gold": ["Phil Spector"], "pred": "Phil Spector", "correct": true}
+{"id": 46, "task": "qa_2", "budget": 0.5, "T": 16869, "n_kept": 8434, "gold": ["Phil Spector"], "pred": "Phil Spector", "correct": true}
+{"id": 46, "task": "qa_2", "budget": 0.375, "T": 16869, "n_kept": 6325, "gold": ["Phil Spector"], "pred": "Phil Spector", "correct": true}
+{"id": 46, "task": "qa_2", "budget": 0.25, "T": 16869, "n_kept": 4217, "gold": ["Phil Spector"], "pred": "Phil Spector", "correct": true}
+{"id": 46, "task": "qa_2", "budget": 0.1875, "T": 16869, "n_kept": 3162, "gold": ["Phil Spector"], "pred": "Phil Spector", "correct": true}
+{"id": 46, "task": "qa_2", "budget": 0.125, "T": 16869, "n_kept": 2108, "gold": ["Phil Spector"], "pred": "Phil Spector", "correct": true}
+{"id": 46, "task": "qa_2", "budget": 0.0625, "T": 16869, "n_kept": 1054, "gold": ["Phil Spector"], "pred": "Phil Spector", "correct": true}
+{"id": 47, "task": "qa_2", "budget": 1.0, "T": 16897, "n_kept": 16897, "gold": ["Organizations could come together to address global issues"], "pred": "World Summit of Nobel Peace Laureates", "correct": false}
+{"id": 47, "task": "qa_2", "budget": 0.875, "T": 16897, "n_kept": 14784, "gold": ["Organizations could come together to address global issues"], "pred": "World Summit of Nobel Peace Laureates", "correct": false}
+{"id": 47, "task": "qa_2", "budget": 0.75, "T": 16897, "n_kept": 12672, "gold": ["Organizations could come together to address global issues"], "pred": "World Summit of Nobel Peace Laureates", "correct": false}
+{"id": 47, "task": "qa_2", "budget": 0.625, "T": 16897, "n_kept": 10560, "gold": ["Organizations could come together to address global issues"], "pred": "World Summit of Nobel Peace Laureates", "correct": false}
+{"id": 47, "task": "qa_2", "budget": 0.5, "T": 16897, "n_kept": 8448, "gold": ["Organizations could come together to address global issues"], "pred": "World Summit of Nobel Peace Laureates", "correct": false}
+{"id": 47, "task": "qa_2", "budget": 0.375, "T": 16897, "n_kept": 6336, "gold": ["Organizations could come together to address global issues"], "pred": "World Summit of Nobel Peace Laureates", "correct": false}
+{"id": 47, "task": "qa_2", "budget": 0.25, "T": 16897, "n_kept": 4224, "gold": ["Organizations could come together to address global issues"], "pred": "World Summit of Nobel Peace Laureates", "correct": false}
+{"id": 47, "task": "qa_2", "budget": 0.1875, "T": 16897, "n_kept": 3168, "gold": ["Organizations could come together to address global issues"], "pred": "World Summit of Nobel Peace Laureates", "correct": false}
+{"id": 47, "task": "qa_2", "budget": 0.125, "T": 16897, "n_kept": 2112, "gold": ["Organizations could come together to address global issues"], "pred": "World Summit of Nobel Peace Laureates", "correct": false}
+{"id": 47, "task": "qa_2", "budget": 0.0625, "T": 16897, "n_kept": 1056, "gold": ["Organizations could come together to address global issues"], "pred": "World Summit of Nobel Peace Laureates", "correct": false}
+{"id": 48, "task": "qa_2", "budget": 1.0, "T": 13930, "n_kept": 13930, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 48, "task": "qa_2", "budget": 0.875, "T": 13930, "n_kept": 12188, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 48, "task": "qa_2", "budget": 0.75, "T": 13930, "n_kept": 10447, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 48, "task": "qa_2", "budget": 0.625, "T": 13930, "n_kept": 8706, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 48, "task": "qa_2", "budget": 0.5, "T": 13930, "n_kept": 6965, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 48, "task": "qa_2", "budget": 0.375, "T": 13930, "n_kept": 5223, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 48, "task": "qa_2", "budget": 0.25, "T": 13930, "n_kept": 3482, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 48, "task": "qa_2", "budget": 0.1875, "T": 13930, "n_kept": 2611, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 48, "task": "qa_2", "budget": 0.125, "T": 13930, "n_kept": 1741, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 48, "task": "qa_2", "budget": 0.0625, "T": 13930, "n_kept": 870, "gold": ["yes"], "pred": "Yes", "correct": true}
+{"id": 49, "task": "qa_2", "budget": 1.0, "T": 17193, "n_kept": 17193, "gold": ["English Electric Canberra"], "pred": "English Electric Canberra", "correct": true}
+{"id": 49, "task": "qa_2", "budget": 0.875, "T": 17193, "n_kept": 15043, "gold": ["English Electric Canberra"], "pred": "English Electric Canberra", "correct": true}
+{"id": 49, "task": "qa_2", "budget": 0.75, "T": 17193, "n_kept": 12894, "gold": ["English Electric Canberra"], "pred": "English Electric Canberra", "correct": true}
+{"id": 49, "task": "qa_2", "budget": 0.625, "T": 17193, "n_kept": 10745, "gold": ["English Electric Canberra"], "pred": "English Electric Canberra", "correct": true}
+{"id": 49, "task": "qa_2", "budget": 0.5, "T": 17193, "n_kept": 8596, "gold": ["English Electric Canberra"], "pred": "English Electric Canberra", "correct": true}
+{"id": 49, "task": "qa_2", "budget": 0.375, "T": 17193, "n_kept": 6447, "gold": ["English Electric Canberra"], "pred": "English Electric Canberra", "correct": true}
+{"id": 49, "task": "qa_2", "budget": 0.25, "T": 17193, "n_kept": 4298, "gold": ["English Electric Canberra"], "pred": "English Electric Canberra", "correct": true}
+{"id": 49, "task": "qa_2", "budget": 0.1875, "T": 17193, "n_kept": 3223, "gold": ["English Electric Canberra"], "pred": "English Electric Canberra", "correct": true}
+{"id": 49, "task": "qa_2", "budget": 0.125, "T": 17193, "n_kept": 2149, "gold": ["English Electric Canberra"], "pred": "English Electric Canberra", "correct": true}
+{"id": 49, "task": "qa_2", "budget": 0.0625, "T": 17193, "n_kept": 1074, "gold": ["English Electric Canberra"], "pred": "English Electric Canberra", "correct": true}
+{"id": 50, "task": "qa_2", "budget": 1.0, "T": 16997, "n_kept": 16997, "gold": ["2009 Big 12 Conference"], "pred": "2015\u201316 Pac-12 Conference", "correct": false}
+{"id": 50, "task": "qa_2", "budget": 0.875, "T": 16997, "n_kept": 14872, "gold": ["2009 Big 12 Conference"], "pred": "2015\u201316 Pac-12 Conference", "correct": false}
+{"id": 50, "task": "qa_2", "budget": 0.75, "T": 16997, "n_kept": 12747, "gold": ["2009 Big 12 Conference"], "pred": "2015\u201316 Pac-12 Conference", "correct": false}
+{"id": 50, "task": "qa_2", "budget": 0.625, "T": 16997, "n_kept": 10623, "gold": ["2009 Big 12 Conference"], "pred": "2015\u201316 Pac-12 Conference", "correct": false}
+{"id": 50, "task": "qa_2", "budget": 0.5, "T": 16997, "n_kept": 8498, "gold": ["2009 Big 12 Conference"], "pred": "2015\u201316 Pac-12 Conference", "correct": false}
+{"id": 50, "task": "qa_2", "budget": 0.375, "T": 16997, "n_kept": 6373, "gold": ["2009 Big 12 Conference"], "pred": "2015\u201316 Colorado Buffaloes men's basketball team", "correct": false}
+{"id": 50, "task": "qa_2", "budget": 0.25, "T": 16997, "n_kept": 4249, "gold": ["2009 Big 12 Conference"], "pred": "2015\u201316 Colorado Buffaloes men's basketball team", "correct": false}
+{"id": 50, "task": "qa_2", "budget": 0.1875, "T": 16997, "n_kept": 3186, "gold": ["2009 Big 12 Conference"], "pred": "2015\u201316 Colorado Buffaloes men's basketball team", "correct": false}
+{"id": 50, "task": "qa_2", "budget": 0.125, "T": 16997, "n_kept": 2124, "gold": ["2009 Big 12 Conference"], "pred": "2015\u201316 Colorado Buffaloes", "correct": false}
+{"id": 50, "task": "qa_2", "budget": 0.0625, "T": 16997, "n_kept": 1062, "gold": ["2009 Big 12 Conference"], "pred": "2015\u201316 Colorado Buffaloes football team, Pac-12 Conference", "correct": false}
+{"id": 51, "task": "qa_2", "budget": 1.0, "T": 16765, "n_kept": 16765, "gold": ["1,462"], "pred": "1462", "correct": false}
+{"id": 51, "task": "qa_2", "budget": 0.875, "T": 16765, "n_kept": 14669, "gold": ["1,462"], "pred": "1462", "correct": false}
+{"id": 51, "task": "qa_2", "budget": 0.75, "T": 16765, "n_kept": 12573, "gold": ["1,462"], "pred": "1462", "correct": false}
+{"id": 51, "task": "qa_2", "budget": 0.625, "T": 16765, "n_kept": 10478, "gold": ["1,462"], "pred": "1462", "correct": false}
+{"id": 51, "task": "qa_2", "budget": 0.5, "T": 16765, "n_kept": 8382, "gold": ["1,462"], "pred": "149", "correct": false}
+{"id": 51, "task": "qa_2", "budget": 0.375, "T": 16765, "n_kept": 6286, "gold": ["1,462"], "pred": "149", "correct": false}
+{"id": 51, "task": "qa_2", "budget": 0.25, "T": 16765, "n_kept": 4191, "gold": ["1,462"], "pred": "1462", "correct": false}
+{"id": 51, "task": "qa_2", "budget": 0.1875, "T": 16765, "n_kept": 3143, "gold": ["1,462"], "pred": "1462", "correct": false}
+{"id": 51, "task": "qa_2", "budget": 0.125, "T": 16765, "n_kept": 2095, "gold": ["1,462"], "pred": "1462", "correct": false}
+{"id": 51, "task": "qa_2", "budget": 0.0625, "T": 16765, "n_kept": 1047, "gold": ["1,462"], "pred": "149", "correct": false}
+{"id": 52, "task": "qa_2", "budget": 1.0, "T": 17279, "n_kept": 17279, "gold": ["Indianapolis Motor Speedway"], "pred": "Darlington Raceway", "correct": false}
+{"id": 52, "task": "qa_2", "budget": 0.875, "T": 17279, "n_kept": 15119, "gold": ["Indianapolis Motor Speedway"], "pred": "Darlington Raceway", "correct": false}
+{"id": 52, "task": "qa_2", "budget": 0.75, "T": 17279, "n_kept": 12959, "gold": ["Indianapolis Motor Speedway"], "pred": "Darlington Raceway", "correct": false}
+{"id": 52, "task": "qa_2", "budget": 0.625, "T": 17279, "n_kept": 10799, "gold": ["Indianapolis Motor Speedway"], "pred": "Darlington Raceway", "correct": false}
+{"id": 52, "task": "qa_2", "budget": 0.5, "T": 17279, "n_kept": 8639, "gold": ["Indianapolis Motor Speedway"], "pred": "Darlington Raceway", "correct": false}
+{"id": 52, "task": "qa_2", "budget": 0.375, "T": 17279, "n_kept": 6479, "gold": ["Indianapolis Motor Speedway"], "pred": "Darlington Raceway", "correct": false}
+{"id": 52, "task": "qa_2", "budget": 0.25, "T": 17279, "n_kept": 4319, "gold": ["Indianapolis Motor Speedway"], "pred": "Darlington Raceway", "correct": false}
+{"id": 52, "task": "qa_2", "budget": 0.1875, "T": 17279, "n_kept": 3239, "gold": ["Indianapolis Motor Speedway"], "pred": "Darlington Raceway", "correct": false}
+{"id": 52, "task": "qa_2", "budget": 0.125, "T": 17279, "n_kept": 2159, "gold": ["Indianapolis Motor Speedway"], "pred": "Darlington", "correct": false}
+{"id": 52, "task": "qa_2", "budget": 0.0625, "T": 17279, "n_kept": 1079, "gold": ["Indianapolis Motor Speedway"], "pred": "Darlington", "correct": false}
+{"id": 53, "task": "qa_2", "budget": 1.0, "T": 16735, "n_kept": 16735, "gold": ["Rome"], "pred": "Chicago", "correct": false}
+{"id": 53, "task": "qa_2", "budget": 0.875, "T": 16735, "n_kept": 14643, "gold": ["Rome"], "pred": "Chicago", "correct": false}
+{"id": 53, "task": "qa_2", "budget": 0.75, "T": 16735, "n_kept": 12551, "gold": ["Rome"], "pred": "Chicago", "correct": false}
+{"id": 53, "task": "qa_2", "budget": 0.625, "T": 16735, "n_kept": 10459, "gold": ["Rome"], "pred": "Chicago", "correct": false}
+{"id": 53, "task": "qa_2", "budget": 0.5, "T": 16735, "n_kept": 8367, "gold": ["Rome"], "pred": "Chicago", "correct": false}
+{"id": 53, "task": "qa_2", "budget": 0.375, "T": 16735, "n_kept": 6275, "gold": ["Rome"], "pred": "Chicago", "correct": false}
+{"id": 53, "task": "qa_2", "budget": 0.25, "T": 16735, "n_kept": 4183, "gold": ["Rome"], "pred": "Chicago", "correct": false}
+{"id": 53, "task": "qa_2", "budget": 0.1875, "T": 16735, "n_kept": 3137, "gold": ["Rome"], "pred": "Chicago", "correct": false}
+{"id": 53, "task": "qa_2", "budget": 0.125, "T": 16735, "n_kept": 2091, "gold": ["Rome"], "pred": "Chicago", "correct": false}
+{"id": 53, "task": "qa_2", "budget": 0.0625, "T": 16735, "n_kept": 1045, "gold": ["Rome"], "pred": "Chicago", "correct": false}
+{"id": 54, "task": "qa_2", "budget": 1.0, "T": 16343, "n_kept": 16343, "gold": ["Max Martin, Savan Kotecha and Ilya Salmanzadeh"], "pred": "Savan Kotecha, Ilya Salmanzadeh, Max Martin, Ali Payami", "correct": false}
+{"id": 54, "task": "qa_2", "budget": 0.875, "T": 16343, "n_kept": 14300, "gold": ["Max Martin, Savan Kotecha and Ilya Salmanzadeh"], "pred": "Savan Kotecha, Ilya Salmanzadeh, Max Martin, Ali Payami", "correct": false}
+{"id": 54, "task": "qa_2", "budget": 0.75, "T": 16343, "n_kept": 12257, "gold": ["Max Martin, Savan Kotecha and Ilya Salmanzadeh"], "pred": "Savan Kotecha, Ilya Salmanzadeh, Max Martin, Ali Payami", "correct": false}
+{"id": 54, "task": "qa_2", "budget": 0.625, "T": 16343, "n_kept": 10214, "gold": ["Max Martin, Savan Kotecha and Ilya Salmanzadeh"], "pred": "Savan Kotecha, Ilya Salmanzadeh, Max Martin, Ali Payami", "correct": false}
+{"id": 54, "task": "qa_2", "budget": 0.5, "T": 16343, "n_kept": 8171, "gold": ["Max Martin, Savan Kotecha and Ilya Salmanzadeh"], "pred": "Savan Kotecha, Ilya Salmanzadeh, Max Martin", "correct": false}
+{"id": 54, "task": "qa_2", "budget": 0.375, "T": 16343, "n_kept": 6128, "gold": ["Max Martin, Savan Kotecha and Ilya Salmanzadeh"], "pred": "Savan Kotecha, Ilya Salmanzadeh, Max Martin", "correct": false}
+{"id": 54, "task": "qa_2", "budget": 0.25, "T": 16343, "n_kept": 4085, "gold": ["Max Martin, Savan Kotecha and Ilya Salmanzadeh"], "pred": "Savan Kotecha, Ilya Salmanzadeh, Max Martin", "correct": false}
+{"id": 54, "task": "qa_2", "budget": 0.1875, "T": 16343, "n_kept": 3064, "gold": ["Max Martin, Savan Kotecha and Ilya Salmanzadeh"], "pred": "Savan Kotecha, Ilya Salmanzadeh, Max Martin", "correct": false}
+{"id": 54, "task": "qa_2", "budget": 0.125, "T": 16343, "n_kept": 2042, "gold": ["Max Martin, Savan Kotecha and Ilya Salmanzadeh"], "pred": "Savanah Kotecha, Ilya Salmanzadeh", "correct": false}
+{"id": 54, "task": "qa_2", "budget": 0.0625, "T": 16343, "n_kept": 1021, "gold": ["Max Martin, Savan Kotecha and Ilya Salmanzadeh"], "pred": "Savan Kotecha, Max Martin, Savan Kotecha, Justin Vernon", "correct": false}
+{"id": 55, "task": "qa_2", "budget": 1.0, "T": 16980, "n_kept": 16980, "gold": ["Marion, South Australia"], "pred": "Marion", "correct": false}
+{"id": 55, "task": "qa_2", "budget": 0.875, "T": 16980, "n_kept": 14857, "gold": ["Marion, South Australia"], "pred": "Marion", "correct": false}
+{"id": 55, "task": "qa_2", "budget": 0.75, "T": 16980, "n_kept": 12735, "gold": ["Marion, South Australia"], "pred": "Marion", "correct": false}
+{"id": 55, "task": "qa_2", "budget": 0.625, "T": 16980, "n_kept": 10612, "gold": ["Marion, South Australia"], "pred": "Marion", "correct": false}
+{"id": 55, "task": "qa_2", "budget": 0.5, "T": 16980, "n_kept": 8490, "gold": ["Marion, South Australia"], "pred": "Marion", "correct": false}
+{"id": 55, "task": "qa_2", "budget": 0.375, "T": 16980, "n_kept": 6367, "gold": ["Marion, South Australia"], "pred": "Marion", "correct": false}
+{"id": 55, "task": "qa_2", "budget": 0.25, "T": 16980, "n_kept": 4245, "gold": ["Marion, South Australia"], "pred": "Marion", "correct": false}
+{"id": 55, "task": "qa_2", "budget": 0.1875, "T": 16980, "n_kept": 3183, "gold": ["Marion, South Australia"], "pred": "Marion", "correct": false}
+{"id": 55, "task": "qa_2", "budget": 0.125, "T": 16980, "n_kept": 2122, "gold": ["Marion, South Australia"], "pred": "Marion", "correct": false}
+{"id": 55, "task": "qa_2", "budget": 0.0625, "T": 16980, "n_kept": 1061, "gold": ["Marion, South Australia"], "pred": "Marion", "correct": false}
+{"id": 56, "task": "qa_2", "budget": 1.0, "T": 15923, "n_kept": 15923, "gold": ["Drifting"], "pred": "drifting", "correct": true}
+{"id": 56, "task": "qa_2", "budget": 0.875, "T": 15923, "n_kept": 13932, "gold": ["Drifting"], "pred": "drifting", "correct": true}
+{"id": 56, "task": "qa_2", "budget": 0.75, "T": 15923, "n_kept": 11942, "gold": ["Drifting"], "pred": "drifting", "correct": true}
+{"id": 56, "task": "qa_2", "budget": 0.625, "T": 15923, "n_kept": 9951, "gold": ["Drifting"], "pred": "drifting", "correct": true}
+{"id": 56, "task": "qa_2", "budget": 0.5, "T": 15923, "n_kept": 7961, "gold": ["Drifting"], "pred": "drifting", "correct": true}
+{"id": 56, "task": "qa_2", "budget": 0.375, "T": 15923, "n_kept": 5971, "gold": ["Drifting"], "pred": "drifting", "correct": true}
+{"id": 56, "task": "qa_2", "budget": 0.25, "T": 15923, "n_kept": 3980, "gold": ["Drifting"], "pred": "drifting", "correct": true}
+{"id": 56, "task": "qa_2", "budget": 0.1875, "T": 15923, "n_kept": 2985, "gold": ["Drifting"], "pred": "drifting", "correct": true}
+{"id": 56, "task": "qa_2", "budget": 0.125, "T": 15923, "n_kept": 1990, "gold": ["Drifting"], "pred": "drifting", "correct": true}
+{"id": 56, "task": "qa_2", "budget": 0.0625, "T": 15923, "n_kept": 995, "gold": ["Drifting"], "pred": "drifting", "correct": true}
+{"id": 57, "task": "qa_2", "budget": 1.0, "T": 16054, "n_kept": 16054, "gold": ["Keith Bostic"], "pred": "Jerry Glanville", "correct": false}
+{"id": 57, "task": "qa_2", "budget": 0.875, "T": 16054, "n_kept": 14047, "gold": ["Keith Bostic"], "pred": "Jerry Glanville", "correct": false}
+{"id": 57, "task": "qa_2", "budget": 0.75, "T": 16054, "n_kept": 12040, "gold": ["Keith Bostic"], "pred": "Jerry Glanville", "correct": false}
+{"id": 57, "task": "qa_2", "budget": 0.625, "T": 16054, "n_kept": 10033, "gold": ["Keith Bostic"], "pred": "Jerry Glanville", "correct": false}
+{"id": 57, "task": "qa_2", "budget": 0.5, "T": 16054, "n_kept": 8027, "gold": ["Keith Bostic"], "pred": "Jerry Glanville", "correct": false}
+{"id": 57, "task": "qa_2", "budget": 0.375, "T": 16054, "n_kept": 6020, "gold": ["Keith Bostic"], "pred": "Jerry Glanville", "correct": false}
+{"id": 57, "task": "qa_2", "budget": 0.25, "T": 16054, "n_kept": 4013, "gold": ["Keith Bostic"], "pred": "Jerry Glanville", "correct": false}
+{"id": 57, "task": "qa_2", "budget": 0.1875, "T": 16054, "n_kept": 3010, "gold": ["Keith Bostic"], "pred": "Jerry Glanville", "correct": false}
+{"id": 57, "task": "qa_2", "budget": 0.125, "T": 16054, "n_kept": 2006, "gold": ["Keith Bostic"], "pred": "Jerry Glanville", "correct": false}
+{"id": 57, "task": "qa_2", "budget": 0.0625, "T": 16054, "n_kept": 1003, "gold": ["Keith Bostic"], "pred": "Jerry Glanville", "correct": false}
+{"id": 58, "task": "qa_2", "budget": 1.0, "T": 15027, "n_kept": 15027, "gold": ["35,124"], "pred": "1,146", "correct": false}
+{"id": 58, "task": "qa_2", "budget": 0.875, "T": 15027, "n_kept": 13148, "gold": ["35,124"], "pred": "1,146", "correct": false}
+{"id": 58, "task": "qa_2", "budget": 0.75, "T": 15027, "n_kept": 11270, "gold": ["35,124"], "pred": "1,146", "correct": false}
+{"id": 58, "task": "qa_2", "budget": 0.625, "T": 15027, "n_kept": 9391, "gold": ["35,124"], "pred": "1,146", "correct": false}
+{"id": 58, "task": "qa_2", "budget": 0.5, "T": 15027, "n_kept": 7513, "gold": ["35,124"], "pred": "1,146", "correct": false}
+{"id": 58, "task": "qa_2", "budget": 0.375, "T": 15027, "n_kept": 5635, "gold": ["35,124"], "pred": "1,146", "correct": false}
+{"id": 58, "task": "qa_2", "budget": 0.25, "T": 15027, "n_kept": 3756, "gold": ["35,124"], "pred": "1,146", "correct": false}
+{"id": 58, "task": "qa_2", "budget": 0.1875, "T": 15027, "n_kept": 2817, "gold": ["35,124"], "pred": "1,146", "correct": false}
+{"id": 58, "task": "qa_2", "budget": 0.125, "T": 15027, "n_kept": 1878, "gold": ["35,124"], "pred": "1,146", "correct": false}
+{"id": 58, "task": "qa_2", "budget": 0.0625, "T": 15027, "n_kept": 939, "gold": ["35,124"], "pred": "1,146", "correct": false}
+{"id": 59, "task": "qa_2", "budget": 1.0, "T": 15663, "n_kept": 15663, "gold": ["no"], "pred": "Yes", "correct": false}
+{"id": 59, "task": "qa_2", "budget": 0.875, "T": 15663, "n_kept": 13705, "gold": ["no"], "pred": "Yes", "correct": false}
+{"id": 59, "task": "qa_2", "budget": 0.75, "T": 15663, "n_kept": 11747, "gold": ["no"], "pred": "Yes", "correct": false}
+{"id": 59, "task": "qa_2", "budget": 0.625, "T": 15663, "n_kept": 9789, "gold": ["no"], "pred": "Yes", "correct": false}
+{"id": 59, "task": "qa_2", "budget": 0.5, "T": 15663, "n_kept": 7831, "gold": ["no"], "pred": "Yes", "correct": false}
+{"id": 59, "task": "qa_2", "budget": 0.375, "T": 15663, "n_kept": 5873, "gold": ["no"], "pred": "Yes", "correct": false}
+{"id": 59, "task": "qa_2", "budget": 0.25, "T": 15663, "n_kept": 3915, "gold": ["no"], "pred": "Yes", "correct": false}
+{"id": 59, "task": "qa_2", "budget": 0.1875, "T": 15663, "n_kept": 2936, "gold": ["no"], "pred": "Yes", "correct": false}
+{"id": 59, "task": "qa_2", "budget": 0.125, "T": 15663, "n_kept": 1957, "gold": ["no"], "pred": "Yes", "correct": false}
+{"id": 59, "task": "qa_2", "budget": 0.0625, "T": 15663, "n_kept": 978, "gold": ["no"], "pred": "Yes", "correct": false}
+{"id": 60, "task": "qa_2", "budget": 1.0, "T": 15470, "n_kept": 15470, "gold": ["shortest player ever to play in the National Basketball Association"], "pred": "None", "correct": false}
+{"id": 60, "task": "qa_2", "budget": 0.875, "T": 15470, "n_kept": 13536, "gold": ["shortest player ever to play in the National Basketball Association"], "pred": "None", "correct": false}
+{"id": 60, "task": "qa_2", "budget": 0.75, "T": 15470, "n_kept": 11602, "gold": ["shortest player ever to play in the National Basketball Association"], "pred": "None", "correct": false}
+{"id": 60, "task": "qa_2", "budget": 0.625, "T": 15470, "n_kept": 9668, "gold": ["shortest player ever to play in the National Basketball Association"], "pred": "None", "correct": false}
+{"id": 60, "task": "qa_2", "budget": 0.5, "T": 15470, "n_kept": 7735, "gold": ["shortest player ever to play in the National Basketball Association"], "pred": "None", "correct": false}
+{"id": 60, "task": "qa_2", "budget": 0.375, "T": 15470, "n_kept": 5801, "gold": ["shortest player ever to play in the National Basketball Association"], "pred": "None", "correct": false}
+{"id": 60, "task": "qa_2", "budget": 0.25, "T": 15470, "n_kept": 3867, "gold": ["shortest player ever to play in the National Basketball Association"], "pred": "None", "correct": false}
+{"id": 60, "task": "qa_2", "budget": 0.1875, "T": 15470, "n_kept": 2900, "gold": ["shortest player ever to play in the National Basketball Association"], "pred": "None", "correct": false}
+{"id": 60, "task": "qa_2", "budget": 0.125, "T": 15470, "n_kept": 1933, "gold": ["shortest player ever to play in the National Basketball Association"], "pred": "None", "correct": false}
+{"id": 60, "task": "qa_2", "budget": 0.0625, "T": 15470, "n_kept": 966, "gold": ["shortest player ever to play in the National Basketball Association"], "pred": "None", "correct": false}
+{"id": 61, "task": "qa_2", "budget": 1.0, "T": 15536, "n_kept": 15536, "gold": ["Ronald Shusett"], "pred": "Uma Thurman", "correct": false}
+{"id": 61, "task": "qa_2", "budget": 0.875, "T": 15536, "n_kept": 13594, "gold": ["Ronald Shusett"], "pred": "Ronald Shusett", "correct": true}
+{"id": 61, "task": "qa_2", "budget": 0.75, "T": 15536, "n_kept": 11652, "gold": ["Ronald Shusett"], "pred": "Ronald Shusett", "correct": true}
+{"id": 61, "task": "qa_2", "budget": 0.625, "T": 15536, "n_kept": 9710, "gold": ["Ronald Shusett"], "pred": "Ronald Shusett", "correct": true}
+{"id": 61, "task": "qa_2", "budget": 0.5, "T": 15536, "n_kept": 7768, "gold": ["Ronald Shusett"], "pred": "Ronald Shusett", "correct": true}
+{"id": 61, "task": "qa_2", "budget": 0.375, "T": 15536, "n_kept": 5826, "gold": ["Ronald Shusett"], "pred": "UFC Fight Pass", "correct": false}
+{"id": 61, "task": "qa_2", "budget": 0.25, "T": 15536, "n_kept": 3884, "gold": ["Ronald Shusett"], "pred": "UFC Fight Pass", "correct": false}
+{"id": 61, "task": "qa_2", "budget": 0.1875, "T": 15536, "n_kept": 2913, "gold": ["Ronald Shusett"], "pred": "UFC Fight Pass", "correct": false}
+{"id": 61, "task": "qa_2", "budget": 0.125, "T": 15536, "n_kept": 1942, "gold": ["Ronald Shusett"], "pred": "UFC Fight Pass", "correct": false}
+{"id": 61, "task": "qa_2", "budget": 0.0625, "T": 15536, "n_kept": 971, "gold": ["Ronald Shusett"], "pred": "Ronald M. Kaplan", "correct": false}
+{"id": 62, "task": "qa_2", "budget": 1.0, "T": 15857, "n_kept": 15857, "gold": ["Adeline Virginia Woolf"], "pred": "Virginia Woolf", "correct": false}
+{"id": 62, "task": "qa_2", "budget": 0.875, "T": 15857, "n_kept": 13874, "gold": ["Adeline Virginia Woolf"], "pred": "Virginia Woolf", "correct": false}
+{"id": 62, "task": "qa_2", "budget": 0.75, "T": 15857, "n_kept": 11892, "gold": ["Adeline Virginia Woolf"], "pred": "Virginia Woolf", "correct": false}
+{"id": 62, "task": "qa_2", "budget": 0.625, "T": 15857, "n_kept": 9910, "gold": ["Adeline Virginia Woolf"], "pred": "Virginia Woolf", "correct": false}
+{"id": 62, "task": "qa_2", "budget": 0.5, "T": 15857, "n_kept": 7928, "gold": ["Adeline Virginia Woolf"], "pred": "Virginia Woolf", "correct": false}
+{"id": 62, "task": "qa_2", "budget": 0.375, "T": 15857, "n_kept": 5946, "gold": ["Adeline Virginia Woolf"], "pred": "Virginia Woolf", "correct": false}
+{"id": 62, "task": "qa_2", "budget": 0.25, "T": 15857, "n_kept": 3964, "gold": ["Adeline Virginia Woolf"], "pred": "Virginia Woolf", "correct": false}
+{"id": 62, "task": "qa_2", "budget": 0.1875, "T": 15857, "n_kept": 2973, "gold": ["Adeline Virginia Woolf"], "pred": "Virginia Woolf", "correct": false}
+{"id": 62, "task": "qa_2", "budget": 0.125, "T": 15857, "n_kept": 1982, "gold": ["Adeline Virginia Woolf"], "pred": "Virginia Woolf", "correct": false}
+{"id": 62, "task": "qa_2", "budget": 0.0625, "T": 15857, "n_kept": 991, "gold": ["Adeline Virginia Woolf"], "pred": "Virginia Woolf", "correct": false}
+{"id": 63, "task": "qa_2", "budget": 1.0, "T": 14729, "n_kept": 14729, "gold": ["821"], "pred": "821", "correct": true}
+{"id": 63, "task": "qa_2", "budget": 0.875, "T": 14729, "n_kept": 12887, "gold": ["821"], "pred": "821", "correct": true}
+{"id": 63, "task": "qa_2", "budget": 0.75, "T": 14729, "n_kept": 11046, "gold": ["821"], "pred": "821", "correct": true}
+{"id": 63, "task": "qa_2", "budget": 0.625, "T": 14729, "n_kept": 9205, "gold": ["821"], "pred": "821", "correct": true}
+{"id": 63, "task": "qa_2", "budget": 0.5, "T": 14729, "n_kept": 7364, "gold": ["821"], "pred": "821", "correct": true}
+{"id": 63, "task": "qa_2", "budget": 0.375, "T": 14729, "n_kept": 5523, "gold": ["821"], "pred": "821", "correct": true}
+{"id": 63, "task": "qa_2", "budget": 0.25, "T": 14729, "n_kept": 3682, "gold": ["821"], "pred": "821", "correct": true}
+{"id": 63, "task": "qa_2", "budget": 0.1875, "T": 14729, "n_kept": 2761, "gold": ["821"], "pred": "821", "correct": true}
+{"id": 63, "task": "qa_2", "budget": 0.125, "T": 14729, "n_kept": 1841, "gold": ["821"], "pred": "821", "correct": true}
+{"id": 63, "task": "qa_2", "budget": 0.0625, "T": 14729, "n_kept": 920, "gold": ["821"], "pred": "821", "correct": true}
+{"id": 64, "task": "qa_2", "budget": 1.0, "T": 15856, "n_kept": 15856, "gold": ["more than 70 countries"], "pred": "20", "correct": false}
+{"id": 64, "task": "qa_2", "budget": 0.875, "T": 15856, "n_kept": 13874, "gold": ["more than 70 countries"], "pred": "20", "correct": false}
+{"id": 64, "task": "qa_2", "budget": 0.75, "T": 15856, "n_kept": 11892, "gold": ["more than 70 countries"], "pred": "20", "correct": false}
+{"id": 64, "task": "qa_2", "budget": 0.625, "T": 15856, "n_kept": 9910, "gold": ["more than 70 countries"], "pred": "20", "correct": false}
+{"id": 64, "task": "qa_2", "budget": 0.5, "T": 15856, "n_kept": 7928, "gold": ["more than 70 countries"], "pred": "20", "correct": false}
+{"id": 64, "task": "qa_2", "budget": 0.375, "T": 15856, "n_kept": 5946, "gold": ["more than 70 countries"], "pred": "20", "correct": false}
+{"id": 64, "task": "qa_2", "budget": 0.25, "T": 15856, "n_kept": 3964, "gold": ["more than 70 countries"], "pred": "20", "correct": false}
+{"id": 64, "task": "qa_2", "budget": 0.1875, "T": 15856, "n_kept": 2973, "gold": ["more than 70 countries"], "pred": "20", "correct": false}
+{"id": 64, "task": "qa_2", "budget": 0.125, "T": 15856, "n_kept": 1982, "gold": ["more than 70 countries"], "pred": "20", "correct": false}
+{"id": 64, "task": "qa_2", "budget": 0.0625, "T": 15856, "n_kept": 991, "gold": ["more than 70 countries"], "pred": "20", "correct": false}
+{"id": 65, "task": "qa_2", "budget": 1.0, "T": 16368, "n_kept": 16368, "gold": ["Charmed"], "pred": "Charmed", "correct": true}
+{"id": 65, "task": "qa_2", "budget": 0.875, "T": 16368, "n_kept": 14322, "gold": ["Charmed"], "pred": "Charmed", "correct": true}
+{"id": 65, "task": "qa_2", "budget": 0.75, "T": 16368, "n_kept": 12276, "gold": ["Charmed"], "pred": "Charmed", "correct": true}
+{"id": 65, "task": "qa_2", "budget": 0.625, "T": 16368, "n_kept": 10230, "gold": ["Charmed"], "pred": "Charmed", "correct": true}
+{"id": 65, "task": "qa_2", "budget": 0.5, "T": 16368, "n_kept": 8184, "gold": ["Charmed"], "pred": "Charmed", "correct": true}
+{"id": 65, "task": "qa_2", "budget": 0.375, "T": 16368, "n_kept": 6138, "gold": ["Charmed"], "pred": "Charmed", "correct": true}
+{"id": 65, "task": "qa_2", "budget": 0.25, "T": 16368, "n_kept": 4092, "gold": ["Charmed"], "pred": "Charmed", "correct": true}
+{"id": 65, "task": "qa_2", "budget": 0.1875, "T": 16368, "n_kept": 3069, "gold": ["Charmed"], "pred": "Charmed", "correct": true}
+{"id": 65, "task": "qa_2", "budget": 0.125, "T": 16368, "n_kept": 2046, "gold": ["Charmed"], "pred": "Charmed", "correct": true}
+{"id": 65, "task": "qa_2", "budget": 0.0625, "T": 16368, "n_kept": 1023, "gold": ["Charmed"], "pred": "Charmed", "correct": true}
+{"id": 66, "task": "qa_2", "budget": 1.0, "T": 16721, "n_kept": 16721, "gold": ["International Boxing Hall of Fame"], "pred": "World Boxing Association (WBA)", "correct": false}
+{"id": 66, "task": "qa_2", "budget": 0.875, "T": 16721, "n_kept": 14630, "gold": ["International Boxing Hall of Fame"], "pred": "World Boxing Association (WBA)", "correct": false}
+{"id": 66, "task": "qa_2", "budget": 0.75, "T": 16721, "n_kept": 12540, "gold": ["International Boxing Hall of Fame"], "pred": "World Boxing Association (WBA)", "correct": false}
+{"id": 66, "task": "qa_2", "budget": 0.625, "T": 16721, "n_kept": 10450, "gold": ["International Boxing Hall of Fame"], "pred": "World Boxing Association (WBA)", "correct": false}
+{"id": 66, "task": "qa_2", "budget": 0.5, "T": 16721, "n_kept": 8360, "gold": ["International Boxing Hall of Fame"], "pred": "World Boxing Association (WBA)", "correct": false}
+{"id": 66, "task": "qa_2", "budget": 0.375, "T": 16721, "n_kept": 6270, "gold": ["International Boxing Hall of Fame"], "pred": "World Boxing Association (WBA)", "correct": false}
+{"id": 66, "task": "qa_2", "budget": 0.25, "T": 16721, "n_kept": 4180, "gold": ["International Boxing Hall of Fame"], "pred": "World Boxing Association (WBA)", "correct": false}
+{"id": 66, "task": "qa_2", "budget": 0.1875, "T": 16721, "n_kept": 3135, "gold": ["International Boxing Hall of Fame"], "pred": "World Boxing Council (WBC)", "correct": false}
+{"id": 66, "task": "qa_2", "budget": 0.125, "T": 16721, "n_kept": 2090, "gold": ["International Boxing Hall of Fame"], "pred": "World Boxing Council", "correct": false}
+{"id": 66, "task": "qa_2", "budget": 0.0625, "T": 16721, "n_kept": 1045, "gold": ["International Boxing Hall of Fame"], "pred": "World Boxing Council", "correct": false}
+{"id": 67, "task": "qa_2", "budget": 1.0, "T": 16588, "n_kept": 16588, "gold": ["Usher"], "pred": "Usher", "correct": true}
+{"id": 67, "task": "qa_2", "budget": 0.875, "T": 16588, "n_kept": 14514, "gold": ["Usher"], "pred": "Usher", "correct": true}
+{"id": 67, "task": "qa_2", "budget": 0.75, "T": 16588, "n_kept": 12441, "gold": ["Usher"], "pred": "Usher", "correct": true}
+{"id": 67, "task": "qa_2", "budget": 0.625, "T": 16588, "n_kept": 10367, "gold": ["Usher"], "pred": "Usher", "correct": true}
+{"id": 67, "task": "qa_2", "budget": 0.5, "T": 16588, "n_kept": 8294, "gold": ["Usher"], "pred": "Usher", "correct": true}
+{"id": 67, "task": "qa_2", "budget": 0.375, "T": 16588, "n_kept": 6220, "gold": ["Usher"], "pred": "Usher", "correct": true}
+{"id": 67, "task": "qa_2", "budget": 0.25, "T": 16588, "n_kept": 4147, "gold": ["Usher"], "pred": "Usher", "correct": true}
+{"id": 67, "task": "qa_2", "budget": 0.1875, "T": 16588, "n_kept": 3110, "gold": ["Usher"], "pred": "Usher", "correct": true}
+{"id": 67, "task": "qa_2", "budget": 0.125, "T": 16588, "n_kept": 2073, "gold": ["Usher"], "pred": "Usher", "correct": true}
+{"id": 67, "task": "qa_2", "budget": 0.0625, "T": 16588, "n_kept": 1036, "gold": ["Usher"], "pred": "Usher", "correct": true}
+{"id": 68, "task": "qa_2", "budget": 1.0, "T": 16751, "n_kept": 16751, "gold": ["Bill Murray"], "pred": "Henry Thomas", "correct": false}
+{"id": 68, "task": "qa_2", "budget": 0.875, "T": 16751, "n_kept": 14657, "gold": ["Bill Murray"], "pred": "Henry Thomas", "correct": false}
+{"id": 68, "task": "qa_2", "budget": 0.75, "T": 16751, "n_kept": 12563, "gold": ["Bill Murray"], "pred": "Henry Thomas", "correct": false}
+{"id": 68, "task": "qa_2", "budget": 0.625, "T": 16751, "n_kept": 10469, "gold": ["Bill Murray"], "pred": "Henry Thomas", "correct": false}
+{"id": 68, "task": "qa_2", "budget": 0.5, "T": 16751, "n_kept": 8375, "gold": ["Bill Murray"], "pred": "Henry Thomas", "correct": false}
+{"id": 68, "task": "qa_2", "budget": 0.375, "T": 16751, "n_kept": 6281, "gold": ["Bill Murray"], "pred": "Henry Thomas", "correct": false}
+{"id": 68, "task": "qa_2", "budget": 0.25, "T": 16751, "n_kept": 4187, "gold": ["Bill Murray"], "pred": "Henry Thomas", "correct": false}
+{"id": 68, "task": "qa_2", "budget": 0.1875, "T": 16751, "n_kept": 3140, "gold": ["Bill Murray"], "pred": "Henry Thomas", "correct": false}
+{"id": 68, "task": "qa_2", "budget": 0.125, "T": 16751, "n_kept": 2093, "gold": ["Bill Murray"], "pred": "Henry Thomas", "correct": false}
+{"id": 68, "task": "qa_2", "budget": 0.0625, "T": 16751, "n_kept": 1046, "gold": ["Bill Murray"], "pred": "Henry Thomas", "correct": false}
+{"id": 69, "task": "qa_2", "budget": 1.0, "T": 15983, "n_kept": 15983, "gold": ["Carabao Cup"], "pred": "First Citizens Cup", "correct": false}
+{"id": 69, "task": "qa_2", "budget": 0.875, "T": 15983, "n_kept": 13985, "gold": ["Carabao Cup"], "pred": "First Citizens Cup", "correct": false}
+{"id": 69, "task": "qa_2", "budget": 0.75, "T": 15983, "n_kept": 11987, "gold": ["Carabao Cup"], "pred": "First Citizens Cup", "correct": false}
+{"id": 69, "task": "qa_2", "budget": 0.625, "T": 15983, "n_kept": 9989, "gold": ["Carabao Cup"], "pred": "First Citizens Cup", "correct": false}
+{"id": 69, "task": "qa_2", "budget": 0.5, "T": 15983, "n_kept": 7991, "gold": ["Carabao Cup"], "pred": "First Citizens Cup", "correct": false}
+{"id": 69, "task": "qa_2", "budget": 0.375, "T": 15983, "n_kept": 5993, "gold": ["Carabao Cup"], "pred": "First Citizens Cup", "correct": false}
+{"id": 69, "task": "qa_2", "budget": 0.25, "T": 15983, "n_kept": 3995, "gold": ["Carabao Cup"], "pred": "First Citizens Cup", "correct": false}
+{"id": 69, "task": "qa_2", "budget": 0.1875, "T": 15983, "n_kept": 2996, "gold": ["Carabao Cup"], "pred": "First Citizens Cup", "correct": false}
+{"id": 69, "task": "qa_2", "budget": 0.125, "T": 15983, "n_kept": 1997, "gold": ["Carabao Cup"], "pred": "First Citizens Cup", "correct": false}
+{"id": 69, "task": "qa_2", "budget": 0.0625, "T": 15983, "n_kept": 998, "gold": ["Carabao Cup"], "pred": "First Citizens Cup", "correct": false}
+{"id": 70, "task": "qa_2", "budget": 1.0, "T": 16906, "n_kept": 16906, "gold": ["Teen Titans Go!"], "pred": "Teen Titans", "correct": false}
+{"id": 70, "task": "qa_2", "budget": 0.875, "T": 16906, "n_kept": 14792, "gold": ["Teen Titans Go!"], "pred": "Teen Titans", "correct": false}
+{"id": 70, "task": "qa_2", "budget": 0.75, "T": 16906, "n_kept": 12679, "gold": ["Teen Titans Go!"], "pred": "Teen Titans", "correct": false}
+{"id": 70, "task": "qa_2", "budget": 0.625, "T": 16906, "n_kept": 10566, "gold": ["Teen Titans Go!"], "pred": "Teen Titans", "correct": false}
+{"id": 70, "task": "qa_2", "budget": 0.5, "T": 16906, "n_kept": 8453, "gold": ["Teen Titans Go!"], "pred": "Teen Titans", "correct": false}
+{"id": 70, "task": "qa_2", "budget": 0.375, "T": 16906, "n_kept": 6339, "gold": ["Teen Titans Go!"], "pred": "Teen Titans", "correct": false}
+{"id": 70, "task": "qa_2", "budget": 0.25, "T": 16906, "n_kept": 4226, "gold": ["Teen Titans Go!"], "pred": "Teen Titans", "correct": false}
+{"id": 70, "task": "qa_2", "budget": 0.1875, "T": 16906, "n_kept": 3169, "gold": ["Teen Titans Go!"], "pred": "Teen Titans", "correct": false}
+{"id": 70, "task": "qa_2", "budget": 0.125, "T": 16906, "n_kept": 2113, "gold": ["Teen Titans Go!"], "pred": "Teen Titans", "correct": false}
+{"id": 70, "task": "qa_2", "budget": 0.0625, "T": 16906, "n_kept": 1056, "gold": ["Teen Titans Go!"], "pred": "Teen Titans", "correct": false}
+{"id": 71, "task": "qa_2", "budget": 1.0, "T": 15086, "n_kept": 15086, "gold": ["276,170 inhabitants"], "pred": "The question as stated contains a contradiction because the 122nd SS-Standarte was formed in 1940, not 2014. Given the information provided, there is no inhabitant of a city where the 122nd SS-Standar", "correct": false}
+{"id": 71, "task": "qa_2", "budget": 0.875, "T": 15086, "n_kept": 13200, "gold": ["276,170 inhabitants"], "pred": "The question as stated contains a contradiction because the 122nd SS-Standarte was formed in 1940, not 2014. Given the information in the documents, the city where the 122nd SS-Standarte was formed in", "correct": false}
+{"id": 71, "task": "qa_2", "budget": 0.75, "T": 15086, "n_kept": 11314, "gold": ["276,170 inhabitants"], "pred": "The question as stated contains a contradiction because the 122nd SS-Standarte was formed in 1940, not 2014. Given the information in the documents, the city where the 122nd SS-Standarte was formed in", "correct": false}
+{"id": 71, "task": "qa_2", "budget": 0.625, "T": 15086, "n_kept": 9428, "gold": ["276,170 inhabitants"], "pred": "The question as stated contains a contradiction because the 122nd SS-Standarte was formed in 1940, not 2014. Given the information in the documents, the city where the 122nd SS-Standarte was formed in", "correct": false}
+{"id": 71, "task": "qa_2", "budget": 0.5, "T": 15086, "n_kept": 7543, "gold": ["276,170 inhabitants"], "pred": "The question as stated contains a contradiction because the 122nd SS-Standarte was formed in 1940, not 2014. Given the information provided, there is no inhabitant of a city where the 122nd SS-Standar", "correct": false}
+{"id": 71, "task": "qa_2", "budget": 0.375, "T": 15086, "n_kept": 5657, "gold": ["276,170 inhabitants"], "pred": "The question as stated contains a contradiction because the 122nd SS-Standarte was formed in 1940, not 2014. Given the information provided, there is no inhabitant of a city where the 122nd SS-Standar", "correct": false}
+{"id": 71, "task": "qa_2", "budget": 0.25, "T": 15086, "n_kept": 3771, "gold": ["276,170 inhabitants"], "pred": "The question as stated contains a contradiction because the 122nd SS-Standarte was formed in 1940, not 2014. Given the information in the documents, the city where the 122nd SS-Standarte was formed in", "correct": false}
+{"id": 71, "task": "qa_2", "budget": 0.1875, "T": 15086, "n_kept": 2828, "gold": ["276,170 inhabitants"], "pred": "The question as stated contains a contradiction because the 122nd SS-Standarte was formed in 1940, not 2014. Given the information provided, there is no inhabitant of a city where the 122nd SS-Standar", "correct": false}
+{"id": 71, "task": "qa_2", "budget": 0.125, "T": 15086, "n_kept": 1885, "gold": ["276,170 inhabitants"], "pred": "The question as stated contains a contradiction (2014 is not mentioned in the context of 122nd SS-Standarte formation), but based on the given information:\n\nThe 122nd SS-Standarte was formed in the ci", "correct": false}
+{"id": 71, "task": "qa_2", "budget": 0.0625, "T": 15086, "n_kept": 942, "gold": ["276,170 inhabitants"], "pred": "Not provided in the documents", "correct": false}
+{"id": 72, "task": "qa_2", "budget": 1.0, "T": 16672, "n_kept": 16672, "gold": ["orange"], "pred": "orange", "correct": true}
+{"id": 72, "task": "qa_2", "budget": 0.875, "T": 16672, "n_kept": 14588, "gold": ["orange"], "pred": "orange", "correct": true}
+{"id": 72, "task": "qa_2", "budget": 0.75, "T": 16672, "n_kept": 12504, "gold": ["orange"], "pred": "orange", "correct": true}
+{"id": 72, "task": "qa_2", "budget": 0.625, "T": 16672, "n_kept": 10420, "gold": ["orange"], "pred": "orange", "correct": true}
+{"id": 72, "task": "qa_2", "budget": 0.5, "T": 16672, "n_kept": 8336, "gold": ["orange"], "pred": "orange", "correct": true}
+{"id": 72, "task": "qa_2", "budget": 0.375, "T": 16672, "n_kept": 6252, "gold": ["orange"], "pred": "orange", "correct": true}
+{"id": 72, "task": "qa_2", "budget": 0.25, "T": 16672, "n_kept": 4168, "gold": ["orange"], "pred": "orange", "correct": true}
+{"id": 72, "task": "qa_2", "budget": 0.1875, "T": 16672, "n_kept": 3126, "gold": ["orange"], "pred": "orange", "correct": true}
+{"id": 72, "task": "qa_2", "budget": 0.125, "T": 16672, "n_kept": 2084, "gold": ["orange"], "pred": "orange", "correct": true}
+{"id": 72, "task": "qa_2", "budget": 0.0625, "T": 16672, "n_kept": 1042, "gold": ["orange"], "pred": "orange", "correct": true}
+{"id": 73, "task": "qa_2", "budget": 1.0, "T": 16847, "n_kept": 16847, "gold": ["Tromeo and Juliet"], "pred": "Tromeo and Juliet", "correct": true}
+{"id": 73, "task": "qa_2", "budget": 0.875, "T": 16847, "n_kept": 14741, "gold": ["Tromeo and Juliet"], "pred": "Tromeo and Juliet", "correct": true}
+{"id": 73, "task": "qa_2", "budget": 0.75, "T": 16847, "n_kept": 12635, "gold": ["Tromeo and Juliet"], "pred": "Tromeo and Juliet", "correct": true}
+{"id": 73, "task": "qa_2", "budget": 0.625, "T": 16847, "n_kept": 10529, "gold": ["Tromeo and Juliet"], "pred": "Tromeo and Juliet", "correct": true}
+{"id": 73, "task": "qa_2", "budget": 0.5, "T": 16847, "n_kept": 8423, "gold": ["Tromeo and Juliet"], "pred": "Tromeo and Juliet", "correct": true}
+{"id": 73, "task": "qa_2", "budget": 0.375, "T": 16847, "n_kept": 6317, "gold": ["Tromeo and Juliet"], "pred": "Tromeo and Juliet", "correct": true}
+{"id": 73, "task": "qa_2", "budget": 0.25, "T": 16847, "n_kept": 4211, "gold": ["Tromeo and Juliet"], "pred": "Tromeo and Juliet", "correct": true}
+{"id": 73, "task": "qa_2", "budget": 0.1875, "T": 16847, "n_kept": 3158, "gold": ["Tromeo and Juliet"], "pred": "Tromeo and Juliet", "correct": true}
+{"id": 73, "task": "qa_2", "budget": 0.125, "T": 16847, "n_kept": 2105, "gold": ["Tromeo and Juliet"], "pred": "Tromeo and Juliet", "correct": true}
+{"id": 73, "task": "qa_2", "budget": 0.0625, "T": 16847, "n_kept": 1052, "gold": ["Tromeo and Juliet"], "pred": "Tromeo and Juliet", "correct": true}
+{"id": 74, "task": "qa_2", "budget": 1.0, "T": 15817, "n_kept": 15817, "gold": ["William Jefferson Clinton"], "pred": "Bill Clinton", "correct": false}
+{"id": 74, "task": "qa_2", "budget": 0.875, "T": 15817, "n_kept": 13839, "gold": ["William Jefferson Clinton"], "pred": "Bill Clinton", "correct": false}
+{"id": 74, "task": "qa_2", "budget": 0.75, "T": 15817, "n_kept": 11862, "gold": ["William Jefferson Clinton"], "pred": "Bill Clinton", "correct": false}
+{"id": 74, "task": "qa_2", "budget": 0.625, "T": 15817, "n_kept": 9885, "gold": ["William Jefferson Clinton"], "pred": "Bill Clinton", "correct": false}
+{"id": 74, "task": "qa_2", "budget": 0.5, "T": 15817, "n_kept": 7908, "gold": ["William Jefferson Clinton"], "pred": "Robert Suettinger was the national intelligence officer for East Asia under the former Governor of Arkansas Bill Clinton.", "correct": false}
+{"id": 74, "task": "qa_2", "budget": 0.375, "T": 15817, "n_kept": 5931, "gold": ["William Jefferson Clinton"], "pred": "Robert Suettinger was the national intelligence officer for East Asia under the former Governor of Arkansas Bill Clinton.", "correct": false}
+{"id": 74, "task": "qa_2", "budget": 0.25, "T": 15817, "n_kept": 3954, "gold": ["William Jefferson Clinton"], "pred": "Robert Suettinger was the national intelligence officer for East Asia under the former Governor of Arkansas Bill Clinton.", "correct": false}
+{"id": 74, "task": "qa_2", "budget": 0.1875, "T": 15817, "n_kept": 2965, "gold": ["William Jefferson Clinton"], "pred": "Robert Suettinger was the national intelligence officer for East Asia under the former Governor of Arkansas Bill Clinton.", "correct": false}
+{"id": 74, "task": "qa_2", "budget": 0.125, "T": 15817, "n_kept": 1977, "gold": ["William Jefferson Clinton"], "pred": "Robert Suettinger was the national intelligence officer for East Asia under the former Governor of Arkansas Bill Clinton.", "correct": false}
+{"id": 74, "task": "qa_2", "budget": 0.0625, "T": 15817, "n_kept": 988, "gold": ["William Jefferson Clinton"], "pred": "Robert Suettinger was the national intelligence officer for East Asia at the National Intelligence Council (NIC) from 1997-1998 under the former Governor of Arkansas Bill Clinton.", "correct": false}
+{"id": 75, "task": "qa_2", "budget": 1.0, "T": 16954, "n_kept": 16954, "gold": ["John John Florence"], "pred": "Coco Ho", "correct": false}
+{"id": 75, "task": "qa_2", "budget": 0.875, "T": 16954, "n_kept": 14834, "gold": ["John John Florence"], "pred": "Coco Ho", "correct": false}
+{"id": 75, "task": "qa_2", "budget": 0.75, "T": 16954, "n_kept": 12715, "gold": ["John John Florence"], "pred": "Coco Ho", "correct": false}
+{"id": 75, "task": "qa_2", "budget": 0.625, "T": 16954, "n_kept": 10596, "gold": ["John John Florence"], "pred": "Coco Ho", "correct": false}
+{"id": 75, "task": "qa_2", "budget": 0.5, "T": 16954, "n_kept": 8477, "gold": ["John John Florence"], "pred": "Coco Ho", "correct": false}
+{"id": 75, "task": "qa_2", "budget": 0.375, "T": 16954, "n_kept": 6357, "gold": ["John John Florence"], "pred": "Coco Ho", "correct": false}
+{"id": 75, "task": "qa_2", "budget": 0.25, "T": 16954, "n_kept": 4238, "gold": ["John John Florence"], "pred": "Coco Ho", "correct": false}
+{"id": 75, "task": "qa_2", "budget": 0.1875, "T": 16954, "n_kept": 3178, "gold": ["John John Florence"], "pred": "Coco Ho", "correct": false}
+{"id": 75, "task": "qa_2", "budget": 0.125, "T": 16954, "n_kept": 2119, "gold": ["John John Florence"], "pred": "Coco Ho", "correct": false}
+{"id": 75, "task": "qa_2", "budget": 0.0625, "T": 16954, "n_kept": 1059, "gold": ["John John Florence"], "pred": "Coco Ho", "correct": false}
+{"id": 76, "task": "qa_2", "budget": 1.0, "T": 16875, "n_kept": 16875, "gold": ["Ann"], "pred": "Neil", "correct": false}
+{"id": 76, "task": "qa_2", "budget": 0.875, "T": 16875, "n_kept": 14765, "gold": ["Ann"], "pred": "Neil", "correct": false}
+{"id": 76, "task": "qa_2", "budget": 0.75, "T": 16875, "n_kept": 12656, "gold": ["Ann"], "pred": "Neil", "correct": false}
+{"id": 76, "task": "qa_2", "budget": 0.625, "T": 16875, "n_kept": 10546, "gold": ["Ann"], "pred": "Neil", "correct": false}
+{"id": 76, "task": "qa_2", "budget": 0.5, "T": 16875, "n_kept": 8437, "gold": ["Ann"], "pred": "Neil", "correct": false}
+{"id": 76, "task": "qa_2", "budget": 0.375, "T": 16875, "n_kept": 6328, "gold": ["Ann"], "pred": "Neil", "correct": false}
+{"id": 76, "task": "qa_2", "budget": 0.25, "T": 16875, "n_kept": 4218, "gold": ["Ann"], "pred": "Neil", "correct": false}
+{"id": 76, "task": "qa_2", "budget": 0.1875, "T": 16875, "n_kept": 3164, "gold": ["Ann"], "pred": "Neil", "correct": false}
+{"id": 76, "task": "qa_2", "budget": 0.125, "T": 16875, "n_kept": 2109, "gold": ["Ann"], "pred": "Neil", "correct": false}
+{"id": 76, "task": "qa_2", "budget": 0.0625, "T": 16875, "n_kept": 1054, "gold": ["Ann"], "pred": "Neil", "correct": false}
+{"id": 77, "task": "qa_2", "budget": 1.0, "T": 15960, "n_kept": 15960, "gold": ["Apalachees"], "pred": "Ais", "correct": false}
+{"id": 77, "task": "qa_2", "budget": 0.875, "T": 15960, "n_kept": 13965, "gold": ["Apalachees"], "pred": "Ais", "correct": false}
+{"id": 77, "task": "qa_2", "budget": 0.75, "T": 15960, "n_kept": 11970, "gold": ["Apalachees"], "pred": "Ais", "correct": false}
+{"id": 77, "task": "qa_2", "budget": 0.625, "T": 15960, "n_kept": 9975, "gold": ["Apalachees"], "pred": "Ais", "correct": false}
+{"id": 77, "task": "qa_2", "budget": 0.5, "T": 15960, "n_kept": 7980, "gold": ["Apalachees"], "pred": "Ais", "correct": false}
+{"id": 77, "task": "qa_2", "budget": 0.375, "T": 15960, "n_kept": 5985, "gold": ["Apalachees"], "pred": "Ais", "correct": false}
+{"id": 77, "task": "qa_2", "budget": 0.25, "T": 15960, "n_kept": 3990, "gold": ["Apalachees"], "pred": "Ais", "correct": false}
+{"id": 77, "task": "qa_2", "budget": 0.1875, "T": 15960, "n_kept": 2992, "gold": ["Apalachees"], "pred": "Ais", "correct": false}
+{"id": 77, "task": "qa_2", "budget": 0.125, "T": 15960, "n_kept": 1995, "gold": ["Apalachees"], "pred": "Ais", "correct": false}
+{"id": 77, "task": "qa_2", "budget": 0.0625, "T": 15960, "n_kept": 997, "gold": ["Apalachees"], "pred": "Ais", "correct": false}
+{"id": 78, "task": "qa_2", "budget": 1.0, "T": 16756, "n_kept": 16756, "gold": ["British"], "pred": "British", "correct": true}
+{"id": 78, "task": "qa_2", "budget": 0.875, "T": 16756, "n_kept": 14661, "gold": ["British"], "pred": "British", "correct": true}
+{"id": 78, "task": "qa_2", "budget": 0.75, "T": 16756, "n_kept": 12567, "gold": ["British"], "pred": "British", "correct": true}
+{"id": 78, "task": "qa_2", "budget": 0.625, "T": 16756, "n_kept": 10472, "gold": ["British"], "pred": "British", "correct": true}
+{"id": 78, "task": "qa_2", "budget": 0.5, "T": 16756, "n_kept": 8378, "gold": ["British"], "pred": "British", "correct": true}
+{"id": 78, "task": "qa_2", "budget": 0.375, "T": 16756, "n_kept": 6283, "gold": ["British"], "pred": "British", "correct": true}
+{"id": 78, "task": "qa_2", "budget": 0.25, "T": 16756, "n_kept": 4189, "gold": ["British"], "pred": "British", "correct": true}
+{"id": 78, "task": "qa_2", "budget": 0.1875, "T": 16756, "n_kept": 3141, "gold": ["British"], "pred": "British", "correct": true}
+{"id": 78, "task": "qa_2", "budget": 0.125, "T": 16756, "n_kept": 2094, "gold": ["British"], "pred": "British", "correct": true}
+{"id": 78, "task": "qa_2", "budget": 0.0625, "T": 16756, "n_kept": 1047, "gold": ["British"], "pred": "British", "correct": true}
+{"id": 79, "task": "qa_2", "budget": 1.0, "T": 15328, "n_kept": 15328, "gold": ["1865"], "pred": "1865", "correct": true}
+{"id": 79, "task": "qa_2", "budget": 0.875, "T": 15328, "n_kept": 13412, "gold": ["1865"], "pred": "1865", "correct": true}
+{"id": 79, "task": "qa_2", "budget": 0.75, "T": 15328, "n_kept": 11496, "gold": ["1865"], "pred": "1865", "correct": true}
+{"id": 79, "task": "qa_2", "budget": 0.625, "T": 15328, "n_kept": 9580, "gold": ["1865"], "pred": "1865", "correct": true}
+{"id": 79, "task": "qa_2", "budget": 0.5, "T": 15328, "n_kept": 7664, "gold": ["1865"], "pred": "1865", "correct": true}
+{"id": 79, "task": "qa_2", "budget": 0.375, "T": 15328, "n_kept": 5748, "gold": ["1865"], "pred": "1865", "correct": true}
+{"id": 79, "task": "qa_2", "budget": 0.25, "T": 15328, "n_kept": 3832, "gold": ["1865"], "pred": "1865", "correct": true}
+{"id": 79, "task": "qa_2", "budget": 0.1875, "T": 15328, "n_kept": 2874, "gold": ["1865"], "pred": "1865", "correct": true}
+{"id": 79, "task": "qa_2", "budget": 0.125, "T": 15328, "n_kept": 1916, "gold": ["1865"], "pred": "1865", "correct": true}
+{"id": 79, "task": "qa_2", "budget": 0.0625, "T": 15328, "n_kept": 958, "gold": ["1865"], "pred": "1865", "correct": true}
+{"id": 80, "task": "qa_2", "budget": 1.0, "T": 17203, "n_kept": 17203, "gold": ["Newport"], "pred": "Newport", "correct": true}
+{"id": 80, "task": "qa_2", "budget": 0.875, "T": 17203, "n_kept": 15052, "gold": ["Newport"], "pred": "Newport", "correct": true}
+{"id": 80, "task": "qa_2", "budget": 0.75, "T": 17203, "n_kept": 12902, "gold": ["Newport"], "pred": "Newport", "correct": true}
+{"id": 80, "task": "qa_2", "budget": 0.625, "T": 17203, "n_kept": 10751, "gold": ["Newport"], "pred": "Newport", "correct": true}
+{"id": 80, "task": "qa_2", "budget": 0.5, "T": 17203, "n_kept": 8601, "gold": ["Newport"], "pred": "Newport", "correct": true}
+{"id": 80, "task": "qa_2", "budget": 0.375, "T": 17203, "n_kept": 6451, "gold": ["Newport"], "pred": "Newport", "correct": true}
+{"id": 80, "task": "qa_2", "budget": 0.25, "T": 17203, "n_kept": 4300, "gold": ["Newport"], "pred": "Newport", "correct": true}
+{"id": 80, "task": "qa_2", "budget": 0.1875, "T": 17203, "n_kept": 3225, "gold": ["Newport"], "pred": "Newport", "correct": true}
+{"id": 80, "task": "qa_2", "budget": 0.125, "T": 17203, "n_kept": 2150, "gold": ["Newport"], "pred": "Newport", "correct": true}
+{"id": 80, "task": "qa_2", "budget": 0.0625, "T": 17203, "n_kept": 1075, "gold": ["Newport"], "pred": "Newport", "correct": true}
+{"id": 81, "task": "qa_2", "budget": 1.0, "T": 16192, "n_kept": 16192, "gold": ["Bob Seger"], "pred": "Bob Seger", "correct": true}
+{"id": 81, "task": "qa_2", "budget": 0.875, "T": 16192, "n_kept": 14168, "gold": ["Bob Seger"], "pred": "Bob Seger", "correct": true}
+{"id": 81, "task": "qa_2", "budget": 0.75, "T": 16192, "n_kept": 12144, "gold": ["Bob Seger"], "pred": "Bob Seger", "correct": true}
+{"id": 81, "task": "qa_2", "budget": 0.625, "T": 16192, "n_kept": 10120, "gold": ["Bob Seger"], "pred": "Bob Seger", "correct": true}
+{"id": 81, "task": "qa_2", "budget": 0.5, "T": 16192, "n_kept": 8096, "gold": ["Bob Seger"], "pred": "Bob Seger", "correct": true}
+{"id": 81, "task": "qa_2", "budget": 0.375, "T": 16192, "n_kept": 6072, "gold": ["Bob Seger"], "pred": "Bob Seger", "correct": true}
+{"id": 81, "task": "qa_2", "budget": 0.25, "T": 16192, "n_kept": 4048, "gold": ["Bob Seger"], "pred": "Bob Seger", "correct": true}
+{"id": 81, "task": "qa_2", "budget": 0.1875, "T": 16192, "n_kept": 3036, "gold": ["Bob Seger"], "pred": "Bob Seger", "correct": true}
+{"id": 81, "task": "qa_2", "budget": 0.125, "T": 16192, "n_kept": 2024, "gold": ["Bob Seger"], "pred": "Bob Seger", "correct": true}
+{"id": 81, "task": "qa_2", "budget": 0.0625, "T": 16192, "n_kept": 1012, "gold": ["Bob Seger"], "pred": "Bob Seger", "correct": true}
+{"id": 82, "task": "qa_2", "budget": 1.0, "T": 15517, "n_kept": 15517, "gold": ["Conscription"], "pred": "requiring only men", "correct": false}
+{"id": 82, "task": "qa_2", "budget": 0.875, "T": 15517, "n_kept": 13577, "gold": ["Conscription"], "pred": "requiring only men", "correct": false}
+{"id": 82, "task": "qa_2", "budget": 0.75, "T": 15517, "n_kept": 11637, "gold": ["Conscription"], "pred": "requiring only men", "correct": false}
+{"id": 82, "task": "qa_2", "budget": 0.625, "T": 15517, "n_kept": 9698, "gold": ["Conscription"], "pred": "requiring only men", "correct": false}
+{"id": 82, "task": "qa_2", "budget": 0.5, "T": 15517, "n_kept": 7758, "gold": ["Conscription"], "pred": "requiring only men", "correct": false}
+{"id": 82, "task": "qa_2", "budget": 0.375, "T": 15517, "n_kept": 5818, "gold": ["Conscription"], "pred": "requiring only men", "correct": false}
+{"id": 82, "task": "qa_2", "budget": 0.25, "T": 15517, "n_kept": 3879, "gold": ["Conscription"], "pred": "requiring only men", "correct": false}
+{"id": 82, "task": "qa_2", "budget": 0.1875, "T": 15517, "n_kept": 2909, "gold": ["Conscription"], "pred": "requiring only men", "correct": false}
+{"id": 82, "task": "qa_2", "budget": 0.125, "T": 15517, "n_kept": 1939, "gold": ["Conscription"], "pred": "requiring only men", "correct": false}
+{"id": 82, "task": "qa_2", "budget": 0.0625, "T": 15517, "n_kept": 969, "gold": ["Conscription"], "pred": "requiring only men", "correct": false}
+{"id": 83, "task": "qa_2", "budget": 1.0, "T": 15496, "n_kept": 15496, "gold": ["Mondelez International, Inc."], "pred": "Mondelez International", "correct": false}
+{"id": 83, "task": "qa_2", "budget": 0.875, "T": 15496, "n_kept": 13559, "gold": ["Mondelez International, Inc."], "pred": "Mondelez International", "correct": false}
+{"id": 83, "task": "qa_2", "budget": 0.75, "T": 15496, "n_kept": 11622, "gold": ["Mondelez International, Inc."], "pred": "Mondelez International", "correct": false}
+{"id": 83, "task": "qa_2", "budget": 0.625, "T": 15496, "n_kept": 9685, "gold": ["Mondelez International, Inc."], "pred": "Mondelez International", "correct": false}
+{"id": 83, "task": "qa_2", "budget": 0.5, "T": 15496, "n_kept": 7748, "gold": ["Mondelez International, Inc."], "pred": "Mondelez International", "correct": false}
+{"id": 83, "task": "qa_2", "budget": 0.375, "T": 15496, "n_kept": 5811, "gold": ["Mondelez International, Inc."], "pred": "Mondelez International", "correct": false}
+{"id": 83, "task": "qa_2", "budget": 0.25, "T": 15496, "n_kept": 3874, "gold": ["Mondelez International, Inc."], "pred": "Mondelez International", "correct": false}
+{"id": 83, "task": "qa_2", "budget": 0.1875, "T": 15496, "n_kept": 2905, "gold": ["Mondelez International, Inc."], "pred": "Mondelez International", "correct": false}
+{"id": 83, "task": "qa_2", "budget": 0.125, "T": 15496, "n_kept": 1937, "gold": ["Mondelez International, Inc."], "pred": "Mondelez International", "correct": false}
+{"id": 83, "task": "qa_2", "budget": 0.0625, "T": 15496, "n_kept": 968, "gold": ["Mondelez International, Inc."], "pred": "Mondelez International", "correct": false}
+{"id": 84, "task": "qa_2", "budget": 1.0, "T": 17251, "n_kept": 17251, "gold": ["Monica Lewinsky"], "pred": "Monica Lewinsky", "correct": true}
+{"id": 84, "task": "qa_2", "budget": 0.875, "T": 17251, "n_kept": 15094, "gold": ["Monica Lewinsky"], "pred": "Monica Lewinsky", "correct": true}
+{"id": 84, "task": "qa_2", "budget": 0.75, "T": 17251, "n_kept": 12938, "gold": ["Monica Lewinsky"], "pred": "Monica Lewinsky", "correct": true}
+{"id": 84, "task": "qa_2", "budget": 0.625, "T": 17251, "n_kept": 10781, "gold": ["Monica Lewinsky"], "pred": "Monica Lewinsky", "correct": true}
+{"id": 84, "task": "qa_2", "budget": 0.5, "T": 17251, "n_kept": 8625, "gold": ["Monica Lewinsky"], "pred": "Monica Lewinsky", "correct": true}
+{"id": 84, "task": "qa_2", "budget": 0.375, "T": 17251, "n_kept": 6469, "gold": ["Monica Lewinsky"], "pred": "Monica Lewinsky", "correct": true}
+{"id": 84, "task": "qa_2", "budget": 0.25, "T": 17251, "n_kept": 4312, "gold": ["Monica Lewinsky"], "pred": "Monica Lewinsky", "correct": true}
+{"id": 84, "task": "qa_2", "budget": 0.1875, "T": 17251, "n_kept": 3234, "gold": ["Monica Lewinsky"], "pred": "Monica Lewinsky", "correct": true}
+{"id": 84, "task": "qa_2", "budget": 0.125, "T": 17251, "n_kept": 2156, "gold": ["Monica Lewinsky"], "pred": "Monica Lewinsky", "correct": true}
+{"id": 84, "task": "qa_2", "budget": 0.0625, "T": 17251, "n_kept": 1078, "gold": ["Monica Lewinsky"], "pred": "Monica Lewinsky", "correct": true}
+{"id": 85, "task": "qa_2", "budget": 1.0, "T": 15188, "n_kept": 15188, "gold": ["April 1, 1949"], "pred": "1976", "correct": false}
+{"id": 85, "task": "qa_2", "budget": 0.875, "T": 15188, "n_kept": 13289, "gold": ["April 1, 1949"], "pred": "1976", "correct": false}
+{"id": 85, "task": "qa_2", "budget": 0.75, "T": 15188, "n_kept": 11391, "gold": ["April 1, 1949"], "pred": "1976", "correct": false}
+{"id": 85, "task": "qa_2", "budget": 0.625, "T": 15188, "n_kept": 9492, "gold": ["April 1, 1949"], "pred": "1976", "correct": false}
+{"id": 85, "task": "qa_2", "budget": 0.5, "T": 15188, "n_kept": 7594, "gold": ["April 1, 1949"], "pred": "1976", "correct": false}
+{"id": 85, "task": "qa_2", "budget": 0.375, "T": 15188, "n_kept": 5695, "gold": ["April 1, 1949"], "pred": "1976", "correct": false}
+{"id": 85, "task": "qa_2", "budget": 0.25, "T": 15188, "n_kept": 3797, "gold": ["April 1, 1949"], "pred": "1976", "correct": false}
+{"id": 85, "task": "qa_2", "budget": 0.1875, "T": 15188, "n_kept": 2847, "gold": ["April 1, 1949"], "pred": "1976", "correct": false}
+{"id": 85, "task": "qa_2", "budget": 0.125, "T": 15188, "n_kept": 1898, "gold": ["April 1, 1949"], "pred": "April 1, 1949", "correct": true}
+{"id": 85, "task": "qa_2", "budget": 0.0625, "T": 15188, "n_kept": 949, "gold": ["April 1, 1949"], "pred": "April 1, 1949", "correct": true}
+{"id": 86, "task": "qa_2", "budget": 1.0, "T": 16939, "n_kept": 16939, "gold": ["1866"], "pred": "1981", "correct": false}
+{"id": 86, "task": "qa_2", "budget": 0.875, "T": 16939, "n_kept": 14821, "gold": ["1866"], "pred": "1981", "correct": false}
+{"id": 86, "task": "qa_2", "budget": 0.75, "T": 16939, "n_kept": 12704, "gold": ["1866"], "pred": "1981", "correct": false}
+{"id": 86, "task": "qa_2", "budget": 0.625, "T": 16939, "n_kept": 10586, "gold": ["1866"], "pred": "1981", "correct": false}
+{"id": 86, "task": "qa_2", "budget": 0.5, "T": 16939, "n_kept": 8469, "gold": ["1866"], "pred": "1981", "correct": false}
+{"id": 86, "task": "qa_2", "budget": 0.375, "T": 16939, "n_kept": 6352, "gold": ["1866"], "pred": "1981", "correct": false}
+{"id": 86, "task": "qa_2", "budget": 0.25, "T": 16939, "n_kept": 4234, "gold": ["1866"], "pred": "1981", "correct": false}
+{"id": 86, "task": "qa_2", "budget": 0.1875, "T": 16939, "n_kept": 3176, "gold": ["1866"], "pred": "2001", "correct": false}
+{"id": 86, "task": "qa_2", "budget": 0.125, "T": 16939, "n_kept": 2117, "gold": ["1866"], "pred": "2001", "correct": false}
+{"id": 86, "task": "qa_2", "budget": 0.0625, "T": 16939, "n_kept": 1058, "gold": ["1866"], "pred": "2011", "correct": false}
+{"id": 87, "task": "qa_2", "budget": 1.0, "T": 16868, "n_kept": 16868, "gold": ["Canary Islands, Spain"], "pred": "Tenerife", "correct": false}
+{"id": 87, "task": "qa_2", "budget": 0.875, "T": 16868, "n_kept": 14759, "gold": ["Canary Islands, Spain"], "pred": "Tenerife", "correct": false}
+{"id": 87, "task": "qa_2", "budget": 0.75, "T": 16868, "n_kept": 12651, "gold": ["Canary Islands, Spain"], "pred": "Tenerife", "correct": false}
+{"id": 87, "task": "qa_2", "budget": 0.625, "T": 16868, "n_kept": 10542, "gold": ["Canary Islands, Spain"], "pred": "Tenerife", "correct": false}
+{"id": 87, "task": "qa_2", "budget": 0.5, "T": 16868, "n_kept": 8434, "gold": ["Canary Islands, Spain"], "pred": "Tenerife", "correct": false}
+{"id": 87, "task": "qa_2", "budget": 0.375, "T": 16868, "n_kept": 6325, "gold": ["Canary Islands, Spain"], "pred": "Tenerife", "correct": false}
+{"id": 87, "task": "qa_2", "budget": 0.25, "T": 16868, "n_kept": 4217, "gold": ["Canary Islands, Spain"], "pred": "Tenerife", "correct": false}
+{"id": 87, "task": "qa_2", "budget": 0.1875, "T": 16868, "n_kept": 3162, "gold": ["Canary Islands, Spain"], "pred": "Tenerife", "correct": false}
+{"id": 87, "task": "qa_2", "budget": 0.125, "T": 16868, "n_kept": 2108, "gold": ["Canary Islands, Spain"], "pred": "Tenerife", "correct": false}
+{"id": 87, "task": "qa_2", "budget": 0.0625, "T": 16868, "n_kept": 1054, "gold": ["Canary Islands, Spain"], "pred": "Tenerife", "correct": false}
+{"id": 88, "task": "qa_2", "budget": 1.0, "T": 15599, "n_kept": 15599, "gold": ["250 million"], "pred": "123 million", "correct": false}
+{"id": 88, "task": "qa_2", "budget": 0.875, "T": 15599, "n_kept": 13649, "gold": ["250 million"], "pred": "1770", "correct": false}
+{"id": 88, "task": "qa_2", "budget": 0.75, "T": 15599, "n_kept": 11699, "gold": ["250 million"], "pred": "100 million", "correct": false}
+{"id": 88, "task": "qa_2", "budget": 0.625, "T": 15599, "n_kept": 9749, "gold": ["250 million"], "pred": "100 million", "correct": false}
+{"id": 88, "task": "qa_2", "budget": 0.5, "T": 15599, "n_kept": 7799, "gold": ["250 million"], "pred": "109", "correct": false}
+{"id": 88, "task": "qa_2", "budget": 0.375, "T": 15599, "n_kept": 5849, "gold": ["250 million"], "pred": "1770", "correct": false}
+{"id": 88, "task": "qa_2", "budget": 0.25, "T": 15599, "n_kept": 3899, "gold": ["250 million"], "pred": "1770", "correct": false}
+{"id": 88, "task": "qa_2", "budget": 0.1875, "T": 15599, "n_kept": 2924, "gold": ["250 million"], "pred": "1770", "correct": false}
+{"id": 88, "task": "qa_2", "budget": 0.125, "T": 15599, "n_kept": 1949, "gold": ["250 million"], "pred": "1", "correct": false}
+{"id": 88, "task": "qa_2", "budget": 0.0625, "T": 15599, "n_kept": 974, "gold": ["250 million"], "pred": "1", "correct": false}
+{"id": 89, "task": "qa_2", "budget": 1.0, "T": 15953, "n_kept": 15953, "gold": ["director"], "pred": "film director", "correct": true}
+{"id": 89, "task": "qa_2", "budget": 0.875, "T": 15953, "n_kept": 13958, "gold": ["director"], "pred": "film director", "correct": true}
+{"id": 89, "task": "qa_2", "budget": 0.75, "T": 15953, "n_kept": 11964, "gold": ["director"], "pred": "film director", "correct": true}
+{"id": 89, "task": "qa_2", "budget": 0.625, "T": 15953, "n_kept": 9970, "gold": ["director"], "pred": "film director", "correct": true}
+{"id": 89, "task": "qa_2", "budget": 0.5, "T": 15953, "n_kept": 7976, "gold": ["director"], "pred": "film director", "correct": true}
+{"id": 89, "task": "qa_2", "budget": 0.375, "T": 15953, "n_kept": 5982, "gold": ["director"], "pred": "film director", "correct": true}
+{"id": 89, "task": "qa_2", "budget": 0.25, "T": 15953, "n_kept": 3988, "gold": ["director"], "pred": "film director", "correct": true}
+{"id": 89, "task": "qa_2", "budget": 0.1875, "T": 15953, "n_kept": 2991, "gold": ["director"], "pred": "film director", "correct": true}
+{"id": 89, "task": "qa_2", "budget": 0.125, "T": 15953, "n_kept": 1994, "gold": ["director"], "pred": "film director", "correct": true}
+{"id": 89, "task": "qa_2", "budget": 0.0625, "T": 15953, "n_kept": 997, "gold": ["director"], "pred": "cinematographer and film director", "correct": true}
+{"id": 90, "task": "qa_2", "budget": 1.0, "T": 17107, "n_kept": 17107, "gold": ["The Conversation"], "pred": "The Conversation", "correct": true}
+{"id": 90, "task": "qa_2", "budget": 0.875, "T": 17107, "n_kept": 14968, "gold": ["The Conversation"], "pred": "The Conversation", "correct": true}
+{"id": 90, "task": "qa_2", "budget": 0.75, "T": 17107, "n_kept": 12830, "gold": ["The Conversation"], "pred": "The Conversation", "correct": true}
+{"id": 90, "task": "qa_2", "budget": 0.625, "T": 17107, "n_kept": 10691, "gold": ["The Conversation"], "pred": "The Conversation", "correct": true}
+{"id": 90, "task": "qa_2", "budget": 0.5, "T": 17107, "n_kept": 8553, "gold": ["The Conversation"], "pred": "The Conversation", "correct": true}
+{"id": 90, "task": "qa_2", "budget": 0.375, "T": 17107, "n_kept": 6415, "gold": ["The Conversation"], "pred": "The Conversation", "correct": true}
+{"id": 90, "task": "qa_2", "budget": 0.25, "T": 17107, "n_kept": 4276, "gold": ["The Conversation"], "pred": "The Conversation", "correct": true}
+{"id": 90, "task": "qa_2", "budget": 0.1875, "T": 17107, "n_kept": 3207, "gold": ["The Conversation"], "pred": "The Conversation", "correct": true}
+{"id": 90, "task": "qa_2", "budget": 0.125, "T": 17107, "n_kept": 2138, "gold": ["The Conversation"], "pred": "The Conversation", "correct": true}
+{"id": 90, "task": "qa_2", "budget": 0.0625, "T": 17107, "n_kept": 1069, "gold": ["The Conversation"], "pred": "The Conversation", "correct": true}
+{"id": 91, "task": "qa_2", "budget": 1.0, "T": 15563, "n_kept": 15563, "gold": ["John Waters"], "pred": "John Waters", "correct": true}
+{"id": 91, "task": "qa_2", "budget": 0.875, "T": 15563, "n_kept": 13617, "gold": ["John Waters"], "pred": "John Waters", "correct": true}
+{"id": 91, "task": "qa_2", "budget": 0.75, "T": 15563, "n_kept": 11672, "gold": ["John Waters"], "pred": "John Waters", "correct": true}
+{"id": 91, "task": "qa_2", "budget": 0.625, "T": 15563, "n_kept": 9726, "gold": ["John Waters"], "pred": "John Waters", "correct": true}
+{"id": 91, "task": "qa_2", "budget": 0.5, "T": 15563, "n_kept": 7781, "gold": ["John Waters"], "pred": "John Waters", "correct": true}
+{"id": 91, "task": "qa_2", "budget": 0.375, "T": 15563, "n_kept": 5836, "gold": ["John Waters"], "pred": "John Waters", "correct": true}
+{"id": 91, "task": "qa_2", "budget": 0.25, "T": 15563, "n_kept": 3890, "gold": ["John Waters"], "pred": "John Waters", "correct": true}
+{"id": 91, "task": "qa_2", "budget": 0.1875, "T": 15563, "n_kept": 2918, "gold": ["John Waters"], "pred": "John Waters", "correct": true}
+{"id": 91, "task": "qa_2", "budget": 0.125, "T": 15563, "n_kept": 1945, "gold": ["John Waters"], "pred": "John Waters", "correct": true}
+{"id": 91, "task": "qa_2", "budget": 0.0625, "T": 15563, "n_kept": 972, "gold": ["John Waters"], "pred": "John Waters", "correct": true}
+{"id": 92, "task": "qa_2", "budget": 1.0, "T": 16847, "n_kept": 16847, "gold": ["Las Vegas Strip in Paradise"], "pred": "Flamingo Las Vegas", "correct": false}
+{"id": 92, "task": "qa_2", "budget": 0.875, "T": 16847, "n_kept": 14741, "gold": ["Las Vegas Strip in Paradise"], "pred": "Flamingo Las Vegas", "correct": false}
+{"id": 92, "task": "qa_2", "budget": 0.75, "T": 16847, "n_kept": 12635, "gold": ["Las Vegas Strip in Paradise"], "pred": "Flamingo Las Vegas", "correct": false}
+{"id": 92, "task": "qa_2", "budget": 0.625, "T": 16847, "n_kept": 10529, "gold": ["Las Vegas Strip in Paradise"], "pred": "Flamingo Las Vegas", "correct": false}
+{"id": 92, "task": "qa_2", "budget": 0.5, "T": 16847, "n_kept": 8423, "gold": ["Las Vegas Strip in Paradise"], "pred": "Flamingo Las Vegas", "correct": false}
+{"id": 92, "task": "qa_2", "budget": 0.375, "T": 16847, "n_kept": 6317, "gold": ["Las Vegas Strip in Paradise"], "pred": "Flamingo Las Vegas", "correct": false}
+{"id": 92, "task": "qa_2", "budget": 0.25, "T": 16847, "n_kept": 4211, "gold": ["Las Vegas Strip in Paradise"], "pred": "Flamingo Las Vegas", "correct": false}
+{"id": 92, "task": "qa_2", "budget": 0.1875, "T": 16847, "n_kept": 3158, "gold": ["Las Vegas Strip in Paradise"], "pred": "Flamingo Las Vegas", "correct": false}
+{"id": 92, "task": "qa_2", "budget": 0.125, "T": 16847, "n_kept": 2105, "gold": ["Las Vegas Strip in Paradise"], "pred": "Flamingo Las Vegas", "correct": false}
+{"id": 92, "task": "qa_2", "budget": 0.0625, "T": 16847, "n_kept": 1052, "gold": ["Las Vegas Strip in Paradise"], "pred": "Flamingo Las Vegas", "correct": false}
+{"id": 93, "task": "qa_2", "budget": 1.0, "T": 16334, "n_kept": 16334, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 93, "task": "qa_2", "budget": 0.875, "T": 16334, "n_kept": 14292, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 93, "task": "qa_2", "budget": 0.75, "T": 16334, "n_kept": 12250, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 93, "task": "qa_2", "budget": 0.625, "T": 16334, "n_kept": 10208, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 93, "task": "qa_2", "budget": 0.5, "T": 16334, "n_kept": 8167, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 93, "task": "qa_2", "budget": 0.375, "T": 16334, "n_kept": 6125, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 93, "task": "qa_2", "budget": 0.25, "T": 16334, "n_kept": 4083, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 93, "task": "qa_2", "budget": 0.1875, "T": 16334, "n_kept": 3062, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 93, "task": "qa_2", "budget": 0.125, "T": 16334, "n_kept": 2041, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 93, "task": "qa_2", "budget": 0.0625, "T": 16334, "n_kept": 1020, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 94, "task": "qa_2", "budget": 1.0, "T": 15627, "n_kept": 15627, "gold": ["March and April"], "pred": "July", "correct": false}
+{"id": 94, "task": "qa_2", "budget": 0.875, "T": 15627, "n_kept": 13673, "gold": ["March and April"], "pred": "July", "correct": false}
+{"id": 94, "task": "qa_2", "budget": 0.75, "T": 15627, "n_kept": 11720, "gold": ["March and April"], "pred": "July", "correct": false}
+{"id": 94, "task": "qa_2", "budget": 0.625, "T": 15627, "n_kept": 9766, "gold": ["March and April"], "pred": "July", "correct": false}
+{"id": 94, "task": "qa_2", "budget": 0.5, "T": 15627, "n_kept": 7813, "gold": ["March and April"], "pred": "July", "correct": false}
+{"id": 94, "task": "qa_2", "budget": 0.375, "T": 15627, "n_kept": 5860, "gold": ["March and April"], "pred": "July", "correct": false}
+{"id": 94, "task": "qa_2", "budget": 0.25, "T": 15627, "n_kept": 3906, "gold": ["March and April"], "pred": "July", "correct": false}
+{"id": 94, "task": "qa_2", "budget": 0.1875, "T": 15627, "n_kept": 2930, "gold": ["March and April"], "pred": "July", "correct": false}
+{"id": 94, "task": "qa_2", "budget": 0.125, "T": 15627, "n_kept": 1953, "gold": ["March and April"], "pred": "July", "correct": false}
+{"id": 94, "task": "qa_2", "budget": 0.0625, "T": 15627, "n_kept": 976, "gold": ["March and April"], "pred": "July", "correct": false}
+{"id": 95, "task": "qa_2", "budget": 1.0, "T": 15267, "n_kept": 15267, "gold": ["Fairfax County"], "pred": "Fairfax County", "correct": true}
+{"id": 95, "task": "qa_2", "budget": 0.875, "T": 15267, "n_kept": 13358, "gold": ["Fairfax County"], "pred": "Fairfax County", "correct": true}
+{"id": 95, "task": "qa_2", "budget": 0.75, "T": 15267, "n_kept": 11450, "gold": ["Fairfax County"], "pred": "Fairfax County", "correct": true}
+{"id": 95, "task": "qa_2", "budget": 0.625, "T": 15267, "n_kept": 9541, "gold": ["Fairfax County"], "pred": "Fairfax County", "correct": true}
+{"id": 95, "task": "qa_2", "budget": 0.5, "T": 15267, "n_kept": 7633, "gold": ["Fairfax County"], "pred": "Fairfax County", "correct": true}
+{"id": 95, "task": "qa_2", "budget": 0.375, "T": 15267, "n_kept": 5725, "gold": ["Fairfax County"], "pred": "Fairfax County", "correct": true}
+{"id": 95, "task": "qa_2", "budget": 0.25, "T": 15267, "n_kept": 3816, "gold": ["Fairfax County"], "pred": "Fairfax County", "correct": true}
+{"id": 95, "task": "qa_2", "budget": 0.1875, "T": 15267, "n_kept": 2862, "gold": ["Fairfax County"], "pred": "Fairfax County", "correct": true}
+{"id": 95, "task": "qa_2", "budget": 0.125, "T": 15267, "n_kept": 1908, "gold": ["Fairfax County"], "pred": "Fairfax County", "correct": true}
+{"id": 95, "task": "qa_2", "budget": 0.0625, "T": 15267, "n_kept": 954, "gold": ["Fairfax County"], "pred": "Fairfax County", "correct": true}
+{"id": 96, "task": "qa_2", "budget": 1.0, "T": 16142, "n_kept": 16142, "gold": ["IT products and services"], "pred": "IT products and services", "correct": true}
+{"id": 96, "task": "qa_2", "budget": 0.875, "T": 16142, "n_kept": 14124, "gold": ["IT products and services"], "pred": "IT products and services", "correct": true}
+{"id": 96, "task": "qa_2", "budget": 0.75, "T": 16142, "n_kept": 12106, "gold": ["IT products and services"], "pred": "IT products and services", "correct": true}
+{"id": 96, "task": "qa_2", "budget": 0.625, "T": 16142, "n_kept": 10088, "gold": ["IT products and services"], "pred": "IT products and services", "correct": true}
+{"id": 96, "task": "qa_2", "budget": 0.5, "T": 16142, "n_kept": 8071, "gold": ["IT products and services"], "pred": "IT products and services", "correct": true}
+{"id": 96, "task": "qa_2", "budget": 0.375, "T": 16142, "n_kept": 6053, "gold": ["IT products and services"], "pred": "IT products and services", "correct": true}
+{"id": 96, "task": "qa_2", "budget": 0.25, "T": 16142, "n_kept": 4035, "gold": ["IT products and services"], "pred": "IT products and services", "correct": true}
+{"id": 96, "task": "qa_2", "budget": 0.1875, "T": 16142, "n_kept": 3026, "gold": ["IT products and services"], "pred": "IT products and services", "correct": true}
+{"id": 96, "task": "qa_2", "budget": 0.125, "T": 16142, "n_kept": 2017, "gold": ["IT products and services"], "pred": "IT products and services", "correct": true}
+{"id": 96, "task": "qa_2", "budget": 0.0625, "T": 16142, "n_kept": 1008, "gold": ["IT products and services"], "pred": "IT products and services", "correct": true}
+{"id": 97, "task": "qa_2", "budget": 1.0, "T": 16803, "n_kept": 16803, "gold": ["Levni Yilmaz"], "pred": "Lev Yilmaz", "correct": false}
+{"id": 97, "task": "qa_2", "budget": 0.875, "T": 16803, "n_kept": 14702, "gold": ["Levni Yilmaz"], "pred": "Lev Yilmaz", "correct": false}
+{"id": 97, "task": "qa_2", "budget": 0.75, "T": 16803, "n_kept": 12602, "gold": ["Levni Yilmaz"], "pred": "Lev Yilmaz", "correct": false}
+{"id": 97, "task": "qa_2", "budget": 0.625, "T": 16803, "n_kept": 10501, "gold": ["Levni Yilmaz"], "pred": "Lev Yilmaz", "correct": false}
+{"id": 97, "task": "qa_2", "budget": 0.5, "T": 16803, "n_kept": 8401, "gold": ["Levni Yilmaz"], "pred": "Lev Yilmaz", "correct": false}
+{"id": 97, "task": "qa_2", "budget": 0.375, "T": 16803, "n_kept": 6301, "gold": ["Levni Yilmaz"], "pred": "Lev Yilmaz", "correct": false}
+{"id": 97, "task": "qa_2", "budget": 0.25, "T": 16803, "n_kept": 4200, "gold": ["Levni Yilmaz"], "pred": "Lev Yilmaz", "correct": false}
+{"id": 97, "task": "qa_2", "budget": 0.1875, "T": 16803, "n_kept": 3150, "gold": ["Levni Yilmaz"], "pred": "Lev Yilmaz", "correct": false}
+{"id": 97, "task": "qa_2", "budget": 0.125, "T": 16803, "n_kept": 2100, "gold": ["Levni Yilmaz"], "pred": "Lev Yilmaz", "correct": false}
+{"id": 97, "task": "qa_2", "budget": 0.0625, "T": 16803, "n_kept": 1050, "gold": ["Levni Yilmaz"], "pred": "Lev Yilmaz", "correct": false}
+{"id": 98, "task": "qa_2", "budget": 1.0, "T": 16679, "n_kept": 16679, "gold": ["Beijing"], "pred": "Rabat", "correct": false}
+{"id": 98, "task": "qa_2", "budget": 0.875, "T": 16679, "n_kept": 14594, "gold": ["Beijing"], "pred": "Rabat", "correct": false}
+{"id": 98, "task": "qa_2", "budget": 0.75, "T": 16679, "n_kept": 12509, "gold": ["Beijing"], "pred": "Rabat", "correct": false}
+{"id": 98, "task": "qa_2", "budget": 0.625, "T": 16679, "n_kept": 10424, "gold": ["Beijing"], "pred": "Rabat", "correct": false}
+{"id": 98, "task": "qa_2", "budget": 0.5, "T": 16679, "n_kept": 8339, "gold": ["Beijing"], "pred": "Rabat", "correct": false}
+{"id": 98, "task": "qa_2", "budget": 0.375, "T": 16679, "n_kept": 6254, "gold": ["Beijing"], "pred": "Rabat", "correct": false}
+{"id": 98, "task": "qa_2", "budget": 0.25, "T": 16679, "n_kept": 4169, "gold": ["Beijing"], "pred": "Rabat", "correct": false}
+{"id": 98, "task": "qa_2", "budget": 0.1875, "T": 16679, "n_kept": 3127, "gold": ["Beijing"], "pred": "Rabat", "correct": false}
+{"id": 98, "task": "qa_2", "budget": 0.125, "T": 16679, "n_kept": 2084, "gold": ["Beijing"], "pred": "Rabat", "correct": false}
+{"id": 98, "task": "qa_2", "budget": 0.0625, "T": 16679, "n_kept": 1042, "gold": ["Beijing"], "pred": "Rabat", "correct": false}
+{"id": 99, "task": "qa_2", "budget": 1.0, "T": 14756, "n_kept": 14756, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 99, "task": "qa_2", "budget": 0.875, "T": 14756, "n_kept": 12911, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 99, "task": "qa_2", "budget": 0.75, "T": 14756, "n_kept": 11067, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 99, "task": "qa_2", "budget": 0.625, "T": 14756, "n_kept": 9222, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 99, "task": "qa_2", "budget": 0.5, "T": 14756, "n_kept": 7378, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 99, "task": "qa_2", "budget": 0.375, "T": 14756, "n_kept": 5533, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 99, "task": "qa_2", "budget": 0.25, "T": 14756, "n_kept": 3689, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 99, "task": "qa_2", "budget": 0.1875, "T": 14756, "n_kept": 2766, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 99, "task": "qa_2", "budget": 0.125, "T": 14756, "n_kept": 1844, "gold": ["no"], "pred": "No", "correct": true}
+{"id": 99, "task": "qa_2", "budget": 0.0625, "T": 14756, "n_kept": 922, "gold": ["no"], "pred": "No", "correct": true}

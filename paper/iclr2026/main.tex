@@ -232,10 +232,9 @@ cache budget can fix.
 NIAH-MK3 (precise multi-key retrieval) is the only task that systematically
 fails the threshold in every cell tested. $N = 100$ per (task, cell) except
 Qwen-14B ($N = 50$ at 4K, $N = 30$ at 16K), Mistral 16K VT/FWE/QA\_1/NIAH-MK3
-($N = 50$), and Qwen-1.5B 16K NIAH-MK3 ($N = 46$). The cell marked ``--''
-(QA\_2 at Qwen-3B 16K) was not run. At these $N$ most single cells straddle
-the $0.05$ threshold; the pooled contrast is unambiguous (NIAH-MK3:
-$2/526$, $\rho = 0.004$, Wilson $[0.001, 0.014]$).}
+($N = 50$), and Qwen-1.5B 16K NIAH-MK3 ($N = 46$). At these $N$ most single
+cells straddle the $0.05$ threshold; the pooled contrast is unambiguous
+(NIAH-MK3: $2/526$, $\rho = 0.004$, Wilson $[0.001, 0.014]$).}
 \label{tab:partition}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lcccccccc}
@@ -245,7 +244,7 @@ Task & Qwen 1.5B 4K & Qwen 1.5B 16K & Qwen 3B 4K & Qwen 3B 16K & Qwen 14B 4K & Q
 VT               & \textbf{0.06} \pci{.03}{.13} & \textbf{0.19} \pci{.13}{.28} & 0.00 \pci{.00}{.04} & \textbf{0.05} \pci{.02}{.11} & 0.00 \pci{.00}{.07}          & 0.03 \pci{.01}{.17}          & 0.00 \pci{.00}{.04}          & \textbf{0.32} \pci{.21}{.46} \\
 FWE              & \textbf{0.06} \pci{.03}{.13} & 0.04 \pci{.02}{.10}          & 0.01 \pci{.00}{.05} & \textbf{0.32} \pci{.24}{.42} & 0.00 \pci{.00}{.07}          & \textbf{0.20} \pci{.10}{.37} & 0.02 \pci{.01}{.07}          & \textbf{0.22} \pci{.13}{.35} \\
 QA\_1            & \textbf{0.08} \pci{.04}{.15} & \textbf{0.14} \pci{.09}{.22} & 0.03 \pci{.01}{.09} & \textbf{0.08} \pci{.04}{.15} & \textbf{0.06} \pci{.02}{.16} & \textbf{0.10} \pci{.03}{.26} & 0.04 \pci{.02}{.10}          & 0.00 \pci{.00}{.07} \\
-QA\_2            & \textbf{0.08} \pci{.04}{.15} & \textbf{0.05} \pci{.02}{.11} & 0.04 \pci{.02}{.10} & --                           & 0.02 \pci{.00}{.11}          & 0.03 \pci{.01}{.17}          & 0.01 \pci{.00}{.05}          & 0.00 \pci{.00}{.04} \\
+QA\_2            & \textbf{0.08} \pci{.04}{.15} & \textbf{0.05} \pci{.02}{.11} & 0.04 \pci{.02}{.10} & 0.02 \pci{.01}{.07}          & 0.02 \pci{.00}{.11}          & 0.03 \pci{.01}{.17}          & 0.01 \pci{.00}{.05}          & 0.00 \pci{.00}{.04} \\
 niah\_multivalue & \textbf{0.07} \pci{.03}{.14} & \textbf{0.10} \pci{.06}{.17} & 0.02 \pci{.01}{.07} & \textbf{0.13} \pci{.08}{.21} & \textbf{0.08} \pci{.03}{.19} & \textbf{0.07} \pci{.02}{.21} & \textbf{0.06} \pci{.03}{.13} & \textbf{0.21} \pci{.14}{.30} \\
 NIAH-MK3         & 0.01 \pci{.00}{.05}          & 0.00 \pci{.00}{.08}          & 0.00 \pci{.00}{.04} & 0.02 \pci{.00}{.11}          & 0.00 \pci{.00}{.07}          & 0.00 \pci{.00}{.11}          & 0.00 \pci{.00}{.04}          & 0.00 \pci{.00}{.07} \\
 \bottomrule
@@ -1024,9 +1023,11 @@ $D$ shrinks by $\sim 3.5\times$ from $0 \to 2$ near-tie distractors,
 and per-input ranges between MK2 and MK3 do not overlap
 ($\max_{\text{MK3}} D = 0.062 < \min_{\text{MK2}} D = 0.088$): the
 partition predictor separates 2-distractor inputs from
-$\leq 1$-distractor inputs $100\%$ of the time at $\tau = 0.07$. This
-is one-model evidence (Qwen2.5-1.5B at 4K, $N = 50$ per task);
-replication across architectures is left to future work. On a
+$\leq 1$-distractor inputs $100\%$ of the time at $\tau = 0.07$. The
+monotone gradient replicates on Mistral-7B-v0.3 ($D = 0.081, 0.072,
+0.060$ for MK1/MK2/MK3, $N = 50$ per task), confirming the mechanism
+is not Qwen-specific, though the finer per-input MK2/MK3 non-overlap is
+(their ranges overlap on Mistral). On a
 controlled sweep over distractor count, the head-agreement drop and
 the partition track each other monotonically, exactly as the
 $\delta_t$ dilution mechanism predicts.
