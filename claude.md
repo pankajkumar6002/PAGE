@@ -480,3 +480,17 @@ All queued work done and pushed to ssh://git@10.10.0.178:2222/smlab/page-kv.git 
 Paper: 9pp main, 40pp total, 0 undefined, 0 em-dashes.
 
 Next: adversarial-reviewer panel (6 lenses) on final draft, then fix gaps.
+
+## Tier 2 experiments integrated (2026-07-04, batches 3-4)
+- Faithful ManifoldKV+AdaKV (manifoldkv_faithful_mk3.md): rescues single-key NIAH
+  (0.88-0.94@2-4x, validates impl) but STILL collapses MK3 (0.65->0.23@50%, 0 below).
+  MK3 capacity-bound even for competent geometry scorer -> strengthened scorer-relative claim.
+- Matched-memory (matched_memory_comparison.md): crossover ~0.32-0.35 kept-KV; PAGE improves
+  frontier above it, cannot compete below (3x max compression). HONEST: at matched ~30% memory,
+  plain DBTrimKV BEATS wrapped PAGE; +23.3pp is a memory-spending win (14.5x cache). Integrated.
+- FlashAttention cost (flashattn_deployment_cost.md): two-pass re-forward ~linear in T, drop
+  O(H^2) indep of T; head-pairs 66/496/780/2016 (1.5B/Mistral/32B/70B). Confirms deployment limitation.
+- Realistic workload (realistic_workload_partition.md): hotpotqa evict-robust, gate correctly
+  opens (D=0.097, correct). Code tasks (lcc/repobench) small-N/incomplete. No realistic
+  capacity-bound anchor found (still RULER-only, noted honestly).
+Still pending: second_seed_robustness (running). Paper 9pp, clean, all honest integrations pushed.

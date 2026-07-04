@@ -568,20 +568,14 @@ quantitative one.
 \end{figure}
 
 \paragraph{What cache size does the gate actually deliver?}
-Because the gate keeps the full cache when it closes, the two arms hold
-different amounts of cache at the same nominal budget. Re-plotting accuracy
-against \emph{achieved} kept-KV (Figure~\ref{fig:pareto-gated}) shows that
-gating is not a free win everywhere but a strict improvement of the
-accuracy--memory frontier above a crossover we locate precisely: interpolating
-both curves at fixed achieved cache, gating delivers $3$--$19$pp higher accuracy
-than plain SnapKV at the \emph{same} achieved kept-KV once the target keeps more
-than $\approx 0.32$--$0.35$ of the cache, and below that crossover it cannot
-compete (its full-KV fallback floors achieved compression at $1-p_{\text{open}}$,
-$\approx 3\times$ maximum). \method is thus a moderate-compression safety method,
-not an aggressive-regime compressor. Against a per-input oracle it recovers a
-mean $69\%$ of the available headroom, almost all of it task-level protection of
-the capacity-bound anchor. The achieved-compression breakdown, the exact
-crossover per model, and the oracle-gap are deferred to
+Comparing at matched \emph{achieved} kept-KV (Figure~\ref{fig:pareto-gated}):
+gating improves the frontier by $3$--$19$pp over plain SnapKV once the target
+keeps more than a precise crossover ($\approx 0.32$--$0.35$ of the cache), and
+below it cannot compete (its full-KV fallback floors compression at
+$\approx 3\times$). \method is a moderate-compression safety method, not an
+aggressive-regime compressor; against a per-input oracle it recovers a mean
+$69\%$ of the headroom, almost all task-level protection of the capacity-bound
+anchor. Details and the exact crossover per model are in
 Appendix~\ref{app:deferred}.
 
 \paragraph{Drop ordering and scaling-formula check.} The head-agreement
@@ -694,9 +688,11 @@ still do not claim it is un-compressible by \emph{every} possible scorer.
 
 Further limitations, all in Appendix~\ref{app:deferred}: single-seed greedy runs
 with low-powered per-cell partition calls (the claim rests on the pooled
-contrast); a near-zero gate effect on the realistic LongBench subset (no
-capacity-bound task there), with one negative cell ($-2.2$pp); a false-positive
-gate call on passage\_count; and head-to-heads run on different models.
+contrast); a near-zero gate effect on the realistic LongBench subset and on
+multi-hop hotpotqa (both evict-robust and correctly gated open, but neither a
+capacity-bound anchor, which remains RULER-only), with one negative cell
+($-2.2$pp); a false-positive gate call on passage\_count; and head-to-heads run
+on different models.
 
 \section{Conclusion}
 \label{sec:conclusion}
