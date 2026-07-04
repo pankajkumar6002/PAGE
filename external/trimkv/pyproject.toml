@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trimkv"
+version = "0.1.5"
+description = "TrimKV: token retention for memory-bounded key-value eviction"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Ngoc Bui", email = "ngocbh.pt@gmail.com" }]
+keywords = [
+    "kv-cache",
+    "compression",
+    "long-context",
+    "trimkv",
+    "dbtrimkv",
+    "transformers",
+]
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# Mandatory runtime deps. flash_attn and triton are CUDA-bound and are best
+# installed out-of-band per the README — leaving them here would break
+# environments that don't have a CUDA toolchain.
+dependencies = [
+    "torch>=2.7.0",
+    "transformers==4.57.1",
+    "accelerate",
+    "einops",
+    "numpy",
+    "huggingface_hub",
+]
+
+[project.optional-dependencies]
+# `pip install "trimkv[wandb]"` to enable downloading checkpoints from a W&B
+# artifact via `download_from="wandb"`.
+wandb = ["wandb"]
+# `pip install "trimkv[dev]"` for the test suite.
+dev = ["pytest", "pytest-xdist"]
+
+[project.urls]
+Homepage = "https://github.com/ngocbh/trimkv"
+"Bug Tracker" = "https://github.com/ngocbh/trimkv/issues"
+Source = "https://github.com/ngocbh/trimkv"
+Paper = "https://arxiv.org/abs/2405.14352"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["trimkv*"]

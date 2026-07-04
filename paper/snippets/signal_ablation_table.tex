@@ -1,0 +1,33 @@
+% ============================================================================
+% signal_ablation_table.tex — gate-signal ablation (same-inputs comparison of
+% the head-agreement drop D against five other cheap prefill statistics).
+% Generated from experiments/results/gate_signal_ablation.jsonl by
+% experiments/scripts/gate_signal_ablation.py. Requires: booktabs,
+% amssymb (for \checkmark; both already loaded by paper/main.tex).
+% Define once in the preamble if not already present:
+%   \newcommand{\yes}{\checkmark}  \newcommand{\no}{--}
+% ============================================================================
+\begin{table}[t]
+\centering
+\caption{Gate-signal ablation on Qwen2.5-1.5B-Instruct (RULER 4K, $N=50$ per
+task, one shared prefill per input). Each cheap prefill statistic is tested
+for separating the capacity-bound anchor (NIAH-MK3, and MK3+MK2) from the
+dilution-prone tasks (vt, fwe, qa\_1, multivalue). ``Sep.'' = a single
+threshold puts the capacity-bound task mean(s) strictly on one side of all
+four dilution task means; AUCs are per-input and oriented per signal
+(0.5 = chance); ``MK mono.'' = task means are monotone along the
+MK1$\to$MK2$\to$MK3 distractor gradient; $r$ = Pearson correlation with $D$.}
+\label{tab:signal-ablation}
+\begin{tabular}{lcccccc}
+\toprule
+Signal & Sep.\ MK3 & Sep.\ MK3+MK2 & AUC MK3 & AUC MK3+MK2 & MK mono.\ & $r$ w/ $D$ \\
+\midrule
+head-agreement drop $D$ (paper) & \yes & \no & \textbf{1.000} & \textbf{0.859} & \yes & $+1.00$ \\
+mean attention entropy (norm.) & \no & \no & 0.508 & 0.670 & \no & $+0.08$ \\
+top-32 attention mass share & \no & \no & 0.784 & 0.574 & \yes & $+0.22$ \\
+max single-position share & \no & \no & 0.723 & 0.708 & \yes & $+0.32$ \\
+key-norm dispersion (std/mean) & \no & \no & 0.570 & 0.560 & \no & $+0.01$ \\
+early$-$late entropy drop & \no & \no & 0.805 & 0.575 & \no & $-0.64$ \\
+\bottomrule
+\end{tabular}
+\end{table}

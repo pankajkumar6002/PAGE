@@ -1,0 +1,64 @@
+% ============================================================================
+% latency_table.tex — end-to-end efficiency of gated KV-cache eviction.
+% Generated from experiments/results/latency_qwen15b_4k.jsonl and
+% latency_mistral7b_4k.jsonl by experiments/scripts/measure_latency.py;
+% aggregation and methodology in experiments/results/latency_memory.md.
+% Requires: booktabs, multirow.
+% Measurement conditions: single A100-80GB (GPU 1; 25--29% background SM
+% utilization from an unrelated job — timings are therefore mild upper
+% bounds and throughputs lower bounds; all configs shared the load), batch
+% size 1, bfloat16, greedy, eager attention (as in all accuracy runs),
+% fixed 128 decode steps (no EOS exit), medians over N mixed-suite inputs
+% (niah_multikey_3/vt/fwe/qa_1) after warmup, torch.cuda.synchronize
+% around all timers.
+% ============================================================================
+\begin{table}[t]
+\centering
+\caption{End-to-end efficiency of gated eviction (RULER 4K, batch 1,
+bf16, greedy, 128 decode steps, medians; A100-80GB). ``Gated expected''
+is the gate-open-weighted mix $0.75 \cdot (b{=}0.125) + 0.25 \cdot \mathrm{full}$ at
+the measured mixed-suite gate-open fraction ($\tau{=}0.07$); ``gated
+measured'' actually gates each input ($15/20$ open, matching the
+$N{=}400$ calibration fraction of $0.75$). On the 1.5B model (2 KV
+heads), 4K decode is weight-bound and eviction buys \emph{memory}
+($8\times$ plain, $2.9\times$ gated expected), not speed; on
+Mistral-7B (8 KV heads, 513\,MiB KV) eviction already yields a
+$1.29\times$ decode speedup at 4K. Measured KV matches the analytic
+$L \cdot H_{\mathrm{kv}} \cdot d \cdot T \cdot 4$\,B formula to
+$0.1$\,MiB, validating the 16K/32K scaling rows.}
+\label{tab:latency}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrr}
+\toprule
+Model & Config & Decode tok/s & KV cache (MiB) & Peak decode (MiB) \\
+\midrule
+\multirow{5}{*}{\shortstack[l]{Qwen2.5-1.5B\\($N{=}20$)}}
+ & Full KV                   & 37.9 & 106.1 & 3090 \\
+ & SnapKV $b{=}0.125$        & 37.8 & 13.2 ($8.0\times$)  & 2976 \\
+ & SnapKV $b{=}0.0625$       & 37.5 & 6.6 ($16.1\times$)  & 2968 \\
+ & Gated (measured, $\tau{=}0.07$) & 37.7 & 13.2 / 110.5 (open/closed) & 2976 \\
+ & Gated (expected mix)      & 37.9 & 36.5 ($2.9\times$)  & 3004 \\
+\midrule
+\multirow{2}{*}{\shortstack[l]{Mistral-7B-v0.3\\($N{=}12$)}}
+ & Full KV                   & 18.9 & 512.8 & 14429 \\
+ & SnapKV $b{=}0.125$        & 24.5 ($1.29\times$) & 64.1 ($8.0\times$) & 13929 \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.6em}
+
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrlr}
+\toprule
+\multicolumn{2}{l}{Prefill-time overhead (Qwen2.5-1.5B, 4K, median ms)} &
+\multicolumn{2}{l}{Analytic KV at $b{=}0.125$ gated (0.75 open)} \\
+\midrule
+Prefill (eager)            & 344  & Qwen2.5-1.5B, 16K / 32K & 448 $\to$ 154 / 896 $\to$ 308 MiB \\
+SnapKV scoring             & 1.2  & Mistral-7B, 16K / 32K   & 2.0 $\to$ 0.69 / 4.0 $\to$ 1.38 GiB \\
+Head-agreement gate        & 17.2 & \multicolumn{2}{l}{(gate on Mistral-7B: 88.5\,ms, $O(LH^2k)$ head-pair growth)} \\
+Eviction + cache rebuild   & 3.2  & & \\
+\bottomrule
+\end{tabular}
+\end{table}

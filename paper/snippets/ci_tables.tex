@@ -1,0 +1,157 @@
+% ============================================================================
+% ci_tables.tex — 95% confidence intervals for the paper's headline numbers.
+% Generated 2026-07-02 from the raw per-input jsonls in experiments/results/
+% (see experiments/results/confidence_intervals.md for full derivation).
+%
+% Methods:
+%  * Gating deltas: cluster bootstrap over inputs — resample (task,id) pairs
+%    with replacement (10,000 reps); each input contributes its per-budget
+%    paired gated-minus-plain differences; 95% percentile interval.
+%    Gated outcomes reconstructed post hoc at tau = 0.07 for every cell
+%    (gated(b) = plain(b) if drop >= tau, else the full-KV outcome).
+%  * Recovery rates rho: Wilson 95% score interval on the binomial count.
+% Requires: booktabs. Snippet (iii) additionally uses \resizebox (graphicx),
+% matching the paper's tab:partition.
+% ============================================================================
+
+
+% ----------------------------------------------------------------------------
+% (i) Appendix table: the 16 matrix deltas of Table \ref{tab:matrix} with
+%     cluster-bootstrap 95% CIs.
+% ----------------------------------------------------------------------------
+\begin{table}[t]
+\centering
+\caption{95\% confidence intervals for the $16$ gating deltas of
+Table~\ref{tab:matrix}. Cluster bootstrap over inputs: we resample the
+$(\text{task}, \text{id})$ pairs with replacement ($10{,}000$ replicates);
+each input contributes its per-budget paired gated$-$plain differences,
+preserving the pairing and the within-input correlation across budgets;
+intervals are $2.5$--$97.5$ percentiles. All gated outcomes are the exact
+$\tau = 0.07$ post-hoc reconstruction of Appendix~\ref{app:repro}.
+$N = 400$ inputs per cell ($4$ tasks $\times$ $100$), $N = 200$ for
+Qwen2.5-14B. \emph{Every one of the $16$ intervals excludes zero}; the
+smallest lower bound is $+0.093$ (Qwen2.5-1.5B, SnapKV).}
+\label{tab:matrix-ci}
+\begin{tabular}{llccc}
+\toprule
+Model & Base evictor & $\Delta$ & 95\% CI & $N$ \\
+\midrule
+Qwen2.5-1.5B & SnapKV       & $+0.121$ & $[+0.093,\,+0.151]$ & 400 \\
+Qwen2.5-1.5B & H2O          & $+0.162$ & $[+0.126,\,+0.199]$ & 400 \\
+Qwen2.5-1.5B & StreamingLLM & $+0.163$ & $[+0.128,\,+0.200]$ & 400 \\
+Qwen2.5-1.5B & PyramidKV    & $+0.152$ & $[+0.118,\,+0.188]$ & 400 \\
+\midrule
+Qwen2.5-3B   & SnapKV       & $+0.259$ & $[+0.225,\,+0.295]$ & 400 \\
+Qwen2.5-3B   & H2O          & $+0.303$ & $[+0.261,\,+0.347]$ & 400 \\
+Qwen2.5-3B   & StreamingLLM & $+0.430$ & $[+0.383,\,+0.477]$ & 400 \\
+Qwen2.5-3B   & PyramidKV    & $+0.329$ & $[+0.286,\,+0.372]$ & 400 \\
+\midrule
+Qwen2.5-14B  & SnapKV       & $+0.143$ & $[+0.108,\,+0.181]$ & 200 \\
+Qwen2.5-14B  & H2O          & $+0.200$ & $[+0.152,\,+0.250]$ & 200 \\
+Qwen2.5-14B  & StreamingLLM & $+0.250$ & $[+0.190,\,+0.310]$ & 200 \\
+Qwen2.5-14B  & PyramidKV    & $+0.228$ & $[+0.175,\,+0.285]$ & 200 \\
+\midrule
+Mistral-7B   & SnapKV       & $+0.187$ & $[+0.154,\,+0.220]$ & 400 \\
+Mistral-7B   & H2O          & $+0.236$ & $[+0.196,\,+0.278]$ & 400 \\
+Mistral-7B   & StreamingLLM & $+0.263$ & $[+0.220,\,+0.305]$ & 400 \\
+Mistral-7B   & PyramidKV    & $+0.231$ & $[+0.191,\,+0.272]$ & 400 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ----------------------------------------------------------------------------
+% (i-b) Optional companion rows: cross-arch, scaling-only-16K, and showcase
+%       CIs, for the same appendix.
+% ----------------------------------------------------------------------------
+\begin{table}[t]
+\centering
+\caption{95\% CIs for the remaining headline deltas. Cross-architecture rows
+(Table~\ref{tab:crossarch}) use the four-budget grid and the same cluster
+bootstrap; 16K rows are the second half of Table~\ref{tab:scaling}; the
+DBTrimKV row is Table~\ref{tab:dbtrimkv} ($N = 120$ inputs, budgets
+$\{128, 256, 512\}$). The Mistral NIAH-MK3 showcase entries are Wilson
+score intervals on $N = 100$. The only headline delta whose interval
+includes zero is Qwen2.5-3B at 16K --- the gate-misfire cell that
+Section~\ref{subsec:matrix} already reports as a shrunken effect.}
+\label{tab:other-ci}
+\begin{tabular}{lccc}
+\toprule
+Quantity & Point & 95\% CI & $N$ \\
+\midrule
+Yi-1.5-9B $\Delta$ (SnapKV, 4-budget)      & $+0.390$ & $[+0.338,\,+0.444]$ & 200 \\
+Llama-3.1-8B $\Delta$ (SnapKV, 4-budget)   & $+0.109$ & $[+0.069,\,+0.154]$ & 200 \\
+\midrule
+Qwen2.5-1.5B 16K $\Delta$                  & $+0.032$ & $[+0.013,\,+0.053]$ & 200 \\
+Qwen2.5-3B 16K $\Delta$                    & $+0.034$ & $[-0.002,\,+0.071]$ & 200 \\
+Qwen2.5-14B 16K $\Delta$                   & $+0.071$ & $[+0.034,\,+0.107]$ & 120 \\
+Mistral-7B 16K $\Delta$                    & $+0.116$ & $[+0.079,\,+0.156]$ & 200 \\
+\midrule
+DBTrimKV wrapper $\Delta$ (RULER 4K)       & $+0.233$ & $[+0.172,\,+0.297]$ & 120 \\
+\midrule
+Mistral 4K NIAH-MK3, gated acc.\ @ $b{=}0.0625$ & $0.89$ & $[0.814,\,0.937]$ & 100 \\
+Mistral 4K NIAH-MK3, plain acc.\ @ $b{=}0.0625$ & $0.00$ & $[0.000,\,0.037]$ & 100 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ----------------------------------------------------------------------------
+% (ii) Sentence-form summary for the Setup / experimental-protocol section.
+%      Paste as a paragraph (e.g., after the budget-grid description).
+% ----------------------------------------------------------------------------
+\paragraph{Uncertainty quantification.} All gating deltas come with $95\%$
+confidence intervals from a cluster bootstrap over inputs: we resample the
+$(\text{task}, \text{id})$ pairs with replacement ($10{,}000$ replicates),
+letting each input carry its full vector of per-budget paired
+gated$-$plain differences, and report percentile intervals
+(Appendix Table~\ref{tab:matrix-ci}). Binomial quantities (the recovery
+rates $\rho$ of Table~\ref{tab:partition} and single-budget accuracies) use
+Wilson score intervals. Every one of the $16$ matrix deltas in
+Table~\ref{tab:matrix} is positive with its entire interval above zero
+(smallest lower bound $+9.3$pp), as are both cross-architecture deltas, the
+DBTrimKV head-to-head ($+23.3$pp, CI $[+17.2, +29.7]$pp), and the Mistral
+NIAH-MK3 showcase (gated $0.89$, Wilson $[0.81, 0.94]$, disjoint from plain
+$[0.00, 0.04]$ at $b = 0.0625$). The single exception is the Qwen2.5-3B 16K
+scaling cell ($\Delta = +0.034$, CI $[-0.002, +0.071]$), which we already
+describe as the gate-misfire regime. The per-cell $\rho$ values of
+Table~\ref{tab:partition} are individually low-powered at $N \le 100$ (most
+intervals straddle the $0.05$ threshold in both directions, though no bold
+cell has an interval below $0.05$ and no non-bold cell an interval above
+it); the partition claim we rely on is the pooled contrast, which is
+unambiguous: NIAH-MK3 recovers on $2/526$ inputs across all eight cells
+($\rho = 0.004$, Wilson $[0.001, 0.014]$) versus, e.g., $65/680$
+($\rho = 0.096$, $[0.076, 0.120]$) for niah\_multivalue.
+
+
+% ----------------------------------------------------------------------------
+% (iii) Partition table re-rendered with Wilson 95% intervals in small type.
+%       Drop-in replacement for tab:partition (same booktabs + resizebox
+%       style; \pci prints the interval in scriptsize).
+% ----------------------------------------------------------------------------
+\newcommand{\pci}[2]{{\scriptsize$[#1,#2]$}}
+\begin{table}[t]
+\centering
+\caption{Per-input recovery rate $\rho$ on RULER with Wilson $95\%$ intervals
+(small type). Bold marks point estimates $\rho \ge 0.05$. $N = 100$ per
+(task, cell) except Qwen-14B ($N = 50$ at 4K, $N = 30$ at 16K), Mistral 16K
+VT/FWE/QA\_1/NIAH-MK3 ($N = 50$), and Qwen-1.5B 16K NIAH-MK3 ($N = 46$). The
+cell marked ``--'' (QA\_2 at Qwen-3B 16K) was not run. At these $N$ most
+single cells straddle the $0.05$ threshold; the pooled contrast is
+unambiguous (NIAH-MK3: $2/526$, $\rho = 0.004$, Wilson $[0.001, 0.014]$).}
+\label{tab:partition-ci}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+Task & Qwen 1.5B 4K & Qwen 1.5B 16K & Qwen 3B 4K & Qwen 3B 16K & Qwen 14B 4K & Qwen 14B 16K & Mistral 4K & Mistral 16K \\
+\midrule
+VT               & \textbf{0.06} \pci{.03}{.13} & \textbf{0.19} \pci{.13}{.28} & 0.00 \pci{.00}{.04} & \textbf{0.05} \pci{.02}{.11} & 0.00 \pci{.00}{.07}          & 0.03 \pci{.01}{.17}          & 0.00 \pci{.00}{.04}          & \textbf{0.32} \pci{.21}{.46} \\
+FWE              & \textbf{0.06} \pci{.03}{.13} & 0.04 \pci{.02}{.10}          & 0.01 \pci{.00}{.05} & \textbf{0.32} \pci{.24}{.42} & 0.00 \pci{.00}{.07}          & \textbf{0.20} \pci{.10}{.37} & 0.02 \pci{.01}{.07}          & \textbf{0.22} \pci{.13}{.35} \\
+QA\_1            & \textbf{0.08} \pci{.04}{.15} & \textbf{0.14} \pci{.09}{.22} & 0.03 \pci{.01}{.09} & \textbf{0.08} \pci{.04}{.15} & \textbf{0.06} \pci{.02}{.16} & \textbf{0.10} \pci{.03}{.26} & 0.04 \pci{.02}{.10}          & 0.00 \pci{.00}{.07} \\
+QA\_2            & \textbf{0.08} \pci{.04}{.15} & \textbf{0.05} \pci{.02}{.11} & 0.04 \pci{.02}{.10} & --                           & 0.02 \pci{.00}{.11}          & 0.03 \pci{.01}{.17}          & 0.01 \pci{.00}{.05}          & 0.00 \pci{.00}{.04} \\
+niah\_multivalue & \textbf{0.07} \pci{.03}{.14} & \textbf{0.10} \pci{.06}{.17} & 0.02 \pci{.01}{.07} & \textbf{0.13} \pci{.08}{.21} & \textbf{0.08} \pci{.03}{.19} & \textbf{0.07} \pci{.02}{.21} & \textbf{0.06} \pci{.03}{.13} & \textbf{0.21} \pci{.14}{.30} \\
+NIAH-MK3         & 0.01 \pci{.00}{.05}          & 0.00 \pci{.00}{.08}          & 0.00 \pci{.00}{.04} & 0.02 \pci{.00}{.11}          & 0.00 \pci{.00}{.07}          & 0.00 \pci{.00}{.11}          & 0.00 \pci{.00}{.04}          & 0.00 \pci{.00}{.07} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

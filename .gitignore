@@ -1,0 +1,21 @@
+# Virtualenvs (regenerable, huge)
+.venv/
+external/trimkv/venv/
+**/venv/
+# Python caches
+**/__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+# LaTeX build intermediates (keep .tex/.bib/.bbl/.pdf/.sty)
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.blg
+# OS / scratch
+.DS_Store
+scratchpad/
+*.tmp

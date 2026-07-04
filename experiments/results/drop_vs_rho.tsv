@@ -1,0 +1,14 @@
+cell	task	drop	rho
+Qwen 1.5B 4K	fwe	0.111678	0.010000
+Qwen 1.5B 4K	niah_multikey_3	0.044868	0.010000
+Qwen 1.5B 4K	niah_multiquery	0.077966	0.010000
+Qwen 1.5B 4K	niah_multivalue	0.125729	0.000000
+Qwen 1.5B 4K	qa_1	0.236825	0.080000
+Qwen 1.5B 4K	qa_2	0.200764	0.080000
+Qwen 1.5B 4K	vt	0.160481	0.000000
+Qwen 3B 16K	fwe	0.048981	0.320000
+Qwen 3B 16K	niah_multivalue	0.069097	0.130000
+Qwen 3B 16K	qa_1	0.098065	0.080000
+Qwen 3B 16K	vt	0.068211	0.050000
+SmolLM2 4K	niah_multikey_3	0.097404	0.030000
+SmolLM2 4K	vt	0.140201	0.160000

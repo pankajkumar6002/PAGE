@@ -1,0 +1,9 @@
+{"id": 0, "task": "niah_multikey_3", "budget": 1.0, "T": 21046, "n_kept": 21046, "gold": ["3c7ed208-3451-4f94-ae8b-46d3cb946541"], "pred": "46748ee4-61d1-4db2-a67a-c70ad1753cd1.", "correct": false}
+{"id": 0, "task": "niah_multikey_3", "budget": 0.5, "T": 21046, "n_kept": 10523, "gold": ["3c7ed208-3451-4f94-ae8b-46d3cb946541"], "pred": "467c8ee4-4db2-4da0-a1aa-ca9b0d553c79", "correct": false}
+{"id": 0, "task": "niah_multikey_3", "budget": 0.125, "T": 21046, "n_kept": 2630, "gold": ["3c7ed208-3451-4f94-ae8b-46d3cb946541"], "pred": "49bf9cae-2d7d-4fd2-8bfc-0e935c699e9e", "correct": false}
+{"id": 1, "task": "niah_multikey_3", "budget": 1.0, "T": 21059, "n_kept": 21059, "gold": ["ede02d33-a36d-4567-b3a4-4f408d3ba57f"], "pred": "4a1954ec-4a3f-4fda-baff-d9bd79e54050", "correct": false}
+{"id": 1, "task": "niah_multikey_3", "budget": 0.5, "T": 21059, "n_kept": 10529, "gold": ["ede02d33-a36d-4567-b3a4-4f408d3ba57f"], "pred": "4a1954ec-4aaf-4fda-baff-d9bd79e54500", "correct": false}
+{"id": 1, "task": "niah_multikey_3", "budget": 0.125, "T": 21059, "n_kept": 2632, "gold": ["ede02d33-a36d-4567-b3a4-4f408d3ba57f"], "pred": "4aebd9f8f-010f-400a-810f-010f010f010f", "correct": false}
+{"id": 2, "task": "niah_multikey_3", "budget": 1.0, "T": 21143, "n_kept": 21143, "gold": ["b2a12a55-51a0-4d7c-847d-30b8e49a3cd9"], "pred": "b2a12a55-51a0-4d7c-847d-30b8e41fb2fc", "correct": false}
+{"id": 2, "task": "niah_multikey_3", "budget": 0.5, "T": 21143, "n_kept": 10571, "gold": ["b2a12a55-51a0-4d7c-847d-30b8e49a3cd9"], "pred": "b2a1a555-2c9b-404c-910c-11e9010101010", "correct": false}
+{"id": 2, "task": "niah_multikey_3", "budget": 0.125, "T": 21143, "n_kept": 2642, "gold": ["b2a12a55-51a0-4d7c-847d-30b8e49a3cd9"], "pred": "b2a4101d-010a-400e-800a-000000000000", "correct": false}

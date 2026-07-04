@@ -1,0 +1,1500 @@
+{"id": 0, "budget": 1.0, "T": 2768, "n_kept": 2768, "gold": "758727", "pred": "758727", "correct": true}
+{"id": 0, "budget": 0.875, "T": 2768, "n_kept": 2422, "gold": "758727", "pred": "758727", "correct": true}
+{"id": 0, "budget": 0.75, "T": 2768, "n_kept": 2076, "gold": "758727", "pred": "758727", "correct": true}
+{"id": 0, "budget": 0.625, "T": 2768, "n_kept": 1730, "gold": "758727", "pred": "758127", "correct": false}
+{"id": 0, "budget": 0.5, "T": 2768, "n_kept": 1384, "gold": "758727", "pred": "758127", "correct": false}
+{"id": 0, "budget": 0.375, "T": 2768, "n_kept": 1038, "gold": "758727", "pred": "727272", "correct": false}
+{"id": 0, "budget": 0.25, "T": 2768, "n_kept": 692, "gold": "758727", "pred": "The magic number for WKQMWH is 727272.", "correct": false}
+{"id": 0, "budget": 0.1875, "T": 2768, "n_kept": 519, "gold": "758727", "pred": "727272", "correct": false}
+{"id": 0, "budget": 0.125, "T": 2768, "n_kept": 346, "gold": "758727", "pred": "The magic number for WKQMWH is 727272.", "correct": false}
+{"id": 0, "budget": 0.0625, "T": 2768, "n_kept": 173, "gold": "758727", "pred": "The magic number for WKQMWH is 17.", "correct": false}
+{"id": 1, "budget": 1.0, "T": 2716, "n_kept": 2716, "gold": "842748", "pred": "842748", "correct": true}
+{"id": 1, "budget": 0.875, "T": 2716, "n_kept": 2376, "gold": "842748", "pred": "606562", "correct": false}
+{"id": 1, "budget": 0.75, "T": 2716, "n_kept": 2037, "gold": "842748", "pred": "642", "correct": false}
+{"id": 1, "budget": 0.625, "T": 2716, "n_kept": 1697, "gold": "842748", "pred": "642", "correct": false}
+{"id": 1, "budget": 0.5, "T": 2716, "n_kept": 1358, "gold": "842748", "pred": "742", "correct": false}
+{"id": 1, "budget": 0.375, "T": 2716, "n_kept": 1018, "gold": "842748", "pred": "1324555", "correct": false}
+{"id": 1, "budget": 0.25, "T": 2716, "n_kept": 679, "gold": "842748", "pred": "12345678", "correct": false}
+{"id": 1, "budget": 0.1875, "T": 2716, "n_kept": 509, "gold": "842748", "pred": "12345678", "correct": false}
+{"id": 1, "budget": 0.125, "T": 2716, "n_kept": 339, "gold": "842748", "pred": "12345", "correct": false}
+{"id": 1, "budget": 0.0625, "T": 2716, "n_kept": 169, "gold": "842748", "pred": "12345", "correct": false}
+{"id": 2, "budget": 1.0, "T": 2795, "n_kept": 2795, "gold": "708310", "pred": "708310", "correct": true}
+{"id": 2, "budget": 0.875, "T": 2795, "n_kept": 2445, "gold": "708310", "pred": "708310", "correct": true}
+{"id": 2, "budget": 0.75, "T": 2795, "n_kept": 2096, "gold": "708310", "pred": "708312", "correct": false}
+{"id": 2, "budget": 0.625, "T": 2795, "n_kept": 1746, "gold": "708310", "pred": "708312", "correct": false}
+{"id": 2, "budget": 0.5, "T": 2795, "n_kept": 1397, "gold": "708310", "pred": "70872", "correct": false}
+{"id": 2, "budget": 0.375, "T": 2795, "n_kept": 1048, "gold": "708310", "pred": "5227272", "correct": false}
+{"id": 2, "budget": 0.25, "T": 2795, "n_kept": 698, "gold": "708310", "pred": "The magic number for HFCWNP is 52279.", "correct": false}
+{"id": 2, "budget": 0.1875, "T": 2795, "n_kept": 524, "gold": "708310", "pred": "The magic number for HFCWNP is 522.", "correct": false}
+{"id": 2, "budget": 0.125, "T": 2795, "n_kept": 349, "gold": "708310", "pred": "The magic number for HFCWNP is 122.", "correct": false}
+{"id": 2, "budget": 0.0625, "T": 2795, "n_kept": 174, "gold": "708310", "pred": "The magic number for HFCWNP is 11.", "correct": false}
+{"id": 3, "budget": 1.0, "T": 2732, "n_kept": 2732, "gold": "403745", "pred": "403744", "correct": false}
+{"id": 3, "budget": 0.875, "T": 2732, "n_kept": 2390, "gold": "403745", "pred": "403744", "correct": false}
+{"id": 3, "budget": 0.75, "T": 2732, "n_kept": 2049, "gold": "403745", "pred": "403456", "correct": false}
+{"id": 3, "budget": 0.625, "T": 2732, "n_kept": 1707, "gold": "403745", "pred": "2", "correct": false}
+{"id": 3, "budget": 0.5, "T": 2732, "n_kept": 1366, "gold": "403745", "pred": "2", "correct": false}
+{"id": 3, "budget": 0.375, "T": 2732, "n_kept": 1024, "gold": "403745", "pred": "502944", "correct": false}
+{"id": 3, "budget": 0.25, "T": 2732, "n_kept": 683, "gold": "403745", "pred": "666666", "correct": false}
+{"id": 3, "budget": 0.1875, "T": 2732, "n_kept": 512, "gold": "403745", "pred": "The magic number for IHALCJ is 1337.", "correct": false}
+{"id": 3, "budget": 0.125, "T": 2732, "n_kept": 341, "gold": "403745", "pred": "The magic number for IHALCJ is 54.", "correct": false}
+{"id": 3, "budget": 0.0625, "T": 2732, "n_kept": 170, "gold": "403745", "pred": "The magic number for IHALCJ is 10.", "correct": false}
+{"id": 4, "budget": 1.0, "T": 2727, "n_kept": 2727, "gold": "898261", "pred": "898261", "correct": true}
+{"id": 4, "budget": 0.875, "T": 2727, "n_kept": 2386, "gold": "898261", "pred": "898261", "correct": true}
+{"id": 4, "budget": 0.75, "T": 2727, "n_kept": 2045, "gold": "898261", "pred": "985701", "correct": false}
+{"id": 4, "budget": 0.625, "T": 2727, "n_kept": 1704, "gold": "898261", "pred": "985032", "correct": false}
+{"id": 4, "budget": 0.5, "T": 2727, "n_kept": 1363, "gold": "898261", "pred": "95321", "correct": false}
+{"id": 4, "budget": 0.375, "T": 2727, "n_kept": 1022, "gold": "898261", "pred": "95324", "correct": false}
+{"id": 4, "budget": 0.25, "T": 2727, "n_kept": 681, "gold": "898261", "pred": "The magic number for QHKGMO is 89531.", "correct": false}
+{"id": 4, "budget": 0.1875, "T": 2727, "n_kept": 511, "gold": "898261", "pred": "89553", "correct": false}
+{"id": 4, "budget": 0.125, "T": 2727, "n_kept": 340, "gold": "898261", "pred": "8555555", "correct": false}
+{"id": 4, "budget": 0.0625, "T": 2727, "n_kept": 170, "gold": "898261", "pred": "The magic number for QHKGMO is 10.", "correct": false}
+{"id": 5, "budget": 1.0, "T": 2774, "n_kept": 2774, "gold": "478874", "pred": "478874", "correct": true}
+{"id": 5, "budget": 0.875, "T": 2774, "n_kept": 2427, "gold": "478874", "pred": "478874", "correct": true}
+{"id": 5, "budget": 0.75, "T": 2774, "n_kept": 2080, "gold": "478874", "pred": "478871", "correct": false}
+{"id": 5, "budget": 0.625, "T": 2774, "n_kept": 1733, "gold": "478874", "pred": "478109", "correct": false}
+{"id": 5, "budget": 0.5, "T": 2774, "n_kept": 1387, "gold": "478874", "pred": "47", "correct": false}
+{"id": 5, "budget": 0.375, "T": 2774, "n_kept": 1040, "gold": "478874", "pred": "4", "correct": false}
+{"id": 5, "budget": 0.25, "T": 2774, "n_kept": 693, "gold": "478874", "pred": "4", "correct": false}
+{"id": 5, "budget": 0.1875, "T": 2774, "n_kept": 520, "gold": "478874", "pred": "8861", "correct": false}
+{"id": 5, "budget": 0.125, "T": 2774, "n_kept": 346, "gold": "478874", "pred": "The magic number for DXUBQK is 61.", "correct": false}
+{"id": 5, "budget": 0.0625, "T": 2774, "n_kept": 173, "gold": "478874", "pred": "The magic number for DXUBQK is 61.", "correct": false}
+{"id": 6, "budget": 1.0, "T": 2687, "n_kept": 2687, "gold": "451810", "pred": "451810", "correct": true}
+{"id": 6, "budget": 0.875, "T": 2687, "n_kept": 2351, "gold": "451810", "pred": "510", "correct": false}
+{"id": 6, "budget": 0.75, "T": 2687, "n_kept": 2015, "gold": "451810", "pred": "540706", "correct": false}
+{"id": 6, "budget": 0.625, "T": 2687, "n_kept": 1679, "gold": "451810", "pred": "540706", "correct": false}
+{"id": 6, "budget": 0.5, "T": 2687, "n_kept": 1343, "gold": "451810", "pred": "54070", "correct": false}
+{"id": 6, "budget": 0.375, "T": 2687, "n_kept": 1007, "gold": "451810", "pred": "54070", "correct": false}
+{"id": 6, "budget": 0.25, "T": 2687, "n_kept": 671, "gold": "451810", "pred": "The magic number for FGAQHD is 54823.", "correct": false}
+{"id": 6, "budget": 0.1875, "T": 2687, "n_kept": 503, "gold": "451810", "pred": "The magic number for FGAQHD is 54825.", "correct": false}
+{"id": 6, "budget": 0.125, "T": 2687, "n_kept": 335, "gold": "451810", "pred": "The magic number for FGAQHD is 8888.", "correct": false}
+{"id": 6, "budget": 0.0625, "T": 2687, "n_kept": 167, "gold": "451810", "pred": "The magic number for FGAQHD is 16.", "correct": false}
+{"id": 7, "budget": 1.0, "T": 2738, "n_kept": 2738, "gold": "683253", "pred": "683253", "correct": true}
+{"id": 7, "budget": 0.875, "T": 2738, "n_kept": 2395, "gold": "683253", "pred": "63253", "correct": false}
+{"id": 7, "budget": 0.75, "T": 2738, "n_kept": 2053, "gold": "683253", "pred": "632532", "correct": false}
+{"id": 7, "budget": 0.625, "T": 2738, "n_kept": 1711, "gold": "683253", "pred": "63255", "correct": false}
+{"id": 7, "budget": 0.5, "T": 2738, "n_kept": 1369, "gold": "683253", "pred": "2355", "correct": false}
+{"id": 7, "budget": 0.375, "T": 2738, "n_kept": 1026, "gold": "683253", "pred": "32355", "correct": false}
+{"id": 7, "budget": 0.25, "T": 2738, "n_kept": 684, "gold": "683253", "pred": "323555", "correct": false}
+{"id": 7, "budget": 0.1875, "T": 2738, "n_kept": 513, "gold": "683253", "pred": "The magic number for VJHOKE is 326598", "correct": false}
+{"id": 7, "budget": 0.125, "T": 2738, "n_kept": 342, "gold": "683253", "pred": "The magic number for VJHOKE is 366.", "correct": false}
+{"id": 7, "budget": 0.0625, "T": 2738, "n_kept": 171, "gold": "683253", "pred": "The magic number for VJHOKE is 10.", "correct": false}
+{"id": 8, "budget": 1.0, "T": 2776, "n_kept": 2776, "gold": "756236", "pred": "756236", "correct": true}
+{"id": 8, "budget": 0.875, "T": 2776, "n_kept": 2429, "gold": "756236", "pred": "756236", "correct": true}
+{"id": 8, "budget": 0.75, "T": 2776, "n_kept": 2082, "gold": "756236", "pred": "56236", "correct": false}
+{"id": 8, "budget": 0.625, "T": 2776, "n_kept": 1735, "gold": "756236", "pred": "562365", "correct": false}
+{"id": 8, "budget": 0.5, "T": 2776, "n_kept": 1388, "gold": "756236", "pred": "562365", "correct": false}
+{"id": 8, "budget": 0.375, "T": 2776, "n_kept": 1041, "gold": "756236", "pred": "562365", "correct": false}
+{"id": 8, "budget": 0.25, "T": 2776, "n_kept": 694, "gold": "756236", "pred": "6275", "correct": false}
+{"id": 8, "budget": 0.1875, "T": 2776, "n_kept": 520, "gold": "756236", "pred": "276", "correct": false}
+{"id": 8, "budget": 0.125, "T": 2776, "n_kept": 347, "gold": "756236", "pred": "627", "correct": false}
+{"id": 8, "budget": 0.0625, "T": 2776, "n_kept": 173, "gold": "756236", "pred": "The magic number for NRIZQE is 10.", "correct": false}
+{"id": 9, "budget": 1.0, "T": 2741, "n_kept": 2741, "gold": "982689", "pred": "982689", "correct": true}
+{"id": 9, "budget": 0.875, "T": 2741, "n_kept": 2398, "gold": "982689", "pred": "982175", "correct": false}
+{"id": 9, "budget": 0.75, "T": 2741, "n_kept": 2055, "gold": "982689", "pred": "982159", "correct": false}
+{"id": 9, "budget": 0.625, "T": 2741, "n_kept": 1713, "gold": "982689", "pred": "982159", "correct": false}
+{"id": 9, "budget": 0.5, "T": 2741, "n_kept": 1370, "gold": "982689", "pred": "8214599", "correct": false}
+{"id": 9, "budget": 0.375, "T": 2741, "n_kept": 1027, "gold": "982689", "pred": "13135", "correct": false}
+{"id": 9, "budget": 0.25, "T": 2741, "n_kept": 685, "gold": "982689", "pred": "The magic number for PRKEPT is 158189.", "correct": false}
+{"id": 9, "budget": 0.1875, "T": 2741, "n_kept": 513, "gold": "982689", "pred": "The magic number for PRKEPT is 551137.", "correct": false}
+{"id": 9, "budget": 0.125, "T": 2741, "n_kept": 342, "gold": "982689", "pred": "The magic number for PRKEPT is 1.", "correct": false}
+{"id": 9, "budget": 0.0625, "T": 2741, "n_kept": 171, "gold": "982689", "pred": "The magic number for PRKEPT is 1.", "correct": false}
+{"id": 10, "budget": 1.0, "T": 2734, "n_kept": 2734, "gold": "830632", "pred": "830632", "correct": true}
+{"id": 10, "budget": 0.875, "T": 2734, "n_kept": 2392, "gold": "830632", "pred": "830632", "correct": true}
+{"id": 10, "budget": 0.75, "T": 2734, "n_kept": 2050, "gold": "830632", "pred": "830633", "correct": false}
+{"id": 10, "budget": 0.625, "T": 2734, "n_kept": 1708, "gold": "830632", "pred": "8306330", "correct": false}
+{"id": 10, "budget": 0.5, "T": 2734, "n_kept": 1367, "gold": "830632", "pred": "8306", "correct": false}
+{"id": 10, "budget": 0.375, "T": 2734, "n_kept": 1025, "gold": "830632", "pred": "8306", "correct": false}
+{"id": 10, "budget": 0.25, "T": 2734, "n_kept": 683, "gold": "830632", "pred": "The magic number for WVVWYA is 30.", "correct": false}
+{"id": 10, "budget": 0.1875, "T": 2734, "n_kept": 512, "gold": "830632", "pred": "The magic number for WVVWYA is 30.", "correct": false}
+{"id": 10, "budget": 0.125, "T": 2734, "n_kept": 341, "gold": "830632", "pred": "The magic number for WVVWYA is 30.", "correct": false}
+{"id": 10, "budget": 0.0625, "T": 2734, "n_kept": 170, "gold": "830632", "pred": "The magic number for WVVWYA is 30.", "correct": false}
+{"id": 11, "budget": 1.0, "T": 2678, "n_kept": 2678, "gold": "711039", "pred": "71039", "correct": false}
+{"id": 11, "budget": 0.875, "T": 2678, "n_kept": 2343, "gold": "711039", "pred": "703685", "correct": false}
+{"id": 11, "budget": 0.75, "T": 2678, "n_kept": 2008, "gold": "711039", "pred": "703685", "correct": false}
+{"id": 11, "budget": 0.625, "T": 2678, "n_kept": 1673, "gold": "711039", "pred": "71039", "correct": false}
+{"id": 11, "budget": 0.5, "T": 2678, "n_kept": 1339, "gold": "711039", "pred": "71039", "correct": false}
+{"id": 11, "budget": 0.375, "T": 2678, "n_kept": 1004, "gold": "711039", "pred": "71039", "correct": false}
+{"id": 11, "budget": 0.25, "T": 2678, "n_kept": 669, "gold": "711039", "pred": "710399", "correct": false}
+{"id": 11, "budget": 0.1875, "T": 2678, "n_kept": 502, "gold": "711039", "pred": "71199", "correct": false}
+{"id": 11, "budget": 0.125, "T": 2678, "n_kept": 334, "gold": "711039", "pred": "The magic number for MKRNEN is 111111.", "correct": false}
+{"id": 11, "budget": 0.0625, "T": 2678, "n_kept": 167, "gold": "711039", "pred": "The magic number for MKRNEN is 14.", "correct": false}
+{"id": 12, "budget": 1.0, "T": 2726, "n_kept": 2726, "gold": "253620", "pred": "253620", "correct": true}
+{"id": 12, "budget": 0.875, "T": 2726, "n_kept": 2385, "gold": "253620", "pred": "256205", "correct": false}
+{"id": 12, "budget": 0.75, "T": 2726, "n_kept": 2044, "gold": "253620", "pred": "762105", "correct": false}
+{"id": 12, "budget": 0.625, "T": 2726, "n_kept": 1703, "gold": "253620", "pred": "76205", "correct": false}
+{"id": 12, "budget": 0.5, "T": 2726, "n_kept": 1363, "gold": "253620", "pred": "764205", "correct": false}
+{"id": 12, "budget": 0.375, "T": 2726, "n_kept": 1022, "gold": "253620", "pred": "765432", "correct": false}
+{"id": 12, "budget": 0.25, "T": 2726, "n_kept": 681, "gold": "253620", "pred": "The magic number for UALWWL is 79.", "correct": false}
+{"id": 12, "budget": 0.1875, "T": 2726, "n_kept": 511, "gold": "253620", "pred": "79", "correct": false}
+{"id": 12, "budget": 0.125, "T": 2726, "n_kept": 340, "gold": "253620", "pred": "7529", "correct": false}
+{"id": 12, "budget": 0.0625, "T": 2726, "n_kept": 170, "gold": "253620", "pred": "The magic number for UALWWL is 25.", "correct": false}
+{"id": 13, "budget": 1.0, "T": 2745, "n_kept": 2745, "gold": "756062", "pred": "756062", "correct": true}
+{"id": 13, "budget": 0.875, "T": 2745, "n_kept": 2401, "gold": "756062", "pred": "7654", "correct": false}
+{"id": 13, "budget": 0.75, "T": 2745, "n_kept": 2058, "gold": "756062", "pred": "7654", "correct": false}
+{"id": 13, "budget": 0.625, "T": 2745, "n_kept": 1715, "gold": "756062", "pred": "7654", "correct": false}
+{"id": 13, "budget": 0.5, "T": 2745, "n_kept": 1372, "gold": "756062", "pred": "7654", "correct": false}
+{"id": 13, "budget": 0.375, "T": 2745, "n_kept": 1029, "gold": "756062", "pred": "137", "correct": false}
+{"id": 13, "budget": 0.25, "T": 2745, "n_kept": 686, "gold": "756062", "pred": "13", "correct": false}
+{"id": 13, "budget": 0.1875, "T": 2745, "n_kept": 514, "gold": "756062", "pred": "12345678", "correct": false}
+{"id": 13, "budget": 0.125, "T": 2745, "n_kept": 343, "gold": "756062", "pred": "The magic number for QIYBBS is 10.", "correct": false}
+{"id": 13, "budget": 0.0625, "T": 2745, "n_kept": 171, "gold": "756062", "pred": "The magic number for QIYBBS is 10.", "correct": false}
+{"id": 14, "budget": 1.0, "T": 2727, "n_kept": 2727, "gold": "964925", "pred": "964922", "correct": false}
+{"id": 14, "budget": 0.875, "T": 2727, "n_kept": 2386, "gold": "964925", "pred": "964932", "correct": false}
+{"id": 14, "budget": 0.75, "T": 2727, "n_kept": 2045, "gold": "964925", "pred": "964932", "correct": false}
+{"id": 14, "budget": 0.625, "T": 2727, "n_kept": 1704, "gold": "964925", "pred": "964932", "correct": false}
+{"id": 14, "budget": 0.5, "T": 2727, "n_kept": 1363, "gold": "964925", "pred": "964128", "correct": false}
+{"id": 14, "budget": 0.375, "T": 2727, "n_kept": 1022, "gold": "964925", "pred": "661", "correct": false}
+{"id": 14, "budget": 0.25, "T": 2727, "n_kept": 681, "gold": "964925", "pred": "519234", "correct": false}
+{"id": 14, "budget": 0.1875, "T": 2727, "n_kept": 511, "gold": "964925", "pred": "The magic number for VQBHNF is 28.", "correct": false}
+{"id": 14, "budget": 0.125, "T": 2727, "n_kept": 340, "gold": "964925", "pred": "The magic number for VQBHNF is 28.", "correct": false}
+{"id": 14, "budget": 0.0625, "T": 2727, "n_kept": 170, "gold": "964925", "pred": "The magic number for VQBHNF is 6.", "correct": false}
+{"id": 15, "budget": 1.0, "T": 2740, "n_kept": 2740, "gold": "794058", "pred": "794058", "correct": true}
+{"id": 15, "budget": 0.875, "T": 2740, "n_kept": 2397, "gold": "794058", "pred": "77411", "correct": false}
+{"id": 15, "budget": 0.75, "T": 2740, "n_kept": 2055, "gold": "794058", "pred": "77411", "correct": false}
+{"id": 15, "budget": 0.625, "T": 2740, "n_kept": 1712, "gold": "794058", "pred": "77416", "correct": false}
+{"id": 15, "budget": 0.5, "T": 2740, "n_kept": 1370, "gold": "794058", "pred": "7741", "correct": false}
+{"id": 15, "budget": 0.375, "T": 2740, "n_kept": 1027, "gold": "794058", "pred": "6518", "correct": false}
+{"id": 15, "budget": 0.25, "T": 2740, "n_kept": 685, "gold": "794058", "pred": "7765", "correct": false}
+{"id": 15, "budget": 0.1875, "T": 2740, "n_kept": 513, "gold": "794058", "pred": "7056", "correct": false}
+{"id": 15, "budget": 0.125, "T": 2740, "n_kept": 342, "gold": "794058", "pred": "The magic number for PHLETC is 7,668.", "correct": false}
+{"id": 15, "budget": 0.0625, "T": 2740, "n_kept": 171, "gold": "794058", "pred": "The magic number for PHLETC is 7.", "correct": false}
+{"id": 16, "budget": 1.0, "T": 2753, "n_kept": 2753, "gold": "463502", "pred": "420268", "correct": false}
+{"id": 16, "budget": 0.875, "T": 2753, "n_kept": 2408, "gold": "463502", "pred": "463502", "correct": true}
+{"id": 16, "budget": 0.75, "T": 2753, "n_kept": 2064, "gold": "463502", "pred": "463502", "correct": true}
+{"id": 16, "budget": 0.625, "T": 2753, "n_kept": 1720, "gold": "463502", "pred": "463528", "correct": false}
+{"id": 16, "budget": 0.5, "T": 2753, "n_kept": 1376, "gold": "463502", "pred": "863529", "correct": false}
+{"id": 16, "budget": 0.375, "T": 2753, "n_kept": 1032, "gold": "463502", "pred": "68", "correct": false}
+{"id": 16, "budget": 0.25, "T": 2753, "n_kept": 688, "gold": "463502", "pred": "The magic number for TCDDLX is 363294.", "correct": false}
+{"id": 16, "budget": 0.1875, "T": 2753, "n_kept": 516, "gold": "463502", "pred": "The magic number for TCDDLX is 363294.", "correct": false}
+{"id": 16, "budget": 0.125, "T": 2753, "n_kept": 344, "gold": "463502", "pred": "The magic number for TCDDLX is 26345.", "correct": false}
+{"id": 16, "budget": 0.0625, "T": 2753, "n_kept": 172, "gold": "463502", "pred": "The magic number for TCDDLX is 6.", "correct": false}
+{"id": 17, "budget": 1.0, "T": 2793, "n_kept": 2793, "gold": "667151", "pred": "667151", "correct": true}
+{"id": 17, "budget": 0.875, "T": 2793, "n_kept": 2443, "gold": "667151", "pred": "67151", "correct": false}
+{"id": 17, "budget": 0.75, "T": 2793, "n_kept": 2094, "gold": "667151", "pred": "671959", "correct": false}
+{"id": 17, "budget": 0.625, "T": 2793, "n_kept": 1745, "gold": "667151", "pred": "67511", "correct": false}
+{"id": 17, "budget": 0.5, "T": 2793, "n_kept": 1396, "gold": "667151", "pred": "675584", "correct": false}
+{"id": 17, "budget": 0.375, "T": 2793, "n_kept": 1047, "gold": "667151", "pred": "771545", "correct": false}
+{"id": 17, "budget": 0.25, "T": 2793, "n_kept": 698, "gold": "667151", "pred": "5555555", "correct": false}
+{"id": 17, "budget": 0.1875, "T": 2793, "n_kept": 523, "gold": "667151", "pred": "44", "correct": false}
+{"id": 17, "budget": 0.125, "T": 2793, "n_kept": 349, "gold": "667151", "pred": "The magic number for ZXYIGT is 10,000", "correct": false}
+{"id": 17, "budget": 0.0625, "T": 2793, "n_kept": 174, "gold": "667151", "pred": "The magic number for ZXYIGT is 10.", "correct": false}
+{"id": 18, "budget": 1.0, "T": 2753, "n_kept": 2753, "gold": "953232", "pred": "953232", "correct": true}
+{"id": 18, "budget": 0.875, "T": 2753, "n_kept": 2408, "gold": "953232", "pred": "95328", "correct": false}
+{"id": 18, "budget": 0.75, "T": 2753, "n_kept": 2064, "gold": "953232", "pred": "95328", "correct": false}
+{"id": 18, "budget": 0.625, "T": 2753, "n_kept": 1720, "gold": "953232", "pred": "953", "correct": false}
+{"id": 18, "budget": 0.5, "T": 2753, "n_kept": 1376, "gold": "953232", "pred": "93555", "correct": false}
+{"id": 18, "budget": 0.375, "T": 2753, "n_kept": 1032, "gold": "953232", "pred": "93555", "correct": false}
+{"id": 18, "budget": 0.25, "T": 2753, "n_kept": 688, "gold": "953232", "pred": "The magic number for TBTPDT is 35355.", "correct": false}
+{"id": 18, "budget": 0.1875, "T": 2753, "n_kept": 516, "gold": "953232", "pred": "The magic number for TBTPDT is 33.", "correct": false}
+{"id": 18, "budget": 0.125, "T": 2753, "n_kept": 344, "gold": "953232", "pred": "The magic number for TBTPDT is 33.", "correct": false}
+{"id": 18, "budget": 0.0625, "T": 2753, "n_kept": 172, "gold": "953232", "pred": "The magic number for TBTPDT is 12345.", "correct": false}
+{"id": 19, "budget": 1.0, "T": 2723, "n_kept": 2723, "gold": "179495", "pred": "179495", "correct": true}
+{"id": 19, "budget": 0.875, "T": 2723, "n_kept": 2382, "gold": "179495", "pred": "179495", "correct": true}
+{"id": 19, "budget": 0.75, "T": 2723, "n_kept": 2042, "gold": "179495", "pred": "604237", "correct": false}
+{"id": 19, "budget": 0.625, "T": 2723, "n_kept": 1701, "gold": "179495", "pred": "607", "correct": false}
+{"id": 19, "budget": 0.5, "T": 2723, "n_kept": 1361, "gold": "179495", "pred": "607", "correct": false}
+{"id": 19, "budget": 0.375, "T": 2723, "n_kept": 1021, "gold": "179495", "pred": "607", "correct": false}
+{"id": 19, "budget": 0.25, "T": 2723, "n_kept": 680, "gold": "179495", "pred": "1", "correct": false}
+{"id": 19, "budget": 0.1875, "T": 2723, "n_kept": 510, "gold": "179495", "pred": "1", "correct": false}
+{"id": 19, "budget": 0.125, "T": 2723, "n_kept": 340, "gold": "179495", "pred": "2", "correct": false}
+{"id": 19, "budget": 0.0625, "T": 2723, "n_kept": 170, "gold": "179495", "pred": "The magic number for SWKFRA is 100.", "correct": false}
+{"id": 20, "budget": 1.0, "T": 2740, "n_kept": 2740, "gold": "489122", "pred": "941376", "correct": false}
+{"id": 20, "budget": 0.875, "T": 2740, "n_kept": 2397, "gold": "489122", "pred": "941322", "correct": false}
+{"id": 20, "budget": 0.75, "T": 2740, "n_kept": 2055, "gold": "489122", "pred": "481222", "correct": false}
+{"id": 20, "budget": 0.625, "T": 2740, "n_kept": 1712, "gold": "489122", "pred": "481222", "correct": false}
+{"id": 20, "budget": 0.5, "T": 2740, "n_kept": 1370, "gold": "489122", "pred": "481322", "correct": false}
+{"id": 20, "budget": 0.375, "T": 2740, "n_kept": 1027, "gold": "489122", "pred": "4", "correct": false}
+{"id": 20, "budget": 0.25, "T": 2740, "n_kept": 685, "gold": "489122", "pred": "841235", "correct": false}
+{"id": 20, "budget": 0.1875, "T": 2740, "n_kept": 513, "gold": "489122", "pred": "The magic number for FIGOEB is 812345.", "correct": false}
+{"id": 20, "budget": 0.125, "T": 2740, "n_kept": 342, "gold": "489122", "pred": "The magic number for FIGOEB is 9.", "correct": false}
+{"id": 20, "budget": 0.0625, "T": 2740, "n_kept": 171, "gold": "489122", "pred": "The magic number for FIGOEB is 9.", "correct": false}
+{"id": 21, "budget": 1.0, "T": 2709, "n_kept": 2709, "gold": "104341", "pred": "104341", "correct": true}
+{"id": 21, "budget": 0.875, "T": 2709, "n_kept": 2370, "gold": "104341", "pred": "104913", "correct": false}
+{"id": 21, "budget": 0.75, "T": 2709, "n_kept": 2031, "gold": "104341", "pred": "104955", "correct": false}
+{"id": 21, "budget": 0.625, "T": 2709, "n_kept": 1693, "gold": "104341", "pred": "10", "correct": false}
+{"id": 21, "budget": 0.5, "T": 2709, "n_kept": 1354, "gold": "104341", "pred": "10", "correct": false}
+{"id": 21, "budget": 0.375, "T": 2709, "n_kept": 1015, "gold": "104341", "pred": "10", "correct": false}
+{"id": 21, "budget": 0.25, "T": 2709, "n_kept": 677, "gold": "104341", "pred": "The magic number for GIWRHY is 1.", "correct": false}
+{"id": 21, "budget": 0.1875, "T": 2709, "n_kept": 507, "gold": "104341", "pred": "The magic number for GIWRHY is 7.", "correct": false}
+{"id": 21, "budget": 0.125, "T": 2709, "n_kept": 338, "gold": "104341", "pred": "The magic number for GIWRHY is 7.", "correct": false}
+{"id": 21, "budget": 0.0625, "T": 2709, "n_kept": 169, "gold": "104341", "pred": "The magic number for GIWRHY is 7.", "correct": false}
+{"id": 22, "budget": 1.0, "T": 2733, "n_kept": 2733, "gold": "575213", "pred": "575213", "correct": true}
+{"id": 22, "budget": 0.875, "T": 2733, "n_kept": 2391, "gold": "575213", "pred": "575575", "correct": false}
+{"id": 22, "budget": 0.75, "T": 2733, "n_kept": 2049, "gold": "575213", "pred": "575575", "correct": false}
+{"id": 22, "budget": 0.625, "T": 2733, "n_kept": 1708, "gold": "575213", "pred": "5, 55555", "correct": false}
+{"id": 22, "budget": 0.5, "T": 2733, "n_kept": 1366, "gold": "575213", "pred": "555555", "correct": false}
+{"id": 22, "budget": 0.375, "T": 2733, "n_kept": 1024, "gold": "575213", "pred": "555555", "correct": false}
+{"id": 22, "budget": 0.25, "T": 2733, "n_kept": 683, "gold": "575213", "pred": "555555", "correct": false}
+{"id": 22, "budget": 0.1875, "T": 2733, "n_kept": 512, "gold": "575213", "pred": "The magic number for OBKOVK is 1,2345", "correct": false}
+{"id": 22, "budget": 0.125, "T": 2733, "n_kept": 341, "gold": "575213", "pred": "The magic number for OBKOVK is 1.", "correct": false}
+{"id": 22, "budget": 0.0625, "T": 2733, "n_kept": 170, "gold": "575213", "pred": "The magic number for OBKOVK is 1.", "correct": false}
+{"id": 23, "budget": 1.0, "T": 2706, "n_kept": 2706, "gold": "496792", "pred": "496792", "correct": true}
+{"id": 23, "budget": 0.875, "T": 2706, "n_kept": 2367, "gold": "496792", "pred": "49679", "correct": false}
+{"id": 23, "budget": 0.75, "T": 2706, "n_kept": 2029, "gold": "496792", "pred": "712969", "correct": false}
+{"id": 23, "budget": 0.625, "T": 2706, "n_kept": 1691, "gold": "496792", "pred": "719496", "correct": false}
+{"id": 23, "budget": 0.5, "T": 2706, "n_kept": 1353, "gold": "496792", "pred": "70459", "correct": false}
+{"id": 23, "budget": 0.375, "T": 2706, "n_kept": 1014, "gold": "496792", "pred": "795416", "correct": false}
+{"id": 23, "budget": 0.25, "T": 2706, "n_kept": 676, "gold": "496792", "pred": "100", "correct": false}
+{"id": 23, "budget": 0.1875, "T": 2706, "n_kept": 507, "gold": "496792", "pred": "105589", "correct": false}
+{"id": 23, "budget": 0.125, "T": 2706, "n_kept": 338, "gold": "496792", "pred": "The magic number for BPWSPI is 10,333,", "correct": false}
+{"id": 23, "budget": 0.0625, "T": 2706, "n_kept": 169, "gold": "496792", "pred": "The magic number for BPWSPI is 10,332.", "correct": false}
+{"id": 24, "budget": 1.0, "T": 2805, "n_kept": 2805, "gold": "330197", "pred": "330197", "correct": true}
+{"id": 24, "budget": 0.875, "T": 2805, "n_kept": 2454, "gold": "330197", "pred": "330197", "correct": true}
+{"id": 24, "budget": 0.75, "T": 2805, "n_kept": 2103, "gold": "330197", "pred": "330197", "correct": true}
+{"id": 24, "budget": 0.625, "T": 2805, "n_kept": 1753, "gold": "330197", "pred": "330197", "correct": true}
+{"id": 24, "budget": 0.5, "T": 2805, "n_kept": 1402, "gold": "330197", "pred": "330197", "correct": true}
+{"id": 24, "budget": 0.375, "T": 2805, "n_kept": 1051, "gold": "330197", "pred": "33019", "correct": false}
+{"id": 24, "budget": 0.25, "T": 2805, "n_kept": 701, "gold": "330197", "pred": "The magic number for BQYJAD is 2883.", "correct": false}
+{"id": 24, "budget": 0.1875, "T": 2805, "n_kept": 525, "gold": "330197", "pred": "2045", "correct": false}
+{"id": 24, "budget": 0.125, "T": 2805, "n_kept": 350, "gold": "330197", "pred": "The magic number for BQYJAD is 309.", "correct": false}
+{"id": 24, "budget": 0.0625, "T": 2805, "n_kept": 175, "gold": "330197", "pred": "The magic number for BQYJAD is 300.", "correct": false}
+{"id": 25, "budget": 1.0, "T": 2710, "n_kept": 2710, "gold": "984016", "pred": "984016", "correct": true}
+{"id": 25, "budget": 0.875, "T": 2710, "n_kept": 2371, "gold": "984016", "pred": "984113", "correct": false}
+{"id": 25, "budget": 0.75, "T": 2710, "n_kept": 2032, "gold": "984016", "pred": "988113", "correct": false}
+{"id": 25, "budget": 0.625, "T": 2710, "n_kept": 1693, "gold": "984016", "pred": "9135595", "correct": false}
+{"id": 25, "budget": 0.5, "T": 2710, "n_kept": 1355, "gold": "984016", "pred": "9", "correct": false}
+{"id": 25, "budget": 0.375, "T": 2710, "n_kept": 1016, "gold": "984016", "pred": "9", "correct": false}
+{"id": 25, "budget": 0.25, "T": 2710, "n_kept": 677, "gold": "984016", "pred": "The magic number for UJKOGM is 9.", "correct": false}
+{"id": 25, "budget": 0.1875, "T": 2710, "n_kept": 508, "gold": "984016", "pred": "The magic number for UJKOGM is 9.", "correct": false}
+{"id": 25, "budget": 0.125, "T": 2710, "n_kept": 338, "gold": "984016", "pred": "The magic number for UJKOGM is 8.", "correct": false}
+{"id": 25, "budget": 0.0625, "T": 2710, "n_kept": 169, "gold": "984016", "pred": "The magic number for UJKOGM is 13.", "correct": false}
+{"id": 26, "budget": 1.0, "T": 2698, "n_kept": 2698, "gold": "607624", "pred": "607624", "correct": true}
+{"id": 26, "budget": 0.875, "T": 2698, "n_kept": 2360, "gold": "607624", "pred": "607624", "correct": true}
+{"id": 26, "budget": 0.75, "T": 2698, "n_kept": 2023, "gold": "607624", "pred": "607624", "correct": true}
+{"id": 26, "budget": 0.625, "T": 2698, "n_kept": 1686, "gold": "607624", "pred": "607", "correct": false}
+{"id": 26, "budget": 0.5, "T": 2698, "n_kept": 1349, "gold": "607624", "pred": "86759", "correct": false}
+{"id": 26, "budget": 0.375, "T": 2698, "n_kept": 1011, "gold": "607624", "pred": "607", "correct": false}
+{"id": 26, "budget": 0.25, "T": 2698, "n_kept": 674, "gold": "607624", "pred": "609244", "correct": false}
+{"id": 26, "budget": 0.1875, "T": 2698, "n_kept": 505, "gold": "607624", "pred": "60244", "correct": false}
+{"id": 26, "budget": 0.125, "T": 2698, "n_kept": 337, "gold": "607624", "pred": "The magic number for MKVQJV is 12345.", "correct": false}
+{"id": 26, "budget": 0.0625, "T": 2698, "n_kept": 168, "gold": "607624", "pred": "The magic number for MKVQJV is 10.", "correct": false}
+{"id": 27, "budget": 1.0, "T": 2729, "n_kept": 2729, "gold": "268721", "pred": "268721", "correct": true}
+{"id": 27, "budget": 0.875, "T": 2729, "n_kept": 2387, "gold": "268721", "pred": "268521", "correct": false}
+{"id": 27, "budget": 0.75, "T": 2729, "n_kept": 2046, "gold": "268721", "pred": "284981", "correct": false}
+{"id": 27, "budget": 0.625, "T": 2729, "n_kept": 1705, "gold": "268721", "pred": "682991", "correct": false}
+{"id": 27, "budget": 0.5, "T": 2729, "n_kept": 1364, "gold": "268721", "pred": "862999", "correct": false}
+{"id": 27, "budget": 0.375, "T": 2729, "n_kept": 1023, "gold": "268721", "pred": "The magic number for VIOOYR is 2880.", "correct": false}
+{"id": 27, "budget": 0.25, "T": 2729, "n_kept": 682, "gold": "268721", "pred": "The magic number for VIOOYR is 28.", "correct": false}
+{"id": 27, "budget": 0.1875, "T": 2729, "n_kept": 511, "gold": "268721", "pred": "The magic number for VIOOYR is 28.", "correct": false}
+{"id": 27, "budget": 0.125, "T": 2729, "n_kept": 341, "gold": "268721", "pred": "The magic number for VIOOYR is 28.", "correct": false}
+{"id": 27, "budget": 0.0625, "T": 2729, "n_kept": 170, "gold": "268721", "pred": "The magic number for VIOOYR is 10.", "correct": false}
+{"id": 28, "budget": 1.0, "T": 2733, "n_kept": 2733, "gold": "336886", "pred": "33686", "correct": false}
+{"id": 28, "budget": 0.875, "T": 2733, "n_kept": 2391, "gold": "336886", "pred": "3333333", "correct": false}
+{"id": 28, "budget": 0.75, "T": 2733, "n_kept": 2049, "gold": "336886", "pred": "333333", "correct": false}
+{"id": 28, "budget": 0.625, "T": 2733, "n_kept": 1708, "gold": "336886", "pred": "333333", "correct": false}
+{"id": 28, "budget": 0.5, "T": 2733, "n_kept": 1366, "gold": "336886", "pred": "3", "correct": false}
+{"id": 28, "budget": 0.375, "T": 2733, "n_kept": 1024, "gold": "336886", "pred": "12248", "correct": false}
+{"id": 28, "budget": 0.25, "T": 2733, "n_kept": 683, "gold": "336886", "pred": "12588", "correct": false}
+{"id": 28, "budget": 0.1875, "T": 2733, "n_kept": 512, "gold": "336886", "pred": "16898", "correct": false}
+{"id": 28, "budget": 0.125, "T": 2733, "n_kept": 341, "gold": "336886", "pred": "The magic number for OOYXQP is 123456", "correct": false}
+{"id": 28, "budget": 0.0625, "T": 2733, "n_kept": 170, "gold": "336886", "pred": "The magic number for OOYXQP is 123456", "correct": false}
+{"id": 29, "budget": 1.0, "T": 2717, "n_kept": 2717, "gold": "702252", "pred": "702252", "correct": true}
+{"id": 29, "budget": 0.875, "T": 2717, "n_kept": 2377, "gold": "702252", "pred": "702252", "correct": true}
+{"id": 29, "budget": 0.75, "T": 2717, "n_kept": 2037, "gold": "702252", "pred": "702258", "correct": false}
+{"id": 29, "budget": 0.625, "T": 2717, "n_kept": 1698, "gold": "702252", "pred": "70", "correct": false}
+{"id": 29, "budget": 0.5, "T": 2717, "n_kept": 1358, "gold": "702252", "pred": "70", "correct": false}
+{"id": 29, "budget": 0.375, "T": 2717, "n_kept": 1018, "gold": "702252", "pred": "4137", "correct": false}
+{"id": 29, "budget": 0.25, "T": 2717, "n_kept": 679, "gold": "702252", "pred": "46", "correct": false}
+{"id": 29, "budget": 0.1875, "T": 2717, "n_kept": 509, "gold": "702252", "pred": "8045", "correct": false}
+{"id": 29, "budget": 0.125, "T": 2717, "n_kept": 339, "gold": "702252", "pred": "The magic number for DWIASN is 373737.", "correct": false}
+{"id": 29, "budget": 0.0625, "T": 2717, "n_kept": 169, "gold": "702252", "pred": "The magic number for DWIASN is 1374.", "correct": false}
+{"id": 30, "budget": 1.0, "T": 2776, "n_kept": 2776, "gold": "279905", "pred": "279905", "correct": true}
+{"id": 30, "budget": 0.875, "T": 2776, "n_kept": 2429, "gold": "279905", "pred": "27995", "correct": false}
+{"id": 30, "budget": 0.75, "T": 2776, "n_kept": 2082, "gold": "279905", "pred": "279", "correct": false}
+{"id": 30, "budget": 0.625, "T": 2776, "n_kept": 1735, "gold": "279905", "pred": "279", "correct": false}
+{"id": 30, "budget": 0.5, "T": 2776, "n_kept": 1388, "gold": "279905", "pred": "279", "correct": false}
+{"id": 30, "budget": 0.375, "T": 2776, "n_kept": 1041, "gold": "279905", "pred": "279", "correct": false}
+{"id": 30, "budget": 0.25, "T": 2776, "n_kept": 694, "gold": "279905", "pred": "279", "correct": false}
+{"id": 30, "budget": 0.1875, "T": 2776, "n_kept": 520, "gold": "279905", "pred": "699", "correct": false}
+{"id": 30, "budget": 0.125, "T": 2776, "n_kept": 347, "gold": "279905", "pred": "The magic number for DSPIBT is 10.", "correct": false}
+{"id": 30, "budget": 0.0625, "T": 2776, "n_kept": 173, "gold": "279905", "pred": "The magic number for DSPIBT is 10.", "correct": false}
+{"id": 31, "budget": 1.0, "T": 2726, "n_kept": 2726, "gold": "283690", "pred": "283690", "correct": true}
+{"id": 31, "budget": 0.875, "T": 2726, "n_kept": 2385, "gold": "283690", "pred": "283690", "correct": true}
+{"id": 31, "budget": 0.75, "T": 2726, "n_kept": 2044, "gold": "283690", "pred": "883697", "correct": false}
+{"id": 31, "budget": 0.625, "T": 2726, "n_kept": 1703, "gold": "283690", "pred": "883697", "correct": false}
+{"id": 31, "budget": 0.5, "T": 2726, "n_kept": 1363, "gold": "283690", "pred": "883697", "correct": false}
+{"id": 31, "budget": 0.375, "T": 2726, "n_kept": 1022, "gold": "283690", "pred": "The magic number for ECHFPN is 46677.", "correct": false}
+{"id": 31, "budget": 0.25, "T": 2726, "n_kept": 681, "gold": "283690", "pred": "The magic number for ECHFPN is 436.", "correct": false}
+{"id": 31, "budget": 0.1875, "T": 2726, "n_kept": 511, "gold": "283690", "pred": "The magic number for ECHFPN is 368.", "correct": false}
+{"id": 31, "budget": 0.125, "T": 2726, "n_kept": 340, "gold": "283690", "pred": "The magic number for ECHFPN is 368.", "correct": false}
+{"id": 31, "budget": 0.0625, "T": 2726, "n_kept": 170, "gold": "283690", "pred": "The magic number for ECHFPN is 3636.", "correct": false}
+{"id": 32, "budget": 1.0, "T": 2736, "n_kept": 2736, "gold": "832594", "pred": "832594", "correct": true}
+{"id": 32, "budget": 0.875, "T": 2736, "n_kept": 2394, "gold": "832594", "pred": "83294", "correct": false}
+{"id": 32, "budget": 0.75, "T": 2736, "n_kept": 2052, "gold": "832594", "pred": "83294", "correct": false}
+{"id": 32, "budget": 0.625, "T": 2736, "n_kept": 1710, "gold": "832594", "pred": "882122", "correct": false}
+{"id": 32, "budget": 0.5, "T": 2736, "n_kept": 1368, "gold": "832594", "pred": "84", "correct": false}
+{"id": 32, "budget": 0.375, "T": 2736, "n_kept": 1026, "gold": "832594", "pred": "84", "correct": false}
+{"id": 32, "budget": 0.25, "T": 2736, "n_kept": 684, "gold": "832594", "pred": "8", "correct": false}
+{"id": 32, "budget": 0.1875, "T": 2736, "n_kept": 513, "gold": "832594", "pred": "8", "correct": false}
+{"id": 32, "budget": 0.125, "T": 2736, "n_kept": 342, "gold": "832594", "pred": "8", "correct": false}
+{"id": 32, "budget": 0.0625, "T": 2736, "n_kept": 171, "gold": "832594", "pred": "8", "correct": false}
+{"id": 33, "budget": 1.0, "T": 2727, "n_kept": 2727, "gold": "746512", "pred": "746512", "correct": true}
+{"id": 33, "budget": 0.875, "T": 2727, "n_kept": 2386, "gold": "746512", "pred": "745218", "correct": false}
+{"id": 33, "budget": 0.75, "T": 2727, "n_kept": 2045, "gold": "746512", "pred": "74512", "correct": false}
+{"id": 33, "budget": 0.625, "T": 2727, "n_kept": 1704, "gold": "746512", "pred": "74512", "correct": false}
+{"id": 33, "budget": 0.5, "T": 2727, "n_kept": 1363, "gold": "746512", "pred": "74569", "correct": false}
+{"id": 33, "budget": 0.375, "T": 2727, "n_kept": 1022, "gold": "746512", "pred": "7", "correct": false}
+{"id": 33, "budget": 0.25, "T": 2727, "n_kept": 681, "gold": "746512", "pred": "8", "correct": false}
+{"id": 33, "budget": 0.1875, "T": 2727, "n_kept": 511, "gold": "746512", "pred": "8", "correct": false}
+{"id": 33, "budget": 0.125, "T": 2727, "n_kept": 340, "gold": "746512", "pred": "8", "correct": false}
+{"id": 33, "budget": 0.0625, "T": 2727, "n_kept": 170, "gold": "746512", "pred": "111", "correct": false}
+{"id": 34, "budget": 1.0, "T": 2725, "n_kept": 2725, "gold": "839076", "pred": "889076", "correct": false}
+{"id": 34, "budget": 0.875, "T": 2725, "n_kept": 2384, "gold": "839076", "pred": "839076", "correct": true}
+{"id": 34, "budget": 0.75, "T": 2725, "n_kept": 2043, "gold": "839076", "pred": "839076", "correct": true}
+{"id": 34, "budget": 0.625, "T": 2725, "n_kept": 1703, "gold": "839076", "pred": "839076", "correct": true}
+{"id": 34, "budget": 0.5, "T": 2725, "n_kept": 1362, "gold": "839076", "pred": "839076", "correct": true}
+{"id": 34, "budget": 0.375, "T": 2725, "n_kept": 1021, "gold": "839076", "pred": "899022", "correct": false}
+{"id": 34, "budget": 0.25, "T": 2725, "n_kept": 681, "gold": "839076", "pred": "899022", "correct": false}
+{"id": 34, "budget": 0.1875, "T": 2725, "n_kept": 510, "gold": "839076", "pred": "8990222", "correct": false}
+{"id": 34, "budget": 0.125, "T": 2725, "n_kept": 340, "gold": "839076", "pred": "8624962", "correct": false}
+{"id": 34, "budget": 0.0625, "T": 2725, "n_kept": 170, "gold": "839076", "pred": "The magic number for AUVVUN is 8.", "correct": false}
+{"id": 35, "budget": 1.0, "T": 2737, "n_kept": 2737, "gold": "978247", "pred": "978247", "correct": true}
+{"id": 35, "budget": 0.875, "T": 2737, "n_kept": 2394, "gold": "978247", "pred": "978244", "correct": false}
+{"id": 35, "budget": 0.75, "T": 2737, "n_kept": 2052, "gold": "978247", "pred": "978244", "correct": false}
+{"id": 35, "budget": 0.625, "T": 2737, "n_kept": 1710, "gold": "978247", "pred": "8765408", "correct": false}
+{"id": 35, "budget": 0.5, "T": 2737, "n_kept": 1368, "gold": "978247", "pred": "876", "correct": false}
+{"id": 35, "budget": 0.375, "T": 2737, "n_kept": 1026, "gold": "978247", "pred": "876", "correct": false}
+{"id": 35, "budget": 0.25, "T": 2737, "n_kept": 684, "gold": "978247", "pred": "8", "correct": false}
+{"id": 35, "budget": 0.1875, "T": 2737, "n_kept": 513, "gold": "978247", "pred": "8", "correct": false}
+{"id": 35, "budget": 0.125, "T": 2737, "n_kept": 342, "gold": "978247", "pred": "8", "correct": false}
+{"id": 35, "budget": 0.0625, "T": 2737, "n_kept": 171, "gold": "978247", "pred": "12345678", "correct": false}
+{"id": 36, "budget": 1.0, "T": 2757, "n_kept": 2757, "gold": "331636", "pred": "331636", "correct": true}
+{"id": 36, "budget": 0.875, "T": 2757, "n_kept": 2412, "gold": "331636", "pred": "98010", "correct": false}
+{"id": 36, "budget": 0.75, "T": 2757, "n_kept": 2067, "gold": "331636", "pred": "98010", "correct": false}
+{"id": 36, "budget": 0.625, "T": 2757, "n_kept": 1723, "gold": "331636", "pred": "98010", "correct": false}
+{"id": 36, "budget": 0.5, "T": 2757, "n_kept": 1378, "gold": "331636", "pred": "98068", "correct": false}
+{"id": 36, "budget": 0.375, "T": 2757, "n_kept": 1033, "gold": "331636", "pred": "80", "correct": false}
+{"id": 36, "budget": 0.25, "T": 2757, "n_kept": 689, "gold": "331636", "pred": "8096", "correct": false}
+{"id": 36, "budget": 0.1875, "T": 2757, "n_kept": 516, "gold": "331636", "pred": "8", "correct": false}
+{"id": 36, "budget": 0.125, "T": 2757, "n_kept": 344, "gold": "331636", "pred": "25", "correct": false}
+{"id": 36, "budget": 0.0625, "T": 2757, "n_kept": 172, "gold": "331636", "pred": "The magic number for JRRGRW is 13.", "correct": false}
+{"id": 37, "budget": 1.0, "T": 2754, "n_kept": 2754, "gold": "145936", "pred": "145936", "correct": true}
+{"id": 37, "budget": 0.875, "T": 2754, "n_kept": 2409, "gold": "145936", "pred": "145960", "correct": false}
+{"id": 37, "budget": 0.75, "T": 2754, "n_kept": 2065, "gold": "145936", "pred": "145960", "correct": false}
+{"id": 37, "budget": 0.625, "T": 2754, "n_kept": 1721, "gold": "145936", "pred": "145960", "correct": false}
+{"id": 37, "budget": 0.5, "T": 2754, "n_kept": 1377, "gold": "145936", "pred": "145960", "correct": false}
+{"id": 37, "budget": 0.375, "T": 2754, "n_kept": 1032, "gold": "145936", "pred": "14", "correct": false}
+{"id": 37, "budget": 0.25, "T": 2754, "n_kept": 688, "gold": "145936", "pred": "14", "correct": false}
+{"id": 37, "budget": 0.1875, "T": 2754, "n_kept": 516, "gold": "145936", "pred": "The magic number for BTJSKG is 1.", "correct": false}
+{"id": 37, "budget": 0.125, "T": 2754, "n_kept": 344, "gold": "145936", "pred": "The magic number for BTJSKG is 1.", "correct": false}
+{"id": 37, "budget": 0.0625, "T": 2754, "n_kept": 172, "gold": "145936", "pred": "The magic number for BTJSKG is 10.", "correct": false}
+{"id": 38, "budget": 1.0, "T": 2763, "n_kept": 2763, "gold": "772799", "pred": "772799", "correct": true}
+{"id": 38, "budget": 0.875, "T": 2763, "n_kept": 2417, "gold": "772799", "pred": "772799", "correct": true}
+{"id": 38, "budget": 0.75, "T": 2763, "n_kept": 2072, "gold": "772799", "pred": "777777", "correct": false}
+{"id": 38, "budget": 0.625, "T": 2763, "n_kept": 1726, "gold": "772799", "pred": "77779", "correct": false}
+{"id": 38, "budget": 0.5, "T": 2763, "n_kept": 1381, "gold": "772799", "pred": "77777", "correct": false}
+{"id": 38, "budget": 0.375, "T": 2763, "n_kept": 1036, "gold": "772799", "pred": "73919", "correct": false}
+{"id": 38, "budget": 0.25, "T": 2763, "n_kept": 690, "gold": "772799", "pred": "79", "correct": false}
+{"id": 38, "budget": 0.1875, "T": 2763, "n_kept": 518, "gold": "772799", "pred": "79", "correct": false}
+{"id": 38, "budget": 0.125, "T": 2763, "n_kept": 345, "gold": "772799", "pred": "The magic number for CWGSOC is 7, 9.", "correct": false}
+{"id": 38, "budget": 0.0625, "T": 2763, "n_kept": 172, "gold": "772799", "pred": "The magic number for CWGSOC is 12345.", "correct": false}
+{"id": 39, "budget": 1.0, "T": 2746, "n_kept": 2746, "gold": "314659", "pred": "314659", "correct": true}
+{"id": 39, "budget": 0.875, "T": 2746, "n_kept": 2402, "gold": "314659", "pred": "31459", "correct": false}
+{"id": 39, "budget": 0.75, "T": 2746, "n_kept": 2059, "gold": "314659", "pred": "31459", "correct": false}
+{"id": 39, "budget": 0.625, "T": 2746, "n_kept": 1716, "gold": "314659", "pred": "314569", "correct": false}
+{"id": 39, "budget": 0.5, "T": 2746, "n_kept": 1373, "gold": "314659", "pred": "31", "correct": false}
+{"id": 39, "budget": 0.375, "T": 2746, "n_kept": 1029, "gold": "314659", "pred": "3", "correct": false}
+{"id": 39, "budget": 0.25, "T": 2746, "n_kept": 686, "gold": "314659", "pred": "3", "correct": false}
+{"id": 39, "budget": 0.1875, "T": 2746, "n_kept": 514, "gold": "314659", "pred": "5255559", "correct": false}
+{"id": 39, "budget": 0.125, "T": 2746, "n_kept": 343, "gold": "314659", "pred": "5304659", "correct": false}
+{"id": 39, "budget": 0.0625, "T": 2746, "n_kept": 171, "gold": "314659", "pred": "1", "correct": false}
+{"id": 40, "budget": 1.0, "T": 2712, "n_kept": 2712, "gold": "558180", "pred": "558180", "correct": true}
+{"id": 40, "budget": 0.875, "T": 2712, "n_kept": 2373, "gold": "558180", "pred": "558180", "correct": true}
+{"id": 40, "budget": 0.75, "T": 2712, "n_kept": 2034, "gold": "558180", "pred": "555180", "correct": false}
+{"id": 40, "budget": 0.625, "T": 2712, "n_kept": 1695, "gold": "558180", "pred": "5551800", "correct": false}
+{"id": 40, "budget": 0.5, "T": 2712, "n_kept": 1356, "gold": "558180", "pred": "5551800", "correct": false}
+{"id": 40, "budget": 0.375, "T": 2712, "n_kept": 1017, "gold": "558180", "pred": "5551100", "correct": false}
+{"id": 40, "budget": 0.25, "T": 2712, "n_kept": 678, "gold": "558180", "pred": "55555", "correct": false}
+{"id": 40, "budget": 0.1875, "T": 2712, "n_kept": 508, "gold": "558180", "pred": "555555", "correct": false}
+{"id": 40, "budget": 0.125, "T": 2712, "n_kept": 339, "gold": "558180", "pred": "The magic number for HSNVHC is 70548.", "correct": false}
+{"id": 40, "budget": 0.0625, "T": 2712, "n_kept": 169, "gold": "558180", "pred": "The magic number for HSNVHC is 10,000", "correct": false}
+{"id": 41, "budget": 1.0, "T": 2735, "n_kept": 2735, "gold": "460793", "pred": "460793", "correct": true}
+{"id": 41, "budget": 0.875, "T": 2735, "n_kept": 2393, "gold": "460793", "pred": "460773", "correct": false}
+{"id": 41, "budget": 0.75, "T": 2735, "n_kept": 2051, "gold": "460793", "pred": "460773", "correct": false}
+{"id": 41, "budget": 0.625, "T": 2735, "n_kept": 1709, "gold": "460793", "pred": "489455", "correct": false}
+{"id": 41, "budget": 0.5, "T": 2735, "n_kept": 1367, "gold": "460793", "pred": "489453", "correct": false}
+{"id": 41, "budget": 0.375, "T": 2735, "n_kept": 1025, "gold": "460793", "pred": "48055", "correct": false}
+{"id": 41, "budget": 0.25, "T": 2735, "n_kept": 683, "gold": "460793", "pred": "873455", "correct": false}
+{"id": 41, "budget": 0.1875, "T": 2735, "n_kept": 512, "gold": "460793", "pred": "3852", "correct": false}
+{"id": 41, "budget": 0.125, "T": 2735, "n_kept": 341, "gold": "460793", "pred": "The magic number for ZINJZO is 8.", "correct": false}
+{"id": 41, "budget": 0.0625, "T": 2735, "n_kept": 170, "gold": "460793", "pred": "The magic number for ZINJZO is 8.", "correct": false}
+{"id": 42, "budget": 1.0, "T": 2744, "n_kept": 2744, "gold": "966035", "pred": "917328", "correct": false}
+{"id": 42, "budget": 0.875, "T": 2744, "n_kept": 2401, "gold": "966035", "pred": "91735", "correct": false}
+{"id": 42, "budget": 0.75, "T": 2744, "n_kept": 2058, "gold": "966035", "pred": "966035", "correct": true}
+{"id": 42, "budget": 0.625, "T": 2744, "n_kept": 1715, "gold": "966035", "pred": "9735", "correct": false}
+{"id": 42, "budget": 0.5, "T": 2744, "n_kept": 1372, "gold": "966035", "pred": "97365", "correct": false}
+{"id": 42, "budget": 0.375, "T": 2744, "n_kept": 1029, "gold": "966035", "pred": "9765", "correct": false}
+{"id": 42, "budget": 0.25, "T": 2744, "n_kept": 686, "gold": "966035", "pred": "976", "correct": false}
+{"id": 42, "budget": 0.1875, "T": 2744, "n_kept": 514, "gold": "966035", "pred": "1", "correct": false}
+{"id": 42, "budget": 0.125, "T": 2744, "n_kept": 343, "gold": "966035", "pred": "1", "correct": false}
+{"id": 42, "budget": 0.0625, "T": 2744, "n_kept": 171, "gold": "966035", "pred": "The magic number for EOEXOB is 10.", "correct": false}
+{"id": 43, "budget": 1.0, "T": 2736, "n_kept": 2736, "gold": "953997", "pred": "253967", "correct": false}
+{"id": 43, "budget": 0.875, "T": 2736, "n_kept": 2394, "gold": "953997", "pred": "253669", "correct": false}
+{"id": 43, "budget": 0.75, "T": 2736, "n_kept": 2052, "gold": "953997", "pred": "2", "correct": false}
+{"id": 43, "budget": 0.625, "T": 2736, "n_kept": 1710, "gold": "953997", "pred": "2", "correct": false}
+{"id": 43, "budget": 0.5, "T": 2736, "n_kept": 1368, "gold": "953997", "pred": "953671", "correct": false}
+{"id": 43, "budget": 0.375, "T": 2736, "n_kept": 1026, "gold": "953997", "pred": "973559", "correct": false}
+{"id": 43, "budget": 0.25, "T": 2736, "n_kept": 684, "gold": "953997", "pred": "93", "correct": false}
+{"id": 43, "budget": 0.1875, "T": 2736, "n_kept": 513, "gold": "953997", "pred": "The magic number for VSVZSW is 6.", "correct": false}
+{"id": 43, "budget": 0.125, "T": 2736, "n_kept": 342, "gold": "953997", "pred": "The magic number for VSVZSW is 3.", "correct": false}
+{"id": 43, "budget": 0.0625, "T": 2736, "n_kept": 171, "gold": "953997", "pred": "The magic number for VSVZSW is 51.", "correct": false}
+{"id": 44, "budget": 1.0, "T": 2735, "n_kept": 2735, "gold": "976052", "pred": "976052", "correct": true}
+{"id": 44, "budget": 0.875, "T": 2735, "n_kept": 2393, "gold": "976052", "pred": "976052", "correct": true}
+{"id": 44, "budget": 0.75, "T": 2735, "n_kept": 2051, "gold": "976052", "pred": "976052", "correct": true}
+{"id": 44, "budget": 0.625, "T": 2735, "n_kept": 1709, "gold": "976052", "pred": "97655", "correct": false}
+{"id": 44, "budget": 0.5, "T": 2735, "n_kept": 1367, "gold": "976052", "pred": "97655", "correct": false}
+{"id": 44, "budget": 0.375, "T": 2735, "n_kept": 1025, "gold": "976052", "pred": "97655", "correct": false}
+{"id": 44, "budget": 0.25, "T": 2735, "n_kept": 683, "gold": "976052", "pred": "87655", "correct": false}
+{"id": 44, "budget": 0.1875, "T": 2735, "n_kept": 512, "gold": "976052", "pred": "87655", "correct": false}
+{"id": 44, "budget": 0.125, "T": 2735, "n_kept": 341, "gold": "976052", "pred": "8666", "correct": false}
+{"id": 44, "budget": 0.0625, "T": 2735, "n_kept": 170, "gold": "976052", "pred": "The magic number for BAKZXP is 66666.", "correct": false}
+{"id": 45, "budget": 1.0, "T": 2768, "n_kept": 2768, "gold": "646665", "pred": "955439", "correct": false}
+{"id": 45, "budget": 0.875, "T": 2768, "n_kept": 2422, "gold": "646665", "pred": "955439", "correct": false}
+{"id": 45, "budget": 0.75, "T": 2768, "n_kept": 2076, "gold": "646665", "pred": "64665", "correct": false}
+{"id": 45, "budget": 0.625, "T": 2768, "n_kept": 1730, "gold": "646665", "pred": "64665", "correct": false}
+{"id": 45, "budget": 0.5, "T": 2768, "n_kept": 1384, "gold": "646665", "pred": "64665", "correct": false}
+{"id": 45, "budget": 0.375, "T": 2768, "n_kept": 1038, "gold": "646665", "pred": "3817", "correct": false}
+{"id": 45, "budget": 0.25, "T": 2768, "n_kept": 692, "gold": "646665", "pred": "The magic number for DYHMFO is 3.", "correct": false}
+{"id": 45, "budget": 0.1875, "T": 2768, "n_kept": 519, "gold": "646665", "pred": "The magic number for DYHMFO is 3.", "correct": false}
+{"id": 45, "budget": 0.125, "T": 2768, "n_kept": 346, "gold": "646665", "pred": "The magic number for DYHMFO is 3.", "correct": false}
+{"id": 45, "budget": 0.0625, "T": 2768, "n_kept": 173, "gold": "646665", "pred": "The magic number for DYHMFO is 1.", "correct": false}
+{"id": 46, "budget": 1.0, "T": 2682, "n_kept": 2682, "gold": "161792", "pred": "161792", "correct": true}
+{"id": 46, "budget": 0.875, "T": 2682, "n_kept": 2346, "gold": "161792", "pred": "161792", "correct": true}
+{"id": 46, "budget": 0.75, "T": 2682, "n_kept": 2011, "gold": "161792", "pred": "161792", "correct": true}
+{"id": 46, "budget": 0.625, "T": 2682, "n_kept": 1676, "gold": "161792", "pred": "560192", "correct": false}
+{"id": 46, "budget": 0.5, "T": 2682, "n_kept": 1341, "gold": "161792", "pred": "560709", "correct": false}
+{"id": 46, "budget": 0.375, "T": 2682, "n_kept": 1005, "gold": "161792", "pred": "560719", "correct": false}
+{"id": 46, "budget": 0.25, "T": 2682, "n_kept": 670, "gold": "161792", "pred": "56", "correct": false}
+{"id": 46, "budget": 0.1875, "T": 2682, "n_kept": 502, "gold": "161792", "pred": "6", "correct": false}
+{"id": 46, "budget": 0.125, "T": 2682, "n_kept": 335, "gold": "161792", "pred": "38", "correct": false}
+{"id": 46, "budget": 0.0625, "T": 2682, "n_kept": 167, "gold": "161792", "pred": "38", "correct": false}
+{"id": 47, "budget": 1.0, "T": 2756, "n_kept": 2756, "gold": "950505", "pred": "950505", "correct": true}
+{"id": 47, "budget": 0.875, "T": 2756, "n_kept": 2411, "gold": "950505", "pred": "950505", "correct": true}
+{"id": 47, "budget": 0.75, "T": 2756, "n_kept": 2067, "gold": "950505", "pred": "950505", "correct": true}
+{"id": 47, "budget": 0.625, "T": 2756, "n_kept": 1722, "gold": "950505", "pred": "950000", "correct": false}
+{"id": 47, "budget": 0.5, "T": 2756, "n_kept": 1378, "gold": "950505", "pred": "950499", "correct": false}
+{"id": 47, "budget": 0.375, "T": 2756, "n_kept": 1033, "gold": "950505", "pred": "909999", "correct": false}
+{"id": 47, "budget": 0.25, "T": 2756, "n_kept": 689, "gold": "950505", "pred": "900000", "correct": false}
+{"id": 47, "budget": 0.1875, "T": 2756, "n_kept": 516, "gold": "950505", "pred": "9", "correct": false}
+{"id": 47, "budget": 0.125, "T": 2756, "n_kept": 344, "gold": "950505", "pred": "9", "correct": false}
+{"id": 47, "budget": 0.0625, "T": 2756, "n_kept": 172, "gold": "950505", "pred": "9", "correct": false}
+{"id": 48, "budget": 1.0, "T": 2747, "n_kept": 2747, "gold": "787809", "pred": "787809", "correct": true}
+{"id": 48, "budget": 0.875, "T": 2747, "n_kept": 2403, "gold": "787809", "pred": "78780", "correct": false}
+{"id": 48, "budget": 0.75, "T": 2747, "n_kept": 2060, "gold": "787809", "pred": "78780", "correct": false}
+{"id": 48, "budget": 0.625, "T": 2747, "n_kept": 1716, "gold": "787809", "pred": "78700", "correct": false}
+{"id": 48, "budget": 0.5, "T": 2747, "n_kept": 1373, "gold": "787809", "pred": "777777", "correct": false}
+{"id": 48, "budget": 0.375, "T": 2747, "n_kept": 1030, "gold": "787809", "pred": "777777", "correct": false}
+{"id": 48, "budget": 0.25, "T": 2747, "n_kept": 686, "gold": "787809", "pred": "777777", "correct": false}
+{"id": 48, "budget": 0.1875, "T": 2747, "n_kept": 515, "gold": "787809", "pred": "777777", "correct": false}
+{"id": 48, "budget": 0.125, "T": 2747, "n_kept": 343, "gold": "787809", "pred": "777777", "correct": false}
+{"id": 48, "budget": 0.0625, "T": 2747, "n_kept": 171, "gold": "787809", "pred": "The magic number for LJEOEE is 777.", "correct": false}
+{"id": 49, "budget": 1.0, "T": 2738, "n_kept": 2738, "gold": "789993", "pred": "892103", "correct": false}
+{"id": 49, "budget": 0.875, "T": 2738, "n_kept": 2395, "gold": "789993", "pred": "78993", "correct": false}
+{"id": 49, "budget": 0.75, "T": 2738, "n_kept": 2053, "gold": "789993", "pred": "78993", "correct": false}
+{"id": 49, "budget": 0.625, "T": 2738, "n_kept": 1711, "gold": "789993", "pred": "78", "correct": false}
+{"id": 49, "budget": 0.5, "T": 2738, "n_kept": 1369, "gold": "789993", "pred": "The magic number for VLLFEM is 792345", "correct": false}
+{"id": 49, "budget": 0.375, "T": 2738, "n_kept": 1026, "gold": "789993", "pred": "The magic number for VLLFEM is 792845", "correct": false}
+{"id": 49, "budget": 0.25, "T": 2738, "n_kept": 684, "gold": "789993", "pred": "92458", "correct": false}
+{"id": 49, "budget": 0.1875, "T": 2738, "n_kept": 513, "gold": "789993", "pred": "The magic number for VLLFEM is 14.", "correct": false}
+{"id": 49, "budget": 0.125, "T": 2738, "n_kept": 342, "gold": "789993", "pred": "The magic number for VLLFEM is 1024.", "correct": false}
+{"id": 49, "budget": 0.0625, "T": 2738, "n_kept": 171, "gold": "789993", "pred": "The magic number for VLLFEM is 10.", "correct": false}
+{"id": 50, "budget": 1.0, "T": 2774, "n_kept": 2774, "gold": "317103", "pred": "317103", "correct": true}
+{"id": 50, "budget": 0.875, "T": 2774, "n_kept": 2427, "gold": "317103", "pred": "11710", "correct": false}
+{"id": 50, "budget": 0.75, "T": 2774, "n_kept": 2080, "gold": "317103", "pred": "11710", "correct": false}
+{"id": 50, "budget": 0.625, "T": 2774, "n_kept": 1733, "gold": "317103", "pred": "310101", "correct": false}
+{"id": 50, "budget": 0.5, "T": 2774, "n_kept": 1387, "gold": "317103", "pred": "31011", "correct": false}
+{"id": 50, "budget": 0.375, "T": 2774, "n_kept": 1040, "gold": "317103", "pred": "The magic number for PCGWEI is 11111.", "correct": false}
+{"id": 50, "budget": 0.25, "T": 2774, "n_kept": 693, "gold": "317103", "pred": "The magic number for PCGWEI is 16516.", "correct": false}
+{"id": 50, "budget": 0.1875, "T": 2774, "n_kept": 520, "gold": "317103", "pred": "The magic number for PCGWEI is 16510.", "correct": false}
+{"id": 50, "budget": 0.125, "T": 2774, "n_kept": 346, "gold": "317103", "pred": "The magic number for PCGWEI is 16510.", "correct": false}
+{"id": 50, "budget": 0.0625, "T": 2774, "n_kept": 173, "gold": "317103", "pred": "The magic number for PCGWEI is 100.", "correct": false}
+{"id": 51, "budget": 1.0, "T": 2739, "n_kept": 2739, "gold": "983354", "pred": "983354", "correct": true}
+{"id": 51, "budget": 0.875, "T": 2739, "n_kept": 2396, "gold": "983354", "pred": "983354", "correct": true}
+{"id": 51, "budget": 0.75, "T": 2739, "n_kept": 2054, "gold": "983354", "pred": "963354", "correct": false}
+{"id": 51, "budget": 0.625, "T": 2739, "n_kept": 1711, "gold": "983354", "pred": "96334", "correct": false}
+{"id": 51, "budget": 0.5, "T": 2739, "n_kept": 1369, "gold": "983354", "pred": "104569", "correct": false}
+{"id": 51, "budget": 0.375, "T": 2739, "n_kept": 1027, "gold": "983354", "pred": "96344", "correct": false}
+{"id": 51, "budget": 0.25, "T": 2739, "n_kept": 684, "gold": "983354", "pred": "The magic number for BTTDUX is 104.", "correct": false}
+{"id": 51, "budget": 0.1875, "T": 2739, "n_kept": 513, "gold": "983354", "pred": "The magic number for BTTDUX is 12345.", "correct": false}
+{"id": 51, "budget": 0.125, "T": 2739, "n_kept": 342, "gold": "983354", "pred": "The magic number for BTTDUX is 12345.", "correct": false}
+{"id": 51, "budget": 0.0625, "T": 2739, "n_kept": 171, "gold": "983354", "pred": "The magic number for BTTDUX is 12345.", "correct": false}
+{"id": 52, "budget": 1.0, "T": 2711, "n_kept": 2711, "gold": "427934", "pred": "427934", "correct": true}
+{"id": 52, "budget": 0.875, "T": 2711, "n_kept": 2372, "gold": "427934", "pred": "427315", "correct": false}
+{"id": 52, "budget": 0.75, "T": 2711, "n_kept": 2033, "gold": "427934", "pred": "427315", "correct": false}
+{"id": 52, "budget": 0.625, "T": 2711, "n_kept": 1694, "gold": "427934", "pred": "12", "correct": false}
+{"id": 52, "budget": 0.5, "T": 2711, "n_kept": 1355, "gold": "427934", "pred": "12", "correct": false}
+{"id": 52, "budget": 0.375, "T": 2711, "n_kept": 1016, "gold": "427934", "pred": "142659", "correct": false}
+{"id": 52, "budget": 0.25, "T": 2711, "n_kept": 677, "gold": "427934", "pred": "16", "correct": false}
+{"id": 52, "budget": 0.1875, "T": 2711, "n_kept": 508, "gold": "427934", "pred": "16745", "correct": false}
+{"id": 52, "budget": 0.125, "T": 2711, "n_kept": 338, "gold": "427934", "pred": "2142", "correct": false}
+{"id": 52, "budget": 0.0625, "T": 2711, "n_kept": 169, "gold": "427934", "pred": "The magic number for MSUMQQ is 12.", "correct": false}
+{"id": 53, "budget": 1.0, "T": 2715, "n_kept": 2715, "gold": "492727", "pred": "492727", "correct": true}
+{"id": 53, "budget": 0.875, "T": 2715, "n_kept": 2375, "gold": "492727", "pred": "49376", "correct": false}
+{"id": 53, "budget": 0.75, "T": 2715, "n_kept": 2036, "gold": "492727", "pred": "492765", "correct": false}
+{"id": 53, "budget": 0.625, "T": 2715, "n_kept": 1696, "gold": "492727", "pred": "832756", "correct": false}
+{"id": 53, "budget": 0.5, "T": 2715, "n_kept": 1357, "gold": "492727", "pred": "493755", "correct": false}
+{"id": 53, "budget": 0.375, "T": 2715, "n_kept": 1018, "gold": "492727", "pred": "492563", "correct": false}
+{"id": 53, "budget": 0.25, "T": 2715, "n_kept": 678, "gold": "492727", "pred": "The magic number for IEYFYJ is 127455", "correct": false}
+{"id": 53, "budget": 0.1875, "T": 2715, "n_kept": 509, "gold": "492727", "pred": "The magic number for IEYFYJ is 1024.", "correct": false}
+{"id": 53, "budget": 0.125, "T": 2715, "n_kept": 339, "gold": "492727", "pred": "The magic number for IEYFYJ is 10.", "correct": false}
+{"id": 53, "budget": 0.0625, "T": 2715, "n_kept": 169, "gold": "492727", "pred": "The magic number for IEYFYJ is 10.", "correct": false}
+{"id": 54, "budget": 1.0, "T": 2749, "n_kept": 2749, "gold": "447112", "pred": "447112", "correct": true}
+{"id": 54, "budget": 0.875, "T": 2749, "n_kept": 2405, "gold": "447112", "pred": "44111", "correct": false}
+{"id": 54, "budget": 0.75, "T": 2749, "n_kept": 2061, "gold": "447112", "pred": "44111", "correct": false}
+{"id": 54, "budget": 0.625, "T": 2749, "n_kept": 1718, "gold": "447112", "pred": "44111", "correct": false}
+{"id": 54, "budget": 0.5, "T": 2749, "n_kept": 1374, "gold": "447112", "pred": "44111", "correct": false}
+{"id": 54, "budget": 0.375, "T": 2749, "n_kept": 1030, "gold": "447112", "pred": "52441", "correct": false}
+{"id": 54, "budget": 0.25, "T": 2749, "n_kept": 687, "gold": "447112", "pred": "521495", "correct": false}
+{"id": 54, "budget": 0.1875, "T": 2749, "n_kept": 515, "gold": "447112", "pred": "52145", "correct": false}
+{"id": 54, "budget": 0.125, "T": 2749, "n_kept": 343, "gold": "447112", "pred": "The magic number for VEWJJM is 5241.", "correct": false}
+{"id": 54, "budget": 0.0625, "T": 2749, "n_kept": 171, "gold": "447112", "pred": "The magic number for VEWJJM is 5.", "correct": false}
+{"id": 55, "budget": 1.0, "T": 2814, "n_kept": 2814, "gold": "162065", "pred": "162065", "correct": true}
+{"id": 55, "budget": 0.875, "T": 2814, "n_kept": 2462, "gold": "162065", "pred": "162065", "correct": true}
+{"id": 55, "budget": 0.75, "T": 2814, "n_kept": 2110, "gold": "162065", "pred": "162065", "correct": true}
+{"id": 55, "budget": 0.625, "T": 2814, "n_kept": 1758, "gold": "162065", "pred": "16206", "correct": false}
+{"id": 55, "budget": 0.5, "T": 2814, "n_kept": 1407, "gold": "162065", "pred": "18206", "correct": false}
+{"id": 55, "budget": 0.375, "T": 2814, "n_kept": 1055, "gold": "162065", "pred": "182055", "correct": false}
+{"id": 55, "budget": 0.25, "T": 2814, "n_kept": 703, "gold": "162065", "pred": "1111111", "correct": false}
+{"id": 55, "budget": 0.1875, "T": 2814, "n_kept": 527, "gold": "162065", "pred": "1111111", "correct": false}
+{"id": 55, "budget": 0.125, "T": 2814, "n_kept": 351, "gold": "162065", "pred": "11111", "correct": false}
+{"id": 55, "budget": 0.0625, "T": 2814, "n_kept": 175, "gold": "162065", "pred": "The magic number for AAEXSZ is 2010.", "correct": false}
+{"id": 56, "budget": 1.0, "T": 2770, "n_kept": 2770, "gold": "454826", "pred": "454826", "correct": true}
+{"id": 56, "budget": 0.875, "T": 2770, "n_kept": 2423, "gold": "454826", "pred": "975426", "correct": false}
+{"id": 56, "budget": 0.75, "T": 2770, "n_kept": 2077, "gold": "454826", "pred": "975433", "correct": false}
+{"id": 56, "budget": 0.625, "T": 2770, "n_kept": 1731, "gold": "454826", "pred": "95482", "correct": false}
+{"id": 56, "budget": 0.5, "T": 2770, "n_kept": 1385, "gold": "454826", "pred": "950822", "correct": false}
+{"id": 56, "budget": 0.375, "T": 2770, "n_kept": 1038, "gold": "454826", "pred": "The magic number for PNJVWJ is 35892.", "correct": false}
+{"id": 56, "budget": 0.25, "T": 2770, "n_kept": 692, "gold": "454826", "pred": "The magic number for PNJVWJ is 254379", "correct": false}
+{"id": 56, "budget": 0.1875, "T": 2770, "n_kept": 519, "gold": "454826", "pred": "The magic number for PNJVWJ is 254379", "correct": false}
+{"id": 56, "budget": 0.125, "T": 2770, "n_kept": 346, "gold": "454826", "pred": "The magic number for PNJVWJ is 2549.", "correct": false}
+{"id": 56, "budget": 0.0625, "T": 2770, "n_kept": 173, "gold": "454826", "pred": "The magic number for PNJVWJ is 57314.", "correct": false}
+{"id": 57, "budget": 1.0, "T": 2745, "n_kept": 2745, "gold": "885890", "pred": "885890", "correct": true}
+{"id": 57, "budget": 0.875, "T": 2745, "n_kept": 2401, "gold": "885890", "pred": "885890", "correct": true}
+{"id": 57, "budget": 0.75, "T": 2745, "n_kept": 2058, "gold": "885890", "pred": "88890", "correct": false}
+{"id": 57, "budget": 0.625, "T": 2745, "n_kept": 1715, "gold": "885890", "pred": "8887090", "correct": false}
+{"id": 57, "budget": 0.5, "T": 2745, "n_kept": 1372, "gold": "885890", "pred": "865499", "correct": false}
+{"id": 57, "budget": 0.375, "T": 2745, "n_kept": 1029, "gold": "885890", "pred": "162345", "correct": false}
+{"id": 57, "budget": 0.25, "T": 2745, "n_kept": 686, "gold": "885890", "pred": "162345", "correct": false}
+{"id": 57, "budget": 0.1875, "T": 2745, "n_kept": 514, "gold": "885890", "pred": "165", "correct": false}
+{"id": 57, "budget": 0.125, "T": 2745, "n_kept": 343, "gold": "885890", "pred": "16", "correct": false}
+{"id": 57, "budget": 0.0625, "T": 2745, "n_kept": 171, "gold": "885890", "pred": "16", "correct": false}
+{"id": 58, "budget": 1.0, "T": 2741, "n_kept": 2741, "gold": "214718", "pred": "148921", "correct": false}
+{"id": 58, "budget": 0.875, "T": 2741, "n_kept": 2398, "gold": "214718", "pred": "148921", "correct": false}
+{"id": 58, "budget": 0.75, "T": 2741, "n_kept": 2055, "gold": "214718", "pred": "148721", "correct": false}
+{"id": 58, "budget": 0.625, "T": 2741, "n_kept": 1713, "gold": "214718", "pred": "148721", "correct": false}
+{"id": 58, "budget": 0.5, "T": 2741, "n_kept": 1370, "gold": "214718", "pred": "148729", "correct": false}
+{"id": 58, "budget": 0.375, "T": 2741, "n_kept": 1027, "gold": "214718", "pred": "214", "correct": false}
+{"id": 58, "budget": 0.25, "T": 2741, "n_kept": 685, "gold": "214718", "pred": "555555", "correct": false}
+{"id": 58, "budget": 0.1875, "T": 2741, "n_kept": 513, "gold": "214718", "pred": "555555", "correct": false}
+{"id": 58, "budget": 0.125, "T": 2741, "n_kept": 342, "gold": "214718", "pred": "555555", "correct": false}
+{"id": 58, "budget": 0.0625, "T": 2741, "n_kept": 171, "gold": "214718", "pred": "213", "correct": false}
+{"id": 59, "budget": 1.0, "T": 2749, "n_kept": 2749, "gold": "104021", "pred": "104021", "correct": true}
+{"id": 59, "budget": 0.875, "T": 2749, "n_kept": 2405, "gold": "104021", "pred": "10", "correct": false}
+{"id": 59, "budget": 0.75, "T": 2749, "n_kept": 2061, "gold": "104021", "pred": "10", "correct": false}
+{"id": 59, "budget": 0.625, "T": 2749, "n_kept": 1718, "gold": "104021", "pred": "10", "correct": false}
+{"id": 59, "budget": 0.5, "T": 2749, "n_kept": 1374, "gold": "104021", "pred": "10", "correct": false}
+{"id": 59, "budget": 0.375, "T": 2749, "n_kept": 1030, "gold": "104021", "pred": "100000", "correct": false}
+{"id": 59, "budget": 0.25, "T": 2749, "n_kept": 687, "gold": "104021", "pred": "21", "correct": false}
+{"id": 59, "budget": 0.1875, "T": 2749, "n_kept": 515, "gold": "104021", "pred": "21", "correct": false}
+{"id": 59, "budget": 0.125, "T": 2749, "n_kept": 343, "gold": "104021", "pred": "The magic number for KTMXYU is 21.", "correct": false}
+{"id": 59, "budget": 0.0625, "T": 2749, "n_kept": 171, "gold": "104021", "pred": "The magic number for KTMXYU is 10.", "correct": false}
+{"id": 60, "budget": 1.0, "T": 2721, "n_kept": 2721, "gold": "692982", "pred": "692982", "correct": true}
+{"id": 60, "budget": 0.875, "T": 2721, "n_kept": 2380, "gold": "692982", "pred": "692982", "correct": true}
+{"id": 60, "budget": 0.75, "T": 2721, "n_kept": 2040, "gold": "692982", "pred": "692982", "correct": true}
+{"id": 60, "budget": 0.625, "T": 2721, "n_kept": 1700, "gold": "692982", "pred": "692982", "correct": true}
+{"id": 60, "budget": 0.5, "T": 2721, "n_kept": 1360, "gold": "692982", "pred": "692982", "correct": true}
+{"id": 60, "budget": 0.375, "T": 2721, "n_kept": 1020, "gold": "692982", "pred": "62", "correct": false}
+{"id": 60, "budget": 0.25, "T": 2721, "n_kept": 680, "gold": "692982", "pred": "62188", "correct": false}
+{"id": 60, "budget": 0.1875, "T": 2721, "n_kept": 510, "gold": "692982", "pred": "6", "correct": false}
+{"id": 60, "budget": 0.125, "T": 2721, "n_kept": 340, "gold": "692982", "pred": "6", "correct": false}
+{"id": 60, "budget": 0.0625, "T": 2721, "n_kept": 170, "gold": "692982", "pred": "The magic number for ZFJQVV is 5.", "correct": false}
+{"id": 61, "budget": 1.0, "T": 2715, "n_kept": 2715, "gold": "872768", "pred": "872768", "correct": true}
+{"id": 61, "budget": 0.875, "T": 2715, "n_kept": 2375, "gold": "872768", "pred": "372768", "correct": false}
+{"id": 61, "budget": 0.75, "T": 2715, "n_kept": 2036, "gold": "872768", "pred": "37288", "correct": false}
+{"id": 61, "budget": 0.625, "T": 2715, "n_kept": 1696, "gold": "872768", "pred": "372", "correct": false}
+{"id": 61, "budget": 0.5, "T": 2715, "n_kept": 1357, "gold": "872768", "pred": "872", "correct": false}
+{"id": 61, "budget": 0.375, "T": 2715, "n_kept": 1018, "gold": "872768", "pred": "872", "correct": false}
+{"id": 61, "budget": 0.25, "T": 2715, "n_kept": 678, "gold": "872768", "pred": "872", "correct": false}
+{"id": 61, "budget": 0.1875, "T": 2715, "n_kept": 509, "gold": "872768", "pred": "872", "correct": false}
+{"id": 61, "budget": 0.125, "T": 2715, "n_kept": 339, "gold": "872768", "pred": "2144", "correct": false}
+{"id": 61, "budget": 0.0625, "T": 2715, "n_kept": 169, "gold": "872768", "pred": "The magic number for FPJCYM is 123456", "correct": false}
+{"id": 62, "budget": 1.0, "T": 2758, "n_kept": 2758, "gold": "106416", "pred": "931264", "correct": false}
+{"id": 62, "budget": 0.875, "T": 2758, "n_kept": 2413, "gold": "106416", "pred": "931264", "correct": false}
+{"id": 62, "budget": 0.75, "T": 2758, "n_kept": 2068, "gold": "106416", "pred": "103465", "correct": false}
+{"id": 62, "budget": 0.625, "T": 2758, "n_kept": 1723, "gold": "106416", "pred": "103465", "correct": false}
+{"id": 62, "budget": 0.5, "T": 2758, "n_kept": 1379, "gold": "106416", "pred": "103465", "correct": false}
+{"id": 62, "budget": 0.375, "T": 2758, "n_kept": 1034, "gold": "106416", "pred": "The magic number for TZEVKS is 3690.", "correct": false}
+{"id": 62, "budget": 0.25, "T": 2758, "n_kept": 689, "gold": "106416", "pred": "The magic number for TZEVKS is 3690.", "correct": false}
+{"id": 62, "budget": 0.1875, "T": 2758, "n_kept": 517, "gold": "106416", "pred": "The magic number for TZEVKS is 36.", "correct": false}
+{"id": 62, "budget": 0.125, "T": 2758, "n_kept": 344, "gold": "106416", "pred": "The magic number for TZEVKS is 36.", "correct": false}
+{"id": 62, "budget": 0.0625, "T": 2758, "n_kept": 172, "gold": "106416", "pred": "The magic number for TZEVKS is 10.", "correct": false}
+{"id": 63, "budget": 1.0, "T": 2716, "n_kept": 2716, "gold": "994905", "pred": "994905", "correct": true}
+{"id": 63, "budget": 0.875, "T": 2716, "n_kept": 2376, "gold": "994905", "pred": "9949050", "correct": true}
+{"id": 63, "budget": 0.75, "T": 2716, "n_kept": 2037, "gold": "994905", "pred": "994905", "correct": true}
+{"id": 63, "budget": 0.625, "T": 2716, "n_kept": 1697, "gold": "994905", "pred": "94950", "correct": false}
+{"id": 63, "budget": 0.5, "T": 2716, "n_kept": 1358, "gold": "994905", "pred": "94949", "correct": false}
+{"id": 63, "budget": 0.375, "T": 2716, "n_kept": 1018, "gold": "994905", "pred": "94949", "correct": false}
+{"id": 63, "budget": 0.25, "T": 2716, "n_kept": 679, "gold": "994905", "pred": "9494", "correct": false}
+{"id": 63, "budget": 0.1875, "T": 2716, "n_kept": 509, "gold": "994905", "pred": "The magic number for BYWWMR is 9.", "correct": false}
+{"id": 63, "budget": 0.125, "T": 2716, "n_kept": 339, "gold": "994905", "pred": "The magic number for BYWWMR is 9.", "correct": false}
+{"id": 63, "budget": 0.0625, "T": 2716, "n_kept": 169, "gold": "994905", "pred": "The magic number for BYWWMR is 9.", "correct": false}
+{"id": 64, "budget": 1.0, "T": 2743, "n_kept": 2743, "gold": "423706", "pred": "423706", "correct": true}
+{"id": 64, "budget": 0.875, "T": 2743, "n_kept": 2400, "gold": "423706", "pred": "623", "correct": false}
+{"id": 64, "budget": 0.75, "T": 2743, "n_kept": 2057, "gold": "423706", "pred": "623", "correct": false}
+{"id": 64, "budget": 0.625, "T": 2743, "n_kept": 1714, "gold": "423706", "pred": "623", "correct": false}
+{"id": 64, "budget": 0.5, "T": 2743, "n_kept": 1371, "gold": "423706", "pred": "6230", "correct": false}
+{"id": 64, "budget": 0.375, "T": 2743, "n_kept": 1028, "gold": "423706", "pred": "The magic number for WOCKAN is 234579.", "correct": false}
+{"id": 64, "budget": 0.25, "T": 2743, "n_kept": 685, "gold": "423706", "pred": "The magic number for WOCKAN is 234579.", "correct": false}
+{"id": 64, "budget": 0.1875, "T": 2743, "n_kept": 514, "gold": "423706", "pred": "The magic number for WOCKAN is 237.", "correct": false}
+{"id": 64, "budget": 0.125, "T": 2743, "n_kept": 342, "gold": "423706", "pred": "The magic number for WOCKAN is 233.", "correct": false}
+{"id": 64, "budget": 0.0625, "T": 2743, "n_kept": 171, "gold": "423706", "pred": "The magic number for WOCKAN is 233.", "correct": false}
+{"id": 65, "budget": 1.0, "T": 2708, "n_kept": 2708, "gold": "155228", "pred": "155228", "correct": true}
+{"id": 65, "budget": 0.875, "T": 2708, "n_kept": 2369, "gold": "155228", "pred": "155228", "correct": true}
+{"id": 65, "budget": 0.75, "T": 2708, "n_kept": 2031, "gold": "155228", "pred": "155228", "correct": true}
+{"id": 65, "budget": 0.625, "T": 2708, "n_kept": 1692, "gold": "155228", "pred": "155228", "correct": true}
+{"id": 65, "budget": 0.5, "T": 2708, "n_kept": 1354, "gold": "155228", "pred": "155228", "correct": true}
+{"id": 65, "budget": 0.375, "T": 2708, "n_kept": 1015, "gold": "155228", "pred": "11111", "correct": false}
+{"id": 65, "budget": 0.25, "T": 2708, "n_kept": 677, "gold": "155228", "pred": "352", "correct": false}
+{"id": 65, "budget": 0.1875, "T": 2708, "n_kept": 507, "gold": "155228", "pred": "355", "correct": false}
+{"id": 65, "budget": 0.125, "T": 2708, "n_kept": 338, "gold": "155228", "pred": "355", "correct": false}
+{"id": 65, "budget": 0.0625, "T": 2708, "n_kept": 169, "gold": "155228", "pred": "The magic number for CTKHPL is 1555.", "correct": false}
+{"id": 66, "budget": 1.0, "T": 2749, "n_kept": 2749, "gold": "597872", "pred": "597872", "correct": true}
+{"id": 66, "budget": 0.875, "T": 2749, "n_kept": 2405, "gold": "597872", "pred": "597314", "correct": false}
+{"id": 66, "budget": 0.75, "T": 2749, "n_kept": 2061, "gold": "597872", "pred": "5", "correct": false}
+{"id": 66, "budget": 0.625, "T": 2749, "n_kept": 1718, "gold": "597872", "pred": "579349", "correct": false}
+{"id": 66, "budget": 0.5, "T": 2749, "n_kept": 1374, "gold": "597872", "pred": "500000", "correct": false}
+{"id": 66, "budget": 0.375, "T": 2749, "n_kept": 1030, "gold": "597872", "pred": "555555", "correct": false}
+{"id": 66, "budget": 0.25, "T": 2749, "n_kept": 687, "gold": "597872", "pred": "94", "correct": false}
+{"id": 66, "budget": 0.1875, "T": 2749, "n_kept": 515, "gold": "597872", "pred": "942", "correct": false}
+{"id": 66, "budget": 0.125, "T": 2749, "n_kept": 343, "gold": "597872", "pred": "899999", "correct": false}
+{"id": 66, "budget": 0.0625, "T": 2749, "n_kept": 171, "gold": "597872", "pred": "12345", "correct": false}
+{"id": 67, "budget": 1.0, "T": 2750, "n_kept": 2750, "gold": "886736", "pred": "886736", "correct": true}
+{"id": 67, "budget": 0.875, "T": 2750, "n_kept": 2406, "gold": "886736", "pred": "88673", "correct": false}
+{"id": 67, "budget": 0.75, "T": 2750, "n_kept": 2062, "gold": "886736", "pred": "886766", "correct": false}
+{"id": 67, "budget": 0.625, "T": 2750, "n_kept": 1718, "gold": "886736", "pred": "886766", "correct": false}
+{"id": 67, "budget": 0.5, "T": 2750, "n_kept": 1375, "gold": "886736", "pred": "886766", "correct": false}
+{"id": 67, "budget": 0.375, "T": 2750, "n_kept": 1031, "gold": "886736", "pred": "87654", "correct": false}
+{"id": 67, "budget": 0.25, "T": 2750, "n_kept": 687, "gold": "886736", "pred": "8777777", "correct": false}
+{"id": 67, "budget": 0.1875, "T": 2750, "n_kept": 515, "gold": "886736", "pred": "86", "correct": false}
+{"id": 67, "budget": 0.125, "T": 2750, "n_kept": 343, "gold": "886736", "pred": "8", "correct": false}
+{"id": 67, "budget": 0.0625, "T": 2750, "n_kept": 171, "gold": "886736", "pred": "The magic number for PECXME is 10.", "correct": false}
+{"id": 68, "budget": 1.0, "T": 2760, "n_kept": 2760, "gold": "109895", "pred": "109895", "correct": true}
+{"id": 68, "budget": 0.875, "T": 2760, "n_kept": 2415, "gold": "109895", "pred": "1095", "correct": false}
+{"id": 68, "budget": 0.75, "T": 2760, "n_kept": 2070, "gold": "109895", "pred": "109912", "correct": false}
+{"id": 68, "budget": 0.625, "T": 2760, "n_kept": 1725, "gold": "109895", "pred": "109912", "correct": false}
+{"id": 68, "budget": 0.5, "T": 2760, "n_kept": 1380, "gold": "109895", "pred": "109", "correct": false}
+{"id": 68, "budget": 0.375, "T": 2760, "n_kept": 1035, "gold": "109895", "pred": "The magic number for EUKFQL is 10,000.", "correct": false}
+{"id": 68, "budget": 0.25, "T": 2760, "n_kept": 690, "gold": "109895", "pred": "The magic number for EUKFQL is 10.", "correct": false}
+{"id": 68, "budget": 0.1875, "T": 2760, "n_kept": 517, "gold": "109895", "pred": "The magic number for EUKFQL is 10.", "correct": false}
+{"id": 68, "budget": 0.125, "T": 2760, "n_kept": 345, "gold": "109895", "pred": "The magic number for EUKFQL is 10.", "correct": false}
+{"id": 68, "budget": 0.0625, "T": 2760, "n_kept": 172, "gold": "109895", "pred": "The magic number for EUKFQL is 10.", "correct": false}
+{"id": 69, "budget": 1.0, "T": 2732, "n_kept": 2732, "gold": "901207", "pred": "901207", "correct": true}
+{"id": 69, "budget": 0.875, "T": 2732, "n_kept": 2390, "gold": "901207", "pred": "975047", "correct": false}
+{"id": 69, "budget": 0.75, "T": 2732, "n_kept": 2049, "gold": "901207", "pred": "875047", "correct": false}
+{"id": 69, "budget": 0.625, "T": 2732, "n_kept": 1707, "gold": "901207", "pred": "875047", "correct": false}
+{"id": 69, "budget": 0.5, "T": 2732, "n_kept": 1366, "gold": "901207", "pred": "875429", "correct": false}
+{"id": 69, "budget": 0.375, "T": 2732, "n_kept": 1024, "gold": "901207", "pred": "875204", "correct": false}
+{"id": 69, "budget": 0.25, "T": 2732, "n_kept": 683, "gold": "901207", "pred": "2", "correct": false}
+{"id": 69, "budget": 0.1875, "T": 2732, "n_kept": 512, "gold": "901207", "pred": "The magic number for RJCVMT is 6.", "correct": false}
+{"id": 69, "budget": 0.125, "T": 2732, "n_kept": 341, "gold": "901207", "pred": "The magic number for RJCVMT is 4316599", "correct": false}
+{"id": 69, "budget": 0.0625, "T": 2732, "n_kept": 170, "gold": "901207", "pred": "The magic number for RJCVMT is 7.", "correct": false}
+{"id": 70, "budget": 1.0, "T": 2770, "n_kept": 2770, "gold": "336714", "pred": "336714", "correct": true}
+{"id": 70, "budget": 0.875, "T": 2770, "n_kept": 2423, "gold": "336714", "pred": "333", "correct": false}
+{"id": 70, "budget": 0.75, "T": 2770, "n_kept": 2077, "gold": "336714", "pred": "333", "correct": false}
+{"id": 70, "budget": 0.625, "T": 2770, "n_kept": 1731, "gold": "336714", "pred": "333", "correct": false}
+{"id": 70, "budget": 0.5, "T": 2770, "n_kept": 1385, "gold": "336714", "pred": "8", "correct": false}
+{"id": 70, "budget": 0.375, "T": 2770, "n_kept": 1038, "gold": "336714", "pred": "333333", "correct": false}
+{"id": 70, "budget": 0.25, "T": 2770, "n_kept": 692, "gold": "336714", "pred": "333333", "correct": false}
+{"id": 70, "budget": 0.1875, "T": 2770, "n_kept": 519, "gold": "336714", "pred": "The magic number for GHCKYR is 10.", "correct": false}
+{"id": 70, "budget": 0.125, "T": 2770, "n_kept": 346, "gold": "336714", "pred": "The magic number for GHCKYR is 123456", "correct": false}
+{"id": 70, "budget": 0.0625, "T": 2770, "n_kept": 173, "gold": "336714", "pred": "The magic number for GHCKYR is 123456", "correct": false}
+{"id": 71, "budget": 1.0, "T": 2712, "n_kept": 2712, "gold": "614451", "pred": "614445", "correct": false}
+{"id": 71, "budget": 0.875, "T": 2712, "n_kept": 2373, "gold": "614451", "pred": "631299", "correct": false}
+{"id": 71, "budget": 0.75, "T": 2712, "n_kept": 2034, "gold": "614451", "pred": "631299", "correct": false}
+{"id": 71, "budget": 0.625, "T": 2712, "n_kept": 1695, "gold": "614451", "pred": "631299", "correct": false}
+{"id": 71, "budget": 0.5, "T": 2712, "n_kept": 1356, "gold": "614451", "pred": "631299", "correct": false}
+{"id": 71, "budget": 0.375, "T": 2712, "n_kept": 1017, "gold": "614451", "pred": "39", "correct": false}
+{"id": 71, "budget": 0.25, "T": 2712, "n_kept": 678, "gold": "614451", "pred": "104458", "correct": false}
+{"id": 71, "budget": 0.1875, "T": 2712, "n_kept": 508, "gold": "614451", "pred": "The magic number for FRACEE is 44161.", "correct": false}
+{"id": 71, "budget": 0.125, "T": 2712, "n_kept": 339, "gold": "614451", "pred": "The magic number for FRACEE is 44444.", "correct": false}
+{"id": 71, "budget": 0.0625, "T": 2712, "n_kept": 169, "gold": "614451", "pred": "The magic number for FRACEE is 11.", "correct": false}
+{"id": 72, "budget": 1.0, "T": 2733, "n_kept": 2733, "gold": "683213", "pred": "683213", "correct": true}
+{"id": 72, "budget": 0.875, "T": 2733, "n_kept": 2391, "gold": "683213", "pred": "683709", "correct": false}
+{"id": 72, "budget": 0.75, "T": 2733, "n_kept": 2049, "gold": "683213", "pred": "683709", "correct": false}
+{"id": 72, "budget": 0.625, "T": 2733, "n_kept": 1708, "gold": "683213", "pred": "683109", "correct": false}
+{"id": 72, "budget": 0.5, "T": 2733, "n_kept": 1366, "gold": "683213", "pred": "68312", "correct": false}
+{"id": 72, "budget": 0.375, "T": 2733, "n_kept": 1024, "gold": "683213", "pred": "683", "correct": false}
+{"id": 72, "budget": 0.25, "T": 2733, "n_kept": 683, "gold": "683213", "pred": "68", "correct": false}
+{"id": 72, "budget": 0.1875, "T": 2733, "n_kept": 512, "gold": "683213", "pred": "68", "correct": false}
+{"id": 72, "budget": 0.125, "T": 2733, "n_kept": 341, "gold": "683213", "pred": "8", "correct": false}
+{"id": 72, "budget": 0.0625, "T": 2733, "n_kept": 170, "gold": "683213", "pred": "86", "correct": false}
+{"id": 73, "budget": 1.0, "T": 2747, "n_kept": 2747, "gold": "314897", "pred": "434199", "correct": false}
+{"id": 73, "budget": 0.875, "T": 2747, "n_kept": 2403, "gold": "314897", "pred": "788417", "correct": false}
+{"id": 73, "budget": 0.75, "T": 2747, "n_kept": 2060, "gold": "314897", "pred": "434197", "correct": false}
+{"id": 73, "budget": 0.625, "T": 2747, "n_kept": 1716, "gold": "314897", "pred": "434192", "correct": false}
+{"id": 73, "budget": 0.5, "T": 2747, "n_kept": 1373, "gold": "314897", "pred": "434195", "correct": false}
+{"id": 73, "budget": 0.375, "T": 2747, "n_kept": 1030, "gold": "314897", "pred": "434115", "correct": false}
+{"id": 73, "budget": 0.25, "T": 2747, "n_kept": 686, "gold": "314897", "pred": "431", "correct": false}
+{"id": 73, "budget": 0.1875, "T": 2747, "n_kept": 515, "gold": "314897", "pred": "The magic number for QWGLLZ is 513.", "correct": false}
+{"id": 73, "budget": 0.125, "T": 2747, "n_kept": 343, "gold": "314897", "pred": "The magic number for QWGLLZ is 311.", "correct": false}
+{"id": 73, "budget": 0.0625, "T": 2747, "n_kept": 171, "gold": "314897", "pred": "The magic number for QWGLLZ is 311.", "correct": false}
+{"id": 74, "budget": 1.0, "T": 2699, "n_kept": 2699, "gold": "499841", "pred": "918168", "correct": false}
+{"id": 74, "budget": 0.875, "T": 2699, "n_kept": 2361, "gold": "499841", "pred": "818168", "correct": false}
+{"id": 74, "budget": 0.75, "T": 2699, "n_kept": 2024, "gold": "499841", "pred": "818168", "correct": false}
+{"id": 74, "budget": 0.625, "T": 2699, "n_kept": 1686, "gold": "499841", "pred": "162949", "correct": false}
+{"id": 74, "budget": 0.5, "T": 2699, "n_kept": 1349, "gold": "499841", "pred": "162945", "correct": false}
+{"id": 74, "budget": 0.375, "T": 2699, "n_kept": 1012, "gold": "499841", "pred": "162944", "correct": false}
+{"id": 74, "budget": 0.25, "T": 2699, "n_kept": 674, "gold": "499841", "pred": "830904", "correct": false}
+{"id": 74, "budget": 0.1875, "T": 2699, "n_kept": 506, "gold": "499841", "pred": "83842", "correct": false}
+{"id": 74, "budget": 0.125, "T": 2699, "n_kept": 337, "gold": "499841", "pred": "The magic number for JGZHQM is 832944", "correct": false}
+{"id": 74, "budget": 0.0625, "T": 2699, "n_kept": 168, "gold": "499841", "pred": "The magic number for JGZHQM is 42365.", "correct": false}
+{"id": 75, "budget": 1.0, "T": 2788, "n_kept": 2788, "gold": "263298", "pred": "263298", "correct": true}
+{"id": 75, "budget": 0.875, "T": 2788, "n_kept": 2439, "gold": "263298", "pred": "20895", "correct": false}
+{"id": 75, "budget": 0.75, "T": 2788, "n_kept": 2091, "gold": "263298", "pred": "20895", "correct": false}
+{"id": 75, "budget": 0.625, "T": 2788, "n_kept": 1742, "gold": "263298", "pred": "20895", "correct": false}
+{"id": 75, "budget": 0.5, "T": 2788, "n_kept": 1394, "gold": "263298", "pred": "120895", "correct": false}
+{"id": 75, "budget": 0.375, "T": 2788, "n_kept": 1045, "gold": "263298", "pred": "198", "correct": false}
+{"id": 75, "budget": 0.25, "T": 2788, "n_kept": 697, "gold": "263298", "pred": "120891", "correct": false}
+{"id": 75, "budget": 0.1875, "T": 2788, "n_kept": 522, "gold": "263298", "pred": "19", "correct": false}
+{"id": 75, "budget": 0.125, "T": 2788, "n_kept": 348, "gold": "263298", "pred": "The magic number for ISFANX is 5813.", "correct": false}
+{"id": 75, "budget": 0.0625, "T": 2788, "n_kept": 174, "gold": "263298", "pred": "The magic number for ISFANX is 4.", "correct": false}
+{"id": 76, "budget": 1.0, "T": 2760, "n_kept": 2760, "gold": "447863", "pred": "447863", "correct": true}
+{"id": 76, "budget": 0.875, "T": 2760, "n_kept": 2415, "gold": "447863", "pred": "447863", "correct": true}
+{"id": 76, "budget": 0.75, "T": 2760, "n_kept": 2070, "gold": "447863", "pred": "447863", "correct": true}
+{"id": 76, "budget": 0.625, "T": 2760, "n_kept": 1725, "gold": "447863", "pred": "194763", "correct": false}
+{"id": 76, "budget": 0.5, "T": 2760, "n_kept": 1380, "gold": "447863", "pred": "13455", "correct": false}
+{"id": 76, "budget": 0.375, "T": 2760, "n_kept": 1035, "gold": "447863", "pred": "44", "correct": false}
+{"id": 76, "budget": 0.25, "T": 2760, "n_kept": 690, "gold": "447863", "pred": "44", "correct": false}
+{"id": 76, "budget": 0.1875, "T": 2760, "n_kept": 517, "gold": "447863", "pred": "The magic number for VRLANW is 100.", "correct": false}
+{"id": 76, "budget": 0.125, "T": 2760, "n_kept": 345, "gold": "447863", "pred": "The magic number for VRLANW is 100.", "correct": false}
+{"id": 76, "budget": 0.0625, "T": 2760, "n_kept": 172, "gold": "447863", "pred": "The magic number for VRLANW is 1000.", "correct": false}
+{"id": 77, "budget": 1.0, "T": 2754, "n_kept": 2754, "gold": "728155", "pred": "728155", "correct": true}
+{"id": 77, "budget": 0.875, "T": 2754, "n_kept": 2409, "gold": "728155", "pred": "7155", "correct": false}
+{"id": 77, "budget": 0.75, "T": 2754, "n_kept": 2065, "gold": "728155", "pred": "715648", "correct": false}
+{"id": 77, "budget": 0.625, "T": 2754, "n_kept": 1721, "gold": "728155", "pred": "715648", "correct": false}
+{"id": 77, "budget": 0.5, "T": 2754, "n_kept": 1377, "gold": "728155", "pred": "715", "correct": false}
+{"id": 77, "budget": 0.375, "T": 2754, "n_kept": 1032, "gold": "728155", "pred": "785", "correct": false}
+{"id": 77, "budget": 0.25, "T": 2754, "n_kept": 688, "gold": "728155", "pred": "The magic number for LBXGAB is 7.", "correct": false}
+{"id": 77, "budget": 0.1875, "T": 2754, "n_kept": 516, "gold": "728155", "pred": "The magic number for LBXGAB is 7.", "correct": false}
+{"id": 77, "budget": 0.125, "T": 2754, "n_kept": 344, "gold": "728155", "pred": "The magic number for LBXGAB is 37.", "correct": false}
+{"id": 77, "budget": 0.0625, "T": 2754, "n_kept": 172, "gold": "728155", "pred": "The magic number for LBXGAB is 37.", "correct": false}
+{"id": 78, "budget": 1.0, "T": 2754, "n_kept": 2754, "gold": "268382", "pred": "268382", "correct": true}
+{"id": 78, "budget": 0.875, "T": 2754, "n_kept": 2409, "gold": "268382", "pred": "268382", "correct": true}
+{"id": 78, "budget": 0.75, "T": 2754, "n_kept": 2065, "gold": "268382", "pred": "2", "correct": false}
+{"id": 78, "budget": 0.625, "T": 2754, "n_kept": 1721, "gold": "268382", "pred": "2", "correct": false}
+{"id": 78, "budget": 0.5, "T": 2754, "n_kept": 1377, "gold": "268382", "pred": "2", "correct": false}
+{"id": 78, "budget": 0.375, "T": 2754, "n_kept": 1032, "gold": "268382", "pred": "2", "correct": false}
+{"id": 78, "budget": 0.25, "T": 2754, "n_kept": 688, "gold": "268382", "pred": "16", "correct": false}
+{"id": 78, "budget": 0.1875, "T": 2754, "n_kept": 516, "gold": "268382", "pred": "The magic number for DKIXGD is 16.", "correct": false}
+{"id": 78, "budget": 0.125, "T": 2754, "n_kept": 344, "gold": "268382", "pred": "The magic number for DKIXGD is 12345.", "correct": false}
+{"id": 78, "budget": 0.0625, "T": 2754, "n_kept": 172, "gold": "268382", "pred": "The magic number for DKIXGD is 13.", "correct": false}
+{"id": 79, "budget": 1.0, "T": 2738, "n_kept": 2738, "gold": "447374", "pred": "447374", "correct": true}
+{"id": 79, "budget": 0.875, "T": 2738, "n_kept": 2395, "gold": "447374", "pred": "747468", "correct": false}
+{"id": 79, "budget": 0.75, "T": 2738, "n_kept": 2053, "gold": "447374", "pred": "689036", "correct": false}
+{"id": 79, "budget": 0.625, "T": 2738, "n_kept": 1711, "gold": "447374", "pred": "689036", "correct": false}
+{"id": 79, "budget": 0.5, "T": 2738, "n_kept": 1369, "gold": "447374", "pred": "689036", "correct": false}
+{"id": 79, "budget": 0.375, "T": 2738, "n_kept": 1026, "gold": "447374", "pred": "689366", "correct": false}
+{"id": 79, "budget": 0.25, "T": 2738, "n_kept": 684, "gold": "447374", "pred": "689266", "correct": false}
+{"id": 79, "budget": 0.1875, "T": 2738, "n_kept": 513, "gold": "447374", "pred": "692969", "correct": false}
+{"id": 79, "budget": 0.125, "T": 2738, "n_kept": 342, "gold": "447374", "pred": "69299", "correct": false}
+{"id": 79, "budget": 0.0625, "T": 2738, "n_kept": 171, "gold": "447374", "pred": "The magic number for GCTGEZ is 6.", "correct": false}
+{"id": 80, "budget": 1.0, "T": 2690, "n_kept": 2690, "gold": "211020", "pred": "211020", "correct": true}
+{"id": 80, "budget": 0.875, "T": 2690, "n_kept": 2353, "gold": "211020", "pred": "211020", "correct": true}
+{"id": 80, "budget": 0.75, "T": 2690, "n_kept": 2017, "gold": "211020", "pred": "21020", "correct": false}
+{"id": 80, "budget": 0.625, "T": 2690, "n_kept": 1681, "gold": "211020", "pred": "211020", "correct": true}
+{"id": 80, "budget": 0.5, "T": 2690, "n_kept": 1345, "gold": "211020", "pred": "211202", "correct": false}
+{"id": 80, "budget": 0.375, "T": 2690, "n_kept": 1008, "gold": "211020", "pred": "21120", "correct": false}
+{"id": 80, "budget": 0.25, "T": 2690, "n_kept": 672, "gold": "211020", "pred": "211202", "correct": false}
+{"id": 80, "budget": 0.1875, "T": 2690, "n_kept": 504, "gold": "211020", "pred": "211202", "correct": false}
+{"id": 80, "budget": 0.125, "T": 2690, "n_kept": 336, "gold": "211020", "pred": "The magic number for MJARQW is 202020", "correct": false}
+{"id": 80, "budget": 0.0625, "T": 2690, "n_kept": 168, "gold": "211020", "pred": "The magic number for MJARQW is 2020.", "correct": false}
+{"id": 81, "budget": 1.0, "T": 2739, "n_kept": 2739, "gold": "388465", "pred": "68465", "correct": false}
+{"id": 81, "budget": 0.875, "T": 2739, "n_kept": 2396, "gold": "388465", "pred": "38865", "correct": false}
+{"id": 81, "budget": 0.75, "T": 2739, "n_kept": 2054, "gold": "388465", "pred": "38865", "correct": false}
+{"id": 81, "budget": 0.625, "T": 2739, "n_kept": 1711, "gold": "388465", "pred": "38865", "correct": false}
+{"id": 81, "budget": 0.5, "T": 2739, "n_kept": 1369, "gold": "388465", "pred": "388655", "correct": false}
+{"id": 81, "budget": 0.375, "T": 2739, "n_kept": 1027, "gold": "388465", "pred": "3", "correct": false}
+{"id": 81, "budget": 0.25, "T": 2739, "n_kept": 684, "gold": "388465", "pred": "The magic number for ULFUXP is 37655.", "correct": false}
+{"id": 81, "budget": 0.1875, "T": 2739, "n_kept": 513, "gold": "388465", "pred": "The magic number for ULFUXP is 34568.", "correct": false}
+{"id": 81, "budget": 0.125, "T": 2739, "n_kept": 342, "gold": "388465", "pred": "The magic number for ULFUXP is 34565.", "correct": false}
+{"id": 81, "budget": 0.0625, "T": 2739, "n_kept": 171, "gold": "388465", "pred": "The magic number for ULFUXP is 26.", "correct": false}
+{"id": 82, "budget": 1.0, "T": 2737, "n_kept": 2737, "gold": "471718", "pred": "471718", "correct": true}
+{"id": 82, "budget": 0.875, "T": 2737, "n_kept": 2394, "gold": "471718", "pred": "471718", "correct": true}
+{"id": 82, "budget": 0.75, "T": 2737, "n_kept": 2052, "gold": "471718", "pred": "4711654", "correct": false}
+{"id": 82, "budget": 0.625, "T": 2737, "n_kept": 1710, "gold": "471718", "pred": "471856", "correct": false}
+{"id": 82, "budget": 0.5, "T": 2737, "n_kept": 1368, "gold": "471718", "pred": "471855", "correct": false}
+{"id": 82, "budget": 0.375, "T": 2737, "n_kept": 1026, "gold": "471718", "pred": "The magic number for LEEIRV is 4718.", "correct": false}
+{"id": 82, "budget": 0.25, "T": 2737, "n_kept": 684, "gold": "471718", "pred": "The magic number for LEEIRV is 63145.", "correct": false}
+{"id": 82, "budget": 0.1875, "T": 2737, "n_kept": 513, "gold": "471718", "pred": "The magic number for LEEIRV is 61097.", "correct": false}
+{"id": 82, "budget": 0.125, "T": 2737, "n_kept": 342, "gold": "471718", "pred": "The magic number for LEEIRV is 61097.", "correct": false}
+{"id": 82, "budget": 0.0625, "T": 2737, "n_kept": 171, "gold": "471718", "pred": "The magic number for LEEIRV is 10.", "correct": false}
+{"id": 83, "budget": 1.0, "T": 2724, "n_kept": 2724, "gold": "178357", "pred": "178357", "correct": true}
+{"id": 83, "budget": 0.875, "T": 2724, "n_kept": 2383, "gold": "178357", "pred": "8", "correct": false}
+{"id": 83, "budget": 0.75, "T": 2724, "n_kept": 2043, "gold": "178357", "pred": "8", "correct": false}
+{"id": 83, "budget": 0.625, "T": 2724, "n_kept": 1702, "gold": "178357", "pred": "8", "correct": false}
+{"id": 83, "budget": 0.5, "T": 2724, "n_kept": 1362, "gold": "178357", "pred": "8", "correct": false}
+{"id": 83, "budget": 0.375, "T": 2724, "n_kept": 1021, "gold": "178357", "pred": "8", "correct": false}
+{"id": 83, "budget": 0.25, "T": 2724, "n_kept": 681, "gold": "178357", "pred": "8", "correct": false}
+{"id": 83, "budget": 0.1875, "T": 2724, "n_kept": 510, "gold": "178357", "pred": "The magic number for DOLSDP is 10.", "correct": false}
+{"id": 83, "budget": 0.125, "T": 2724, "n_kept": 340, "gold": "178357", "pred": "The magic number for DOLSDP is 10.", "correct": false}
+{"id": 83, "budget": 0.0625, "T": 2724, "n_kept": 170, "gold": "178357", "pred": "The magic number for DOLSDP is 10.", "correct": false}
+{"id": 84, "budget": 1.0, "T": 2722, "n_kept": 2722, "gold": "374167", "pred": "374167", "correct": true}
+{"id": 84, "budget": 0.875, "T": 2722, "n_kept": 2381, "gold": "374167", "pred": "753093", "correct": false}
+{"id": 84, "budget": 0.75, "T": 2722, "n_kept": 2041, "gold": "374167", "pred": "753093", "correct": false}
+{"id": 84, "budget": 0.625, "T": 2722, "n_kept": 1701, "gold": "374167", "pred": "753093", "correct": false}
+{"id": 84, "budget": 0.5, "T": 2722, "n_kept": 1361, "gold": "374167", "pred": "764811", "correct": false}
+{"id": 84, "budget": 0.375, "T": 2722, "n_kept": 1020, "gold": "374167", "pred": "67419", "correct": false}
+{"id": 84, "budget": 0.25, "T": 2722, "n_kept": 680, "gold": "374167", "pred": "7641", "correct": false}
+{"id": 84, "budget": 0.1875, "T": 2722, "n_kept": 510, "gold": "374167", "pred": "6741", "correct": false}
+{"id": 84, "budget": 0.125, "T": 2722, "n_kept": 340, "gold": "374167", "pred": "77", "correct": false}
+{"id": 84, "budget": 0.0625, "T": 2722, "n_kept": 170, "gold": "374167", "pred": "6", "correct": false}
+{"id": 85, "budget": 1.0, "T": 2721, "n_kept": 2721, "gold": "948768", "pred": "948768", "correct": true}
+{"id": 85, "budget": 0.875, "T": 2721, "n_kept": 2380, "gold": "948768", "pred": "948768", "correct": true}
+{"id": 85, "budget": 0.75, "T": 2721, "n_kept": 2040, "gold": "948768", "pred": "98768", "correct": false}
+{"id": 85, "budget": 0.625, "T": 2721, "n_kept": 1700, "gold": "948768", "pred": "98", "correct": false}
+{"id": 85, "budget": 0.5, "T": 2721, "n_kept": 1360, "gold": "948768", "pred": "925453", "correct": false}
+{"id": 85, "budget": 0.375, "T": 2721, "n_kept": 1020, "gold": "948768", "pred": "9", "correct": false}
+{"id": 85, "budget": 0.25, "T": 2721, "n_kept": 680, "gold": "948768", "pred": "The magic number for AGOWAO is 326549.", "correct": false}
+{"id": 85, "budget": 0.1875, "T": 2721, "n_kept": 510, "gold": "948768", "pred": "The magic number for AGOWAO is 3.", "correct": false}
+{"id": 85, "budget": 0.125, "T": 2721, "n_kept": 340, "gold": "948768", "pred": "The magic number for AGOWAO is 3.", "correct": false}
+{"id": 85, "budget": 0.0625, "T": 2721, "n_kept": 170, "gold": "948768", "pred": "The magic number for AGOWAO is 10.", "correct": false}
+{"id": 86, "budget": 1.0, "T": 2714, "n_kept": 2714, "gold": "816247", "pred": "816247", "correct": true}
+{"id": 86, "budget": 0.875, "T": 2714, "n_kept": 2374, "gold": "816247", "pred": "816247", "correct": true}
+{"id": 86, "budget": 0.75, "T": 2714, "n_kept": 2035, "gold": "816247", "pred": "816247", "correct": true}
+{"id": 86, "budget": 0.625, "T": 2714, "n_kept": 1696, "gold": "816247", "pred": "816", "correct": false}
+{"id": 86, "budget": 0.5, "T": 2714, "n_kept": 1357, "gold": "816247", "pred": "167", "correct": false}
+{"id": 86, "budget": 0.375, "T": 2714, "n_kept": 1017, "gold": "816247", "pred": "132456", "correct": false}
+{"id": 86, "budget": 0.25, "T": 2714, "n_kept": 678, "gold": "816247", "pred": "819445", "correct": false}
+{"id": 86, "budget": 0.1875, "T": 2714, "n_kept": 508, "gold": "816247", "pred": "819445", "correct": false}
+{"id": 86, "budget": 0.125, "T": 2714, "n_kept": 339, "gold": "816247", "pred": "The magic number for WDDUBT is 10.", "correct": false}
+{"id": 86, "budget": 0.0625, "T": 2714, "n_kept": 169, "gold": "816247", "pred": "The magic number for WDDUBT is 10.", "correct": false}
+{"id": 87, "budget": 1.0, "T": 2709, "n_kept": 2709, "gold": "839197", "pred": "839197", "correct": true}
+{"id": 87, "budget": 0.875, "T": 2709, "n_kept": 2370, "gold": "839197", "pred": "839197", "correct": true}
+{"id": 87, "budget": 0.75, "T": 2709, "n_kept": 2031, "gold": "839197", "pred": "811223", "correct": false}
+{"id": 87, "budget": 0.625, "T": 2709, "n_kept": 1693, "gold": "839197", "pred": "8111111", "correct": false}
+{"id": 87, "budget": 0.5, "T": 2709, "n_kept": 1354, "gold": "839197", "pred": "81999999", "correct": false}
+{"id": 87, "budget": 0.375, "T": 2709, "n_kept": 1015, "gold": "839197", "pred": "8199999", "correct": false}
+{"id": 87, "budget": 0.25, "T": 2709, "n_kept": 677, "gold": "839197", "pred": "The magic number for OYEJWE is 819973", "correct": false}
+{"id": 87, "budget": 0.1875, "T": 2709, "n_kept": 507, "gold": "839197", "pred": "89099", "correct": false}
+{"id": 87, "budget": 0.125, "T": 2709, "n_kept": 338, "gold": "839197", "pred": "8888888888888888", "correct": false}
+{"id": 87, "budget": 0.0625, "T": 2709, "n_kept": 169, "gold": "839197", "pred": "The magic number for OYEJWE is 8.", "correct": false}
+{"id": 88, "budget": 1.0, "T": 2712, "n_kept": 2712, "gold": "858843", "pred": "858843", "correct": true}
+{"id": 88, "budget": 0.875, "T": 2712, "n_kept": 2373, "gold": "858843", "pred": "858843", "correct": true}
+{"id": 88, "budget": 0.75, "T": 2712, "n_kept": 2034, "gold": "858843", "pred": "4374582", "correct": false}
+{"id": 88, "budget": 0.625, "T": 2712, "n_kept": 1695, "gold": "858843", "pred": "4374619", "correct": false}
+{"id": 88, "budget": 0.5, "T": 2712, "n_kept": 1356, "gold": "858843", "pred": "458321", "correct": false}
+{"id": 88, "budget": 0.375, "T": 2712, "n_kept": 1017, "gold": "858843", "pred": "43483", "correct": false}
+{"id": 88, "budget": 0.25, "T": 2712, "n_kept": 678, "gold": "858843", "pred": "The magic number for KEPEXU is 4,426,", "correct": false}
+{"id": 88, "budget": 0.1875, "T": 2712, "n_kept": 508, "gold": "858843", "pred": "The magic number for KEPEXU is 4,426,", "correct": false}
+{"id": 88, "budget": 0.125, "T": 2712, "n_kept": 339, "gold": "858843", "pred": "The magic number for KEPEXU is 4.", "correct": false}
+{"id": 88, "budget": 0.0625, "T": 2712, "n_kept": 169, "gold": "858843", "pred": "The magic number for KEPEXU is 10.", "correct": false}
+{"id": 89, "budget": 1.0, "T": 2725, "n_kept": 2725, "gold": "481362", "pred": "481362", "correct": true}
+{"id": 89, "budget": 0.875, "T": 2725, "n_kept": 2384, "gold": "481362", "pred": "402403", "correct": false}
+{"id": 89, "budget": 0.75, "T": 2725, "n_kept": 2043, "gold": "481362", "pred": "4024", "correct": false}
+{"id": 89, "budget": 0.625, "T": 2725, "n_kept": 1703, "gold": "481362", "pred": "40211", "correct": false}
+{"id": 89, "budget": 0.5, "T": 2725, "n_kept": 1362, "gold": "481362", "pred": "40211", "correct": false}
+{"id": 89, "budget": 0.375, "T": 2725, "n_kept": 1021, "gold": "481362", "pred": "402", "correct": false}
+{"id": 89, "budget": 0.25, "T": 2725, "n_kept": 681, "gold": "481362", "pred": "The magic number for FIJVUX is 6.", "correct": false}
+{"id": 89, "budget": 0.1875, "T": 2725, "n_kept": 510, "gold": "481362", "pred": "The magic number for FIJVUX is 6.", "correct": false}
+{"id": 89, "budget": 0.125, "T": 2725, "n_kept": 340, "gold": "481362", "pred": "The magic number for FIJVUX is 16.", "correct": false}
+{"id": 89, "budget": 0.0625, "T": 2725, "n_kept": 170, "gold": "481362", "pred": "The magic number for FIJVUX is 6.", "correct": false}
+{"id": 90, "budget": 1.0, "T": 2737, "n_kept": 2737, "gold": "649626", "pred": "649626", "correct": true}
+{"id": 90, "budget": 0.875, "T": 2737, "n_kept": 2394, "gold": "649626", "pred": "64962", "correct": false}
+{"id": 90, "budget": 0.75, "T": 2737, "n_kept": 2052, "gold": "649626", "pred": "64962", "correct": false}
+{"id": 90, "budget": 0.625, "T": 2737, "n_kept": 1710, "gold": "649626", "pred": "64929", "correct": false}
+{"id": 90, "budget": 0.5, "T": 2737, "n_kept": 1368, "gold": "649626", "pred": "64", "correct": false}
+{"id": 90, "budget": 0.375, "T": 2737, "n_kept": 1026, "gold": "649626", "pred": "64", "correct": false}
+{"id": 90, "budget": 0.25, "T": 2737, "n_kept": 684, "gold": "649626", "pred": "64", "correct": false}
+{"id": 90, "budget": 0.1875, "T": 2737, "n_kept": 513, "gold": "649626", "pred": "64", "correct": false}
+{"id": 90, "budget": 0.125, "T": 2737, "n_kept": 342, "gold": "649626", "pred": "6", "correct": false}
+{"id": 90, "budget": 0.0625, "T": 2737, "n_kept": 171, "gold": "649626", "pred": "The magic number for XRVQVR is 10.", "correct": false}
+{"id": 91, "budget": 1.0, "T": 2735, "n_kept": 2735, "gold": "640901", "pred": "660901", "correct": false}
+{"id": 91, "budget": 0.875, "T": 2735, "n_kept": 2393, "gold": "640901", "pred": "660901", "correct": false}
+{"id": 91, "budget": 0.75, "T": 2735, "n_kept": 2051, "gold": "640901", "pred": "640901", "correct": true}
+{"id": 91, "budget": 0.625, "T": 2735, "n_kept": 1709, "gold": "640901", "pred": "649099", "correct": false}
+{"id": 91, "budget": 0.5, "T": 2735, "n_kept": 1367, "gold": "640901", "pred": "660901", "correct": false}
+{"id": 91, "budget": 0.375, "T": 2735, "n_kept": 1025, "gold": "640901", "pred": "The magic number for GADACV is 642905", "correct": false}
+{"id": 91, "budget": 0.25, "T": 2735, "n_kept": 683, "gold": "640901", "pred": "The magic number for GADACV is 6,987,", "correct": false}
+{"id": 91, "budget": 0.1875, "T": 2735, "n_kept": 512, "gold": "640901", "pred": "The magic number for GADACV is 6,987,", "correct": false}
+{"id": 91, "budget": 0.125, "T": 2735, "n_kept": 341, "gold": "640901", "pred": "The magic number for GADACV is 9.", "correct": false}
+{"id": 91, "budget": 0.0625, "T": 2735, "n_kept": 170, "gold": "640901", "pred": "The magic number for GADACV is 810000", "correct": false}
+{"id": 92, "budget": 1.0, "T": 2787, "n_kept": 2787, "gold": "353868", "pred": "353868", "correct": true}
+{"id": 92, "budget": 0.875, "T": 2787, "n_kept": 2438, "gold": "353868", "pred": "353868", "correct": true}
+{"id": 92, "budget": 0.75, "T": 2787, "n_kept": 2090, "gold": "353868", "pred": "353868", "correct": true}
+{"id": 92, "budget": 0.625, "T": 2787, "n_kept": 1741, "gold": "353868", "pred": "357068", "correct": false}
+{"id": 92, "budget": 0.5, "T": 2787, "n_kept": 1393, "gold": "353868", "pred": "357068", "correct": false}
+{"id": 92, "budget": 0.375, "T": 2787, "n_kept": 1045, "gold": "353868", "pred": "357068", "correct": false}
+{"id": 92, "budget": 0.25, "T": 2787, "n_kept": 696, "gold": "353868", "pred": "583648", "correct": false}
+{"id": 92, "budget": 0.1875, "T": 2787, "n_kept": 522, "gold": "353868", "pred": "38", "correct": false}
+{"id": 92, "budget": 0.125, "T": 2787, "n_kept": 348, "gold": "353868", "pred": "38", "correct": false}
+{"id": 92, "budget": 0.0625, "T": 2787, "n_kept": 174, "gold": "353868", "pred": "The magic number for LEVJQF is 8,800", "correct": false}
+{"id": 93, "budget": 1.0, "T": 2732, "n_kept": 2732, "gold": "751054", "pred": "375525", "correct": false}
+{"id": 93, "budget": 0.875, "T": 2732, "n_kept": 2390, "gold": "751054", "pred": "375105", "correct": false}
+{"id": 93, "budget": 0.75, "T": 2732, "n_kept": 2049, "gold": "751054", "pred": "375125", "correct": false}
+{"id": 93, "budget": 0.625, "T": 2732, "n_kept": 1707, "gold": "751054", "pred": "371995", "correct": false}
+{"id": 93, "budget": 0.5, "T": 2732, "n_kept": 1366, "gold": "751054", "pred": "379195", "correct": false}
+{"id": 93, "budget": 0.375, "T": 2732, "n_kept": 1024, "gold": "751054", "pred": "37919", "correct": false}
+{"id": 93, "budget": 0.25, "T": 2732, "n_kept": 683, "gold": "751054", "pred": "The magic number for GDHVIN is 68837.", "correct": false}
+{"id": 93, "budget": 0.1875, "T": 2732, "n_kept": 512, "gold": "751054", "pred": "The magic number for GDHVIN is 6883.", "correct": false}
+{"id": 93, "budget": 0.125, "T": 2732, "n_kept": 341, "gold": "751054", "pred": "The magic number for GDHVIN is 8.", "correct": false}
+{"id": 93, "budget": 0.0625, "T": 2732, "n_kept": 170, "gold": "751054", "pred": "The magic number for GDHVIN is 123456.", "correct": false}
+{"id": 94, "budget": 1.0, "T": 2726, "n_kept": 2726, "gold": "488341", "pred": "488341", "correct": true}
+{"id": 94, "budget": 0.875, "T": 2726, "n_kept": 2385, "gold": "488341", "pred": "51234", "correct": false}
+{"id": 94, "budget": 0.75, "T": 2726, "n_kept": 2044, "gold": "488341", "pred": "512325", "correct": false}
+{"id": 94, "budget": 0.625, "T": 2726, "n_kept": 1703, "gold": "488341", "pred": "518324", "correct": false}
+{"id": 94, "budget": 0.5, "T": 2726, "n_kept": 1363, "gold": "488341", "pred": "5234652", "correct": false}
+{"id": 94, "budget": 0.375, "T": 2726, "n_kept": 1022, "gold": "488341", "pred": "5234523", "correct": false}
+{"id": 94, "budget": 0.25, "T": 2726, "n_kept": 681, "gold": "488341", "pred": "41337", "correct": false}
+{"id": 94, "budget": 0.1875, "T": 2726, "n_kept": 511, "gold": "488341", "pred": "41337", "correct": false}
+{"id": 94, "budget": 0.125, "T": 2726, "n_kept": 340, "gold": "488341", "pred": "4", "correct": false}
+{"id": 94, "budget": 0.0625, "T": 2726, "n_kept": 170, "gold": "488341", "pred": "8", "correct": false}
+{"id": 95, "budget": 1.0, "T": 2716, "n_kept": 2716, "gold": "720670", "pred": "720670", "correct": true}
+{"id": 95, "budget": 0.875, "T": 2716, "n_kept": 2376, "gold": "720670", "pred": "720670", "correct": true}
+{"id": 95, "budget": 0.75, "T": 2716, "n_kept": 2037, "gold": "720670", "pred": "720670", "correct": true}
+{"id": 95, "budget": 0.625, "T": 2716, "n_kept": 1697, "gold": "720670", "pred": "720570", "correct": false}
+{"id": 95, "budget": 0.5, "T": 2716, "n_kept": 1358, "gold": "720670", "pred": "The magic number for LGFOET is 72070.", "correct": false}
+{"id": 95, "budget": 0.375, "T": 2716, "n_kept": 1018, "gold": "720670", "pred": "The magic number for LGFOET is 737373.", "correct": false}
+{"id": 95, "budget": 0.25, "T": 2716, "n_kept": 679, "gold": "720670", "pred": "The magic number for LGFOET is 37373.", "correct": false}
+{"id": 95, "budget": 0.1875, "T": 2716, "n_kept": 509, "gold": "720670", "pred": "The magic number for LGFOET is 37373.", "correct": false}
+{"id": 95, "budget": 0.125, "T": 2716, "n_kept": 339, "gold": "720670", "pred": "The magic number for LGFOET is 373.", "correct": false}
+{"id": 95, "budget": 0.0625, "T": 2716, "n_kept": 169, "gold": "720670", "pred": "The magic number for LGFOET is 10.", "correct": false}
+{"id": 96, "budget": 1.0, "T": 2728, "n_kept": 2728, "gold": "224339", "pred": "224339", "correct": true}
+{"id": 96, "budget": 0.875, "T": 2728, "n_kept": 2387, "gold": "224339", "pred": "224339", "correct": true}
+{"id": 96, "budget": 0.75, "T": 2728, "n_kept": 2046, "gold": "224339", "pred": "224", "correct": false}
+{"id": 96, "budget": 0.625, "T": 2728, "n_kept": 1705, "gold": "224339", "pred": "845239", "correct": false}
+{"id": 96, "budget": 0.5, "T": 2728, "n_kept": 1364, "gold": "224339", "pred": "8", "correct": false}
+{"id": 96, "budget": 0.375, "T": 2728, "n_kept": 1023, "gold": "224339", "pred": "8", "correct": false}
+{"id": 96, "budget": 0.25, "T": 2728, "n_kept": 682, "gold": "224339", "pred": "339", "correct": false}
+{"id": 96, "budget": 0.1875, "T": 2728, "n_kept": 511, "gold": "224339", "pred": "The magic number for WZXEDr is 339999", "correct": false}
+{"id": 96, "budget": 0.125, "T": 2728, "n_kept": 341, "gold": "224339", "pred": "339", "correct": false}
+{"id": 96, "budget": 0.0625, "T": 2728, "n_kept": 170, "gold": "224339", "pred": "The magic number for WZXEDr is 10.", "correct": false}
+{"id": 97, "budget": 1.0, "T": 2739, "n_kept": 2739, "gold": "619537", "pred": "619537", "correct": true}
+{"id": 97, "budget": 0.875, "T": 2739, "n_kept": 2396, "gold": "619537", "pred": "619537", "correct": true}
+{"id": 97, "budget": 0.75, "T": 2739, "n_kept": 2054, "gold": "619537", "pred": "619533", "correct": false}
+{"id": 97, "budget": 0.625, "T": 2739, "n_kept": 1711, "gold": "619537", "pred": "659532", "correct": false}
+{"id": 97, "budget": 0.5, "T": 2739, "n_kept": 1369, "gold": "619537", "pred": "92953", "correct": false}
+{"id": 97, "budget": 0.375, "T": 2739, "n_kept": 1027, "gold": "619537", "pred": "9295", "correct": false}
+{"id": 97, "budget": 0.25, "T": 2739, "n_kept": 684, "gold": "619537", "pred": "The magic number for ZHZSMG is 92.", "correct": false}
+{"id": 97, "budget": 0.1875, "T": 2739, "n_kept": 513, "gold": "619537", "pred": "The magic number for ZHZSMG is 9885.", "correct": false}
+{"id": 97, "budget": 0.125, "T": 2739, "n_kept": 342, "gold": "619537", "pred": "The magic number for ZHZSMG is 9.", "correct": false}
+{"id": 97, "budget": 0.0625, "T": 2739, "n_kept": 171, "gold": "619537", "pred": "The magic number for ZHZSMG is 56.", "correct": false}
+{"id": 98, "budget": 1.0, "T": 2742, "n_kept": 2742, "gold": "118551", "pred": "118551", "correct": true}
+{"id": 98, "budget": 0.875, "T": 2742, "n_kept": 2399, "gold": "118551", "pred": "983854", "correct": false}
+{"id": 98, "budget": 0.75, "T": 2742, "n_kept": 2056, "gold": "118551", "pred": "983554", "correct": false}
+{"id": 98, "budget": 0.625, "T": 2742, "n_kept": 1713, "gold": "118551", "pred": "983554", "correct": false}
+{"id": 98, "budget": 0.5, "T": 2742, "n_kept": 1371, "gold": "118551", "pred": "1188551", "correct": false}
+{"id": 98, "budget": 0.375, "T": 2742, "n_kept": 1028, "gold": "118551", "pred": "111555", "correct": false}
+{"id": 98, "budget": 0.25, "T": 2742, "n_kept": 685, "gold": "118551", "pred": "85155", "correct": false}
+{"id": 98, "budget": 0.1875, "T": 2742, "n_kept": 514, "gold": "118551", "pred": "89855", "correct": false}
+{"id": 98, "budget": 0.125, "T": 2742, "n_kept": 342, "gold": "118551", "pred": "8", "correct": false}
+{"id": 98, "budget": 0.0625, "T": 2742, "n_kept": 171, "gold": "118551", "pred": "The magic number for DSNXAC is 12345.", "correct": false}
+{"id": 99, "budget": 1.0, "T": 2736, "n_kept": 2736, "gold": "347829", "pred": "916733", "correct": false}
+{"id": 99, "budget": 0.875, "T": 2736, "n_kept": 2394, "gold": "347829", "pred": "973654", "correct": false}
+{"id": 99, "budget": 0.75, "T": 2736, "n_kept": 2052, "gold": "347829", "pred": "973333", "correct": false}
+{"id": 99, "budget": 0.625, "T": 2736, "n_kept": 1710, "gold": "347829", "pred": "9773655", "correct": false}
+{"id": 99, "budget": 0.5, "T": 2736, "n_kept": 1368, "gold": "347829", "pred": "977333", "correct": false}
+{"id": 99, "budget": 0.375, "T": 2736, "n_kept": 1026, "gold": "347829", "pred": "977999", "correct": false}
+{"id": 99, "budget": 0.25, "T": 2736, "n_kept": 684, "gold": "347829", "pred": "The magic number for QGRDIO is 9.", "correct": false}
+{"id": 99, "budget": 0.1875, "T": 2736, "n_kept": 513, "gold": "347829", "pred": "The magic number for QGRDIO is 9.", "correct": false}
+{"id": 99, "budget": 0.125, "T": 2736, "n_kept": 342, "gold": "347829", "pred": "The magic number for QGRDIO is 9.", "correct": false}
+{"id": 99, "budget": 0.0625, "T": 2736, "n_kept": 171, "gold": "347829", "pred": "The magic number for QGRDIO is 999999", "correct": false}
+{"id": 100, "budget": 1.0, "T": 2742, "n_kept": 2742, "gold": "391297", "pred": "391297", "correct": true}
+{"id": 100, "budget": 0.875, "T": 2742, "n_kept": 2399, "gold": "391297", "pred": "3", "correct": false}
+{"id": 100, "budget": 0.75, "T": 2742, "n_kept": 2056, "gold": "391297", "pred": "3", "correct": false}
+{"id": 100, "budget": 0.625, "T": 2742, "n_kept": 1713, "gold": "391297", "pred": "3", "correct": false}
+{"id": 100, "budget": 0.5, "T": 2742, "n_kept": 1371, "gold": "391297", "pred": "3", "correct": false}
+{"id": 100, "budget": 0.375, "T": 2742, "n_kept": 1028, "gold": "391297", "pred": "62945", "correct": false}
+{"id": 100, "budget": 0.25, "T": 2742, "n_kept": 685, "gold": "391297", "pred": "64", "correct": false}
+{"id": 100, "budget": 0.1875, "T": 2742, "n_kept": 514, "gold": "391297", "pred": "6", "correct": false}
+{"id": 100, "budget": 0.125, "T": 2742, "n_kept": 342, "gold": "391297", "pred": "6", "correct": false}
+{"id": 100, "budget": 0.0625, "T": 2742, "n_kept": 171, "gold": "391297", "pred": "The magic number for OOSNER is 10.", "correct": false}
+{"id": 101, "budget": 1.0, "T": 2797, "n_kept": 2797, "gold": "797320", "pred": "797320", "correct": true}
+{"id": 101, "budget": 0.875, "T": 2797, "n_kept": 2447, "gold": "797320", "pred": "796320", "correct": false}
+{"id": 101, "budget": 0.75, "T": 2797, "n_kept": 2097, "gold": "797320", "pred": "793", "correct": false}
+{"id": 101, "budget": 0.625, "T": 2797, "n_kept": 1748, "gold": "797320", "pred": "793", "correct": false}
+{"id": 101, "budget": 0.5, "T": 2797, "n_kept": 1398, "gold": "797320", "pred": "7933", "correct": false}
+{"id": 101, "budget": 0.375, "T": 2797, "n_kept": 1048, "gold": "797320", "pred": "7935", "correct": false}
+{"id": 101, "budget": 0.25, "T": 2797, "n_kept": 699, "gold": "797320", "pred": "8913", "correct": false}
+{"id": 101, "budget": 0.1875, "T": 2797, "n_kept": 524, "gold": "797320", "pred": "The magic number for MYMDNU is 13579.", "correct": false}
+{"id": 101, "budget": 0.125, "T": 2797, "n_kept": 349, "gold": "797320", "pred": "703519", "correct": false}
+{"id": 101, "budget": 0.0625, "T": 2797, "n_kept": 174, "gold": "797320", "pred": "The magic number for MYMDNU is 13743.", "correct": false}
+{"id": 102, "budget": 1.0, "T": 2744, "n_kept": 2744, "gold": "781829", "pred": "781829", "correct": true}
+{"id": 102, "budget": 0.875, "T": 2744, "n_kept": 2401, "gold": "781829", "pred": "781829", "correct": true}
+{"id": 102, "budget": 0.75, "T": 2744, "n_kept": 2058, "gold": "781829", "pred": "781829", "correct": true}
+{"id": 102, "budget": 0.625, "T": 2744, "n_kept": 1715, "gold": "781829", "pred": "918559", "correct": false}
+{"id": 102, "budget": 0.5, "T": 2744, "n_kept": 1372, "gold": "781829", "pred": "913545", "correct": false}
+{"id": 102, "budget": 0.375, "T": 2744, "n_kept": 1029, "gold": "781829", "pred": "913555", "correct": false}
+{"id": 102, "budget": 0.25, "T": 2744, "n_kept": 686, "gold": "781829", "pred": "9", "correct": false}
+{"id": 102, "budget": 0.1875, "T": 2744, "n_kept": 514, "gold": "781829", "pred": "9", "correct": false}
+{"id": 102, "budget": 0.125, "T": 2744, "n_kept": 343, "gold": "781829", "pred": "55555", "correct": false}
+{"id": 102, "budget": 0.0625, "T": 2744, "n_kept": 171, "gold": "781829", "pred": "The magic number for KWSWJA is 13.", "correct": false}
+{"id": 103, "budget": 1.0, "T": 2729, "n_kept": 2729, "gold": "777090", "pred": "927293", "correct": false}
+{"id": 103, "budget": 0.875, "T": 2729, "n_kept": 2387, "gold": "777090", "pred": "927293", "correct": false}
+{"id": 103, "budget": 0.75, "T": 2729, "n_kept": 2046, "gold": "777090", "pred": "927193", "correct": false}
+{"id": 103, "budget": 0.625, "T": 2729, "n_kept": 1705, "gold": "777090", "pred": "927193", "correct": false}
+{"id": 103, "budget": 0.5, "T": 2729, "n_kept": 1364, "gold": "777090", "pred": "57499", "correct": false}
+{"id": 103, "budget": 0.375, "T": 2729, "n_kept": 1023, "gold": "777090", "pred": "57499", "correct": false}
+{"id": 103, "budget": 0.25, "T": 2729, "n_kept": 682, "gold": "777090", "pred": "77090", "correct": false}
+{"id": 103, "budget": 0.1875, "T": 2729, "n_kept": 511, "gold": "777090", "pred": "777777", "correct": false}
+{"id": 103, "budget": 0.125, "T": 2729, "n_kept": 341, "gold": "777090", "pred": "5", "correct": false}
+{"id": 103, "budget": 0.0625, "T": 2729, "n_kept": 170, "gold": "777090", "pred": "7", "correct": false}
+{"id": 104, "budget": 1.0, "T": 2720, "n_kept": 2720, "gold": "535770", "pred": "535770", "correct": true}
+{"id": 104, "budget": 0.875, "T": 2720, "n_kept": 2380, "gold": "535770", "pred": "535570", "correct": false}
+{"id": 104, "budget": 0.75, "T": 2720, "n_kept": 2040, "gold": "535770", "pred": "532605", "correct": false}
+{"id": 104, "budget": 0.625, "T": 2720, "n_kept": 1700, "gold": "535770", "pred": "532605", "correct": false}
+{"id": 104, "budget": 0.5, "T": 2720, "n_kept": 1360, "gold": "535770", "pred": "The magic number for GMLRDK is 654193", "correct": false}
+{"id": 104, "budget": 0.375, "T": 2720, "n_kept": 1020, "gold": "535770", "pred": "The magic number for GMLRDK is 65535.", "correct": false}
+{"id": 104, "budget": 0.25, "T": 2720, "n_kept": 680, "gold": "535770", "pred": "The magic number for GMLRDK is 126.", "correct": false}
+{"id": 104, "budget": 0.1875, "T": 2720, "n_kept": 510, "gold": "535770", "pred": "The magic number for GMLRDK is 17.", "correct": false}
+{"id": 104, "budget": 0.125, "T": 2720, "n_kept": 340, "gold": "535770", "pred": "The magic number for GMLRDK is 12345.", "correct": false}
+{"id": 104, "budget": 0.0625, "T": 2720, "n_kept": 170, "gold": "535770", "pred": "The magic number for GMLRDK is 10.", "correct": false}
+{"id": 105, "budget": 1.0, "T": 2733, "n_kept": 2733, "gold": "321431", "pred": "321431", "correct": true}
+{"id": 105, "budget": 0.875, "T": 2733, "n_kept": 2391, "gold": "321431", "pred": "321431", "correct": true}
+{"id": 105, "budget": 0.75, "T": 2733, "n_kept": 2049, "gold": "321431", "pred": "321321", "correct": false}
+{"id": 105, "budget": 0.625, "T": 2733, "n_kept": 1708, "gold": "321431", "pred": "321058", "correct": false}
+{"id": 105, "budget": 0.5, "T": 2733, "n_kept": 1366, "gold": "321431", "pred": "312549", "correct": false}
+{"id": 105, "budget": 0.375, "T": 2733, "n_kept": 1024, "gold": "321431", "pred": "3125", "correct": false}
+{"id": 105, "budget": 0.25, "T": 2733, "n_kept": 683, "gold": "321431", "pred": "312", "correct": false}
+{"id": 105, "budget": 0.1875, "T": 2733, "n_kept": 512, "gold": "321431", "pred": "314", "correct": false}
+{"id": 105, "budget": 0.125, "T": 2733, "n_kept": 341, "gold": "321431", "pred": "314", "correct": false}
+{"id": 105, "budget": 0.0625, "T": 2733, "n_kept": 170, "gold": "321431", "pred": "The magic number for YVXBDP is 10.", "correct": false}
+{"id": 106, "budget": 1.0, "T": 2736, "n_kept": 2736, "gold": "723188", "pred": "723188", "correct": true}
+{"id": 106, "budget": 0.875, "T": 2736, "n_kept": 2394, "gold": "723188", "pred": "723188", "correct": true}
+{"id": 106, "budget": 0.75, "T": 2736, "n_kept": 2052, "gold": "723188", "pred": "810568", "correct": false}
+{"id": 106, "budget": 0.625, "T": 2736, "n_kept": 1710, "gold": "723188", "pred": "532738", "correct": false}
+{"id": 106, "budget": 0.5, "T": 2736, "n_kept": 1368, "gold": "723188", "pred": "538", "correct": false}
+{"id": 106, "budget": 0.375, "T": 2736, "n_kept": 1026, "gold": "723188", "pred": "532149", "correct": false}
+{"id": 106, "budget": 0.25, "T": 2736, "n_kept": 684, "gold": "723188", "pred": "The magic number for BNMUEO is 538.", "correct": false}
+{"id": 106, "budget": 0.1875, "T": 2736, "n_kept": 513, "gold": "723188", "pred": "The magic number for BNMUEO is 5.", "correct": false}
+{"id": 106, "budget": 0.125, "T": 2736, "n_kept": 342, "gold": "723188", "pred": "The magic number for BNMUEO is 5.", "correct": false}
+{"id": 106, "budget": 0.0625, "T": 2736, "n_kept": 171, "gold": "723188", "pred": "The magic number for BNMUEO is 5.", "correct": false}
+{"id": 107, "budget": 1.0, "T": 2716, "n_kept": 2716, "gold": "788626", "pred": "831866", "correct": false}
+{"id": 107, "budget": 0.875, "T": 2716, "n_kept": 2376, "gold": "788626", "pred": "831866", "correct": false}
+{"id": 107, "budget": 0.75, "T": 2716, "n_kept": 2037, "gold": "788626", "pred": "7318626", "correct": false}
+{"id": 107, "budget": 0.625, "T": 2716, "n_kept": 1697, "gold": "788626", "pred": "76289", "correct": false}
+{"id": 107, "budget": 0.5, "T": 2716, "n_kept": 1358, "gold": "788626", "pred": "7626", "correct": false}
+{"id": 107, "budget": 0.375, "T": 2716, "n_kept": 1018, "gold": "788626", "pred": "726", "correct": false}
+{"id": 107, "budget": 0.25, "T": 2716, "n_kept": 679, "gold": "788626", "pred": "666666", "correct": false}
+{"id": 107, "budget": 0.1875, "T": 2716, "n_kept": 509, "gold": "788626", "pred": "666666", "correct": false}
+{"id": 107, "budget": 0.125, "T": 2716, "n_kept": 339, "gold": "788626", "pred": "The magic number for IDGNZJ is 622266", "correct": false}
+{"id": 107, "budget": 0.0625, "T": 2716, "n_kept": 169, "gold": "788626", "pred": "The magic number for IDGNZJ is 10.", "correct": false}
+{"id": 108, "budget": 1.0, "T": 2741, "n_kept": 2741, "gold": "285219", "pred": "285219", "correct": true}
+{"id": 108, "budget": 0.875, "T": 2741, "n_kept": 2398, "gold": "285219", "pred": "285219", "correct": true}
+{"id": 108, "budget": 0.75, "T": 2741, "n_kept": 2055, "gold": "285219", "pred": "28521", "correct": false}
+{"id": 108, "budget": 0.625, "T": 2741, "n_kept": 1713, "gold": "285219", "pred": "288117", "correct": false}
+{"id": 108, "budget": 0.5, "T": 2741, "n_kept": 1370, "gold": "285219", "pred": "288", "correct": false}
+{"id": 108, "budget": 0.375, "T": 2741, "n_kept": 1027, "gold": "285219", "pred": "288", "correct": false}
+{"id": 108, "budget": 0.25, "T": 2741, "n_kept": 685, "gold": "285219", "pred": "28", "correct": false}
+{"id": 108, "budget": 0.1875, "T": 2741, "n_kept": 513, "gold": "285219", "pred": "The magic number for CXGTNI is 10.", "correct": false}
+{"id": 108, "budget": 0.125, "T": 2741, "n_kept": 342, "gold": "285219", "pred": "The magic number for CXGTNI is 10.", "correct": false}
+{"id": 108, "budget": 0.0625, "T": 2741, "n_kept": 171, "gold": "285219", "pred": "The magic number for CXGTNI is 10.", "correct": false}
+{"id": 109, "budget": 1.0, "T": 2764, "n_kept": 2764, "gold": "258299", "pred": "258299", "correct": true}
+{"id": 109, "budget": 0.875, "T": 2764, "n_kept": 2418, "gold": "258299", "pred": "258299", "correct": true}
+{"id": 109, "budget": 0.75, "T": 2764, "n_kept": 2073, "gold": "258299", "pred": "258299", "correct": true}
+{"id": 109, "budget": 0.625, "T": 2764, "n_kept": 1727, "gold": "258299", "pred": "480299", "correct": false}
+{"id": 109, "budget": 0.5, "T": 2764, "n_kept": 1382, "gold": "258299", "pred": "258299", "correct": true}
+{"id": 109, "budget": 0.375, "T": 2764, "n_kept": 1036, "gold": "258299", "pred": "258299", "correct": true}
+{"id": 109, "budget": 0.25, "T": 2764, "n_kept": 691, "gold": "258299", "pred": "298", "correct": false}
+{"id": 109, "budget": 0.1875, "T": 2764, "n_kept": 518, "gold": "258299", "pred": "999999", "correct": false}
+{"id": 109, "budget": 0.125, "T": 2764, "n_kept": 345, "gold": "258299", "pred": "999999", "correct": false}
+{"id": 109, "budget": 0.0625, "T": 2764, "n_kept": 172, "gold": "258299", "pred": "The magic number for PGETEX is 999999.", "correct": false}
+{"id": 110, "budget": 1.0, "T": 2705, "n_kept": 2705, "gold": "525703", "pred": "522703", "correct": false}
+{"id": 110, "budget": 0.875, "T": 2705, "n_kept": 2366, "gold": "525703", "pred": "522703", "correct": false}
+{"id": 110, "budget": 0.75, "T": 2705, "n_kept": 2028, "gold": "525703", "pred": "522703", "correct": false}
+{"id": 110, "budget": 0.625, "T": 2705, "n_kept": 1690, "gold": "525703", "pred": "52", "correct": false}
+{"id": 110, "budget": 0.5, "T": 2705, "n_kept": 1352, "gold": "525703", "pred": "2", "correct": false}
+{"id": 110, "budget": 0.375, "T": 2705, "n_kept": 1014, "gold": "525703", "pred": "22", "correct": false}
+{"id": 110, "budget": 0.25, "T": 2705, "n_kept": 676, "gold": "525703", "pred": "2", "correct": false}
+{"id": 110, "budget": 0.1875, "T": 2705, "n_kept": 507, "gold": "525703", "pred": "The magic number for BQEOPJ is 2.", "correct": false}
+{"id": 110, "budget": 0.125, "T": 2705, "n_kept": 338, "gold": "525703", "pred": "The magic number for BQEOPJ is 10.", "correct": false}
+{"id": 110, "budget": 0.0625, "T": 2705, "n_kept": 169, "gold": "525703", "pred": "The magic number for BQEOPJ is 10.", "correct": false}
+{"id": 111, "budget": 1.0, "T": 2740, "n_kept": 2740, "gold": "497502", "pred": "497502", "correct": true}
+{"id": 111, "budget": 0.875, "T": 2740, "n_kept": 2397, "gold": "497502", "pred": "770022", "correct": false}
+{"id": 111, "budget": 0.75, "T": 2740, "n_kept": 2055, "gold": "497502", "pred": "770022", "correct": false}
+{"id": 111, "budget": 0.625, "T": 2740, "n_kept": 1712, "gold": "497502", "pred": "770022", "correct": false}
+{"id": 111, "budget": 0.5, "T": 2740, "n_kept": 1370, "gold": "497502", "pred": "770522", "correct": false}
+{"id": 111, "budget": 0.375, "T": 2740, "n_kept": 1027, "gold": "497502", "pred": "770502", "correct": false}
+{"id": 111, "budget": 0.25, "T": 2740, "n_kept": 685, "gold": "497502", "pred": "775022", "correct": false}
+{"id": 111, "budget": 0.1875, "T": 2740, "n_kept": 513, "gold": "497502", "pred": "The magic number for KWRDDK is 10.", "correct": false}
+{"id": 111, "budget": 0.125, "T": 2740, "n_kept": 342, "gold": "497502", "pred": "The magic number for KWRDDK is 123456", "correct": false}
+{"id": 111, "budget": 0.0625, "T": 2740, "n_kept": 171, "gold": "497502", "pred": "The magic number for KWRDDK is 123456", "correct": false}
+{"id": 112, "budget": 1.0, "T": 2754, "n_kept": 2754, "gold": "847962", "pred": "847962", "correct": true}
+{"id": 112, "budget": 0.875, "T": 2754, "n_kept": 2409, "gold": "847962", "pred": "847962", "correct": true}
+{"id": 112, "budget": 0.75, "T": 2754, "n_kept": 2065, "gold": "847962", "pred": "8", "correct": false}
+{"id": 112, "budget": 0.625, "T": 2754, "n_kept": 1721, "gold": "847962", "pred": "8", "correct": false}
+{"id": 112, "budget": 0.5, "T": 2754, "n_kept": 1377, "gold": "847962", "pred": "8", "correct": false}
+{"id": 112, "budget": 0.375, "T": 2754, "n_kept": 1032, "gold": "847962", "pred": "8", "correct": false}
+{"id": 112, "budget": 0.25, "T": 2754, "n_kept": 688, "gold": "847962", "pred": "The magic number for BOBAIX is 8.", "correct": false}
+{"id": 112, "budget": 0.1875, "T": 2754, "n_kept": 516, "gold": "847962", "pred": "8", "correct": false}
+{"id": 112, "budget": 0.125, "T": 2754, "n_kept": 344, "gold": "847962", "pred": "8", "correct": false}
+{"id": 112, "budget": 0.0625, "T": 2754, "n_kept": 172, "gold": "847962", "pred": "The magic number for BOBAIX is 8.", "correct": false}
+{"id": 113, "budget": 1.0, "T": 2716, "n_kept": 2716, "gold": "724531", "pred": "724531", "correct": true}
+{"id": 113, "budget": 0.875, "T": 2716, "n_kept": 2376, "gold": "724531", "pred": "24051", "correct": false}
+{"id": 113, "budget": 0.75, "T": 2716, "n_kept": 2037, "gold": "724531", "pred": "745321", "correct": false}
+{"id": 113, "budget": 0.625, "T": 2716, "n_kept": 1697, "gold": "724531", "pred": "244", "correct": false}
+{"id": 113, "budget": 0.5, "T": 2716, "n_kept": 1358, "gold": "724531", "pred": "244", "correct": false}
+{"id": 113, "budget": 0.375, "T": 2716, "n_kept": 1018, "gold": "724531", "pred": "6", "correct": false}
+{"id": 113, "budget": 0.25, "T": 2716, "n_kept": 679, "gold": "724531", "pred": "The magic number for KHRCRT is 108.", "correct": false}
+{"id": 113, "budget": 0.1875, "T": 2716, "n_kept": 509, "gold": "724531", "pred": "The magic number for KHRCRT is 108.", "correct": false}
+{"id": 113, "budget": 0.125, "T": 2716, "n_kept": 339, "gold": "724531", "pred": "16", "correct": false}
+{"id": 113, "budget": 0.0625, "T": 2716, "n_kept": 169, "gold": "724531", "pred": "The magic number for KHRCRT is 10.", "correct": false}
+{"id": 114, "budget": 1.0, "T": 2743, "n_kept": 2743, "gold": "953870", "pred": "953870", "correct": true}
+{"id": 114, "budget": 0.875, "T": 2743, "n_kept": 2400, "gold": "953870", "pred": "953870", "correct": true}
+{"id": 114, "budget": 0.75, "T": 2743, "n_kept": 2057, "gold": "953870", "pred": "953870", "correct": true}
+{"id": 114, "budget": 0.625, "T": 2743, "n_kept": 1714, "gold": "953870", "pred": "953877", "correct": false}
+{"id": 114, "budget": 0.5, "T": 2743, "n_kept": 1371, "gold": "953870", "pred": "99877", "correct": false}
+{"id": 114, "budget": 0.375, "T": 2743, "n_kept": 1028, "gold": "953870", "pred": "99800", "correct": false}
+{"id": 114, "budget": 0.25, "T": 2743, "n_kept": 685, "gold": "953870", "pred": "998", "correct": false}
+{"id": 114, "budget": 0.1875, "T": 2743, "n_kept": 514, "gold": "953870", "pred": "The magic number for COZKZE is 109999", "correct": false}
+{"id": 114, "budget": 0.125, "T": 2743, "n_kept": 342, "gold": "953870", "pred": "The magic number for COZKZE is 108.", "correct": false}
+{"id": 114, "budget": 0.0625, "T": 2743, "n_kept": 171, "gold": "953870", "pred": "The magic number for COZKZE is 10.", "correct": false}
+{"id": 115, "budget": 1.0, "T": 2738, "n_kept": 2738, "gold": "472924", "pred": "472924", "correct": true}
+{"id": 115, "budget": 0.875, "T": 2738, "n_kept": 2395, "gold": "472924", "pred": "472924", "correct": true}
+{"id": 115, "budget": 0.75, "T": 2738, "n_kept": 2053, "gold": "472924", "pred": "47292", "correct": false}
+{"id": 115, "budget": 0.625, "T": 2738, "n_kept": 1711, "gold": "472924", "pred": "4", "correct": false}
+{"id": 115, "budget": 0.5, "T": 2738, "n_kept": 1369, "gold": "472924", "pred": "4", "correct": false}
+{"id": 115, "budget": 0.375, "T": 2738, "n_kept": 1026, "gold": "472924", "pred": "4", "correct": false}
+{"id": 115, "budget": 0.25, "T": 2738, "n_kept": 684, "gold": "472924", "pred": "4", "correct": false}
+{"id": 115, "budget": 0.1875, "T": 2738, "n_kept": 513, "gold": "472924", "pred": "4", "correct": false}
+{"id": 115, "budget": 0.125, "T": 2738, "n_kept": 342, "gold": "472924", "pred": "The magic number for STXQTQ is 10.", "correct": false}
+{"id": 115, "budget": 0.0625, "T": 2738, "n_kept": 171, "gold": "472924", "pred": "The magic number for STXQTQ is 10.", "correct": false}
+{"id": 116, "budget": 1.0, "T": 2719, "n_kept": 2719, "gold": "240459", "pred": "240459", "correct": true}
+{"id": 116, "budget": 0.875, "T": 2719, "n_kept": 2379, "gold": "240459", "pred": "24059", "correct": false}
+{"id": 116, "budget": 0.75, "T": 2719, "n_kept": 2039, "gold": "240459", "pred": "24059", "correct": false}
+{"id": 116, "budget": 0.625, "T": 2719, "n_kept": 1699, "gold": "240459", "pred": "420999", "correct": false}
+{"id": 116, "budget": 0.5, "T": 2719, "n_kept": 1359, "gold": "240459", "pred": "420999", "correct": false}
+{"id": 116, "budget": 0.375, "T": 2719, "n_kept": 1019, "gold": "240459", "pred": "30", "correct": false}
+{"id": 116, "budget": 0.25, "T": 2719, "n_kept": 679, "gold": "240459", "pred": "36", "correct": false}
+{"id": 116, "budget": 0.1875, "T": 2719, "n_kept": 509, "gold": "240459", "pred": "36", "correct": false}
+{"id": 116, "budget": 0.125, "T": 2719, "n_kept": 339, "gold": "240459", "pred": "The magic number for UTDKRM is 7.", "correct": false}
+{"id": 116, "budget": 0.0625, "T": 2719, "n_kept": 169, "gold": "240459", "pred": "The magic number for UTDKRM is 10.", "correct": false}
+{"id": 117, "budget": 1.0, "T": 2776, "n_kept": 2776, "gold": "609484", "pred": "609484", "correct": true}
+{"id": 117, "budget": 0.875, "T": 2776, "n_kept": 2429, "gold": "609484", "pred": "609484", "correct": true}
+{"id": 117, "budget": 0.75, "T": 2776, "n_kept": 2082, "gold": "609484", "pred": "609484", "correct": true}
+{"id": 117, "budget": 0.625, "T": 2776, "n_kept": 1735, "gold": "609484", "pred": "6048731958", "correct": false}
+{"id": 117, "budget": 0.5, "T": 2776, "n_kept": 1388, "gold": "609484", "pred": "60", "correct": false}
+{"id": 117, "budget": 0.375, "T": 2776, "n_kept": 1041, "gold": "609484", "pred": "1324", "correct": false}
+{"id": 117, "budget": 0.25, "T": 2776, "n_kept": 694, "gold": "609484", "pred": "1324", "correct": false}
+{"id": 117, "budget": 0.1875, "T": 2776, "n_kept": 520, "gold": "609484", "pred": "The magic number for BZQMXE is 12345", "correct": false}
+{"id": 117, "budget": 0.125, "T": 2776, "n_kept": 347, "gold": "609484", "pred": "The magic number for BZQMXE is 12345", "correct": false}
+{"id": 117, "budget": 0.0625, "T": 2776, "n_kept": 173, "gold": "609484", "pred": "The magic number for BZQMXE is 12345", "correct": false}
+{"id": 118, "budget": 1.0, "T": 2729, "n_kept": 2729, "gold": "519795", "pred": "519795", "correct": true}
+{"id": 118, "budget": 0.875, "T": 2729, "n_kept": 2387, "gold": "519795", "pred": "519595", "correct": false}
+{"id": 118, "budget": 0.75, "T": 2729, "n_kept": 2046, "gold": "519795", "pred": "519999", "correct": false}
+{"id": 118, "budget": 0.625, "T": 2729, "n_kept": 1705, "gold": "519795", "pred": "519999", "correct": false}
+{"id": 118, "budget": 0.5, "T": 2729, "n_kept": 1364, "gold": "519795", "pred": "519999", "correct": false}
+{"id": 118, "budget": 0.375, "T": 2729, "n_kept": 1023, "gold": "519795", "pred": "519999", "correct": false}
+{"id": 118, "budget": 0.25, "T": 2729, "n_kept": 682, "gold": "519795", "pred": "513", "correct": false}
+{"id": 118, "budget": 0.1875, "T": 2729, "n_kept": 511, "gold": "519795", "pred": "241", "correct": false}
+{"id": 118, "budget": 0.125, "T": 2729, "n_kept": 341, "gold": "519795", "pred": "241", "correct": false}
+{"id": 118, "budget": 0.0625, "T": 2729, "n_kept": 170, "gold": "519795", "pred": "The magic number for NVTLUI is 24.", "correct": false}
+{"id": 119, "budget": 1.0, "T": 2733, "n_kept": 2733, "gold": "206400", "pred": "206400", "correct": true}
+{"id": 119, "budget": 0.875, "T": 2733, "n_kept": 2391, "gold": "206400", "pred": "206400", "correct": true}
+{"id": 119, "budget": 0.75, "T": 2733, "n_kept": 2049, "gold": "206400", "pred": "200000", "correct": false}
+{"id": 119, "budget": 0.625, "T": 2733, "n_kept": 1708, "gold": "206400", "pred": "220440", "correct": false}
+{"id": 119, "budget": 0.5, "T": 2733, "n_kept": 1366, "gold": "206400", "pred": "951035", "correct": false}
+{"id": 119, "budget": 0.375, "T": 2733, "n_kept": 1024, "gold": "206400", "pred": "The magic number for BETICV is 2.", "correct": false}
+{"id": 119, "budget": 0.25, "T": 2733, "n_kept": 683, "gold": "206400", "pred": "The magic number for BETICV is 20480.", "correct": false}
+{"id": 119, "budget": 0.1875, "T": 2733, "n_kept": 512, "gold": "206400", "pred": "The magic number for BETICV is 85104.", "correct": false}
+{"id": 119, "budget": 0.125, "T": 2733, "n_kept": 341, "gold": "206400", "pred": "The magic number for BETICV is 55555.", "correct": false}
+{"id": 119, "budget": 0.0625, "T": 2733, "n_kept": 170, "gold": "206400", "pred": "The magic number for BETICV is 10500.", "correct": false}
+{"id": 120, "budget": 1.0, "T": 2745, "n_kept": 2745, "gold": "428773", "pred": "428773", "correct": true}
+{"id": 120, "budget": 0.875, "T": 2745, "n_kept": 2401, "gold": "428773", "pred": "28773", "correct": false}
+{"id": 120, "budget": 0.75, "T": 2745, "n_kept": 2058, "gold": "428773", "pred": "288773", "correct": false}
+{"id": 120, "budget": 0.625, "T": 2745, "n_kept": 1715, "gold": "428773", "pred": "186139", "correct": false}
+{"id": 120, "budget": 0.5, "T": 2745, "n_kept": 1372, "gold": "428773", "pred": "The magic number for ZLQAWV is 18613", "correct": false}
+{"id": 120, "budget": 0.375, "T": 2745, "n_kept": 1029, "gold": "428773", "pred": "The magic number for ZLQAWV is 18749", "correct": false}
+{"id": 120, "budget": 0.25, "T": 2745, "n_kept": 686, "gold": "428773", "pred": "The magic number for ZLQAWV is 18777", "correct": false}
+{"id": 120, "budget": 0.1875, "T": 2745, "n_kept": 514, "gold": "428773", "pred": "18", "correct": false}
+{"id": 120, "budget": 0.125, "T": 2745, "n_kept": 343, "gold": "428773", "pred": "The magic number for ZLQAWV is 18295", "correct": false}
+{"id": 120, "budget": 0.0625, "T": 2745, "n_kept": 171, "gold": "428773", "pred": "The magic number for ZLQAWV is 10.", "correct": false}
+{"id": 121, "budget": 1.0, "T": 2736, "n_kept": 2736, "gold": "644362", "pred": "644362", "correct": true}
+{"id": 121, "budget": 0.875, "T": 2736, "n_kept": 2394, "gold": "644362", "pred": "644362", "correct": true}
+{"id": 121, "budget": 0.75, "T": 2736, "n_kept": 2052, "gold": "644362", "pred": "64364", "correct": false}
+{"id": 121, "budget": 0.625, "T": 2736, "n_kept": 1710, "gold": "644362", "pred": "643355", "correct": false}
+{"id": 121, "budget": 0.5, "T": 2736, "n_kept": 1368, "gold": "644362", "pred": "643355", "correct": false}
+{"id": 121, "budget": 0.375, "T": 2736, "n_kept": 1026, "gold": "644362", "pred": "The magic number for NHJOGU is 64359.", "correct": false}
+{"id": 121, "budget": 0.25, "T": 2736, "n_kept": 684, "gold": "644362", "pred": "The magic number for NHJOGU is 4629.", "correct": false}
+{"id": 121, "budget": 0.1875, "T": 2736, "n_kept": 513, "gold": "644362", "pred": "The magic number for NHJOGU is 4629.", "correct": false}
+{"id": 121, "budget": 0.125, "T": 2736, "n_kept": 342, "gold": "644362", "pred": "The magic number for NHJOGU is 4.", "correct": false}
+{"id": 121, "budget": 0.0625, "T": 2736, "n_kept": 171, "gold": "644362", "pred": "The magic number for NHJOGU is 46.", "correct": false}
+{"id": 122, "budget": 1.0, "T": 2753, "n_kept": 2753, "gold": "800589", "pred": "800589", "correct": true}
+{"id": 122, "budget": 0.875, "T": 2753, "n_kept": 2408, "gold": "800589", "pred": "800589", "correct": true}
+{"id": 122, "budget": 0.75, "T": 2753, "n_kept": 2064, "gold": "800589", "pred": "800589", "correct": true}
+{"id": 122, "budget": 0.625, "T": 2753, "n_kept": 1720, "gold": "800589", "pred": "800580", "correct": false}
+{"id": 122, "budget": 0.5, "T": 2753, "n_kept": 1376, "gold": "800589", "pred": "800580", "correct": false}
+{"id": 122, "budget": 0.375, "T": 2753, "n_kept": 1032, "gold": "800589", "pred": "80008", "correct": false}
+{"id": 122, "budget": 0.25, "T": 2753, "n_kept": 688, "gold": "800589", "pred": "80008", "correct": false}
+{"id": 122, "budget": 0.1875, "T": 2753, "n_kept": 516, "gold": "800589", "pred": "80008", "correct": false}
+{"id": 122, "budget": 0.125, "T": 2753, "n_kept": 344, "gold": "800589", "pred": "84", "correct": false}
+{"id": 122, "budget": 0.0625, "T": 2753, "n_kept": 172, "gold": "800589", "pred": "841", "correct": false}
+{"id": 123, "budget": 1.0, "T": 2730, "n_kept": 2730, "gold": "849695", "pred": "849695", "correct": true}
+{"id": 123, "budget": 0.875, "T": 2730, "n_kept": 2388, "gold": "849695", "pred": "849695", "correct": true}
+{"id": 123, "budget": 0.75, "T": 2730, "n_kept": 2047, "gold": "849695", "pred": "8", "correct": false}
+{"id": 123, "budget": 0.625, "T": 2730, "n_kept": 1706, "gold": "849695", "pred": "545891", "correct": false}
+{"id": 123, "budget": 0.5, "T": 2730, "n_kept": 1365, "gold": "849695", "pred": "491235", "correct": false}
+{"id": 123, "budget": 0.375, "T": 2730, "n_kept": 1023, "gold": "849695", "pred": "491235", "correct": false}
+{"id": 123, "budget": 0.25, "T": 2730, "n_kept": 682, "gold": "849695", "pred": "123456", "correct": false}
+{"id": 123, "budget": 0.1875, "T": 2730, "n_kept": 511, "gold": "849695", "pred": "13", "correct": false}
+{"id": 123, "budget": 0.125, "T": 2730, "n_kept": 341, "gold": "849695", "pred": "The magic number for JBYNPQ is 10.", "correct": false}
+{"id": 123, "budget": 0.0625, "T": 2730, "n_kept": 170, "gold": "849695", "pred": "The magic number for JBYNPQ is 10.", "correct": false}
+{"id": 124, "budget": 1.0, "T": 2737, "n_kept": 2737, "gold": "877442", "pred": "877442", "correct": true}
+{"id": 124, "budget": 0.875, "T": 2737, "n_kept": 2394, "gold": "877442", "pred": "877442", "correct": true}
+{"id": 124, "budget": 0.75, "T": 2737, "n_kept": 2052, "gold": "877442", "pred": "877442", "correct": true}
+{"id": 124, "budget": 0.625, "T": 2737, "n_kept": 1710, "gold": "877442", "pred": "877442", "correct": true}
+{"id": 124, "budget": 0.5, "T": 2737, "n_kept": 1368, "gold": "877442", "pred": "898222", "correct": false}
+{"id": 124, "budget": 0.375, "T": 2737, "n_kept": 1026, "gold": "877442", "pred": "The magic number for XBJYRB is 306022", "correct": false}
+{"id": 124, "budget": 0.25, "T": 2737, "n_kept": 684, "gold": "877442", "pred": "The magic number for XBJYRB is 1024.", "correct": false}
+{"id": 124, "budget": 0.1875, "T": 2737, "n_kept": 513, "gold": "877442", "pred": "The magic number for XBJYRB is 20140.", "correct": false}
+{"id": 124, "budget": 0.125, "T": 2737, "n_kept": 342, "gold": "877442", "pred": "The magic number for XBJYRB is 2020.", "correct": false}
+{"id": 124, "budget": 0.0625, "T": 2737, "n_kept": 171, "gold": "877442", "pred": "The magic number for XBJYRB is 10.", "correct": false}
+{"id": 125, "budget": 1.0, "T": 2730, "n_kept": 2730, "gold": "152802", "pred": "152802", "correct": true}
+{"id": 125, "budget": 0.875, "T": 2730, "n_kept": 2388, "gold": "152802", "pred": "152802", "correct": true}
+{"id": 125, "budget": 0.75, "T": 2730, "n_kept": 2047, "gold": "152802", "pred": "152800", "correct": false}
+{"id": 125, "budget": 0.625, "T": 2730, "n_kept": 1706, "gold": "152802", "pred": "1", "correct": false}
+{"id": 125, "budget": 0.5, "T": 2730, "n_kept": 1365, "gold": "152802", "pred": "48400", "correct": false}
+{"id": 125, "budget": 0.375, "T": 2730, "n_kept": 1023, "gold": "152802", "pred": "4", "correct": false}
+{"id": 125, "budget": 0.25, "T": 2730, "n_kept": 682, "gold": "152802", "pred": "4", "correct": false}
+{"id": 125, "budget": 0.1875, "T": 2730, "n_kept": 511, "gold": "152802", "pred": "The magic number for DQHADN is 10.", "correct": false}
+{"id": 125, "budget": 0.125, "T": 2730, "n_kept": 341, "gold": "152802", "pred": "The magic number for DQHADN is 12.", "correct": false}
+{"id": 125, "budget": 0.0625, "T": 2730, "n_kept": 170, "gold": "152802", "pred": "The magic number for DQHADN is 10.", "correct": false}
+{"id": 126, "budget": 1.0, "T": 2748, "n_kept": 2748, "gold": "248562", "pred": "248562", "correct": true}
+{"id": 126, "budget": 0.875, "T": 2748, "n_kept": 2404, "gold": "248562", "pred": "248622", "correct": false}
+{"id": 126, "budget": 0.75, "T": 2748, "n_kept": 2061, "gold": "248562", "pred": "248", "correct": false}
+{"id": 126, "budget": 0.625, "T": 2748, "n_kept": 1717, "gold": "248562", "pred": "248", "correct": false}
+{"id": 126, "budget": 0.5, "T": 2748, "n_kept": 1374, "gold": "248562", "pred": "24", "correct": false}
+{"id": 126, "budget": 0.375, "T": 2748, "n_kept": 1030, "gold": "248562", "pred": "24861", "correct": false}
+{"id": 126, "budget": 0.25, "T": 2748, "n_kept": 687, "gold": "248562", "pred": "48631", "correct": false}
+{"id": 126, "budget": 0.1875, "T": 2748, "n_kept": 515, "gold": "248562", "pred": "The magic number for GSRLMG is 24.", "correct": false}
+{"id": 126, "budget": 0.125, "T": 2748, "n_kept": 343, "gold": "248562", "pred": "The magic number for GSRLMG is 4.", "correct": false}
+{"id": 126, "budget": 0.0625, "T": 2748, "n_kept": 171, "gold": "248562", "pred": "The magic number for GSRLMG is 10.", "correct": false}
+{"id": 127, "budget": 1.0, "T": 2794, "n_kept": 2794, "gold": "828930", "pred": "168412", "correct": false}
+{"id": 127, "budget": 0.875, "T": 2794, "n_kept": 2444, "gold": "828930", "pred": "168412", "correct": false}
+{"id": 127, "budget": 0.75, "T": 2794, "n_kept": 2095, "gold": "828930", "pred": "168412", "correct": false}
+{"id": 127, "budget": 0.625, "T": 2794, "n_kept": 1746, "gold": "828930", "pred": "168412", "correct": false}
+{"id": 127, "budget": 0.5, "T": 2794, "n_kept": 1397, "gold": "828930", "pred": "168410", "correct": false}
+{"id": 127, "budget": 0.375, "T": 2794, "n_kept": 1047, "gold": "828930", "pred": "168410", "correct": false}
+{"id": 127, "budget": 0.25, "T": 2794, "n_kept": 698, "gold": "828930", "pred": "2", "correct": false}
+{"id": 127, "budget": 0.1875, "T": 2794, "n_kept": 523, "gold": "828930", "pred": "The magic number for DGRWGG is 208419", "correct": false}
+{"id": 127, "budget": 0.125, "T": 2794, "n_kept": 349, "gold": "828930", "pred": "The magic number for DGRWGG is 2.", "correct": false}
+{"id": 127, "budget": 0.0625, "T": 2794, "n_kept": 174, "gold": "828930", "pred": "The magic number for DGRWGG is 188.", "correct": false}
+{"id": 128, "budget": 1.0, "T": 2701, "n_kept": 2701, "gold": "667531", "pred": "667531", "correct": true}
+{"id": 128, "budget": 0.875, "T": 2701, "n_kept": 2363, "gold": "667531", "pred": "1345679", "correct": false}
+{"id": 128, "budget": 0.75, "T": 2701, "n_kept": 2025, "gold": "667531", "pred": "1345629", "correct": false}
+{"id": 128, "budget": 0.625, "T": 2701, "n_kept": 1688, "gold": "667531", "pred": "345678", "correct": false}
+{"id": 128, "budget": 0.5, "T": 2701, "n_kept": 1350, "gold": "667531", "pred": "792934", "correct": false}
+{"id": 128, "budget": 0.375, "T": 2701, "n_kept": 1012, "gold": "667531", "pred": "345678", "correct": false}
+{"id": 128, "budget": 0.25, "T": 2701, "n_kept": 675, "gold": "667531", "pred": "81234", "correct": false}
+{"id": 128, "budget": 0.1875, "T": 2701, "n_kept": 506, "gold": "667531", "pred": "81234", "correct": false}
+{"id": 128, "budget": 0.125, "T": 2701, "n_kept": 337, "gold": "667531", "pred": "The magic number for XJPTYS is 12345.", "correct": false}
+{"id": 128, "budget": 0.0625, "T": 2701, "n_kept": 168, "gold": "667531", "pred": "The magic number for XJPTYS is 12345.", "correct": false}
+{"id": 129, "budget": 1.0, "T": 2721, "n_kept": 2721, "gold": "945984", "pred": "945984", "correct": true}
+{"id": 129, "budget": 0.875, "T": 2721, "n_kept": 2380, "gold": "945984", "pred": "945984", "correct": true}
+{"id": 129, "budget": 0.75, "T": 2721, "n_kept": 2040, "gold": "945984", "pred": "945984", "correct": true}
+{"id": 129, "budget": 0.625, "T": 2721, "n_kept": 1700, "gold": "945984", "pred": "8497", "correct": false}
+{"id": 129, "budget": 0.5, "T": 2721, "n_kept": 1360, "gold": "945984", "pred": "945944", "correct": false}
+{"id": 129, "budget": 0.375, "T": 2721, "n_kept": 1020, "gold": "945984", "pred": "4497", "correct": false}
+{"id": 129, "budget": 0.25, "T": 2721, "n_kept": 680, "gold": "945984", "pred": "4497", "correct": false}
+{"id": 129, "budget": 0.1875, "T": 2721, "n_kept": 510, "gold": "945984", "pred": "The magic number for BQQIBG is 4978.", "correct": false}
+{"id": 129, "budget": 0.125, "T": 2721, "n_kept": 340, "gold": "945984", "pred": "The magic number for BQQIBG is 4.", "correct": false}
+{"id": 129, "budget": 0.0625, "T": 2721, "n_kept": 170, "gold": "945984", "pred": "The magic number for BQQIBG is 5.", "correct": false}
+{"id": 130, "budget": 1.0, "T": 2746, "n_kept": 2746, "gold": "940499", "pred": "940499", "correct": true}
+{"id": 130, "budget": 0.875, "T": 2746, "n_kept": 2402, "gold": "940499", "pred": "940499", "correct": true}
+{"id": 130, "budget": 0.75, "T": 2746, "n_kept": 2059, "gold": "940499", "pred": "644445", "correct": false}
+{"id": 130, "budget": 0.625, "T": 2746, "n_kept": 1716, "gold": "940499", "pred": "644449", "correct": false}
+{"id": 130, "budget": 0.5, "T": 2746, "n_kept": 1373, "gold": "940499", "pred": "644499", "correct": false}
+{"id": 130, "budget": 0.375, "T": 2746, "n_kept": 1029, "gold": "940499", "pred": "64449", "correct": false}
+{"id": 130, "budget": 0.25, "T": 2746, "n_kept": 686, "gold": "940499", "pred": "64444", "correct": false}
+{"id": 130, "budget": 0.1875, "T": 2746, "n_kept": 514, "gold": "940499", "pred": "The magic number for NEHHNQ is 44444.", "correct": false}
+{"id": 130, "budget": 0.125, "T": 2746, "n_kept": 343, "gold": "940499", "pred": "The magic number for NEHHNQ is 444444", "correct": false}
+{"id": 130, "budget": 0.0625, "T": 2746, "n_kept": 171, "gold": "940499", "pred": "The magic number for NEHHNQ is 10.", "correct": false}
+{"id": 131, "budget": 1.0, "T": 2731, "n_kept": 2731, "gold": "992544", "pred": "992544", "correct": true}
+{"id": 131, "budget": 0.875, "T": 2731, "n_kept": 2389, "gold": "992544", "pred": "999544", "correct": false}
+{"id": 131, "budget": 0.75, "T": 2731, "n_kept": 2048, "gold": "992544", "pred": "9", "correct": false}
+{"id": 131, "budget": 0.625, "T": 2731, "n_kept": 1706, "gold": "992544", "pred": "945264", "correct": false}
+{"id": 131, "budget": 0.5, "T": 2731, "n_kept": 1365, "gold": "992544", "pred": "465239", "correct": false}
+{"id": 131, "budget": 0.375, "T": 2731, "n_kept": 1024, "gold": "992544", "pred": "44", "correct": false}
+{"id": 131, "budget": 0.25, "T": 2731, "n_kept": 682, "gold": "992544", "pred": "The magic number for HYUNQW is 44555.", "correct": false}
+{"id": 131, "budget": 0.1875, "T": 2731, "n_kept": 512, "gold": "992544", "pred": "The magic number for HYUNQW is 5.", "correct": false}
+{"id": 131, "budget": 0.125, "T": 2731, "n_kept": 341, "gold": "992544", "pred": "The magic number for HYUNQW is 56239.", "correct": false}
+{"id": 131, "budget": 0.0625, "T": 2731, "n_kept": 170, "gold": "992544", "pred": "The magic number for HYUNQW is 12345.", "correct": false}
+{"id": 132, "budget": 1.0, "T": 2718, "n_kept": 2718, "gold": "768077", "pred": "768077", "correct": true}
+{"id": 132, "budget": 0.875, "T": 2718, "n_kept": 2378, "gold": "768077", "pred": "768077", "correct": true}
+{"id": 132, "budget": 0.75, "T": 2718, "n_kept": 2038, "gold": "768077", "pred": "768977", "correct": false}
+{"id": 132, "budget": 0.625, "T": 2718, "n_kept": 1698, "gold": "768077", "pred": "768977", "correct": false}
+{"id": 132, "budget": 0.5, "T": 2718, "n_kept": 1359, "gold": "768077", "pred": "768977", "correct": false}
+{"id": 132, "budget": 0.375, "T": 2718, "n_kept": 1019, "gold": "768077", "pred": "768777", "correct": false}
+{"id": 132, "budget": 0.25, "T": 2718, "n_kept": 679, "gold": "768077", "pred": "1345678", "correct": false}
+{"id": 132, "budget": 0.1875, "T": 2718, "n_kept": 509, "gold": "768077", "pred": "124589", "correct": false}
+{"id": 132, "budget": 0.125, "T": 2718, "n_kept": 339, "gold": "768077", "pred": "124589", "correct": false}
+{"id": 132, "budget": 0.0625, "T": 2718, "n_kept": 169, "gold": "768077", "pred": "421", "correct": false}
+{"id": 133, "budget": 1.0, "T": 2749, "n_kept": 2749, "gold": "966578", "pred": "966578", "correct": true}
+{"id": 133, "budget": 0.875, "T": 2749, "n_kept": 2405, "gold": "966578", "pred": "96655", "correct": false}
+{"id": 133, "budget": 0.75, "T": 2749, "n_kept": 2061, "gold": "966578", "pred": "96655", "correct": false}
+{"id": 133, "budget": 0.625, "T": 2749, "n_kept": 1718, "gold": "966578", "pred": "96655", "correct": false}
+{"id": 133, "budget": 0.5, "T": 2749, "n_kept": 1374, "gold": "966578", "pred": "966659", "correct": false}
+{"id": 133, "budget": 0.375, "T": 2749, "n_kept": 1030, "gold": "966578", "pred": "365", "correct": false}
+{"id": 133, "budget": 0.25, "T": 2749, "n_kept": 687, "gold": "966578", "pred": "The magic number for ZAGDGZ is 632149", "correct": false}
+{"id": 133, "budget": 0.1875, "T": 2749, "n_kept": 515, "gold": "966578", "pred": "The magic number for ZAGDGZ is 666.", "correct": false}
+{"id": 133, "budget": 0.125, "T": 2749, "n_kept": 343, "gold": "966578", "pred": "The magic number for ZAGDGZ is 66.", "correct": false}
+{"id": 133, "budget": 0.0625, "T": 2749, "n_kept": 171, "gold": "966578", "pred": "The magic number for ZAGDGZ is 13.", "correct": false}
+{"id": 134, "budget": 1.0, "T": 2754, "n_kept": 2754, "gold": "912500", "pred": "912500", "correct": true}
+{"id": 134, "budget": 0.875, "T": 2754, "n_kept": 2409, "gold": "912500", "pred": "912500", "correct": true}
+{"id": 134, "budget": 0.75, "T": 2754, "n_kept": 2065, "gold": "912500", "pred": "912509", "correct": false}
+{"id": 134, "budget": 0.625, "T": 2754, "n_kept": 1721, "gold": "912500", "pred": "46251", "correct": false}
+{"id": 134, "budget": 0.5, "T": 2754, "n_kept": 1377, "gold": "912500", "pred": "512345", "correct": false}
+{"id": 134, "budget": 0.375, "T": 2754, "n_kept": 1032, "gold": "912500", "pred": "The magic number for BRDBRA is 214589.", "correct": false}
+{"id": 134, "budget": 0.25, "T": 2754, "n_kept": 688, "gold": "912500", "pred": "The magic number for BRDBRA is 123456.", "correct": false}
+{"id": 134, "budget": 0.1875, "T": 2754, "n_kept": 516, "gold": "912500", "pred": "The magic number for BRDBRA is 17.", "correct": false}
+{"id": 134, "budget": 0.125, "T": 2754, "n_kept": 344, "gold": "912500", "pred": "The magic number for BRDBRA is 17.", "correct": false}
+{"id": 134, "budget": 0.0625, "T": 2754, "n_kept": 172, "gold": "912500", "pred": "The magic number for BRDBRA is 12.", "correct": false}
+{"id": 135, "budget": 1.0, "T": 2718, "n_kept": 2718, "gold": "182317", "pred": "182317", "correct": true}
+{"id": 135, "budget": 0.875, "T": 2718, "n_kept": 2378, "gold": "182317", "pred": "182379", "correct": false}
+{"id": 135, "budget": 0.75, "T": 2718, "n_kept": 2038, "gold": "182317", "pred": "182347", "correct": false}
+{"id": 135, "budget": 0.625, "T": 2718, "n_kept": 1698, "gold": "182317", "pred": "182347", "correct": false}
+{"id": 135, "budget": 0.5, "T": 2718, "n_kept": 1359, "gold": "182317", "pred": "182347", "correct": false}
+{"id": 135, "budget": 0.375, "T": 2718, "n_kept": 1019, "gold": "182317", "pred": "182679", "correct": false}
+{"id": 135, "budget": 0.25, "T": 2718, "n_kept": 679, "gold": "182317", "pred": "The magic number for HFAMOW is 181709.", "correct": false}
+{"id": 135, "budget": 0.1875, "T": 2718, "n_kept": 509, "gold": "182317", "pred": "The magic number for HFAMOW is 181709.", "correct": false}
+{"id": 135, "budget": 0.125, "T": 2718, "n_kept": 339, "gold": "182317", "pred": "The magic number for HFAMOW is 1.", "correct": false}
+{"id": 135, "budget": 0.0625, "T": 2718, "n_kept": 169, "gold": "182317", "pred": "The magic number for HFAMOW is 1.", "correct": false}
+{"id": 136, "budget": 1.0, "T": 2761, "n_kept": 2761, "gold": "245664", "pred": "245664", "correct": true}
+{"id": 136, "budget": 0.875, "T": 2761, "n_kept": 2415, "gold": "245664", "pred": "245664", "correct": true}
+{"id": 136, "budget": 0.75, "T": 2761, "n_kept": 2070, "gold": "245664", "pred": "999999", "correct": false}
+{"id": 136, "budget": 0.625, "T": 2761, "n_kept": 1725, "gold": "245664", "pred": "5", "correct": false}
+{"id": 136, "budget": 0.5, "T": 2761, "n_kept": 1380, "gold": "245664", "pred": "5", "correct": false}
+{"id": 136, "budget": 0.375, "T": 2761, "n_kept": 1035, "gold": "245664", "pred": "9", "correct": false}
+{"id": 136, "budget": 0.25, "T": 2761, "n_kept": 690, "gold": "245664", "pred": "96", "correct": false}
+{"id": 136, "budget": 0.1875, "T": 2761, "n_kept": 517, "gold": "245664", "pred": "96", "correct": false}
+{"id": 136, "budget": 0.125, "T": 2761, "n_kept": 345, "gold": "245664", "pred": "9", "correct": false}
+{"id": 136, "budget": 0.0625, "T": 2761, "n_kept": 172, "gold": "245664", "pred": "The magic number for NEKZQI is 64483", "correct": false}
+{"id": 137, "budget": 1.0, "T": 2762, "n_kept": 2762, "gold": "657887", "pred": "657887", "correct": true}
+{"id": 137, "budget": 0.875, "T": 2762, "n_kept": 2416, "gold": "657887", "pred": "525546", "correct": false}
+{"id": 137, "budget": 0.75, "T": 2762, "n_kept": 2071, "gold": "657887", "pred": "959887", "correct": false}
+{"id": 137, "budget": 0.625, "T": 2762, "n_kept": 1726, "gold": "657887", "pred": "525546", "correct": false}
+{"id": 137, "budget": 0.5, "T": 2762, "n_kept": 1381, "gold": "657887", "pred": "52554", "correct": false}
+{"id": 137, "budget": 0.375, "T": 2762, "n_kept": 1035, "gold": "657887", "pred": "454688", "correct": false}
+{"id": 137, "budget": 0.25, "T": 2762, "n_kept": 690, "gold": "657887", "pred": "545454", "correct": false}
+{"id": 137, "budget": 0.1875, "T": 2762, "n_kept": 517, "gold": "657887", "pred": "54", "correct": false}
+{"id": 137, "budget": 0.125, "T": 2762, "n_kept": 345, "gold": "657887", "pred": "The magic number for DZHTMH is 10.", "correct": false}
+{"id": 137, "budget": 0.0625, "T": 2762, "n_kept": 172, "gold": "657887", "pred": "The magic number for DZHTMH is 10.", "correct": false}
+{"id": 138, "budget": 1.0, "T": 2768, "n_kept": 2768, "gold": "379583", "pred": "379583", "correct": true}
+{"id": 138, "budget": 0.875, "T": 2768, "n_kept": 2422, "gold": "379583", "pred": "379583", "correct": true}
+{"id": 138, "budget": 0.75, "T": 2768, "n_kept": 2076, "gold": "379583", "pred": "3333333", "correct": false}
+{"id": 138, "budget": 0.625, "T": 2768, "n_kept": 1730, "gold": "379583", "pred": "3333333", "correct": false}
+{"id": 138, "budget": 0.5, "T": 2768, "n_kept": 1384, "gold": "379583", "pred": "337787", "correct": false}
+{"id": 138, "budget": 0.375, "T": 2768, "n_kept": 1038, "gold": "379583", "pred": "23777", "correct": false}
+{"id": 138, "budget": 0.25, "T": 2768, "n_kept": 692, "gold": "379583", "pred": "The magic number for SUSEGV is 23777.", "correct": false}
+{"id": 138, "budget": 0.1875, "T": 2768, "n_kept": 519, "gold": "379583", "pred": "The magic number for SUSEGV is 23777.", "correct": false}
+{"id": 138, "budget": 0.125, "T": 2768, "n_kept": 346, "gold": "379583", "pred": "The magic number for SUSEGV is 23.", "correct": false}
+{"id": 138, "budget": 0.0625, "T": 2768, "n_kept": 173, "gold": "379583", "pred": "The magic number for SUSEGV is 23.", "correct": false}
+{"id": 139, "budget": 1.0, "T": 2767, "n_kept": 2767, "gold": "469365", "pred": "469365", "correct": true}
+{"id": 139, "budget": 0.875, "T": 2767, "n_kept": 2421, "gold": "469365", "pred": "469365", "correct": true}
+{"id": 139, "budget": 0.75, "T": 2767, "n_kept": 2075, "gold": "469365", "pred": "469655", "correct": false}
+{"id": 139, "budget": 0.625, "T": 2767, "n_kept": 1729, "gold": "469365", "pred": "569245", "correct": false}
+{"id": 139, "budget": 0.5, "T": 2767, "n_kept": 1383, "gold": "469365", "pred": "56924", "correct": false}
+{"id": 139, "budget": 0.375, "T": 2767, "n_kept": 1037, "gold": "469365", "pred": "56924", "correct": false}
+{"id": 139, "budget": 0.25, "T": 2767, "n_kept": 691, "gold": "469365", "pred": "The magic number for LSWCLK is 58648.", "correct": false}
+{"id": 139, "budget": 0.1875, "T": 2767, "n_kept": 518, "gold": "469365", "pred": "The magic number for LSWCLK is 18.", "correct": false}
+{"id": 139, "budget": 0.125, "T": 2767, "n_kept": 345, "gold": "469365", "pred": "The magic number for LSWCLK is 12345.", "correct": false}
+{"id": 139, "budget": 0.0625, "T": 2767, "n_kept": 172, "gold": "469365", "pred": "The magic number for LSWCLK is 10.", "correct": false}
+{"id": 140, "budget": 1.0, "T": 2748, "n_kept": 2748, "gold": "106809", "pred": "601096", "correct": false}
+{"id": 140, "budget": 0.875, "T": 2748, "n_kept": 2404, "gold": "106809", "pred": "601096", "correct": false}
+{"id": 140, "budget": 0.75, "T": 2748, "n_kept": 2061, "gold": "106809", "pred": "601000", "correct": false}
+{"id": 140, "budget": 0.625, "T": 2748, "n_kept": 1717, "gold": "106809", "pred": "106", "correct": false}
+{"id": 140, "budget": 0.5, "T": 2748, "n_kept": 1374, "gold": "106809", "pred": "106000", "correct": false}
+{"id": 140, "budget": 0.375, "T": 2748, "n_kept": 1030, "gold": "106809", "pred": "106", "correct": false}
+{"id": 140, "budget": 0.25, "T": 2748, "n_kept": 687, "gold": "106809", "pred": "6", "correct": false}
+{"id": 140, "budget": 0.1875, "T": 2748, "n_kept": 515, "gold": "106809", "pred": "10", "correct": false}
+{"id": 140, "budget": 0.125, "T": 2748, "n_kept": 343, "gold": "106809", "pred": "The magic number for ATDILZ is 10.", "correct": false}
+{"id": 140, "budget": 0.0625, "T": 2748, "n_kept": 171, "gold": "106809", "pred": "The magic number for ATDILZ is 10.", "correct": false}
+{"id": 141, "budget": 1.0, "T": 2743, "n_kept": 2743, "gold": "700836", "pred": "196814", "correct": false}
+{"id": 141, "budget": 0.875, "T": 2743, "n_kept": 2400, "gold": "700836", "pred": "14", "correct": false}
+{"id": 141, "budget": 0.75, "T": 2743, "n_kept": 2057, "gold": "700836", "pred": "14", "correct": false}
+{"id": 141, "budget": 0.625, "T": 2743, "n_kept": 1714, "gold": "700836", "pred": "14", "correct": false}
+{"id": 141, "budget": 0.5, "T": 2743, "n_kept": 1371, "gold": "700836", "pred": "14", "correct": false}
+{"id": 141, "budget": 0.375, "T": 2743, "n_kept": 1028, "gold": "700836", "pred": "The magic number for AECSJO is 14.", "correct": false}
+{"id": 141, "budget": 0.25, "T": 2743, "n_kept": 685, "gold": "700836", "pred": "The magic number for AECSJO is 1.", "correct": false}
+{"id": 141, "budget": 0.1875, "T": 2743, "n_kept": 514, "gold": "700836", "pred": "The magic number for AECSJO is 1.", "correct": false}
+{"id": 141, "budget": 0.125, "T": 2743, "n_kept": 342, "gold": "700836", "pred": "The magic number for AECSJO is 10.", "correct": false}
+{"id": 141, "budget": 0.0625, "T": 2743, "n_kept": 171, "gold": "700836", "pred": "The magic number for AECSJO is 666666.", "correct": false}
+{"id": 142, "budget": 1.0, "T": 2739, "n_kept": 2739, "gold": "901064", "pred": "901064", "correct": true}
+{"id": 142, "budget": 0.875, "T": 2739, "n_kept": 2396, "gold": "901064", "pred": "356713", "correct": false}
+{"id": 142, "budget": 0.75, "T": 2739, "n_kept": 2054, "gold": "901064", "pred": "989762", "correct": false}
+{"id": 142, "budget": 0.625, "T": 2739, "n_kept": 1711, "gold": "901064", "pred": "3", "correct": false}
+{"id": 142, "budget": 0.5, "T": 2739, "n_kept": 1369, "gold": "901064", "pred": "98833", "correct": false}
+{"id": 142, "budget": 0.375, "T": 2739, "n_kept": 1027, "gold": "901064", "pred": "986", "correct": false}
+{"id": 142, "budget": 0.25, "T": 2739, "n_kept": 684, "gold": "901064", "pred": "986", "correct": false}
+{"id": 142, "budget": 0.1875, "T": 2739, "n_kept": 513, "gold": "901064", "pred": "96", "correct": false}
+{"id": 142, "budget": 0.125, "T": 2739, "n_kept": 342, "gold": "901064", "pred": "The magic number for DCNUYX is 9.", "correct": false}
+{"id": 142, "budget": 0.0625, "T": 2739, "n_kept": 171, "gold": "901064", "pred": "The magic number for DCNUYX is 12345.", "correct": false}
+{"id": 143, "budget": 1.0, "T": 2748, "n_kept": 2748, "gold": "583668", "pred": "583668", "correct": true}
+{"id": 143, "budget": 0.875, "T": 2748, "n_kept": 2404, "gold": "583668", "pred": "843668", "correct": false}
+{"id": 143, "budget": 0.75, "T": 2748, "n_kept": 2061, "gold": "583668", "pred": "1043159", "correct": false}
+{"id": 143, "budget": 0.625, "T": 2748, "n_kept": 1717, "gold": "583668", "pred": "104315", "correct": false}
+{"id": 143, "budget": 0.5, "T": 2748, "n_kept": 1374, "gold": "583668", "pred": "88", "correct": false}
+{"id": 143, "budget": 0.375, "T": 2748, "n_kept": 1030, "gold": "583668", "pred": "88", "correct": false}
+{"id": 143, "budget": 0.25, "T": 2748, "n_kept": 687, "gold": "583668", "pred": "8", "correct": false}
+{"id": 143, "budget": 0.1875, "T": 2748, "n_kept": 515, "gold": "583668", "pred": "8", "correct": false}
+{"id": 143, "budget": 0.125, "T": 2748, "n_kept": 343, "gold": "583668", "pred": "8", "correct": false}
+{"id": 143, "budget": 0.0625, "T": 2748, "n_kept": 171, "gold": "583668", "pred": "8", "correct": false}
+{"id": 144, "budget": 1.0, "T": 2747, "n_kept": 2747, "gold": "480183", "pred": "480183", "correct": true}
+{"id": 144, "budget": 0.875, "T": 2747, "n_kept": 2403, "gold": "480183", "pred": "48013", "correct": false}
+{"id": 144, "budget": 0.75, "T": 2747, "n_kept": 2060, "gold": "480183", "pred": "48013", "correct": false}
+{"id": 144, "budget": 0.625, "T": 2747, "n_kept": 1716, "gold": "480183", "pred": "480130", "correct": false}
+{"id": 144, "budget": 0.5, "T": 2747, "n_kept": 1373, "gold": "480183", "pred": "4574", "correct": false}
+{"id": 144, "budget": 0.375, "T": 2747, "n_kept": 1030, "gold": "480183", "pred": "45782", "correct": false}
+{"id": 144, "budget": 0.25, "T": 2747, "n_kept": 686, "gold": "480183", "pred": "4", "correct": false}
+{"id": 144, "budget": 0.1875, "T": 2747, "n_kept": 515, "gold": "480183", "pred": "4", "correct": false}
+{"id": 144, "budget": 0.125, "T": 2747, "n_kept": 343, "gold": "480183", "pred": "The magic number for ZIOEMB is 300.", "correct": false}
+{"id": 144, "budget": 0.0625, "T": 2747, "n_kept": 171, "gold": "480183", "pred": "The magic number for ZIOEMB is 300.", "correct": false}
+{"id": 145, "budget": 1.0, "T": 2730, "n_kept": 2730, "gold": "802732", "pred": "802732", "correct": true}
+{"id": 145, "budget": 0.875, "T": 2730, "n_kept": 2388, "gold": "802732", "pred": "802732", "correct": true}
+{"id": 145, "budget": 0.75, "T": 2730, "n_kept": 2047, "gold": "802732", "pred": "323715", "correct": false}
+{"id": 145, "budget": 0.625, "T": 2730, "n_kept": 1706, "gold": "802732", "pred": "333712", "correct": false}
+{"id": 145, "budget": 0.5, "T": 2730, "n_kept": 1365, "gold": "802732", "pred": "19", "correct": false}
+{"id": 145, "budget": 0.375, "T": 2730, "n_kept": 1023, "gold": "802732", "pred": "27", "correct": false}
+{"id": 145, "budget": 0.25, "T": 2730, "n_kept": 682, "gold": "802732", "pred": "25", "correct": false}
+{"id": 145, "budget": 0.1875, "T": 2730, "n_kept": 511, "gold": "802732", "pred": "21", "correct": false}
+{"id": 145, "budget": 0.125, "T": 2730, "n_kept": 341, "gold": "802732", "pred": "The magic number for SPIKTS is 13.", "correct": false}
+{"id": 145, "budget": 0.0625, "T": 2730, "n_kept": 170, "gold": "802732", "pred": "The magic number for SPIKTS is 13.", "correct": false}
+{"id": 146, "budget": 1.0, "T": 2733, "n_kept": 2733, "gold": "627290", "pred": "627290", "correct": true}
+{"id": 146, "budget": 0.875, "T": 2733, "n_kept": 2391, "gold": "627290", "pred": "627290", "correct": true}
+{"id": 146, "budget": 0.75, "T": 2733, "n_kept": 2049, "gold": "627290", "pred": "627290", "correct": true}
+{"id": 146, "budget": 0.625, "T": 2733, "n_kept": 1708, "gold": "627290", "pred": "6991065", "correct": false}
+{"id": 146, "budget": 0.5, "T": 2733, "n_kept": 1366, "gold": "627290", "pred": "65590", "correct": false}
+{"id": 146, "budget": 0.375, "T": 2733, "n_kept": 1024, "gold": "627290", "pred": "5", "correct": false}
+{"id": 146, "budget": 0.25, "T": 2733, "n_kept": 683, "gold": "627290", "pred": "5", "correct": false}
+{"id": 146, "budget": 0.1875, "T": 2733, "n_kept": 512, "gold": "627290", "pred": "The magic number for HKBCWR is 5.", "correct": false}
+{"id": 146, "budget": 0.125, "T": 2733, "n_kept": 341, "gold": "627290", "pred": "The magic number for HKBCWR is 5.", "correct": false}
+{"id": 146, "budget": 0.0625, "T": 2733, "n_kept": 170, "gold": "627290", "pred": "The magic number for HKBCWR is 5.", "correct": false}
+{"id": 147, "budget": 1.0, "T": 2752, "n_kept": 2752, "gold": "748652", "pred": "748652", "correct": true}
+{"id": 147, "budget": 0.875, "T": 2752, "n_kept": 2408, "gold": "748652", "pred": "74865", "correct": false}
+{"id": 147, "budget": 0.75, "T": 2752, "n_kept": 2064, "gold": "748652", "pred": "74865", "correct": false}
+{"id": 147, "budget": 0.625, "T": 2752, "n_kept": 1720, "gold": "748652", "pred": "74865", "correct": false}
+{"id": 147, "budget": 0.5, "T": 2752, "n_kept": 1376, "gold": "748652", "pred": "74852", "correct": false}
+{"id": 147, "budget": 0.375, "T": 2752, "n_kept": 1032, "gold": "748652", "pred": "748", "correct": false}
+{"id": 147, "budget": 0.25, "T": 2752, "n_kept": 688, "gold": "748652", "pred": "The magic number for CPCUCL is 748.", "correct": false}
+{"id": 147, "budget": 0.1875, "T": 2752, "n_kept": 516, "gold": "748652", "pred": "The magic number for CPCUCL is 748.", "correct": false}
+{"id": 147, "budget": 0.125, "T": 2752, "n_kept": 344, "gold": "748652", "pred": "The magic number for CPCUCL is 144.", "correct": false}
+{"id": 147, "budget": 0.0625, "T": 2752, "n_kept": 172, "gold": "748652", "pred": "The magic number for CPCUCL is 10,000.", "correct": false}
+{"id": 148, "budget": 1.0, "T": 2749, "n_kept": 2749, "gold": "151418", "pred": "151418", "correct": true}
+{"id": 148, "budget": 0.875, "T": 2749, "n_kept": 2405, "gold": "151418", "pred": "11888", "correct": false}
+{"id": 148, "budget": 0.75, "T": 2749, "n_kept": 2061, "gold": "151418", "pred": "1188", "correct": false}
+{"id": 148, "budget": 0.625, "T": 2749, "n_kept": 1718, "gold": "151418", "pred": "11888", "correct": false}
+{"id": 148, "budget": 0.5, "T": 2749, "n_kept": 1374, "gold": "151418", "pred": "618", "correct": false}
+{"id": 148, "budget": 0.375, "T": 2749, "n_kept": 1030, "gold": "151418", "pred": "60", "correct": false}
+{"id": 148, "budget": 0.25, "T": 2749, "n_kept": 687, "gold": "151418", "pred": "111111", "correct": false}
+{"id": 148, "budget": 0.1875, "T": 2749, "n_kept": 515, "gold": "151418", "pred": "The magic number for UTNMMU is 11.", "correct": false}
+{"id": 148, "budget": 0.125, "T": 2749, "n_kept": 343, "gold": "151418", "pred": "The magic number for UTNMMU is 800.", "correct": false}
+{"id": 148, "budget": 0.0625, "T": 2749, "n_kept": 171, "gold": "151418", "pred": "The magic number for UTNMMU is 800.", "correct": false}
+{"id": 149, "budget": 1.0, "T": 2734, "n_kept": 2734, "gold": "247617", "pred": "247617", "correct": true}
+{"id": 149, "budget": 0.875, "T": 2734, "n_kept": 2392, "gold": "247617", "pred": "24717", "correct": false}
+{"id": 149, "budget": 0.75, "T": 2734, "n_kept": 2050, "gold": "247617", "pred": "24717", "correct": false}
+{"id": 149, "budget": 0.625, "T": 2734, "n_kept": 1708, "gold": "247617", "pred": "24717", "correct": false}
+{"id": 149, "budget": 0.5, "T": 2734, "n_kept": 1367, "gold": "247617", "pred": "247", "correct": false}
+{"id": 149, "budget": 0.375, "T": 2734, "n_kept": 1025, "gold": "247617", "pred": "247", "correct": false}
+{"id": 149, "budget": 0.25, "T": 2734, "n_kept": 683, "gold": "247617", "pred": "247", "correct": false}
+{"id": 149, "budget": 0.1875, "T": 2734, "n_kept": 512, "gold": "247617", "pred": "247", "correct": false}
+{"id": 149, "budget": 0.125, "T": 2734, "n_kept": 341, "gold": "247617", "pred": "24", "correct": false}
+{"id": 149, "budget": 0.0625, "T": 2734, "n_kept": 170, "gold": "247617", "pred": "24", "correct": false}

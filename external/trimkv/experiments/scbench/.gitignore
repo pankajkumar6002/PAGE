@@ -1,0 +1,6 @@
+results/
+logs/
+*.log
+*.tmp
+.DS_Store
+pkl_memorize_py3/

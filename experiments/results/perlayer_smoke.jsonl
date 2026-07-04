@@ -1,0 +1,9 @@
+{"id": 0, "task": "vt", "budget": 1.0, "T": 3875, "n_kept": 3875, "gold": ["FITJT", "VGCAO", "ZJQUQ", "TYFAD", "DROFS"], "pred": "FITJT VGCAO ZJQUQ TYFAD DROFS", "correct": true}
+{"id": 0, "task": "vt", "budget": 0.5, "T": 3875, "n_kept": 1937, "gold": ["FITJT", "VGCAO", "ZJQUQ", "TYFAD", "DROFS"], "pred": "FITJT VGCAO ZJQUQ TYFAD DROFS", "correct": true}
+{"id": 0, "task": "vt", "budget": 0.25, "T": 3875, "n_kept": 968, "gold": ["FITJT", "VGCAO", "ZJQUQ", "TYFAD", "DROFS"], "pred": "FITJT VGCAO ZJQUQ TYFAD DROFS", "correct": true}
+{"id": 1, "task": "vt", "budget": 1.0, "T": 3879, "n_kept": 3879, "gold": ["CAIRY", "KSBRQ", "CUWPD", "ZUJLJ", "NIWVC"], "pred": "CAIRY KSBRQ CUWPD ZUJLJ NIWVC", "correct": true}
+{"id": 1, "task": "vt", "budget": 0.5, "T": 3879, "n_kept": 1939, "gold": ["CAIRY", "KSBRQ", "CUWPD", "ZUJLJ", "NIWVC"], "pred": "CAIRY KSBRQ CUWPD ZUJLJ NIWVC", "correct": true}
+{"id": 1, "task": "vt", "budget": 0.25, "T": 3879, "n_kept": 969, "gold": ["CAIRY", "KSBRQ", "CUWPD", "ZUJLJ", "NIWVC"], "pred": "CAIRY KSBRQ CUWPD ZUJLJ NIWVC", "correct": true}
+{"id": 2, "task": "vt", "budget": 1.0, "T": 3875, "n_kept": 3875, "gold": ["TZHVN", "MLTGW", "VCWGM", "PJAWE", "FUIWS"], "pred": "TZHVN MLTGW VCWGM PJAWE FUIWS", "correct": true}
+{"id": 2, "task": "vt", "budget": 0.5, "T": 3875, "n_kept": 1937, "gold": ["TZHVN", "MLTGW", "VCWGM", "PJAWE", "FUIWS"], "pred": "TZHVN MLTGW VCWGM PJAWE FUIWS", "correct": true}
+{"id": 2, "task": "vt", "budget": 0.25, "T": 3875, "n_kept": 968, "gold": ["TZHVN", "MLTGW", "VCWGM", "PJAWE", "FUIWS"], "pred": "TZHVN MLTGW VCWGM PJAWE FUIWS", "correct": true}

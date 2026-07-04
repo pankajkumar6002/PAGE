@@ -1,0 +1,12 @@
+{"id": 0, "budget": 1.0, "T": 2768, "n_kept": 2768, "gold": "758727", "pred": "758727", "correct": true}
+{"id": 0, "budget": 0.99, "T": 2768, "n_kept": 2740, "gold": "758727", "pred": "7  WK", "correct": false}
+{"id": 0, "budget": 0.9, "T": 2768, "n_kept": 2491, "gold": "758727", "pred": "7 improve", "correct": false}
+{"id": 0, "budget": 0.75, "T": 2768, "n_kept": 2076, "gold": "758727", "pred": "7 WK", "correct": false}
+{"id": 1, "budget": 1.0, "T": 2716, "n_kept": 2716, "gold": "842748", "pred": "842748", "correct": true}
+{"id": 1, "budget": 0.99, "T": 2716, "n_kept": 2688, "gold": "842748", "pred": "8  explanation", "correct": false}
+{"id": 1, "budget": 0.9, "T": 2716, "n_kept": 2444, "gold": "842748", "pred": "8", "correct": false}
+{"id": 1, "budget": 0.75, "T": 2716, "n_kept": 2037, "gold": "842748", "pred": "8bridge prepared", "correct": false}
+{"id": 2, "budget": 1.0, "T": 2795, "n_kept": 2795, "gold": "708310", "pred": "708310", "correct": true}
+{"id": 2, "budget": 0.99, "T": 2795, "n_kept": 2767, "gold": "708310", "pred": "7 account", "correct": false}
+{"id": 2, "budget": 0.9, "T": 2795, "n_kept": 2515, "gold": "708310", "pred": "7", "correct": false}
+{"id": 2, "budget": 0.75, "T": 2795, "n_kept": 2096, "gold": "708310", "pred": "7", "correct": false}
