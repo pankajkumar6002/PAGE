@@ -251,3 +251,108 @@ write-up needed for the paper's mechanism section.
   of positions for the layer (per-layer SnapKV) or for the whole model
   (single-mask); per-head SnapKV would respect heterogeneity but is harder
   to implement under the constraint of a uniform cache.
+
+## 7. Deferred proofs made rigorous (2026-07-04)
+
+Three results the paper had flagged as "left to future work" are now worked
+out with explicit constants and honest gaps. Full LaTeX lives in
+`paper/iclr2026/theory_appendix_additions.tex` (compiles clean; new appendix
+`app:sharpened`). Summary of each.
+
+### 7.1 Tight constant for the scaling formula (was: `app:proof-scaling`)
+
+The old appendix bounded `rho_KV <= K*(1-A_full)*p_recov + K/4` via a union
+bound over the `K`-point budget grid. **The grid factor `K` is spurious.**
+The operational `b*(x) = argmax_b A(b,x)` selects "recovery at *some* budget",
+so the budget-union lives *inside* the recovery event `B := union_b B_b`, not
+in front of the whole expression. With `p_recov := Pr_x[B]` (the union
+probability), the surrogate identity is **exact**:
+
+> `rho_KV = (1 - A_full) * p_recov + Cov_x(A, B)`,   leading constant = **1**.
+
+Here `A` = headroom event (full cache fails), `B` = recovery event. Because
+both are non-increasing functions of the single driver `alpha_R` under noise
+isotropy (A1), Chebyshev's association inequality gives `Cov >= 0`; the
+Fréchet–Hoeffding inequality gives the top. Hence a **distribution-free
+two-sided bound with attainable endpoints**:
+
+> `(1 - A_full)*p_recov  <=  rho_KV  <=  min{1 - A_full, p_recov}`.
+
+Lower bound attained iff `A ⟂ B`; upper iff `A,B` comonotone. Union-bound
+tightness: the discarded step overcounts by the inclusion–exclusion tail
+`sum_b Pr[B_b] - Pr[union B_b]`. For a **calibrated (monotone-gain) scorer**
+the events `B_b` are *nested*, so `p_recov = max_b Pr[B_b]` and there is **no
+`K` factor**; `K` is real only in the degenerate disjoint/rare regime
+(`Kp << 1`, each input recovers at exactly one budget).
+
+**Remaining gap.** The constant `1` is exact only *inside* the deterministic-SNR
+surrogate (accuracy = function of SNR, itself assumed). The covariance is
+pinned only to `[0, min{PrA,PrB} - PrA*PrB]`, not to a value; both endpoints
+are attainable so no tighter distribution-free constant exists. QA-style
+parametric failures drive `A` partly independently of `alpha_R`, sending
+`p_recov -> 0` and pinching `rho_KV -> 0` — a sign-structure prediction, not a
+proof about those tasks. The empirical band `[0.25, 0.55]` estimates
+`p_recov + Cov/(1-A_full)`, not a universal constant.
+
+### 7.2 Necessary direction: capacity-bound ⇒ small `D` (was: `app:sufficient`)
+
+The old sketch proved only the sufficient direction (large `D` ⇒ large
+dilution) and punted the converse for want of "a margin condition we have not
+verified". That condition is now named:
+
+> **Assumption M (κ-separation).** `m >= 2*sigma_z*sqrt(log(2 H^2 L T^2 / beta))`,
+> i.e. margin-to-noise ratio `kappa := m/sigma_z >= 2*sqrt(log(2 H^2 L T^2/beta))`.
+
+This is exactly the Lemma (top-k concentration) threshold. Under it, plus the
+common-relevant-set model of capacity-bound (A3, `C`: late-layer heads share
+one set `R_*`), every late-bin head's top-k set equals `R_*` w.p. `>= 1-beta`,
+so `a_late = 1` and:
+
+> `Pr[ D <= a_early - 1 <= 0 ] >= 1 - beta`, and for every `tau > 0`
+> `Pr[ D >= tau ] <= beta = 2 H^2 L T^2 * exp(-kappa^2 / 4)`.
+
+Explicit margin dependence: the drop's upper tail decays as `exp(-kappa^2/4)`.
+The surrogate predicts a **non-positive** expected `D` for capacity-bound
+inputs — matching the observed negative `D` on Qwen-3B 16K NIAH-MK3.
+**Contrapositive (the gate guarantee):**
+
+> `Pr[ capacity-bound  ∧  D >= tau ] <= beta`,
+
+so firing the gate on `D >= tau` mis-fires on a genuinely capacity-bound input
+only with probability `<= beta`.
+
+**Remaining gap.** Conditional on (i) Assumption M holding on real weights
+(a hypothesis about the network, tested only through its consequence — small
+`D` on NIAH-MK3 in every cell), and (ii) the common-set idealisation of
+capacity-bound; if heads only agree on an `O(1)` needle *neighborhood* rather
+than one identical set, `a_late = 1 - o(1)` and the bound survives as
+`Pr[D>=tau] <= beta + o(1)` but `C` is an idealisation. Controls the sign and
+upper tail of `D`, not how negative it gets.
+
+### 7.3 A4 useful-set identification (was: "derived equality", actually an assumption)
+
+A4 identified Bui's useful set `U_t` (residual-stream, decode-step) with the
+head-common set `I := ∩_h R_h^{(ℓ*)}` (single-layer attention). A clean exact
+equality **cannot** be proven, but a quantitative approximation can. Named
+assumptions:
+
+> **A_eps (ε-closeness):** `max_{h,h'} |R_h Δ R_{h'}| <= eps*k`.
+> **CUA (consensus–usefulness):** `I ⊆ U_t ⊆ U := ∪_h R_h`. Right inclusion is
+>   near-free (attention-only routing); left inclusion is the substantive part.
+
+Then the two sets induce dilution values that agree to `O(eps)`:
+
+> `| delta^(U)_t - delta^(I)_t |  <=  sum_{i in U\I} alpha_{t,i}  <=  H(H-1)*eps*k*alpha_max  =  O(H^2 * eps)`.
+
+So `eps -> 0` ⇒ the dilutions coincide.
+
+**Remaining gap.** The substantive left inclusion (CUA) is an *assumption about
+the read-out*, not a theorem, and it **fails precisely in the
+single-decisive-head / capacity-bound regime** (one retrieval head carries the
+margin-critical value that is absent from the consensus `I`) — exactly where
+the bridge is already declined. The `H^2` prefactor is a loose worst-case union
+count (same `O(H)` slack as Step 3). Vacuous at `eps = Θ(1)` (genuinely
+divergent late layers). Bottom line: **A4 is a named modelling assumption
+(CUA) under which we prove an `O(H^2 eps)` approximate identification of the
+dilution values**, not a derived equality — the phrase "derived equality" in
+the appendix should be read as this approximation.

@@ -609,16 +609,20 @@ Appendix~\ref{app:deferred}.
 We list the limitations of the present work in roughly decreasing
 order of severity.
 
-\paragraph{The sufficient-condition theorem is sketched, not formal.}
-The explicit bridge from the head-agreement drop $D$ to the dilution
-$\delta_t$ of \citet{arxiv260509649} is sketched in Appendix~\ref{app:sufficient}. The sketch
-gives explicit forms for the constants $c_1, c_2$ on the simplified
-single-head surrogate but does not claim they are tight, nor does it
-rigorously prove the converse: the operational ``capacity-bound
-$\Rightarrow$ small $D$'' direction requires a margin condition we
-have not verified on real attention. The fallback is the partition
+\paragraph{The theory holds under named assumptions, not unconditionally.}
+On the single-head surrogate we prove both directions of the bridge
+between the head-agreement drop $D$ and the dilution $\delta_t$ of
+\citet{arxiv260509649}: the sufficient direction (Appendix~\ref{app:sufficient})
+and, sharpened in Appendix~\ref{app:sharpened}, the exact leading constant of
+the scaling law (a two-sided bound, no budget-grid factor), the converse
+``capacity-bound $\Rightarrow$ small $D$'' under an explicit margin-to-noise
+assumption, and an $O(H^2\varepsilon)$ approximate form of the useful-set
+identification (A4). What remains unproven is that real attention weights
+satisfy those named assumptions (the margin-to-noise ratio, the
+consensus-usefulness inclusion); we test them only through their consequences
+(small $D$ on NIAH-MK3 in every cell). The empirical fallbacks, the partition
 (Section~\ref{sec:partition}) and the orthogonality demonstration
-(Section~\ref{subsec:matrix}), neither of which depends on the bridge.
+(Section~\ref{subsec:matrix}), do not depend on the bridge.
 
 \paragraph{The fixed $\tau$ does not transfer to the Llama family.} On
 Yi-1.5-9B and Llama-3.1-8B, niah\_multivalue drops below $\tau = 0.07$
@@ -2680,6 +2684,8 @@ $\tau = 0.07$ via this exact re-evaluation. A pipeline audit verifies
 that eviction at budget $1.0$ matches clean prefill-decode
 token-for-token up to a trailing-period mismatch on one of six audited
 examples; the released logs include the audit script.
+
+\input{theory_appendix_additions.tex}
 
 \section{Use of large language models}
 \label{app:llm}

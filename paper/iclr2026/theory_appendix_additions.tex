@@ -1,0 +1,487 @@
+% =====================================================================
+%  theory_appendix_additions.tex
+%
+%  Rigorous versions of the three deferred theoretical results for PAGE.
+%  Ready to be pasted into the appendix of main.tex, AFTER the existing
+%  Appendices \ref{app:proof-scaling} and \ref{app:sufficient} (they
+%  reference labels defined there: eq:scaling, eq:scaling-app, eq:rho,
+%  eq:D, eq:D-jaccard, eq:dilution, eq:bridge, eq:bridge-final, lem:topk,
+%  and assumptions A1--A4).
+%
+%  This file only ADDS. It does not redefine \lemma (already in main.tex).
+%  It declares the extra theorem-like environments it needs; if main.tex
+%  later defines any of these, delete the duplicate \newtheorem line here.
+% =====================================================================
+
+% , - environments (main.tex already has \newtheorem{lemma}{Lemma}) , -
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{assumption}{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\section{Sharpened deferred proofs}
+\label{app:sharpened}
+
+This appendix upgrades three results that Appendices~\ref{app:proof-scaling}
+and~\ref{app:sufficient} left as sketches: (i) the leading constant and a
+two-sided bound for the scaling formula~\eqref{eq:scaling}; (ii) the
+necessary (converse) direction of the $D$-to-dilution bridge; and (iii) the
+status of the useful-set identification (A4). Each subsection ends with an
+explicit ``What this does and does not establish'' paragraph so the paper's
+claims can be scoped exactly. Throughout we keep the notation of
+Appendices~\ref{app:proof-scaling}--\ref{app:sufficient}: $\alpha_{\mathcal{R}}$
+is the pre-eviction signal mass, $\gamma$ the noise-retention ratio,
+$\rho_{\mathcal{R}},\rho_{\mathcal{N}}$ the retained mass fractions, $\delta_t$
+Bui's dilution~\eqref{eq:dilution}, $D$ the head-agreement drop~\eqref{eq:D},
+$\sigma_z$ the pre-softmax logit-noise scale, $m$ the logit margin, $H,L,T$ the
+head, layer and length counts, and $\hat A(\cdot)$ the strictly increasing,
+$[0,1]$-valued, unit-saturating accuracy surrogate.
+
+% =====================================================================
+\subsection{Item 1: the exact leading constant and a two-sided scaling bound}
+\label{app:tight-scaling}
+% =====================================================================
+
+The sketch in Appendix~\ref{app:proof-scaling} obtains
+$\rho_{\mathrm{KV}} \le K\,(1-A_{\mathrm{full}})\,p_{\mathrm{recov}} + K/4$
+by a union bound over the $K$-point budget grid $\mathcal{B}=\{b_1,\dots,b_K\}$
+followed by a covariance residual. We show that the grid factor $K$ is an
+artifact of an unnecessary union step, that the correct leading constant is
+exactly $1$, and that a distribution-free \emph{two-sided} bound holds with
+explicit endpoints; the only genuinely unresolved quantity is a covariance,
+for which we give matching, attainable bounds.
+
+\paragraph{Events.} We work inside the surrogate of
+Appendix~\ref{app:proof-scaling}, where the per-input improvement event at a
+single budget $b$ factorises (their displayed identity) into a headroom
+indicator and a recovery indicator. Fix the prompt distribution and, for a
+random prompt $x$, define the two Bernoulli random variables
+\begin{equation}
+\label{eq:AB-def}
+A(x) := \mathbf{1}\bigl[\hat A(\mathrm{SNR}(b_{\max},x)) < 1\bigr]
+\quad\text{(headroom)},
+\qquad
+B(x) := \mathbf{1}\Bigl[\exists\, b\in\mathcal{B}:\ \mathrm{SNR}_{\mathrm{post}}(b,x) > \mathrm{SNR}_{\mathrm{pre}}(x)\Bigr]
+\quad\text{(recovery)} .
+\end{equation}
+The operational recovery rate is $\rho_{\mathrm{KV}} = \Pr_x[A(b^*(x),x) > A(b_{\max},x)]$
+with $b^*(x)=\arg\max_b A(b,x)$ (Eq.~\eqref{eq:rho}). Because $b^*$ is the
+argmax over the grid, ``improvement at $b^*$'' is exactly ``improvement at some
+$b\in\mathcal{B}$,'' and the single-budget surrogate factorisation gives
+\begin{equation}
+\label{eq:AandB}
+\bigl\{A(b^*(x),x) > A(b_{\max},x)\bigr\}
+\;=\; \bigcup_{b\in\mathcal{B}}\bigl(A(x)\cap B_b(x)\bigr)
+\;=\; A(x)\cap\Bigl(\bigcup_{b\in\mathcal{B}}B_b(x)\Bigr)
+\;=\; A(x)\cap B(x),
+\end{equation}
+where $B_b(x)=\{\mathrm{SNR}_{\mathrm{post}}(b,x)>\mathrm{SNR}_{\mathrm{pre}}(x)\}$
+and $B=\bigcup_b B_b$. The headroom event does not depend on $b$, so it pulls
+out of the union: the union over budgets lives \emph{inside} $B$. We set
+$p_{\mathrm{recov}} := \Pr_x[B]$ (recovery at the best budget) and note
+$\Pr_x[A] = 1-A_{\mathrm{full}}$ by definition of the surrogate headroom.
+
+\begin{theorem}[Exact leading constant; two-sided scaling bound]
+\label{thm:tight-scaling}
+With the definitions in~\eqref{eq:AB-def}--\eqref{eq:AandB} and
+$p_{\mathrm{recov}}:=\Pr_x[B]$, the surrogate per-input recovery rate satisfies
+the \emph{exact} identity
+\begin{equation}
+\label{eq:exact-scaling}
+\rho_{\mathrm{KV}}
+\;=\; (1-A_{\mathrm{full}})\,p_{\mathrm{recov}} \;+\; \mathrm{Cov}_x\!\bigl(A,B\bigr).
+\end{equation}
+In particular the constant multiplying $(1-A_{\mathrm{full}})\,p_{\mathrm{recov}}$
+is exactly $1$: there is no budget-grid factor $K$. Moreover the covariance is
+bounded, distribution-free, by
+\begin{equation}
+\label{eq:cov-frechet}
+0 \;\le\; \mathrm{Cov}_x(A,B) \;\le\; \min\{1-A_{\mathrm{full}},\,p_{\mathrm{recov}}\} - (1-A_{\mathrm{full}})\,p_{\mathrm{recov}},
+\end{equation}
+where the lower bound requires the association hypothesis of
+Lemma~\ref{lem:assoc} below, and the upper bound (Fr\'echet) is
+unconditional. Equivalently,
+\begin{equation}
+\label{eq:two-sided-scaling}
+\boxed{\;
+(1-A_{\mathrm{full}})\,p_{\mathrm{recov}}
+\;\le\;
+\rho_{\mathrm{KV}}
+\;\le\;
+\min\{\,1-A_{\mathrm{full}},\ p_{\mathrm{recov}}\,\}.
+\;}
+\end{equation}
+The lower bound is attained iff $A\perp B$; the upper bound is attained iff
+$A$ and $B$ are Fr\'echet--Hoeffding comonotone (one event a.s.\ contains the
+other).
+\end{theorem}
+
+\begin{proof}
+Identity~\eqref{eq:exact-scaling} is the definition of covariance applied to
+the two Bernoulli variables in~\eqref{eq:AB-def}, using
+$\rho_{\mathrm{KV}}=\Pr_x[A\cap B]=\mathbb{E}_x[AB]$ from~\eqref{eq:AandB} and
+$\mathbb{E}_x[A]=1-A_{\mathrm{full}}$, $\mathbb{E}_x[B]=p_{\mathrm{recov}}$.
+For~\eqref{eq:cov-frechet}, the upper endpoint is the Fr\'echet--Hoeffding
+inequality $\Pr[A\cap B]\le\min\{\Pr[A],\Pr[B]\}$, valid for any two events;
+subtracting the product gives the stated covariance bound and the right side
+of~\eqref{eq:two-sided-scaling}. The lower endpoint $\mathrm{Cov}_x(A,B)\ge0$
+is Lemma~\ref{lem:assoc}. Attainment: independence gives equality in the lower
+bound by construction; comonotonicity ($A\subseteq B$ or $B\subseteq A$ a.s.)
+gives $\Pr[A\cap B]=\min\{\Pr[A],\Pr[B]\}$, the upper endpoint.
+\end{proof}
+
+\begin{lemma}[Association of headroom and recovery]
+\label{lem:assoc}
+Suppose the noise-isotropy assumption (A1) of
+Appendix~\ref{app:proof-scaling} holds, so that both $A$ and $B$ are
+non-increasing functions of the single scalar driver $\alpha_{\mathcal{R}}(x)$
+(equivalently, $\mathbb{E}[A\mid\alpha_{\mathcal{R}}]$ and
+$\mathbb{E}[B\mid\alpha_{\mathcal{R}}]$ are non-increasing in
+$\alpha_{\mathcal{R}}$ and monotone in the same direction). Then
+$\mathrm{Cov}_x(A,B)\ge0$.
+\end{lemma}
+
+\begin{proof}
+If $A=f(\alpha_{\mathcal{R}})$ and $B=g(\alpha_{\mathcal{R}})$ with $f,g$ both
+non-increasing, Chebyshev's association (sum) inequality gives
+$\mathbb{E}[fg]\ge\mathbb{E}[f]\mathbb{E}[g]$, i.e.\ $\mathrm{Cov}\ge0$. If $A$
+depends on an auxiliary driver $\zeta$ independent of $\alpha_{\mathcal{R}}$
+(e.g.\ a parametric-knowledge covariate), write
+$\mathrm{Cov}(A,B)=\mathrm{Cov}(\mathbb{E}[A\mid\alpha_{\mathcal{R}}],B)$ by the
+tower rule and $B\!=\!g(\alpha_{\mathcal{R}})$; the same monotone-in-a-common-scalar
+argument applies to the conditional mean, so the sign is preserved.
+\end{proof}
+
+The monotonicity of $A$ in $\alpha_{\mathcal{R}}$ is immediate (larger signal
+mass $\Rightarrow$ larger $\mathrm{SNR}_{\mathrm{pre}}$ $\Rightarrow$ smaller
+headroom). The monotonicity of $B$ follows from Eq.~\eqref{eq:scaling-app}:
+the attainable SNR gain from removing noise mass shrinks as
+$\alpha_{\mathcal{R}}\to1$ (less noise to remove), so recovery is less likely
+at larger $\alpha_{\mathcal{R}}$.
+
+\paragraph{Why the grid factor $K$ was spurious (tight vs.\ loose regime).}
+The apparent $K$ in Appendix~\ref{app:proof-scaling} comes from the step
+$\Pr_x[\bigcup_b B_b]\le\sum_b\Pr_x[B_b]\le K\max_b\Pr_x[B_b]$ followed by
+identifying $\max_b\Pr_x[B_b]$ with $p_{\mathrm{recov}}$. Defining
+$p_{\mathrm{recov}}$ as the union probability $\Pr_x[\bigcup_b B_b]$
+instead, which is the quantity the operational $b^*(x)$ actually selects, removes
+the union step entirely. The overcount incurred by the discarded step is,
+exactly,
+\begin{equation}
+\label{eq:union-overcount}
+\sum_{b\in\mathcal{B}}\Pr_x[B_b] \;-\; \Pr_x\Bigl[\textstyle\bigcup_b B_b\Bigr]
+\;=\; \sum_{j\ge2}(-1)^j\!\!\!\sum_{|S|=j, S\subseteq\mathcal{B}}\!\!\Pr_x\Bigl[\textstyle\bigcap_{b\in S}B_b\Bigr]
+\;\ge\;0,
+\end{equation}
+the inclusion--exclusion tail. Its size is what makes the union bound tight or
+loose:
+\begin{corollary}[Tightness characterisation of the budget-grid bound]
+\label{cor:grid-tight}
+Let $p^\sharp:=\max_b\Pr_x[B_b]$ be the single-budget recovery probability.
+\begin{enumerate}
+\item[\emph{(i)}] \emph{(Monotone gain profile $\Rightarrow$ no $K$ factor.)}
+If the SNR gain $g(b,x):=\rho_{\mathcal{R}}(b,x)^2/\gamma(b,x)$ is monotone in
+$b$ for a.e.\ $x$ (as it is for a calibrated scorer, since keeping more tokens
+raises both $\rho_{\mathcal{R}}\to1$ and $\gamma\to1$ so $g\downarrow1$), then
+the events $\{B_b\}$ are nested and
+$p_{\mathrm{recov}}=\Pr_x[\bigcup_b B_b]=p^\sharp$. The genuine leading factor
+is $1$; the union bound $K\,p^\sharp$ overcounts by $(K-1)p^\sharp$.
+\item[\emph{(ii)}] \emph{(Disjoint gain profile $\Rightarrow$ $K$ is real.)}
+If instead the $\{B_b\}$ are pairwise disjoint (each input recovers at exactly
+one budget) and rare ($Kp^\sharp\ll1$), then
+$p_{\mathrm{recov}}=\sum_b\Pr_x[B_b]$ is genuinely $\Theta(K)$ times larger
+than $p^\sharp$; recovery at the best budget really is $K$-fold more frequent
+than at a fixed budget, and the factor $K$ is not slack but signal.
+\end{enumerate}
+In both cases Theorem~\ref{thm:tight-scaling} holds with constant $1$ once
+$p_{\mathrm{recov}}$ is the union probability; the two regimes differ only in
+how much larger $p_{\mathrm{recov}}$ is than the single-budget $p^\sharp$.
+\end{corollary}
+
+\begin{proof}
+(i) If $g(\cdot,x)$ is monotone then $\{b:g(b,x)>1\}$ is an interval anchored at
+the aggressive end of the grid, so $B_{b}(x)\subseteq B_{b'}(x)$ whenever
+$b'$ is more aggressive than $b$; the $B_b$ are nested and their union equals
+the loosest single event, of probability $p^\sharp$. (ii) For disjoint events
+$\Pr[\bigcup_b B_b]=\sum_b\Pr[B_b]$ exactly; rareness makes this
+$\approx Kp^\sharp$.
+\end{proof}
+
+Because our scorers are calibrated (the top-$k$ retention curve is monotone in
+$b$), the operative regime is Corollary~\ref{cor:grid-tight}(i): the honest
+constant is $1$, and the $K$ and $K/4$ terms of
+Appendix~\ref{app:proof-scaling} should be read as a loose fallback that is
+never binding on our grid.
+
+\paragraph{What this does and does not establish.}
+\emph{Establishes:} inside the deterministic-SNR surrogate, the scaling law
+holds as the \emph{exact} identity~\eqref{eq:exact-scaling} with leading
+constant precisely $1$ (no budget-grid inflation), and the two-sided
+bound~\eqref{eq:two-sided-scaling} with fully explicit, distribution-free
+endpoints; the only free quantity is the covariance
+$\mathrm{Cov}_x(A,B)\in[0,\ \min\{\Pr A,\Pr B\}-\Pr A\Pr B]$, and both endpoints
+are attainable, so no tighter distribution-free constant exists.
+\emph{Does not establish:} (a) the surrogate itself, that accuracy is a
+deterministic (or fixed-conditional) function of head SNR, is assumed, not
+proven, so the constant ``$1$'' is exact only relative to that surrogate; (b)
+the covariance is pinned only to an interval, not a value, because it depends on
+the joint law of headroom and recovery, which is task- and model-specific;
+Lemma~\ref{lem:assoc} fixes its \emph{sign} (non-negative) under single-driver
+monotonicity but not its magnitude; (c) when headroom is driven partly by an
+$\alpha_{\mathcal{R}}$-independent factor (parametric-knowledge failures, e.g.\
+the QA cells in Table~\ref{tab:partition}), recovery collapses
+($p_{\mathrm{recov}}\!\to\!0$) so both bounds pinch $\rho_{\mathrm{KV}}\!\to\!0$
+despite headroom, consistent with the observed QA exceptions, but a prediction
+of the sign structure, not a proof about those tasks. The empirically observed
+ratio band $[0.25,0.55]$ is thus an estimate of
+$p_{\mathrm{recov}}+\mathrm{Cov}/(1-A_{\mathrm{full}})$, not of a universal
+constant.
+
+% =====================================================================
+\subsection{Item 2: the necessary direction (capacity-bound $\Rightarrow$ small $D$)}
+\label{app:necessary}
+% =====================================================================
+
+Appendix~\ref{app:sufficient} proves the sufficient direction (large $D$
+forces large $\delta_t$) and states that the converse ``capacity-bound
+$\Rightarrow$ small $D$'' needs ``a margin condition we have not verified.''
+We state that condition precisely and prove the converse under it, in both a
+deterministic and a probabilistic (contrapositive) form, with explicit margin
+dependence.
+
+\paragraph{The margin condition, made precise.} Recall
+$z^{(\ell)}_{h,i}=(q^{(\ell)}_h)^\top k_i + \eta^{(\ell)}_{h,i}$ with
+$\sigma_z$-sub-Gaussian noise (A2), and the logit margin $m=m_+-m_-$ (A1).
+Define the \emph{margin-to-noise ratio} $\kappa := m/\sigma_z$.
+
+\begin{assumption}[$\kappa$-separation of the capacity-bound relevant set]
+\label{ass:margin}
+For an input in the capacity-bound regime $\mathcal{C}$, the deterministic
+logit gap between every common relevant position and every noise position at
+the late layer bin exceeds
+\begin{equation}
+\label{eq:margin-cond}
+m \;\ge\; 2\,\sigma_z\sqrt{\log\!\bigl(2 H^2 L T^2/\beta\bigr)},
+\qquad\text{i.e.}\qquad
+\kappa \;\ge\; 2\sqrt{\log\!\bigl(2 H^2 L T^2/\beta\bigr)} .
+\end{equation}
+\end{assumption}
+This is exactly the threshold of Lemma~\ref{lem:topk}; naming it as an
+assumption isolates the one quantity the converse needs. It is the precise form
+of the informal ``separation between the relevant-token logit margin and the
+noise scale.''
+
+\begin{theorem}[Capacity-bound $\Rightarrow$ small head-agreement drop]
+\label{thm:converse}
+Adopt the surrogate (A1)--(A3) of Appendix~\ref{app:sufficient} and
+Assumption~\ref{ass:margin}. Suppose the input is capacity-bound in the sense
+that the late-layer heads share a common relevant set: there is a set
+$\mathcal{R}_\star$ with $\mathcal{R}^{(\ell)}_h=\mathcal{R}_\star$ for every
+head $h$ and every layer $\ell$ in the late bin, and top-$k$ is taken at
+$k=|\mathcal{R}_\star|$. Then, over the pre-softmax noise,
+\begin{equation}
+\label{eq:converse-main}
+\Pr\bigl[\,a_{\mathrm{late}} = 1\,\bigr]\;\ge\;1-\beta,
+\qquad\text{hence}\qquad
+\Pr\bigl[\,D \le a_{\mathrm{early}}-1 \le 0\,\bigr]\;\ge\;1-\beta,
+\end{equation}
+and therefore, for \emph{every} threshold $\tau>0$,
+\begin{equation}
+\label{eq:converse-tail}
+\Pr\bigl[\,D \ge \tau\,\bigr]\;\le\;\beta
+\;=\;2 H^2 L T^2\,\exp\!\Bigl(-\tfrac{m^2}{4\sigma_z^2}\Bigr)
+\;=\;2 H^2 L T^2\,e^{-\kappa^2/4}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:topk}, under~\eqref{eq:margin-cond} the top-$k$ set of every
+late-bin head $(\ell,h)$ equals its private set $\mathcal{R}^{(\ell)}_h$
+jointly with probability $\ge1-\beta$; call this event $E$. On $E$, since all
+late-bin heads share $\mathcal{R}_\star$, every head's top-$k$ set is exactly
+$\mathcal{R}_\star$, so every pairwise top-$k$ Jaccard equals $1$ at every
+late-bin layer, whence $a_\ell=1$ for each late-bin layer and
+$a_{\mathrm{late}}=1$. This proves the first claim of~\eqref{eq:converse-main}.
+Consequently $D=a_{\mathrm{early}}-a_{\mathrm{late}}=a_{\mathrm{early}}-1\le0$
+on $E$ because $a_{\mathrm{early}}\le1$ (Jaccard is bounded by $1$), giving the
+second claim. Finally, $\{D\ge\tau\}$ for $\tau>0$ is disjoint from $E$ (on $E$,
+$D\le0$), so $\Pr[D\ge\tau]\le\Pr[E^{\mathrm c}]\le\beta$; substituting the
+value of $\beta$ from Lemma~\ref{lem:topk} yields~\eqref{eq:converse-tail}.
+\end{proof}
+
+Equation~\eqref{eq:converse-tail} is the explicit margin dependence: the
+probability that a capacity-bound input produces a drop as large as any fixed
+$\tau$ decays as $e^{-\kappa^2/4}$ in the margin-to-noise ratio. In particular
+$\mathbb{E}[(D)_+]\le\beta$ and $\mathbb{E}[D]\le a_{\mathrm{early}}-1+2\beta\le0$
+up to the $2\beta$ noise floor: the surrogate predicts a \emph{non-positive}
+expected drop for capacity-bound inputs, matching the negative $D$ measured on
+Qwen2.5-3B~16K NIAH-MK3.
+
+\begin{corollary}[Probabilistic converse / contrapositive]
+\label{cor:contrapositive}
+Let $\mathcal{C}_\star$ denote the capacity-bound event of
+Theorem~\ref{thm:converse} (late-layer heads share a common relevant set).
+Under Assumption~\ref{ass:margin}, for any $\tau>0$
+\begin{equation}
+\label{eq:contrapositive}
+\Pr\bigl[\,\mathcal{C}_\star \ \wedge\ D\ge\tau\,\bigr]\;\le\;\beta
+\;=\;2H^2 L T^2 e^{-\kappa^2/4}.
+\end{equation}
+Equivalently, if $\Pr[D\ge\tau]>0$ then
+$\Pr[\mathcal{C}_\star \mid D\ge\tau]\le \beta/\Pr[D\ge\tau]$: observing a drop
+$D\ge\tau$ implies the input is \emph{not} capacity-bound, except on a
+noise-tail event of probability $\le\beta$. This is the a-priori guarantee the
+gate needs: firing on $D\ge\tau$ mis-fires on a genuinely capacity-bound input
+only with probability $\le\beta$.
+\end{corollary}
+
+\begin{proof}
+On $\mathcal{C}_\star$, Theorem~\ref{thm:converse} gives $D\le0<\tau$ except on
+$E^{\mathrm c}$; hence $\mathcal{C}_\star\cap\{D\ge\tau\}\subseteq E^{\mathrm c}$
+and $\Pr[\mathcal{C}_\star\cap\{D\ge\tau\}]\le\beta$. The conditional statement
+is Bayes' rule.
+\end{proof}
+
+\paragraph{What this does and does not establish.}
+\emph{Establishes:} under the explicit $\kappa$-separation
+Assumption~\ref{ass:margin}, the converse holds cleanly in the
+surrogate, capacity-bound inputs have $D\le0$ with probability $\ge1-\beta$
+(Theorem~\ref{thm:converse}), with the failure probability decaying as
+$e^{-\kappa^2/4}$; and the operational contrapositive
+(Corollary~\ref{cor:contrapositive}) bounds the gate's capacity-bound
+mis-fire probability by the same $\beta$. This upgrades the informal ``margin
+condition we have not verified'' to a named assumption with a proof and a
+rate. \emph{Does not establish:} (a) that \emph{real} capacity-bound tasks
+satisfy $\mathcal{C}_\star$, i.e.\ that late-layer heads literally share one
+common relevant set rather than merely agreeing on an $O(1)$ neighbourhood of
+the needle, top-$k$ Jaccard cannot distinguish these, and the difference is
+invisible to $D$ but would weaken the deterministic $a_{\mathrm{late}}=1$ step
+to $a_{\mathrm{late}}=1-o(1)$ (the conclusion $\Pr[D\ge\tau]\le\beta+o(1)$
+survives, but $\mathcal{C}_\star$ is then an idealisation); (b) the numerical
+value of $\kappa$ on real attention weights, Assumption~\ref{ass:margin} is a
+hypothesis about the network, tested here only through its consequence (small
+$D$ on NIAH-MK3 in every cell of Table~\ref{tab:drops}), not measured directly;
+(c) a bound on $a_{\mathrm{early}}$ from below, so the theorem controls the sign
+and the upper tail of $D$ but not how negative $D$ becomes. The converse is
+thus proved \emph{conditionally on the margin assumption and the common-set
+model of capacity-bound}; both are now explicit rather than hidden.
+
+% =====================================================================
+\subsection{Item 3: the A4 useful-set identification}
+\label{app:a4}
+% =====================================================================
+
+Assumption (A4) of Appendix~\ref{app:sufficient} identifies Bui's useful set
+$U_t$ (a residual-stream, decoding-step object) with the head-common signal
+set $\mathcal{I}^{(\ell^*)}=\bigcap_h\mathcal{R}^{(\ell^*)}_h$ (a single-layer
+attention object), and the text flags it as ``a modelling choice, not a derived
+equality.'' We show that a clean exact equality cannot be proven, but a
+\emph{quantitative approximate} identification can: under a named
+consensus--usefulness assumption plus $\varepsilon$-closeness of heads, the two
+sets induce dilution values that agree up to $O(\varepsilon)$, with an explicit
+constant. We therefore replace the ``derived equality'' language with a proved
+approximation plus a named residual assumption.
+
+\paragraph{Set-up.} At the divergence layer $\ell^*$ write the head-private
+top-$k$ sets $\mathcal{R}_h:=\mathcal{R}^{(\ell^*)}_h$, their intersection
+$\mathcal{I}:=\bigcap_h\mathcal{R}_h$ and union
+$\mathcal{U}:=\bigcup_h\mathcal{R}_h$. For a set $\mathcal{S}$ define its
+induced dilution $\delta(\mathcal{S}):=1-\sum_{i\in\mathcal{S}}\alpha_{t,i}$, so
+Bui's is $\delta^{(U)}:=\delta(U_t)$ and ours is
+$\delta^{(I)}:=\delta(\mathcal{I})$. Let $\bar\alpha_{\max}:=\max_i\alpha_{t,i}$.
+
+\begin{assumption}[$\varepsilon$-closeness of heads]
+\label{ass:eps-close}
+The late-layer heads are $\varepsilon$-close in their top-$k$ sets:
+$\max_{h,h'}\,|\mathcal{R}_h\,\triangle\,\mathcal{R}_{h'}|\le\varepsilon k$,
+equivalently pairwise Jaccard $\ge (1-\varepsilon/2)/(1+\varepsilon/2)=1-O(\varepsilon)$.
+\end{assumption}
+
+\begin{assumption}[Consensus--usefulness, CUA]
+\label{ass:cua}
+The useful set is sandwiched between the head-consensus and head-union sets:
+$\mathcal{I}\subseteq U_t\subseteq\mathcal{U}$. The right inclusion
+($U_t\subseteq\mathcal{U}$) holds whenever routing to the residual stream is
+through attention only, so a position no head attends to cannot affect the
+next-token margin. The left inclusion ($\mathcal{I}\subseteq U_t$) is the
+substantive content: a position every head attends to is margin-preserving.
+\end{assumption}
+
+\begin{proposition}[Quantitative approximate identification]
+\label{prop:a4}
+Under Assumptions~\ref{ass:eps-close}--\ref{ass:cua},
+\begin{equation}
+\label{eq:a4-bound}
+\bigl|\,\delta^{(U)}_t-\delta^{(I)}_t\,\bigr|
+\;\le\;\sum_{i\in\mathcal{U}\setminus\mathcal{I}}\alpha_{t,i}
+\;\le\; H(H-1)\,\varepsilon\,k\,\bar\alpha_{\max}
+\;=\; O\!\bigl(H^2\varepsilon\bigr),
+\end{equation}
+where the last step uses $\bar\alpha_{\max}=\Theta(1/k)$ in the high-SNR
+softmax. In particular, as $\varepsilon\to0$ (heads perfectly agree) the two
+dilution values coincide: $\delta^{(U)}_t\to\delta^{(I)}_t$.
+\end{proposition}
+
+\begin{proof}
+By Assumption~\ref{ass:cua}, $U_t\triangle\mathcal{I}\subseteq\mathcal{U}\setminus\mathcal{I}$,
+because $\mathcal{I}\subseteq U_t\subseteq\mathcal{U}$ forces every element of
+$U_t\triangle\mathcal{I}=U_t\setminus\mathcal{I}$ to lie in
+$\mathcal{U}\setminus\mathcal{I}$. Since $\delta(\mathcal{S})$ is a signed sum of
+attention masses over $\mathcal{S}$,
+$|\delta^{(U)}_t-\delta^{(I)}_t|
+=\bigl|\sum_{i\in U_t}\alpha_{t,i}-\sum_{i\in\mathcal{I}}\alpha_{t,i}\bigr|
+\le\sum_{i\in U_t\triangle\mathcal{I}}\alpha_{t,i}
+\le\sum_{i\in\mathcal{U}\setminus\mathcal{I}}\alpha_{t,i}$,
+the first inequality of~\eqref{eq:a4-bound}. For the cardinality bound, for each
+head $h$,
+$|\mathcal{R}_h\setminus\mathcal{I}|\le\sum_{h'\ne h}|\mathcal{R}_h\setminus\mathcal{R}_{h'}|
+\le\sum_{h'\ne h}|\mathcal{R}_h\triangle\mathcal{R}_{h'}|\le(H-1)\varepsilon k$
+by Assumption~\ref{ass:eps-close}. Since
+$\mathcal{U}\setminus\mathcal{I}=\bigcup_h(\mathcal{R}_h\setminus\mathcal{I})$,
+$|\mathcal{U}\setminus\mathcal{I}|\le\sum_h|\mathcal{R}_h\setminus\mathcal{I}|\le H(H-1)\varepsilon k$.
+Bounding each mass by $\bar\alpha_{\max}$ gives the middle inequality;
+$\bar\alpha_{\max}=\Theta(1/k)$ gives the $O(H^2\varepsilon)$ order.
+\end{proof}
+
+\begin{remark}[When the identification fails]
+\label{rem:a4-fail}
+The left inclusion of Assumption~\ref{ass:cua} ($\mathcal{I}\subseteq U_t$) can
+fail, and this is exactly the case the equality cannot cover: if a
+\emph{single} specialised head carries the decisive value for the next-token
+margin, then a position in $\mathcal{R}_{h_0}\setminus\mathcal{I}$ (attended by
+that one head, absent from the consensus) can be margin-critical, so
+$U_t\not\subseteq\mathcal{U}\setminus(\mathcal{R}_{h_0}\setminus\mathcal{I})$ and
+$U_t\ne\mathcal{I}$ even at $\varepsilon=0$ of the \emph{other} heads. This is
+the single-decisive-head regime, precisely a capacity-bound, single-needle
+retrieval situation, where one retrieval head dominates. The approximation of
+Proposition~\ref{prop:a4} is therefore reliable in the dilution-prone regime
+(many heads, diffuse consensus, no single decisive head) and degrades exactly
+where the paper already declines to apply the bridge (capacity-bound).
+\end{remark}
+
+\paragraph{What this does and does not establish.}
+\emph{Establishes:} the identification of $U_t$ with $\mathcal{I}^{(\ell^*)}$ is
+not an exact derived equality, but under the named
+Assumptions~\ref{ass:eps-close}--\ref{ass:cua} the two sets induce
+\emph{dilution values} that agree up to $O(H^2\varepsilon)$ in attention mass
+(Proposition~\ref{prop:a4}), with an explicit constant $H(H-1)k\bar\alpha_{\max}$;
+so wherever heads are $\varepsilon$-close, using $\mathcal{I}^{(\ell^*)}$ in
+place of $U_t$ perturbs Bui's $\delta_t$ by a controlled $O(\varepsilon)$ term
+rather than by an uncontrolled amount. \emph{Does not establish:} (a) the
+substantive left inclusion $\mathcal{I}\subseteq U_t$ (CUA); it is named as
+Assumption~\ref{ass:cua}, justified by the additive-routing picture, and shown
+in Remark~\ref{rem:a4-fail} to fail precisely in the single-decisive-head
+(capacity-bound) regime, so it is an assumption about the model's read-out, not
+a theorem; (b) any control of the $H^2$ prefactor, which is a worst-case union
+count and is loose when residuals overlap across heads (the same $O(H)$-slack
+issue as Step~3 of Appendix~\ref{app:sufficient}); (c) a bound when
+$\varepsilon$ is $\Theta(1)$ (genuinely divergent heads, the dilution-prone late
+layers themselves), there the approximation is vacuous and $\mathcal{I}$ and
+$U_t$ are related only through the CUA sandwich, not quantitatively. The honest
+scoping is thus: \textbf{A4 is a named modelling assumption (CUA), under which
+we prove an $O(H^2\varepsilon)$ approximate identification of the dilution
+values}, not a derived equality; the word ``derived equality'' in
+Appendix~\ref{app:sufficient} should be read as this approximation.
