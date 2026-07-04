@@ -16,7 +16,8 @@ Script: `experiments/scripts/measure_flashattn_gate.py` (reuses
 `gated_eviction.py` — the identical scoring path used in the accuracy
 experiments). Raw: `experiments/results/flashattn_gate_qwen32b.jsonl`,
 `flashattn_gate_qwen15b.jsonl`. bf16, batch 1, `torch.cuda.synchronize` around
-every timed region, N=15 measured iters (medians) after 3 warmup.
+every timed region, **N≥10 medians** (15 for Qwen-1.5B / synthetic, 12 for the
+capacity-limited Qwen-32B run) after 2–3 warmup iters.
 
 > **Hardware / contention caveat.** A100-SXM4-80GB, shared cluster. During this
 > run the four cards carried heavy, *fluctuating* lab training jobs (free memory
@@ -66,14 +67,23 @@ as-implemented 124–148 ms is almost entirely the L·H=336 serialized per-head
 GPU→CPU transfers under contention (the algorithmic Jaccard floor for H=12 is
 ~2 ms; the prior lighter-contention run in `latency_memory.md` measured 17 ms).
 
-### Qwen2.5-32B (L=64, H=40)
+### Qwen2.5-32B (L=64, H=40), measured
 
-<!-- FILL_32B_MEASURED -->
-Drop cost is T-independent and dominated by the H²=780-pair Jaccard: algorithmic
-floor **87 ms** (measured, model-free, at every T; §3). Re-forward extrapolated
-from the linear-in-T law scaled to 64 layers. Longer-context real rows were
-capacity-limited on the shared cluster; the drop (T-independent) and the memory
-(analytic, validated in §2) do not depend on that.
+| T | re-forward ms | drop ms (as-impl) | drop ms (algo floor) | gate ms (as-impl) | SDPA prefill ms | prefill peak | scoring peak |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| 4096  | **144.8** | **203.5** | ~87 | **349.7** | 1914 | 64753 MiB | 64468 MiB |
+| 16384 | OOM* | (87, T-indep.) | ~87 | -- | OOM* | -- | -- |
+
+\* **16K OOM'd on the shared 80 GiB A100**: 61 GiB weights + full-length KV +
+the eager `w×T` attention transient + HF full-sequence logits exceeded the free
+budget even from a fresh 68 GiB window (the concurrent lab jobs re-expanded
+during the 21 s model load). This is *itself* direct evidence of the deployment
+limitation — a 32B two-pass gate barely fits at 4K and does not fit at 16K on a
+single contended 80 GiB card. The drop cost is T-independent (§3: 87 ms
+algorithmic floor at every T), and the 16K/32K memory is analytic and validated
+in §2. At **4K the gate is 350 ms** (145 ms eager re-forward over 64 layers +
+204 ms as-implemented drop), i.e. **18% of the 1.9 s prefill** — vs ~5% on
+Qwen-1.5B; the fraction grows with head count exactly as O(L·H²) predicts.
 
 ---
 
@@ -94,9 +104,12 @@ measured Qwen-1.5B scoring-pass peak decomposes consistently as weights (2.9 GiB
 | 70B-class (80, 64) | 1.25 GiB | 5.0 GiB | **10.0 GiB** |
 
 Measured peaks (Qwen-1.5B): SDPA prefill 4265 / 8198 / 13442 MiB at 4K/16K/32K;
-pass-2 scoring 3217 / 3914 / 4843 MiB. The materialization scales **linearly in
-both H and T** and is a *transient* per-sequence allocation the pass must hold on
-top of weights + full-length KV.
+pass-2 scoring 3217 / 3914 / 4843 MiB. Measured peaks (**Qwen-32B @4K**): SDPA
+prefill **64753 MiB**, pass-2 scoring **64468 MiB** — i.e. weights (61 GiB) +
+KV + the 640 MiB attention transient already sit at ~63 GiB at only 4K, leaving
+no room on an 80 GiB card once the length-`T` KV grows (16K prefill OOM'd, §1).
+The materialization scales **linearly in both H and T** and is a *transient*
+per-sequence allocation the pass must hold on top of weights + full-length KV.
 
 ---
 
@@ -181,8 +194,11 @@ operation at 70B/long-context scale in a fused/paged stack.
 > top of weights and the full-length KV, and (iii) feeds a head-agreement
 > computation whose cost is **O(L·H²·k)**, i.e. **quadratic in the head count**
 > (measured per-layer exponent ≈2.3, T-independent: ~90 ms at H=40/L=64,
-> extrapolating to ~0.3 s at H=64/L=80). The gate therefore does **not**
-> "extrapolate linearly"; its cost grows with L·H² and its memory with L·H·T.
+> extrapolating to ~0.3 s at H=64/L=80). Measured end-to-end, the two-pass gate
+> is **350 ms on Qwen-32B at 4K (18 % of prefill)** vs ~190 ms on Qwen-1.5B
+> (5 %); on the shared 80 GiB A100 the 32B two-pass already OOM'd at 16K. The
+> gate therefore does **not** "extrapolate linearly"; its cost grows with L·H²
+> and its memory with L·H·T.
 > This is acceptable for **offline / single-stream / research prefill** (the
 > setting of all accuracy experiments here) but is **not viable as an online
 > per-request operation in a high-throughput paged-FlashAttention deployment**

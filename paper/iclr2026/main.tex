@@ -673,18 +673,21 @@ niah\_multivalue, and per-input separation stays at AUC $\approx 0.80$; a
 per-input statistic beyond mean $D$ is the natural follow-up
 (Appendix~\ref{app:deferred}).
 
-\paragraph{``Capacity-bound'' is defined relative to the scorer being
-gated.} A task is capacity-bound for a scorer when that scorer cannot retain
-the answer under compression; the gate protects against the specific evictor it
-wraps. NIAH-MK3 is capacity-bound for every scorer we test: the four
-attention-score evictors, and a faithful ManifoldKV+Ada-KV geometry
-scorer~\citep{arxiv260208343} that \emph{does} rescue single-key NIAH
-($0.88$--$0.94$ at $2$--$4\times$ compression, validating our implementation)
-yet still collapses on the three-key MK3 ($0.65 \to 0.23$ at $50\%$, to $0$
-below; Appendix~\ref{app:deferred}). We could not reproduce their reported
-multi-key rescue at their operating point, so MK3 is capacity-bound even for a
-competent geometry scorer here, not an artifact of weak attention scoring. We
-still do not claim it is un-compressible by \emph{every} possible scorer.
+\paragraph{NIAH-MK3 is capacity-bound scorer-independently, but only at
+aggressive compression.} At $\ge 4\times$ compression ($b \le 0.25$) NIAH-MK3
+collapses to chance for every scorer and allocation we tested in a clean
+per-head harness: the four attention-score evictors, per-head SnapKV with
+Ada-KV, and a faithful ManifoldKV+Ada-KV geometry
+scorer~\citep{arxiv260208343,arxiv240711550} that \emph{does} rescue single-key
+NIAH ($0.88$--$0.94$, validating the implementation) yet never exceeds per-head
+SnapKV on MK3 and collapses to $0$ at $b \le 0.25$ (Appendix~\ref{app:deferred}).
+So the multi-needle capacity limit is real and not an artifact of weak attention
+scoring. One honest caveat: at $2\times$ compression ($b = 0.5$) per-head SnapKV
+does \emph{not} collapse MK3, so the collapse our matrix and showcase report at
+moderate budgets is partly an artifact of the single-mask attention pooling in
+our default evictor; the scorer-independent capacity-bound regime is
+$\ge 4\times$ compression, which is where the gate's protection matters and
+where our showcase should be read.
 
 Further limitations, all in Appendix~\ref{app:deferred}: single-seed greedy runs
 with low-powered per-cell partition calls (the claim rests on the pooled
