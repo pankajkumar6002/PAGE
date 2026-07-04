@@ -468,3 +468,15 @@ to one hero number (99->0 vs 89 showcase); breadth stated qualitatively.
 Contributions rewritten as claims+pointers to tables/figures (removed +22.9pp,
 +13-29pp, per-cell recitations). Matrix prose: summarized budget list, lightened
 showcase preview. No numbers lost - all now live in tables/figures. Still 9pp.
+
+## Optional work + theory complete, synced to page-kv.git (2026-07-04)
+All queued work done and pushed to ssh://git@10.10.0.178:2222/smlab/page-kv.git (main):
+- Git repo initialized + synced (venv/build excluded, trimkv flattened).
+- QA_2@Qwen3B-16K = rho 0.02 -> partition table fully populated, no blanks.
+- Distractor sweep replicated on Mistral-7B (MK1>MK2>MK3: 0.081>0.072>0.060) -> removed single-model caveat.
+- Per-layer ManifoldKV on NIAH-MK3: also collapses (0.65->0.03@b=0.5) -> closes the rebuttal.
+- passage_count on Qwen2.5-14B: A_full 0.16 (above floor), gate closes 100% (mean D=-0.013), rho=0.01 -> confirmed 2nd non-RULER capacity-bound family (muted; MK3 stays the showcase). Limitation upgraded to result.
+- THEORY (app:sharpened): tight scaling constant=1 + two-sided bound; necessary direction (cap-bound=>small D) under named margin assumption; A4 as named CUA assumption with O(H^2 eps) approx. Verified by me. Main-text limitation softened from "sketched" to "holds under named assumptions".
+Paper: 9pp main, 40pp total, 0 undefined, 0 em-dashes.
+
+Next: adversarial-reviewer panel (6 lenses) on final draft, then fix gaps.
