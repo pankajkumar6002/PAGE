@@ -11,8 +11,10 @@ Under aggressive compression (budget <= 0.25) every scorer we tried — SnapKV,
 KeyDiff, ManifoldKV (post-RoPE and pre-RoPE keys), each with uniform *and* Ada-KV
 per-head allocation — collapses to ~0 on MK3. The geometry scorer does not beat a
 properly-implemented per-head SnapKV at any budget; if anything it is weaker at
-budget 0.5. See "Verdict" for the exact sentence and an important caveat about
-the paper's *existing* SnapKV-collapse number.
+budget 0.5 (geometry 0.06-0.10 vs SnapKV 0.20-0.32, both far below full-KV 0.66).
+Decisively, the *same* scorer demonstrably rescues 2-key NIAH (0.72 vs SnapKV
+0.16 at 50%), so its MK3 failure is a real capacity limit, not a weak-scorer
+artifact. See "Verdict" for the exact sentence.
 
 ---
 
@@ -109,39 +111,42 @@ retrieval where the attention baseline dies. That makes its failure on 3-key
 
 ## Result: accuracy vs budget on NIAH-MK3
 
-Qwen2.5-1.5B-Instruct, RULER 4K, `niah_multikey_3`, N=15 (run continuing toward
-N=50; the pattern below has been stable since N=5). Full-KV baseline = 0.60,
-which agrees with the paper's own SnapKV full-KV number (0.65) — the clean harness
-reproduces the baseline.
+Qwen2.5-1.5B-Instruct, RULER 4K, `niah_multikey_3`, **N=50 (complete run)**.
+Full-KV baseline = 0.66, matching the paper's own SnapKV full-KV number (0.65) —
+the clean harness reproduces the baseline.
 
 | scorer (allocation) | full | b=0.5 | b=0.25 | b=0.125 | b=0.0625 |
 |---|---:|---:|---:|---:|---:|
-| SnapKV (uniform per-head) | 0.60 | 0.40 | 0.07 | 0.00 | 0.00 |
-| **SnapKV (Ada-KV)** | 0.60 | **0.53** | 0.00 | 0.00 | 0.00 |
-| KeyDiff cos (uniform) | 0.60 | 0.07 | 0.00 | 0.00 | 0.00 |
-| KeyDiff cos (Ada-KV) | 0.60 | 0.07 | 0.00 | 0.00 | 0.00 |
-| ManifoldKV L2 post-RoPE (uniform) | 0.60 | 0.07 | 0.00 | 0.00 | 0.00 |
-| **ManifoldKV L2 post-RoPE (Ada-KV)** | 0.60 | 0.07 | 0.00 | 0.00 | 0.00 |
-| ManifoldKV L2 pre-RoPE (uniform) | 0.60 | 0.07 | 0.00 | 0.00 | 0.00 |
-| **ManifoldKV L2 pre-RoPE (Ada-KV)** | 0.60 | 0.27 | 0.00 | 0.00 | 0.00 |
+| SnapKV (uniform per-head) | 0.66 | 0.20 | 0.02 | 0.00 | 0.00 |
+| **SnapKV (Ada-KV)** | 0.66 | **0.32** | 0.00 | 0.00 | 0.00 |
+| KeyDiff cos (uniform) | 0.66 | 0.02 | 0.00 | 0.00 | 0.00 |
+| KeyDiff cos (Ada-KV) | 0.66 | 0.02 | 0.00 | 0.00 | 0.00 |
+| ManifoldKV L2 post-RoPE (uniform) | 0.66 | 0.02 | 0.00 | 0.00 | 0.00 |
+| **ManifoldKV L2 post-RoPE (Ada-KV)** | 0.66 | 0.06 | 0.00 | 0.00 | 0.00 |
+| ManifoldKV L2 pre-RoPE (uniform) | 0.66 | 0.02 | 0.00 | 0.00 | 0.00 |
+| **ManifoldKV L2 pre-RoPE (Ada-KV)** | 0.66 | 0.10 | 0.00 | 0.00 | 0.00 |
 
 Effective (measured) kept fraction equals the nominal budget exactly (0.5000,
-0.2500, 0.1250, 0.0625) — no over-allocation.
+0.2500, 0.1250, 0.0625) — no over-allocation. Ada-KV reallocation gives every
+scorer a small lift at b=0.5 (SnapKV 0.20->0.32, ManifoldKV-pre 0.02->0.10) but
+never enough to matter, and nothing at all below 25%.
 
 ### Comparison to the paper's failed variants and to the old harness
 
 | budget | faithful ManifoldKV+AdaKV (this) | best geometry (pre+AdaKV) | per-head SnapKV+AdaKV | old-harness single-mask ManifoldKV | old-harness SnapKV |
 |---|---:|---:|---:|---:|---:|
-| full | 0.60 | 0.60 | 0.60 | 0.65 | 0.65 |
-| 0.5 | 0.07 | 0.27 | 0.53 | 0.03 | 0.14 |
+| full | 0.66 | 0.66 | 0.66 | 0.65 | 0.65 |
+| 0.5 | 0.06 | 0.10 | 0.32 | 0.03 | 0.14 |
 | 0.25 | 0.00 | 0.00 | 0.00 | 0.00 | 0.02 |
 | 0.125 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 |
 
 Two things are visible:
-1. The faithful per-head geometry scorer (with Ada-KV) is less degenerate than the
-   old single-mask variant at b=0.5 (best 0.27 vs 0.03) — so the clean harness
-   closes the "you didn't run true per-head/Ada-KV ManifoldKV" gap. But it still
-   does **not** rescue MK3.
+1. The faithful per-head geometry scorer (with Ada-KV) is marginally less degenerate
+   than the old single-mask variant at b=0.5 (best 0.10 vs 0.03) — so the clean
+   harness closes the "you didn't run true per-head/Ada-KV ManifoldKV" gap, but the
+   geometry scorer still lands near zero and **does not** rescue MK3. Per-head
+   SnapKV (0.32) is the only method with non-trivial b=0.5 accuracy, and it is
+   attention-based, not geometric.
 2. Below 25% budget, *every* method — attention (SnapKV), cosine (KeyDiff),
    L2 (ManifoldKV, both RoPE variants), uniform and Ada-KV — is at 0.00.
 
@@ -154,7 +159,8 @@ tried on both post-RoPE and pre-RoPE keys) integrated with Ada-KV per-head
 adaptive budget allocation (floor_alpha=0.5 + global head-wise top-k):
 - collapses to chance (0.00) at budget <= 0.25, exactly like SnapKV/KeyDiff; and
 - never beats a properly-implemented per-head SnapKV at any budget (at b=0.5 the
-  best geometry variant is 0.27 vs SnapKV's 0.53).
+  best geometry variant is 0.10 vs SnapKV's 0.32; both are far below the full-KV
+  0.66, i.e. MK3 is already heavily capacity-bound at 50% and totally so at 25%).
 
 So MK3 is capacity-bound in a **scorer-independent** way under aggressive
 compression — including for the exact geometry method the reviewer asked about.
@@ -165,9 +171,9 @@ reproducing the paper's multi-key advantage. It is therefore a *demonstrably
 competent* geometry scorer, not a weak reimplementation — yet it still cannot
 rescue 3-key MK3. That is the strongest possible evidence that MK3 is a genuine
 multi-needle **capacity** limit and not an artifact of scorer choice or of a poor
-implementation. (Curiously, on MK3 at b=0.5 the ordering even inverts — SnapKV 0.53
-> ManifoldKV 0.07 — the opposite of 2-key; we do not over-interpret this at N=15,
-but it further undercuts any "geometry is what rescues multi-key" story for MK3.)
+implementation. (On MK3 at b=0.5 the ordering even inverts vs 2-key — SnapKV+AdaKV
+0.32 > ManifoldKV+AdaKV 0.06 — the opposite of the 2-key task, further undercutting
+any "geometry is what rescues multi-key" story specifically for MK3.)
 
 **Exact sentence the paper should use:**
 > To rule out a scorer-specific effect, we re-implemented ManifoldKV (Euclidean
@@ -181,17 +187,17 @@ but it further undercuts any "geometry is what rescues multi-key" story for MK3.
 > budget. MK3 is therefore capacity-bound independently of the scoring family
 > (attention-score or geometric outlier), not merely for attention-based scorers.
 
-### Honest caveat (a finding about the paper's own SnapKV number)
+### Honest caveat (a small finding about the paper's own SnapKV number)
 
-In this clean *per-head* harness, SnapKV at 50% budget does **not** collapse on
-MK3 — it holds at 0.53 (near full-KV 0.60), and Ada-KV lifts uniform SnapKV from
-0.40 to 0.53. The paper's own reported SnapKV-MK3-collapse at 50% (0.14, from
-`gated_eviction.py`) is partly an artifact of that harness pooling attention into a
-single keep-set shared across all layers and heads; a per-head SnapKV retrieves
-the needles fine at 50%. The scorer-independent, robust capacity-bound regime is
-therefore **budget <= 0.25 (>= 4x compression)**, not 50%. The paper should scope
-the MK3 "capacity-bound" showcase to aggressive budgets (<=25%), where it holds for
-every scorer we tested; at 50% the collapse is implementation-sensitive.
+At full N=50, per-head SnapKV at 50% budget lands at 0.32 (uniform 0.20), a large
+drop from full-KV 0.66 — so MK3 **is** substantially capacity-bound at 50% for
+SnapKV too, just not all the way to zero. This *supports* the paper's "SnapKV
+collapses on MK3" framing directionally. The one nuance: a proper per-head SnapKV
+recovers modestly (0.32) vs the paper's single-mask `gated_eviction.py` SnapKV
+(0.14) — the single-mask pooling exaggerates the collapse by ~2x — but the
+qualitative story is the same. (My earlier N=15 snapshot showed SnapKV at ~0.53 at
+b=0.5; that was small-N upward noise, corrected here at N=50.) Either way the
+robust, absolute-zero, scorer-independent capacity wall is **budget <= 0.25**.
 
 Second, note that the *2-key* task is a different story: there, attention-score
 SnapKV **is** genuinely capacity-bound (0.16/0.04 at b=0.5/0.25) and the geometry
@@ -203,7 +209,7 @@ should be stated as MK3-specific.
 
 We did not reproduce ManifoldKV's headline 92.4%-at-50% number; that is on
 Llama-3.1-8B at 8K with the authors' full flattened-cache Ada-KV pipeline, whereas
-this is Qwen2.5-1.5B at 4K (full-KV MK3 is only ~0.62 here). The verdict is about
+this is Qwen2.5-1.5B at 4K (full-KV MK3 is only 0.66 here). The verdict is about
 *relative* rescue on a matched harness, which is what the reviewer asked for.
 
 ## Files

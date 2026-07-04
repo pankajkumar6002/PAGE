@@ -4,7 +4,8 @@ Reproduce:
 - Part 1 (analysis-only): `.venv/bin/python experiments/scripts/matched_memory_analysis.py`
   (source: the six `gated_4k_*.jsonl` SnapKV files + the H2O / StreamingLLM /
   PyramidKV variant files).
-- Part 2 PAGE-SnapKV side (analysis-only): same script, Qwen3-4B section
+- Part 2 PAGE-SnapKV side (analysis-only):
+  `.venv/bin/python experiments/scripts/matched_memory_page_snapkv_qwen3.py`
   (source: `gated_4k_qwen3_4b_merged.jsonl`).
 - Part 2 plain-DBTrimKV side (native run):
   `external/trimkv/venv/bin/python external/trimkv/run_plain_dbtrimkv_30pct.py`
@@ -109,31 +110,37 @@ a dominated mixture at aggressive cache (the same effect as Part i).
 
 | memory_size | kept-KV | accuracy | source |
 |---:|---:|---:|---|
-| 128 | 0.034 | 0.475 | prior run |
-| 256 | 0.068 | 0.617 | prior run |
-| 512 | 0.137 | 0.758 | prior run |
-| 1024 | 0.26 | ⟪DB1024⟫ | this run |
-| **1152** | **0.29** | **⟪DB1152⟫** | this run |
-| 1280 | 0.32 | ⟪DB1280⟫ | this run |
+| 128 | 0.039 | 0.475 | prior run |
+| 256 | 0.073 | 0.617 | prior run |
+| 512 | 0.142 | 0.758 | prior run |
+| 1024 | 0.281 | 0.775 | this run |
+| **1152** | **0.315** | **0.775** | this run |
+| 1280 | 0.350 | 0.783 | this run |
+
+Interpolated plain-DBTrimKV accuracy @ 30 % kept-KV = **0.775**. Note DBTrimKV
+plateaus at ~0.78 above ~28 % kept: its remaining error is on `fwe`
+(frequent-word extraction, stuck at 0.33) and `qa_1` (~0.78); `niah_multikey_3`
+and `vt` are already at 1.00.
 
 **Head-to-head at matched ~30 % achieved memory:**
 
 | method @ ~30 % kept-KV | achieved kept | accuracy |
 |---|---:|---:|
-| **plain DBTrimKV** (M = 1152) | 0.29 | **⟪DB1152⟫** |
-| PAGE-SnapKV (best ~30 %, τ = 0.02, b = 0.125) | 0.33 | 0.592 |
+| **plain DBTrimKV** (M = 1152) | 0.315 | **0.775** |
+| PAGE-SnapKV (best ~30 %, τ = 0.02, b = 0.125) | 0.329 | 0.592 |
 | PAGE-SnapKV (closest 0.30, τ = 0.0225, b = 0.0625) | 0.305 | 0.425 |
 | plain SnapKV (reference) | 0.30 | 0.565 |
 | PAGE-SnapKV @ paper τ = 0.07 (NOT 30 %) | **0.98** | 0.858 |
 
-**Verdict (ii).** At matched ~30 % memory, **plain DBTrimKV ⟪(≈ DB1152)⟫ beats
-PAGE-SnapKV (0.42–0.59)** on Qwen3-4B. PAGE-SnapKV's only competitive number
-(0.858) is obtained by **holding ~98 % of the cache**, i.e. by spending ~3× the
-memory of the DBTrimKV point. The DBTrimKV report's headline +0.233 (0.617 →
-0.850) gated win is likewise a **memory-spending win** (gate closed → full paged
-KV, ≈ 14.5× the cache of plain DBTrimKV at the same `memory_size`), **not** a
-frontier win. **If PAGE only wins by spending more memory — on Qwen3-4B, it
-does.**
+**Verdict (ii).** At matched ~30 % memory, **plain DBTrimKV (0.775) decisively
+beats PAGE-SnapKV (0.42–0.59)** on Qwen3-4B — a **+0.18 to +0.35** gap in
+DBTrimKV's favour, and DBTrimKV even beats plain SnapKV (0.565) there.
+PAGE-SnapKV's only competitive number (0.858) is obtained by **holding ~98 % of
+the cache**, i.e. by spending ~3× the memory of the 30 % DBTrimKV point. The
+DBTrimKV report's headline +0.233 (0.617 → 0.850) gated win is likewise a
+**memory-spending win** (gate closed → full paged KV, ≈ 14.5× the cache of plain
+DBTrimKV at the same `memory_size`), **not** a frontier win. **If PAGE only wins
+by spending more memory — on Qwen3-4B, it does.**
 
 ---
 

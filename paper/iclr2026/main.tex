@@ -683,12 +683,13 @@ SnapKV collapses to $0.16$. Yet the same scorer does not rescue three-key
 NIAH-MK3: below $25\%$ budget it falls to chance like every attention-score
 evictor, and never exceeds a per-head SnapKV baseline
 (Appendix~\ref{app:deferred}). NIAH-MK3 is thus capacity-bound independently of
-the scoring family. One honest caveat: in a clean per-head harness SnapKV does
-\emph{not} collapse MK3 at $2\times$ compression ($b = 0.5$), so the
-moderate-budget collapse our matrix and showcase report is partly an artifact of
-the single-mask attention pooling in our default evictor; the scorer-independent
-capacity-bound regime is $\ge 4\times$ compression, which is where the gate's
-protection matters and where our showcase should be read.
+the scoring family. One honest caveat on the magnitude: at $2\times$ compression
+a clean per-head SnapKV drops MK3 only to $\approx 0.32$ (half of the $0.66$
+full-KV), whereas the single-mask pooling in our default evictor reports a
+sharper $0.14$; so the moderate-budget collapse our matrix and showcase show is
+partly a single-mask artifact, and the scorer-independent absolute-collapse
+regime is $\ge 4\times$ compression, which is where the gate's protection
+matters and where our showcase should be read.
 
 Further limitations, all in Appendix~\ref{app:deferred}: single-seed greedy runs
 with low-powered per-cell partition calls (the claim rests on the pooled
