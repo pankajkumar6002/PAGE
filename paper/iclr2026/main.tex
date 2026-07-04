@@ -627,19 +627,17 @@ the random-eviction control are deferred to Appendix~\ref{app:deferred}.
 \label{subsec:capkv-longbench}
 \label{subsec:dbtrimkv}
 
-The gate wraps published evictors, not just the base four. Around a
-re-implementation of CapKV~\citep{arxiv260425975} on LongBench (Qwen2.5-3B,
-$b = 0.5$) it is weakly positive at matched budget ($+1.5$pp qasper, $+8.3$pp
-triviaqa, concentrated on the gate-closed subset). Around the pretrained
-trained-gate evictor DBTrimKV~\citep{arxiv260509649} (Qwen3-4B-Instruct-2507,
-RULER 4K) it improves matched-budget accuracy by $+23.3$pp, but this is a
-memory-spending win: the gate fires on only $1.7\%$ of Qwen3 records, so it
-holds $\approx 14.5\times$ the cache, and at matched \emph{memory} ($\approx
-30\%$ achieved kept-KV) natively-run plain DBTrimKV \emph{beats} the wrapped
-version. \method does not advance the frontier over a strong trained method at
-matched memory; its value is the label-free per-input decision to keep the full
-cache when eviction is unsafe. Both tables and the matched-memory head-to-head
-are in Appendix~\ref{app:deferred}.
+The gate wraps published evictors, not just the base four: around a CapKV
+re-implementation~\citep{arxiv260425975} on LongBench it is weakly positive
+($+1.5$/$+8.3$pp on two subtasks), and around pretrained
+DBTrimKV~\citep{arxiv260509649} (Qwen3-4B, RULER 4K) it improves matched-budget
+accuracy by $+23.3$pp. But the DBTrimKV number is a memory-spending win: the
+gate fires on $1.7\%$ of records, holding $\approx 14.5\times$ the cache, and at
+matched \emph{memory} ($\approx 30\%$ kept-KV) natively-run plain DBTrimKV
+\emph{beats} the wrapped version. \method does not advance the frontier over a
+strong trained method at matched memory; its value is the label-free per-input
+decision to keep the full cache when eviction is unsafe (tables and the
+matched-memory head-to-head in Appendix~\ref{app:deferred}).
 
 \section{Limitations}
 \label{sec:limitations}

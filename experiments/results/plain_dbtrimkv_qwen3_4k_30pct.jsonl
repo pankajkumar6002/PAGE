@@ -100,3 +100,7 @@
 {"id": 33, "task": "vt", "budget": 1024, "T": 3878, "n_seen": 3899, "n_kept_plain": 300960, "gold": ["GKOGM", "SLAHK", "GRJOI", "ZOJLH", "FSITY"], "pred_plain": "GKOGM, SLAHK, GRJOI, ZOJLH, FSITY", "correct_plain": true}
 {"id": 33, "task": "vt", "budget": 1152, "T": 3878, "n_seen": 3899, "n_kept_plain": 337824, "gold": ["GKOGM", "SLAHK", "GRJOI", "ZOJLH", "FSITY"], "pred_plain": "GKOGM, SLAHK, GRJOI, ZOJLH, FSITY", "correct_plain": true}
 {"id": 33, "task": "vt", "budget": 1280, "T": 3878, "n_seen": 3899, "n_kept_plain": 374688, "gold": ["GKOGM", "SLAHK", "GRJOI", "ZOJLH", "FSITY"], "pred_plain": "GKOGM, SLAHK, GRJOI, ZOJLH, FSITY", "correct_plain": true}
+{"id": 34, "task": "vt", "budget": 1024, "T": 3877, "n_seen": 3897, "n_kept_plain": 300672, "gold": ["SZNHC", "FFEAN", "HZOSD", "WMWOM", "LEBYM"], "pred_plain": "SZNHC, FFEAN, HZOSD, WMWOM, LEBYM", "correct_plain": true}
+{"id": 34, "task": "vt", "budget": 1152, "T": 3877, "n_seen": 3897, "n_kept_plain": 337536, "gold": ["SZNHC", "FFEAN", "HZOSD", "WMWOM", "LEBYM"], "pred_plain": "SZNHC, FFEAN, HZOSD, WMWOM, LEBYM", "correct_plain": true}
+{"id": 34, "task": "vt", "budget": 1280, "T": 3877, "n_seen": 3897, "n_kept_plain": 374400, "gold": ["SZNHC", "FFEAN", "HZOSD", "WMWOM", "LEBYM"], "pred_plain": "SZNHC, FFEAN, HZOSD, WMWOM, LEBYM", "correct_plain": true}
+{"id": 35, "task": "vt", "budget": 1024, "T": 3878, "n_seen": 3899, "n_kept_plain": 300960, "gold": ["DVYCG", "OKPQU", "JXHPL", "OBYCT", "QGCGO"], "pred_plain": "DVYCG, OKPQU, JXHPL, OBYCT, QGCGO", "correct_plain": true}
