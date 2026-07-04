@@ -1,0 +1,22 @@
+# PAGE: Partition-Aware Gated KV-Cache Eviction
+# Environment for the SnapKV-family experiments (partition, matrix, scaling, 32K,
+# LongBench probes, gate-signal ablation, Pareto/matched-memory analysis, ManifoldKV control).
+# Python 3.13. Install into a fresh venv:  python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
+
+# --- core ---
+torch==2.11.0            # +cu128 build used; install the CUDA build matching your driver
+transformers==5.9.0
+numpy==2.4.6
+datasets==4.8.5          # RULER (simonjegou/ruler port) and LongBench loading
+matplotlib==3.10.9       # paper/make_figures.py and the phenomenon/Pareto figures
+
+# --- model loading / runtime (pulled in by transformers, pinned for reproducibility) ---
+accelerate==1.13.0
+huggingface_hub==1.17.0
+safetensors==0.7.0
+sentencepiece==0.2.1
+tqdm==4.67.3
+
+# --- NOT installed here ---
+# The DBTrimKV head-to-head (Bui et al.) runs in the baseline's own pinned environment
+# (transformers==4.57.1, torch==2.8, flash-attn==2.8.3); see external/trimkv and its NOTES.md.
