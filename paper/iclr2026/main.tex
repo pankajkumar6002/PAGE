@@ -45,16 +45,17 @@ when it is small, with no training, labels, or fine-tuning. \method is a
 safety mechanism: on inputs where eviction would be catastrophic it keeps the
 full cache, and elsewhere it passes the base evictor through unchanged. On
 multi-key retrieval with Mistral-7B, plain SnapKV falls from $99\%$ to $0\%$ as
-the budget shrinks while \method holds it at $89\%$. On the accuracy--memory
+the budget shrinks while \method holds it at $89\%$; on realistic code
+completion it likewise protects a collapse plain eviction would cause. On the accuracy--memory
 frontier, across four base evictors (SnapKV, H2O, StreamingLLM, PyramidKV) and
 four models, \method improves on plain eviction by $3$ to $19$pp at equal
 achieved cache whenever the target keeps more than about a third of the cache,
 and by design defers to plain eviction under extreme compression. The
 head-agreement drop orders tasks the same way across all four model families;
-one fixed threshold works on the Qwen2.5 and Mistral families, and an unlabeled
-per-model pilot extends it to Llama-family and Qwen3 models. We frame when
-eviction helps and when it hurts as a task-type partition, dilution-prone versus
-capacity-bound, and give a scaling relation for the fraction of inputs that
+one fixed threshold works on Qwen2.5 and Mistral, and an unlabeled per-model
+pilot extends it to Llama-family and Qwen3 models. We frame the helps-vs-hurts
+split as a task-type partition (dilution-prone versus
+capacity-bound), and give a scaling relation for the fraction of inputs that
 recover, stress-tested out of range at 32K. Code and per-input logs are
 released.
 \end{abstract}
@@ -273,10 +274,15 @@ NIAH-MK3         & 0.01 \pci{.00}{.05}          & 0.00 \pci{.00}{.08}          &
 }
 \end{table}
 
-The detailed re-entry analysis of Qwen2.5-14B at long context and the
-demonstration that the partition is a near-tie-distractor structure rather
-than a task-name heuristic (including the non-RULER LongBench
-passage\_retrieval\_en probe) are deferred to Appendix~\ref{app:deferred}.
+The partition extends to a realistic, non-synthetic task. On LongBench
+\texttt{lcc} code completion (Qwen2.5-14B, $N = 96$), plain SnapKV destroys
+$64\%$ of correct answers ($0.29 \to 0.14$ at $16\times$) while recovering
+almost none ($\rho = 0.03$), the capacity-bound signature previously seen only
+on synthetic NIAH-MK3; the gate closes a priori ($D = 0.054 < \tau$) and protects
+it ($+0.146$ over plain). \texttt{repobench-p} is milder ($+0.049$), and
+multi-hop hotpotqa is evict-robust and correctly gated open. The re-entry
+analysis, the near-tie-distractor demonstration, and the passage\_retrieval\_en
+probe are in Appendix~\ref{app:deferred}.
 
 \paragraph{Mechanism validation: distractor count drives $D$.} A
 controlled sweep over the RULER NIAH-MultiKey family (Qwen2.5-1.5B,
@@ -680,11 +686,9 @@ protection matters and where the showcase should be read.
 
 Further limitations, all in Appendix~\ref{app:deferred}: greedy runs with
 low-powered per-cell partition calls (a second draw replicates transfer and
-head-to-heads but not the 32K VT amplification); a near-zero gate effect on the realistic LongBench subset and on
-multi-hop hotpotqa (both evict-robust and correctly gated open, but neither a
-capacity-bound anchor, which remains RULER-only), with one negative cell
-($-2.2$pp); a false-positive gate call on passage\_count; and head-to-heads run
-on different models.
+head-to-heads but not the 32K VT amplification); a near-zero gate effect on the
+dilution-prone LongBench subset (correctly gated open); a false-positive gate
+call on passage\_count; and head-to-heads run on different models.
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -695,9 +699,9 @@ which side an input falls on. Read honestly, \method is a safety mechanism: it
 lifts the accuracy--memory frontier where moderate compression is the target and
 prevents catastrophic collapse where it is not (Mistral-7B NIAH-MK3,
 $99\% \to 0\%$ becomes a flat $89\%$), at the cost of one attention-exposing
-prefill pass. The open problems are a signal that transfers across families
-without a per-model pilot, and a realistic non-synthetic capacity-bound
-benchmark.
+prefill pass; on a realistic task (LongBench \texttt{lcc} code completion) it
+already protects a genuine eviction collapse. The open problem we name is a
+signal that transfers across families without a per-model pilot.
 
 \subsection*{Reproducibility statement}
 
