@@ -494,3 +494,11 @@ Next: adversarial-reviewer panel (6 lenses) on final draft, then fix gaps.
   opens (D=0.097, correct). Code tasks (lcc/repobench) small-N/incomplete. No realistic
   capacity-bound anchor found (still RULER-only, noted honestly).
 Still pending: second_seed_robustness (running). Paper 9pp, clean, all honest integrations pushed.
+
+## Second-seed robustness (T2.1) integrated - Tier 2 COMPLETE (2026-07-04)
+second_seed_robustness.md: cross-family transfer + head-to-heads REPLICATE (Qwen3 z-tau
++0.235->+0.216; Llama ordering preserved, deltas positive; CapKV/DBTrimKV sign+magnitude hold).
+32K pre-reg IMPROVES to 2/3 (seed1 was 1/3). BUT the striking 32K VT-amplification ("eviction
+beats full-KV on VT") FLIPS - single-draw artifact - REMOVED from paper. Integrated honestly:
+32K paragraph reports both seeds, VT amplification claim dropped, robustness noted in limitations.
+ALL 5 Tier 2 experiments done + integrated. Paper 9pp, clean, all pushed to page-kv.git.

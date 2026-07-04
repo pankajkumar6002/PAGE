@@ -508,15 +508,11 @@ Appendix~\ref{app:deferred}.
 \subsection{A pre-registered out-of-range test at 32K}
 \label{subsec:prereg32k}
 
-All scaling-formula evidence so far is in-range (4K/16K). We therefore
-ran a pre-registered extrapolation test: fit the per-task recovery
-ratio $\rho / (1 - A_{\mathrm{full}})$ on the existing 4K/16K cells
-only, measure $A_{\mathrm{full}}$ at 32K (Qwen2.5-1.5B, $N = 100$ per
-task, RULER-32K with the Qwen2.5 tokenizer), freeze and hash the
-predicted $\rho$ intervals \emph{before} running any eviction budget,
-then sweep. The timestamped protocol log and the frozen prediction
-file's SHA-256 ship with the released logs. The full prediction-vs-measurement
-table (Table~\ref{tab:prereg32k}) is deferred to Appendix~\ref{app:deferred}.
+All scaling evidence so far is in-range (4K/16K), so we ran a pre-registered
+extrapolation test: fit the recovery ratio $\rho / (1 - A_{\mathrm{full}})$ on
+4K/16K, measure $A_{\mathrm{full}}$ at 32K (Qwen2.5-1.5B, $N = 100$), freeze and
+hash the predicted $\rho$ intervals before sweeping (protocol log and SHA-256
+released; table in Appendix~\ref{app:deferred}).
 
 One of three predictions lands strictly inside its interval
 (Table~\ref{tab:prereg32k}). Both misses are in the more-recovery
@@ -525,23 +521,15 @@ conservative for the scaling relation (the relation under-predicted the
 effect), whereas NIAH-MK3's point estimate rising above the $\rho \le 0.02$
 pin (to $0.04$) is a partition miss in the anti-conservative direction (the
 capacity-bound task recovered slightly more than the partition allows,
-though its Wilson interval still covers $0.02$). VT's measured ratio ($0.74$)
-exceeds every in-range ratio
-($\max 0.56$): recovery per unit headroom grows with context rather
-than staying constant, and at 32K eviction beats the full cache on VT
-in \emph{mean} accuracy, not just per input ($0.850$ at $b = 0.125$
-vs.\ $0.810$ full-KV), the strongest dilution signature in any cell we
-measured. FWE lands, but its ratio ($0.10$) matches the 1.5B in-range
-cells rather than the pooled band, i.e., the FWE ratio is
-model-dependent. MK3's point estimate slips above the $0.02$ pin
-(Wilson CI still covers it), while the partition itself sharpens: the
-MK3 recovery ratio ($0.047$ at headroom $0.86$) is $15\times$ below
-VT's ($0.74$ at headroom $0.19$). Net reading: the formula's
-\emph{directional} content ($\rho$ tracks headroom, and the
-partition is visible in the ratio at any context length) survives
-out-of-range, but the constant-ratio proportionality does not: the
-dilution-side ratio grows with context and varies by (task, model). We
-accordingly claim the formula as a directional and ordinal law, not a
+though its Wilson interval still covers $0.02$). A second input draw changes the picture in one place: FWE and NIAH-MK3
+replicate (inside the band, near the pin), but VT is not seed-robust, sitting
+above the band on the first draw ($\rho = 0.14$) and inside it on the second
+($\rho = 0.09$; 2 of 3 predictions inside on the second draw versus 1 of 3 on
+the first). We therefore do not claim the first draw's VT amplification (that
+eviction beats full-KV on VT in mean accuracy). What survives both draws is the
+ordinal content, the partition is visible in the ratio at any context length
+(MK3's ratio stays far below VT's), while constant-ratio proportionality does
+not. We claim the formula as a directional and ordinal relation, not a
 quantitative one.
 
 \subsection{The accuracy--memory frontier}
@@ -690,9 +678,9 @@ in our matrix and showcase is partly a single-mask artifact; the
 scorer-independent absolute collapse is at $\ge 4\times$, where the gate's
 protection matters and where the showcase should be read.
 
-Further limitations, all in Appendix~\ref{app:deferred}: single-seed greedy runs
-with low-powered per-cell partition calls (the claim rests on the pooled
-contrast); a near-zero gate effect on the realistic LongBench subset and on
+Further limitations, all in Appendix~\ref{app:deferred}: greedy runs with
+low-powered per-cell partition calls (a second draw replicates transfer and
+head-to-heads but not the 32K VT amplification); a near-zero gate effect on the realistic LongBench subset and on
 multi-hop hotpotqa (both evict-robust and correctly gated open, but neither a
 capacity-bound anchor, which remains RULER-only), with one negative cell
 ($-2.2$pp); a false-positive gate call on passage\_count; and head-to-heads run
