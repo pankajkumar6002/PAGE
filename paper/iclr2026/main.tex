@@ -572,17 +572,17 @@ Because the gate keeps the full cache when it closes, the two arms hold
 different amounts of cache at the same nominal budget. Re-plotting accuracy
 against \emph{achieved} kept-KV (Figure~\ref{fig:pareto-gated}) shows that
 gating is not a free win everywhere but a strict improvement of the
-accuracy--memory frontier over a wide range: for any target cache size above
-roughly one third of full KV, gating delivers $3$--$19$pp higher accuracy than
-plain SnapKV at the \emph{same} achieved kept-KV on all four models, and below
-that range it saturates by design (the gate's full-KV fallback bounds
-compression at $1-p_{\text{open}}$). At the aggressive operating point the
-deployment delivers $3.1$--$3.4\times$ memory reduction ($1.8\times$ on
-Qwen-3B), and against a per-input oracle the gate recovers a mean $69\%$ of the
-available headroom, almost all of it task-level protection of the
-capacity-bound anchor. The achieved-compression breakdown
-(Table~\ref{tab:achieved-compression}), the exact frontier mechanics, and the
-oracle-gap per cell are deferred to Appendix~\ref{app:deferred}.
+accuracy--memory frontier above a crossover we locate precisely: interpolating
+both curves at fixed achieved cache, gating delivers $3$--$19$pp higher accuracy
+than plain SnapKV at the \emph{same} achieved kept-KV once the target keeps more
+than $\approx 0.32$--$0.35$ of the cache, and below that crossover it cannot
+compete (its full-KV fallback floors achieved compression at $1-p_{\text{open}}$,
+$\approx 3\times$ maximum). \method is thus a moderate-compression safety method,
+not an aggressive-regime compressor. Against a per-input oracle it recovers a
+mean $69\%$ of the available headroom, almost all of it task-level protection of
+the capacity-bound anchor. The achieved-compression breakdown, the exact
+crossover per model, and the oracle-gap are deferred to
+Appendix~\ref{app:deferred}.
 
 \paragraph{Drop ordering and scaling-formula check.} The head-agreement
 drop orders the tasks the same way in every Qwen and Mistral cell
@@ -632,13 +632,14 @@ re-implementation of CapKV~\citep{arxiv260425975} on LongBench (Qwen2.5-3B,
 $b = 0.5$) it is weakly positive at matched budget ($+1.5$pp qasper, $+8.3$pp
 triviaqa, concentrated on the gate-closed subset). Around the pretrained
 trained-gate evictor DBTrimKV~\citep{arxiv260509649} (Qwen3-4B-Instruct-2507,
-RULER 4K) it improves matched-budget accuracy by $+23.3$pp overall,
-concentrated on capacity-bound NIAH-MK3 ($+53.3$pp) as the mechanism predicts;
-at the fixed $\tau = 0.07$ the gate fires on only $1.7\%$ of Qwen3 records, so
-this is a quality win dominated by the full-KV fallback, and the per-model
-z-scored threshold restores a compressing gate. Both tables
-(\ref{tab:capkv}, \ref{tab:dbtrimkv}) and details are in
-Appendix~\ref{app:deferred}.
+RULER 4K) it improves matched-budget accuracy by $+23.3$pp, but this is a
+memory-spending win: the gate fires on only $1.7\%$ of Qwen3 records, so it
+holds $\approx 14.5\times$ the cache, and at matched \emph{memory} ($\approx
+30\%$ achieved kept-KV) natively-run plain DBTrimKV \emph{beats} the wrapped
+version. \method does not advance the frontier over a strong trained method at
+matched memory; its value is the label-free per-input decision to keep the full
+cache when eviction is unsafe. Both tables and the matched-memory head-to-head
+are in Appendix~\ref{app:deferred}.
 
 \section{Limitations}
 \label{sec:limitations}
@@ -683,12 +684,15 @@ per-input statistic beyond mean $D$ is the natural follow-up
 \paragraph{``Capacity-bound'' is defined relative to the scorer being
 gated.} A task is capacity-bound for a scorer when that scorer cannot retain
 the answer under compression; the gate protects against the specific evictor it
-wraps. NIAH-MK3 is capacity-bound for all the attention-score evictors we test,
-and also for two geometry (ManifoldKV-style) scorers in our harness, but we
-could not reproduce ManifoldKV's~\citep{arxiv260208343} reported multi-key
-rescue at their operating point (a harness/setup gap; Appendix~\ref{app:deferred}),
-so we do not claim NIAH-MK3 is un-compressible by \emph{every} scorer, only that
-the gate correctly protects the scorers it wraps.
+wraps. NIAH-MK3 is capacity-bound for every scorer we test: the four
+attention-score evictors, and a faithful ManifoldKV+Ada-KV geometry
+scorer~\citep{arxiv260208343} that \emph{does} rescue single-key NIAH
+($0.88$--$0.94$ at $2$--$4\times$ compression, validating our implementation)
+yet still collapses on the three-key MK3 ($0.65 \to 0.23$ at $50\%$, to $0$
+below; Appendix~\ref{app:deferred}). We could not reproduce their reported
+multi-key rescue at their operating point, so MK3 is capacity-bound even for a
+competent geometry scorer here, not an artifact of weak attention scoring. We
+still do not claim it is un-compressible by \emph{every} possible scorer.
 
 Further limitations, all in Appendix~\ref{app:deferred}: single-seed greedy runs
 with low-powered per-cell partition calls (the claim rests on the pooled
