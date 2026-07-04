@@ -1,0 +1,8 @@
+# Core (versions used for the SnapKV-family experiments)
+torch==2.11.0
+transformers==5.9.0
+numpy==2.4.6
+datasets==4.8.5
+matplotlib==3.10.9
+# The DBTrimKV head-to-head uses the baseline's own pinned environment
+# (transformers==4.57.1, torch==2.8, flash-attn==2.8.3); see README.

@@ -19,3 +19,4 @@ external/trimkv/venv/
 .DS_Store
 scratchpad/
 *.tmp
+github/**/__pycache__/
