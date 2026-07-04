@@ -128,3 +128,8 @@
 {"id": 42, "task": "vt", "budget": 1152, "T": 3877, "n_seen": 3897, "n_kept_plain": 337536, "gold": ["BUHJD", "NOUEC", "WQGXD", "LGGAU", "XRELI"], "pred_plain": "BUHJD, NOUEC, WQGXD, LGGAU, XRELI", "correct_plain": true}
 {"id": 42, "task": "vt", "budget": 1280, "T": 3877, "n_seen": 3897, "n_kept_plain": 374400, "gold": ["BUHJD", "NOUEC", "WQGXD", "LGGAU", "XRELI"], "pred_plain": "BUHJD, NOUEC, WQGXD, LGGAU, XRELI", "correct_plain": true}
 {"id": 43, "task": "vt", "budget": 1024, "T": 3877, "n_seen": 3897, "n_kept_plain": 300672, "gold": ["FKMGO", "OZHZR", "HORTB", "PMXHU", "PJQQR"], "pred_plain": "FKMGO, OZHZR, HORTB, PMXHU, PJQQR", "correct_plain": true}
+{"id": 43, "task": "vt", "budget": 1152, "T": 3877, "n_seen": 3897, "n_kept_plain": 337536, "gold": ["FKMGO", "OZHZR", "HORTB", "PMXHU", "PJQQR"], "pred_plain": "FKMGO, OZHZR, HORTB, PMXHU, PJQQR", "correct_plain": true}
+{"id": 43, "task": "vt", "budget": 1280, "T": 3877, "n_seen": 3897, "n_kept_plain": 374400, "gold": ["FKMGO", "OZHZR", "HORTB", "PMXHU", "PJQQR"], "pred_plain": "FKMGO, OZHZR, HORTB, PMXHU, PJQQR", "correct_plain": true}
+{"id": 44, "task": "vt", "budget": 1024, "T": 3877, "n_seen": 3897, "n_kept_plain": 300672, "gold": ["AJDXI", "KFUWJ", "NHEXY", "ZHWUM", "BTFRR"], "pred_plain": "AJDXI, KFUWJ, NHEXY, ZHWUM, BTFRR", "correct_plain": true}
+{"id": 44, "task": "vt", "budget": 1152, "T": 3877, "n_seen": 3897, "n_kept_plain": 337536, "gold": ["AJDXI", "KFUWJ", "NHEXY", "ZHWUM", "BTFRR"], "pred_plain": "AJDXI, KFUWJ, NHEXY, ZHWUM, BTFRR", "correct_plain": true}
+{"id": 44, "task": "vt", "budget": 1280, "T": 3877, "n_seen": 3897, "n_kept_plain": 374400, "gold": ["AJDXI", "KFUWJ", "NHEXY", "ZHWUM", "BTFRR"], "pred_plain": "AJDXI, KFUWJ, NHEXY, ZHWUM, BTFRR", "correct_plain": true}

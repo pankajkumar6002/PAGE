@@ -1811,6 +1811,21 @@ Eviction + cache rebuild   & 3.2  & & \\
 }
 \end{table}
 
+\paragraph{Deployment cost at scale.} We measured the two-pass gate on
+Qwen2.5-32B (64 layers, 40 heads): the gate costs $350$ms at 4K ($145$ms
+re-forward $+ 204$ms head-agreement drop, $\approx 18\%$ of the $1.9$s prefill),
+and the 16K two-pass run \emph{OOMs} on a contended 80GB card (weights $+$ KV
+$+$ the $w \times T$ attention transient). The drop cost is quadratic in head
+count: a head-count sweep gives an exponent of $2.0$--$2.4$ (per-model floors
+$2.1$ms on Qwen-1.5B, $27$ms Mistral-7B, $87$ms Qwen-32B, extrapolating to
+$\approx 291$ms on a 70B-class model), confirming the $O(L H^2 k)$ complexity.
+The $w \times T$ attention transient is $L H w T \cdot 2$ bytes ($5$GiB at 32K
+on Qwen-32B, $\approx 10$GiB on 70B-class). A 70B model at 32K is therefore not
+viable in a paged-FlashAttention stack: the two-pass re-forward needs contiguous
+(non-paged) KV and a non-fused eager kernel, and materializes a per-sequence
+transient that paged attention exists to avoid. \method is best read as an
+offline/prefill-time gate, not a fused-serving drop-in.
+
 \paragraph{Head-to-head with CapKV on LongBench.}
 CapKV~\citep{arxiv260425975} is the closest published method that
 reports on LongBench. No public CapKV codebase exists yet (their
