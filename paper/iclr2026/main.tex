@@ -41,18 +41,22 @@ and late layers in how much attention heads agree on which tokens to read,
 predicts per input, before any decoding, which of the two regimes an input is
 in. We build this into \method (Partition-Aware Gated Eviction), a wrapper that
 runs any SnapKV-style evictor when the drop is large and keeps the full cache
-when it is small, with no training, labels, or fine-tuning. Across four base
-evictors (SnapKV, H2O, StreamingLLM, PyramidKV) and four models, \method
-improves every one of sixteen configurations at matched budget and moves the
-accuracy--memory frontier up wherever moderate compression is the goal. The
-effect is sharpest where plain eviction breaks: on multi-key retrieval with
-Mistral-7B, plain SnapKV falls from $99\%$ to $0\%$ as the budget shrinks while
-\method holds it at $89\%$. One threshold transfers across the Qwen and Mistral
-families, and standardizing the drop per model extends it to Llama-family and
-Qwen3 models without new tuning. We frame when eviction helps and when it hurts
-as a task-type partition, dilution-prone versus capacity-bound, and give a
-scaling law for the fraction of inputs that recover, tested out of range at
-32K. Code and per-input logs are released.
+when it is small, with no training, labels, or fine-tuning. \method is a
+safety mechanism: on inputs where eviction would be catastrophic it keeps the
+full cache, and elsewhere it passes the base evictor through unchanged. On
+multi-key retrieval with Mistral-7B, plain SnapKV falls from $99\%$ to $0\%$ as
+the budget shrinks while \method holds it at $89\%$. On the accuracy--memory
+frontier, across four base evictors (SnapKV, H2O, StreamingLLM, PyramidKV) and
+four models, \method improves on plain eviction by $3$ to $19$pp at equal
+achieved cache whenever the target keeps more than about a third of the cache,
+and by design defers to plain eviction under extreme compression. The
+head-agreement drop orders tasks the same way across all four model families;
+one fixed threshold works on the Qwen2.5 and Mistral families, and an unlabeled
+per-model pilot extends it to Llama-family and Qwen3 models. We frame when
+eviction helps and when it hurts as a task-type partition, dilution-prone versus
+capacity-bound, and give a scaling relation for the fraction of inputs that
+recover, stress-tested out of range at 32K. Code and per-input logs are
+released.
 \end{abstract}
 
 \section{Introduction}
@@ -119,13 +123,16 @@ matched budget.
   re-implementation on LongBench and the pretrained DBTrimKV evictor on RULER
   at matched budget.
   \item \textbf{A scaling law} (Section~\ref{sec:theory}). For dilution-prone
-  tasks the fraction of recovering inputs follows $\rho \approx (1 -
-  A_{\mathrm{full}}(M, T)) \cdot p_{\mathrm{recov}}(\rho_{\mathcal{R}}/\gamma)$,
-  which unifies context-length amplification, model-size saturation, and the
-  re-entry of larger models into the dilution regime at long context. A
-  pre-registered 32K test (Section~\ref{subsec:prereg32k}) confirms the law's
-  directional and ordinal content and falsifies constant-ratio proportionality,
-  both misses being conservative.
+  tasks, the fraction of recovering inputs grows with accuracy headroom and
+  falls as the model saturates the task; the closed form
+  $\rho \approx (1 - A_{\mathrm{full}}(M, T)) \cdot
+  p_{\mathrm{recov}}(\rho_{\mathcal{R}}/\gamma)$ (Section~\ref{sec:theory}) unifies
+  context-length amplification, model-size saturation, and the re-entry of
+  larger models into the dilution regime at long context. We stress-test it
+  with a pre-registered 32K extrapolation (Section~\ref{subsec:prereg32k}): the
+  directional content survives, but constant-ratio proportionality is falsified
+  (1 of 3 predictions strictly inside its interval), so we report this as a
+  scaling \emph{relation}, not a quantitative law.
 \end{enumerate}
 
 We do not claim as novel the paradigm that less compute can beat full attention,
@@ -232,8 +239,10 @@ cache budget can fix.
 NIAH-MK3 (precise multi-key retrieval) is the only task that systematically
 fails the threshold in every cell tested. $N = 100$ per (task, cell) except
 Qwen-14B ($N = 50$ at 4K, $N = 30$ at 16K), Mistral 16K VT/FWE/QA\_1/NIAH-MK3
-($N = 50$), and Qwen-1.5B 16K NIAH-MK3 ($N = 46$). At these $N$ most single
-cells straddle the $0.05$ threshold; the pooled contrast is unambiguous
+($N = 50$), Qwen-3B 16K NIAH-MK3 ($N = 50$), and Qwen-1.5B 16K NIAH-MK3
+($N = 46$). At these $N$ most single
+cells straddle the $0.05$ threshold and no per-cell call is individually
+powered; the claim rests on the pooled contrast, which is unambiguous
 (NIAH-MK3: $2/526$, $\rho = 0.004$, Wilson $[0.001, 0.014]$).}
 \label{tab:partition}
 \resizebox{\textwidth}{!}{%
@@ -487,9 +496,14 @@ file's SHA-256 ship with the released logs. The full prediction-vs-measurement
 table (Table~\ref{tab:prereg32k}) is deferred to Appendix~\ref{app:deferred}.
 
 One of three predictions lands strictly inside its interval
-(Table~\ref{tab:prereg32k}). Both
-misses are in the same direction: \emph{more} recovery than
-predicted. VT's measured ratio ($0.74$) exceeds every in-range ratio
+(Table~\ref{tab:prereg32k}). Both misses are in the more-recovery
+direction, but they differ in kind: VT recovering more than predicted is
+conservative for the scaling relation (the relation under-predicted the
+effect), whereas NIAH-MK3's point estimate rising above the $\rho \le 0.02$
+pin (to $0.04$) is a partition miss in the anti-conservative direction (the
+capacity-bound task recovered slightly more than the partition allows,
+though its Wilson interval still covers $0.02$). VT's measured ratio ($0.74$)
+exceeds every in-range ratio
 ($\max 0.56$): recovery per unit headroom grows with context rather
 than staying constant, and at 32K eviction beats the full cache on VT
 in \emph{mean} accuracy, not just per input ($0.850$ at $b = 0.125$
@@ -609,20 +623,19 @@ Appendix~\ref{app:deferred}.
 We list the limitations of the present work in roughly decreasing
 order of severity.
 
-\paragraph{The theory holds under named assumptions, not unconditionally.}
-On the single-head surrogate we prove both directions of the bridge
-between the head-agreement drop $D$ and the dilution $\delta_t$ of
-\citet{arxiv260509649}: the sufficient direction (Appendix~\ref{app:sufficient})
-and, sharpened in Appendix~\ref{app:sharpened}, the exact leading constant of
-the scaling law (a two-sided bound, no budget-grid factor), the converse
-``capacity-bound $\Rightarrow$ small $D$'' under an explicit margin-to-noise
-assumption, and an $O(H^2\varepsilon)$ approximate form of the useful-set
-identification (A4). What remains unproven is that real attention weights
-satisfy those named assumptions (the margin-to-noise ratio, the
-consensus-usefulness inclusion); we test them only through their consequences
-(small $D$ on NIAH-MK3 in every cell). The empirical fallbacks, the partition
+\paragraph{The theory is a conditional analysis on a surrogate, and the
+empirical results do not depend on it.} On a single-head deterministic-SNR
+surrogate we give (Appendix~\ref{app:sharpened}): a two-sided
+Fr\'echet--Hoeffding bound on the scaling relation with its sign fixed by an
+association argument; a converse ``capacity-bound $\Rightarrow$ small $D$'' that
+holds under an explicit margin-to-noise assumption but is only non-vacuous at a
+large margin, so it constrains the drop \emph{ordering} more than its sign; and
+an $O(H^2\varepsilon)$ approximate (not exact) form of the useful-set
+identification (A4). These are conditional results on a toy model, not
+statements about real transformers; we include them to make the mechanism
+precise, but the paper's claims rest on the empirical partition
 (Section~\ref{sec:partition}) and the orthogonality demonstration
-(Section~\ref{subsec:matrix}), do not depend on the bridge.
+(Section~\ref{subsec:matrix}), neither of which uses the bridge.
 
 \paragraph{The fixed $\tau$ does not transfer to the Llama family.} On
 Yi-1.5-9B and Llama-3.1-8B, niah\_multivalue drops below $\tau = 0.07$
@@ -725,9 +738,15 @@ new.
 
 \subsection*{Reproducibility statement}
 
-All experiments run on single NVIDIA A100 80GB GPUs with PyTorch 2.11,
-Transformers 5.9, and Python 3.13, in bfloat16 with greedy (argmax)
-decoding, \texttt{max\_new\_tokens} $= 128$, and a fixed seed. Models
+Our SnapKV-family runs (the partition, the matrix, the scaling and 32K
+sweeps, and the LongBench probes) use single NVIDIA A100 80GB GPUs with
+PyTorch 2.11, Transformers 5.9, and Python 3.13, in bfloat16 with greedy
+(argmax) decoding, \texttt{max\_new\_tokens} $= 128$, and a fixed seed. The
+two published head-to-heads run in the baselines' own pinned environments
+(the DBTrimKV comparison uses the authors' \texttt{trimkv} environment,
+Transformers 4.57.1 / PyTorch 2.8 / FlashAttention 2; the CapKV comparison is
+our re-implementation in an isolated environment), documented with the released
+logs. Models
 are the public Hugging Face checkpoints of Qwen2.5-1.5B/3B/14B-Instruct,
 Mistral-7B-Instruct-v0.3, Yi-1.5-9B-Chat, and Llama-3.1-8B-Instruct;
 tasks come from the \texttt{simonjegou/ruler} port of RULER and from

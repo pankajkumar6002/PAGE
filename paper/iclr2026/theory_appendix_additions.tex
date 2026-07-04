@@ -94,9 +94,15 @@ the \emph{exact} identity
 \rho_{\mathrm{KV}}
 \;=\; (1-A_{\mathrm{full}})\,p_{\mathrm{recov}} \;+\; \mathrm{Cov}_x\!\bigl(A,B\bigr).
 \end{equation}
-In particular the constant multiplying $(1-A_{\mathrm{full}})\,p_{\mathrm{recov}}$
-is exactly $1$: there is no budget-grid factor $K$. Moreover the covariance is
-bounded, distribution-free, by
+The content here is not the identity~\eqref{eq:exact-scaling}, which is merely
+the definition of covariance for two Bernoullis, but the observation that once
+$p_{\mathrm{recov}}$ is defined as the \emph{union} probability
+$\Pr_x[\bigcup_b B_b]$ (the quantity $b^*$ actually selects) rather than the
+single-budget $\max_b\Pr_x[B_b]$, the budget-grid factor $K$ of
+Appendix~\ref{app:proof-scaling} is absorbed into $p_{\mathrm{recov}}$ rather
+than multiplying it; $K$ reappears inside $p_{\mathrm{recov}}$ whenever the
+recovery budgets are near-disjoint (Corollary~\ref{cor:grid-tight}(ii)). The
+covariance is bounded, by
 \begin{equation}
 \label{eq:cov-frechet}
 0 \;\le\; \mathrm{Cov}_x(A,B) \;\le\; \min\{1-A_{\mathrm{full}},\,p_{\mathrm{recov}}\} - (1-A_{\mathrm{full}})\,p_{\mathrm{recov}},
@@ -314,11 +320,19 @@ value of $\beta$ from Lemma~\ref{lem:topk} yields~\eqref{eq:converse-tail}.
 
 Equation~\eqref{eq:converse-tail} is the explicit margin dependence: the
 probability that a capacity-bound input produces a drop as large as any fixed
-$\tau$ decays as $e^{-\kappa^2/4}$ in the margin-to-noise ratio. In particular
-$\mathbb{E}[(D)_+]\le\beta$ and $\mathbb{E}[D]\le a_{\mathrm{early}}-1+2\beta\le0$
-up to the $2\beta$ noise floor: the surrogate predicts a \emph{non-positive}
-expected drop for capacity-bound inputs, matching the negative $D$ measured on
-Qwen2.5-3B~16K NIAH-MK3.
+$\tau$ decays as $e^{-\kappa^2/4}$ in the margin-to-noise ratio. The bound is
+only informative when $\beta = 2H^2 L T^2 e^{-\kappa^2/4} < 1$, which for
+realistic $(H, L, T)$ requires a large margin-to-noise ratio
+($\kappa \gtrsim 10$ at $H{=}16, L{=}28, T{=}4096$); this is a genuine
+knife-edge (Assumption~\ref{ass:margin} is close to the informal margin cap
+$m \le \log T$ of Appendix~\ref{app:proof-scaling}), and outside it the
+guarantee is vacuous. Consistent with this, the measured $D$ on NIAH-MK3 is
+\emph{small} rather than reliably non-positive: it is mildly positive in most
+cells of Table~\ref{tab:drops} ($+0.04$ to $+0.06$) and negative only on
+Qwen2.5-3B. The theorem therefore predicts $\mathbb{E}[D] \approx 0$ at an
+$O(\beta)$ floor, with sign indeterminate; the small positive values observed
+mean real margins sit below the high-$\kappa$ regime, so the theorem constrains
+the \emph{ordering} (NIAH-MK3 smallest) more than the sign.
 
 \begin{corollary}[Probabilistic converse / contrapositive]
 \label{cor:contrapositive}
