@@ -42,8 +42,8 @@ predicts per input, before any decoding, which of the two regimes an input is
 in. We build this into \method (Partition-Aware Gated Eviction), a wrapper that
 runs any SnapKV-style evictor when the drop is large and keeps the full cache
 when it is small, with no training, labels, or fine-tuning. \method is a
-safety mechanism: on inputs where eviction would be catastrophic it keeps the
-full cache, and elsewhere it passes the base evictor through unchanged. On
+collapse-avoiding safeguard: on inputs where eviction would be catastrophic it
+keeps the full cache, and elsewhere it passes the base evictor through unchanged. On
 multi-key retrieval with Mistral-7B, plain SnapKV falls from $99\%$ to $0\%$ as
 the budget shrinks while \method holds it at $89\%$; on realistic code
 completion it likewise protects a collapse plain eviction would cause. On the accuracy--memory
@@ -118,8 +118,8 @@ matched budget.
   (Section~\ref{sec:recipe}).
   \item \textbf{\method, a gating algorithm} (Section~\ref{sec:method}). One
   conditional on the prefill attention, with no training, back-propagation, or
-  labels. It works as a safety mechanism: it keeps the full cache on inputs
-  where eviction is catastrophic and passes the base evictor through otherwise.
+  labels. It works as a collapse-avoiding safeguard: it keeps the full cache on
+  inputs where eviction is catastrophic and passes the base evictor through otherwise.
   On the accuracy--memory frontier it improves on plain eviction by $3$ to
   $19$pp at equal achieved cache for targets above $\approx 1/3$ of full KV
   (Figure~\ref{fig:pareto-gated}), and defers to plain eviction under extreme
@@ -131,7 +131,7 @@ matched budget.
   matched-budget accuracy, with the gain concentrated where the base method
   would otherwise collapse (and, on DBTrimKV, dominated by the full-cache
   fallback, which we quantify).
-  \item \textbf{A scaling law} (Section~\ref{sec:theory}). For dilution-prone
+  \item \textbf{A scaling relation} (Section~\ref{sec:theory}). For dilution-prone
   tasks, the fraction of recovering inputs grows with accuracy headroom and
   falls as the model saturates the task; the closed form
   $\rho \approx (1 - A_{\mathrm{full}}(M, T)) \cdot
@@ -175,20 +175,22 @@ we use. Our gating signal, an early-to-late \emph{cross-layer} drop in head
 agreement, is related to but distinct from the \emph{within-layer} head-consensus
 metric that \citet{arxiv260301426} compute to explain compression tolerance
 descriptively; ours is a directional cross-layer contrast, computed online at
-prefill and thresholded to gate. Plug-and-play wrappers over several base
-evictors exist (VECTOR~\citealp{arxiv260523258}, CriticalKV~\citealp{arxiv250203805}),
-and learned gates share our ``gate'' terminology
-(Attention-Gate~\citealp{arxiv241012876}, Fast KVzip~\citealp{arxiv260117668}),
-but all of these always compress and adapt \emph{which} tokens are kept, or
-require training, whereas ours is training-free and decides \emph{whether} to
-evict at all. Transfer of an eviction control across model families is itself
-known: CompilerKV~\citep{arxiv260208686} ports compiled per-head retention tables
-across backbones; we instead transfer a single threshold, fixed across the Qwen
-and Mistral families and extended to Llama-family and Qwen3 models by an
-unlabeled per-model standardization of one scalar. The training-free base
-evictors we wrap are SnapKV~\citep{arxiv240414469}, H2O~\citep{arxiv230614048},
-StreamingLLM~\citep{arxiv230917453}, and PyramidKV~\citep{arxiv240602069}. A full treatment of all neighbors, including the DBTrimKV/CapKV
-head-to-heads and the many further concurrent evictors and allocators, is
+prefill and thresholded to gate. Plug-and-play wrappers
+(VECTOR~\citealp{arxiv260523258}, CriticalKV~\citealp{arxiv250203805}) and learned
+gates (Attention-Gate~\citealp{arxiv241012876}, Fast
+KVzip~\citealp{arxiv260117668}) all always compress and adapt \emph{which} tokens
+are kept, or require training. The serving system EvicPress~\citep{arxiv251214946} does choose
+per context \emph{whether} to evict, but as one term in a profiled
+quality-latency optimization over storage tiers, not a label-free decision read
+a priori from prefill attention; LookaheadKV~\citep{arxiv260310899} predicts
+future token importance with trained modules. Ours is training-free and ties the
+whether-to-evict decision to a helps-versus-hurts task partition. Cross-family
+transfer of an eviction control is itself known (CompilerKV~\citep{arxiv260208686}
+ports per-head retention tables across backbones); we transfer a single threshold
+instead. The base evictors we wrap are SnapKV~\citep{arxiv240414469},
+H2O~\citep{arxiv230614048}, StreamingLLM~\citep{arxiv230917453}, and
+PyramidKV~\citep{arxiv240602069}. A full treatment of all neighbors, including the
+DBTrimKV/CapKV head-to-heads and further concurrent evictors and allocators, is
 deferred to Appendix~\ref{app:deferred}.
 
 \section{The empirical partition}
@@ -566,9 +568,10 @@ Comparing at matched \emph{achieved} kept-KV (Figure~\ref{fig:pareto-gated}):
 gating improves the frontier by $3$--$19$pp over plain SnapKV once the target
 keeps more than a precise crossover ($\approx 0.32$--$0.35$ of the cache), and
 below it cannot compete (its full-KV fallback floors compression at
-$\approx 3\times$). \method is a moderate-compression safety method, not an
-aggressive-regime compressor; against a per-input oracle it recovers a mean
-$69\%$ of the headroom, almost all task-level protection of the capacity-bound
+$\approx 3\times$). \method is a moderate-compression, collapse-avoiding method,
+not an aggressive-regime compressor; against a per-input oracle it recovers a
+mean $69\%$ of the headroom, almost all task-level protection of the
+capacity-bound
 anchor. Details and the exact crossover per model are in
 Appendix~\ref{app:deferred}.
 
@@ -661,28 +664,21 @@ requires a per-model pilot.} On Yi-1.5-9B and Llama-3.1-8B the ordering
 transfers but the fixed $\tau = 0.07$ does not: it mis-classifies
 niah\_multivalue on both, and on Yi the drop-vs-$\rho$ prediction is inverted.
 The z-scored variant (Section~\ref{sec:recipe}) repairs this with an unlabeled
-per-model pilot (Llama $\Delta$ to $+0.174$, Yi compressing at $+0.145$), but
-that is a per-model calibration step, its task-level claim excludes
-niah\_multivalue, and per-input separation stays at AUC $\approx 0.80$; a
-per-input statistic beyond mean $D$ is the natural follow-up
-(Appendix~\ref{app:deferred}).
+per-model pilot (Llama $\Delta$ to $+0.174$, Yi at $+0.145$), but that is a
+calibration step, excludes niah\_multivalue, and leaves per-input separation at
+AUC $\approx 0.80$; a per-input statistic beyond mean $D$ is the natural
+follow-up (Appendix~\ref{app:deferred}).
 
 \paragraph{NIAH-MK3 is capacity-bound scorer-independently, but only at
-aggressive compression.} To rule out a scorer-specific effect we re-implemented
-ManifoldKV~\citep{arxiv260208343} faithfully, with Ada-KV per-head budget
-allocation~\citep{arxiv240711550} realized exactly by per-head masking. The
-scorer is demonstrably competent: it reproduces ManifoldKV's signature multi-key
-advantage on \emph{two}-key NIAH, holding $0.72$ accuracy at $50\%$ cache where
-SnapKV collapses to $0.16$. Yet the same scorer does not rescue three-key
-NIAH-MK3: below $25\%$ budget it falls to chance like every attention-score
-evictor, and never exceeds a per-head SnapKV baseline
-(Appendix~\ref{app:deferred}). NIAH-MK3 is thus capacity-bound independently of
-the scoring family. Honest caveat on magnitude: at $2\times$ a clean per-head
-SnapKV drops MK3 only to $\approx 0.32$ (from $0.66$), whereas our default
-single-mask evictor reports a sharper $0.14$, so the moderate-budget collapse
-in our matrix and showcase is partly a single-mask artifact; the
-scorer-independent absolute collapse is at $\ge 4\times$, where the gate's
-protection matters and where the showcase should be read.
+aggressive compression.} A faithful ManifoldKV+Ada-KV
+scorer~\citep{arxiv260208343,arxiv240711550} that reproduces the signature
+multi-key advantage on two-key NIAH ($0.72$ vs SnapKV $0.16$ at $50\%$) still
+does not rescue three-key NIAH-MK3, falling to chance below $25\%$ budget like
+every attention-score evictor, so the limit is scorer-independent
+(Appendix~\ref{app:deferred}). Caveat on magnitude: at $2\times$ a clean per-head
+SnapKV drops MK3 only to $\approx 0.32$ (from $0.66$) versus the sharper $0.14$
+our single-mask default reports, so the scorer-independent absolute collapse is
+at $\ge 4\times$, where the showcase should be read.
 
 Further limitations, all in Appendix~\ref{app:deferred}: greedy runs with
 low-powered per-cell partition calls (a second draw replicates transfer and
@@ -695,13 +691,13 @@ call on passage\_count; and head-to-heads run on different models.
 
 The benefit of KV-cache eviction is sharply partitioned across inputs, and one
 label-free prefill statistic, the early-to-late head-agreement drop, predicts
-which side an input falls on. Read honestly, \method is a safety mechanism: it
-lifts the accuracy--memory frontier where moderate compression is the target and
-prevents catastrophic collapse where it is not (Mistral-7B NIAH-MK3,
-$99\% \to 0\%$ becomes a flat $89\%$), at the cost of one attention-exposing
-prefill pass; on a realistic task (LongBench \texttt{lcc} code completion) it
-already protects a genuine eviction collapse. The open problem we name is a
-signal that transfers across families without a per-model pilot.
+which side an input falls on. Read honestly, \method is a collapse-avoiding
+safeguard: it lifts the accuracy--memory frontier where moderate compression is
+the target and prevents catastrophic collapse where it is not (Mistral-7B
+NIAH-MK3 $99\% \to 0\%$ becomes a flat $89\%$; the same protection holds on
+realistic \texttt{lcc} code completion), at the cost of one attention-exposing
+prefill pass. The open problem we name is a signal that transfers across families
+without a per-model pilot.
 
 \subsection*{Reproducibility statement}
 
@@ -830,20 +826,32 @@ define ``capacity-bound'' relative to the scorer being gated
 VECTOR~\citep{arxiv260523258} and CriticalKV~\citep{arxiv250203805} are
 plug-and-play augmentations over multiple base evictors; both always compress
 under a fixed budget and adapt \emph{which} tokens are kept, whereas our gate
-decides \emph{whether} to evict at all. Cross-family transfer of an eviction
+decides \emph{whether} to evict at all, a priori from a label-free attention
+signal. The serving system EvicPress~\citep{arxiv251214946} also chooses whether
+to evict per context, but as part of a profiled quality-latency optimization
+over storage tiers rather than from an attention statistic, and without a
+task-type partition. Cross-family transfer of an eviction
 control is itself known, via CompilerKV's~\citep{arxiv260208686} portable
 per-head retention tables; we transfer one threshold instead, fixed across the
 Qwen and Mistral families and extended to the Llama family and Qwen3 by an
 unlabeled per-model standardization. Further concurrent evictors and allocators,
 EntropyInfer~\citep{arxiv260609508},
 CompressKV~\citep{arxiv260624467}, MomentKV~\citep{arxiv260601563},
-EpiKV~\citep{arxiv260626472}, DefensiveKV~\citep{arxiv251013334}, and
+EpiKV~\citep{arxiv260626472}, DefensiveKV~\citep{arxiv251013334},
+LookaheadKV~\citep{arxiv260310899}, and
 TAKE~\citep{take-openreview}, adapt
 budgets or scores per head, layer, token, or task, but none gates the eviction
 decision per input or identifies a task class where eviction hurts
-monotonically. Learned gates (Attention-Gate~\citep{arxiv241012876}, Fast
+monotonically. AnchorKV~\citep{arxiv260617872} is also ``safety-aware'' but in a
+different sense from ours: it biases retention scores away from harmful-prompt
+directions for jailbreak defense while always compressing, whereas our
+``collapse-avoiding'' sense is about not destroying task accuracy. Learned gates
+(Attention-Gate~\citep{arxiv241012876}, Fast
 KVzip~\citep{arxiv260117668}) share the ``gate'' name but train their gating
-parameters, unlike our inference-time scalar.
+parameters, unlike our inference-time scalar. A separate line uses learnable
+per-layer gates for cross-model KV-cache \emph{fusion}
+(C2C~\citep{arxiv251003215}), which addresses communication between models,
+orthogonal to eviction within one.
 
 \paragraph{Older anchors.}
 SnapKV~\citep{arxiv240414469}, H2O~\citep{arxiv230614048},

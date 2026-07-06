@@ -1,9 +1,17 @@
-\begin{thebibliography}{38}
+\begin{thebibliography}{42}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Ahn et~al.(2026)Ahn, Seong, Kedia, Kim, Jang, Lee, and
+  Jeon]{arxiv260310899}
+Jinwoo Ahn, Ingyu Seong, Akhil Kedia, Junhan Kim, Hyemi Jang, Kangwook Lee, and
+  Yongkweon Jeon.
+\newblock Lookaheadkv: Fast and accurate kv cache eviction by glimpsing into
+  the future without generation, 2026.
+\newblock URL \url{https://arxiv.org/abs/2603.10899}.
 
 \bibitem[Ananthanarayanan et~al.(2026)Ananthanarayanan, Sengupta, and
   Chakraborty]{arxiv260301426}
@@ -92,10 +100,20 @@ Zican Dong, Peiyu Liu, Junyi Li, Zhipeng Chen, Han Peng, Shuo Wang, and
   learning long-term contribution, 2026.
 \newblock URL \url{https://arxiv.org/abs/2602.03203}.
 
-\bibitem[Feng et~al.(2025)Feng, Lv, Cao, Xie, and Zhou]{arxiv240711550}
+\bibitem[Feng et~al.(2025{\natexlab{a}})Feng, Liu, Li, Chen, Shen, Du, Gu,
+  Zhang, Huang, Cheng, Yao, Zhang, Ananthanarayanan, and Jiang]{arxiv251214946}
+Shaoting Feng, Yuhan Liu, Hanchen Li, Xiaokun Chen, Samuel Shen, Kuntai Du,
+  Zhuohan Gu, Rui Zhang, Yuyang Huang, Yihua Cheng, Jiayi Yao, Qizheng Zhang,
+  Ganesh Ananthanarayanan, and Junchen Jiang.
+\newblock Evicpress: Joint kv-cache compression and eviction for efficient llm
+  serving, 2025{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2512.14946}.
+
+\bibitem[Feng et~al.(2025{\natexlab{b}})Feng, Lv, Cao, Xie, and
+  Zhou]{arxiv240711550}
 Yuan Feng, Junlin Lv, Yukun Cao, Xike Xie, and S.~Kevin Zhou.
 \newblock Ada-kv: Optimizing kv cache eviction by adaptive budget allocation
-  for efficient llm inference, 2025.
+  for efficient llm inference, 2025{\natexlab{b}}.
 \newblock URL \url{https://arxiv.org/abs/2407.11550}.
 
 \bibitem[Feng et~al.(2026)Feng, Lv, Guo, Cao, Zhou, and Xie]{arxiv250203805}
@@ -103,6 +121,14 @@ Yuan Feng, Junlin Lv, Haoyu Guo, Yukun Cao, S~Kevin Zhou, and Xike Xie.
 \newblock Criticalkv: Optimizing kv cache eviction from an output perturbation
   perspective, 2026.
 \newblock URL \url{https://arxiv.org/abs/2502.03805}.
+
+\bibitem[Fu et~al.(2025)Fu, Min, Zhang, Yan, Dai, Ouyang, and
+  Wang]{arxiv251003215}
+Tianyu Fu, Zihan Min, Hanling Zhang, Jichao Yan, Guohao Dai, Wanli Ouyang, and
+  Yu~Wang.
+\newblock Cache-to-cache: Direct semantic communication between large language
+  models, 2025.
+\newblock URL \url{https://arxiv.org/abs/2510.03215}.
 
 \bibitem[Garcia(2026)]{arxiv260518053}
 Gabriel Garcia.
@@ -183,6 +209,12 @@ Yuping Lin, Jiayuan Ding, Yue Xing, Pengfei He, Jiliang Tang, and Subhabrata
 Luca Moschella, Laura Manduchi, and Ozan Sener.
 \newblock Learning to evict from key-value cache, 2026.
 \newblock URL \url{https://arxiv.org/abs/2602.10238}.
+
+\bibitem[Ni \& Lao(2026)Ni and Lao]{arxiv260617872}
+Ning Ni and Yingjie Lao.
+\newblock Anchorkv: Safety-aware kv cache compression via soft penalty with a
+  refusal anchor, 2026.
+\newblock URL \url{https://arxiv.org/abs/2606.17872}.
 
 \bibitem[Tang et~al.(2026)Tang, Jiao, Chen, Liu, Li, and Chen]{arxiv260208585}
 Ziyao Tang, Pengkun Jiao, Xinhang Chen, Wei Liu, Shiyong Li, and Jingjing Chen.
