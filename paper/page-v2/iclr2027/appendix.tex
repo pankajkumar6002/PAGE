@@ -1,0 +1,2987 @@
+\appendix
+
+\section{Deferred tables, derivations, and secondary experiments}
+\label{app:deferred}
+
+% DEFERRED-CONTENT-START
+
+\subsection{Related work (full treatment)}
+
+Section~\ref{sec:related} summarizes the comparison. This subsection gives
+the full treatment, starting with the five neighbors closest to our setup
+before turning to concurrent, older, and adjacent work in turn.
+
+\paragraph{Five close concurrent neighbors.}
+\citet{arxiv260509649} (DBTrimKV) is the most important reference point.
+Their Proposition~3.1 establishes that near-tie distractors force attention
+dilution in a single head, and Corollary~3.2 shows preferential retention of
+high-attention positions reduces it. Section~\ref{sec:theory} adopts this
+mechanism. Their evaluation reports DBTrimKV $>$ full-cache on multi-turn
+dialogue but does not characterise a task family on which their method
+underperforms full-cache, and they train a retention gate end-to-end, where
+our gate is label-free and wraps theirs (and any other) without retraining.
+The direct head-to-head is in Section~\ref{subsec:dbtrimkv},
+$\Delta = +0.233$ at matched budget on RULER 4K Qwen3-4B-Instruct.
+
+\citet{arxiv260425975} (CapKV) derives a closed-form, label-free eviction
+score from an information-bottleneck objective and reports gains over a
+Vanilla baseline on LongBench. Their score is task-agnostic, whereas we
+partition tasks into a class for which any eviction is risky and a class
+for which it helps, and we report a direct head-to-head wrapping CapKV in
+our gate (Section~\ref{subsec:capkv-longbench}, $\Delta = +1.5$ to
+$+8.3$pp at matched budget on two LongBench subtasks).
+
+\citet{arxiv241214838} (DynamicKV) introduces task-aware per-layer adaptive
+budgets and explicitly observes that the layer-wise attention pattern
+differs across task families, using attention statistics to drive a
+continuous per-task budget allocation. This is the closest conceptual
+neighbor to our partition, since both detect that task type modulates
+which KV positions matter, but three differences separate the two: (i)
+DynamicKV's per-task budget is fitted per task with calibration data,
+whereas ours is a per-input gate triggered by a single observable
+statistic with one fixed threshold; (ii) their benchmark suite (LongBench)
+does not include a task on which eviction strictly damages accuracy, so
+the binary partition is not visible in their results; and (iii) DynamicKV
+does not formalise a partition predictor or attempt cross-architecture
+transfer. We therefore see our partition, drop predictor, and binary gate
+as orthogonal but partially overlapping with their empirical observation,
+and we acknowledge the overlap.
+
+\citet{arxiv260518053} (``Protection Is All You Need'') shows that
+structural protection (sink tokens plus a recent-token window) dominates
+the choice of scorer on globally capacity-capped harnesses. Our
+experimental setup uses protection of the same kind but smaller extent
+($n_{\text{sink}} = 4$ sink tokens and a $w = 32$ observation window,
+versus the $10\%$ prefix plus $10\%$ suffix they advocate). A
+protection-matched ablation at their $10\% + 10\%$ setting confirms the
+partition is not an artifact of light protection: NIAH-MK3 still
+collapses, and the eviction-helps signal survives
+(Section~\ref{sec:partition}).
+
+\citet{arxiv260525475} (IndexMem) trains a learnable indexer plus latent
+memory and observes an information-density effect on LongBench averages
+around 50\% compression. The benchmark average hides which subtasks
+contribute the peak, whereas our partition makes that explicit, and our
+predictor is training-free.
+
+\paragraph{Concurrent 2026 diagnostics and wrappers.}
+\citet{arxiv260508234} ask a similar headline question, namely when
+value-aware KV eviction helps. The clearest separation is the axis: their
+score is \emph{value-aware} (a per-input support-coupling score $\phi(x)$
+over value states), whereas our signal is \emph{attention topology}, a
+complementary account in the same sense that VaSE is (below). Their unit
+of analysis is the selector rather than the task, their $\phi(x)$ drives
+diagnostic grid splits rather than an evict-or-not gate, and they report
+that diagnostic signals transfer across selectors only conditionally,
+which makes the single transferred threshold we report non-obvious.
+\citet{arxiv251000231} document instruction-type-dependent degradation
+under five eviction methods, with some instruction types becoming
+entirely ignored, the closest published task-level failure taxonomy. We
+cede the hurts-degradation observation to them and claim instead the
+joint helps-versus-hurts partition plus the a-priori predictor.
+\citet{arxiv260301426} compute a \emph{within-layer} head-consensus level
+(how much heads inside a layer attend to the same tokens) and relate it
+descriptively to compression tolerance at the architecture level. Our
+statistic differs on both axes: an \emph{early-to-late, cross-layer} drop
+in the top-$k$ agreement between heads, computed online at prefill and
+thresholded per input to gate. To our knowledge the identical statistic
+has not been proposed as an eviction gate before, and the ablation of
+Table~\ref{tab:signal-ablation} shows it separates the partition cleanly
+(AUC $1.000$) and transfers across families. On the failure side,
+\citet{arxiv260603928} (VaSE) trace catastrophic eviction failures to
+high-magnitude value states, an axis orthogonal to our attention-topology
+account, and ManifoldKV~\citep{arxiv260208343} shows that a
+Euclidean-outlier key scorer improves NIAH-MultiKey retention under
+compression, which is why we define ``capacity-bound'' relative to the
+scorer being gated (Section~\ref{sec:limitations}).
+
+Two attention-free or post-prefill methods deserve their own treatment
+because they overlap us more than the above. SAGE-KV~\citep{sagekv} shares
+our \emph{premise} most directly of any work we know: that after
+prefilling, the model's own attention already indicates which tokens can
+be dropped, read once rather than per decode step, with a head-level
+analysis. The difference is what is done with the premise. SAGE-KV always
+compresses and uses the signal to pick \emph{which} tokens and heads to
+keep, whereas we use a signal from the same source to decide
+\emph{whether} to evict at all, do no head-level selection, and, unlike
+SAGE-KV, characterize a task class on which eviction cannot be made safe
+by any choice of tokens. KeyDiff~\citep{keydiff} is the sharper challenge,
+and we treat it as such in Section~\ref{sec:limitations}: it is a
+published, attention-free, FlashAttention-compatible evictor whose stated
+motivation is precisely that materializing attention is expensive, which
+is our first limitation. Our answer is empirical rather than rhetorical.
+KeyDiff collapses on NIAH-MK3 below $25\%$ budget like every scorer we
+tested, so its cheapness does not buy safety on the capacity-bound class.
+On the wrapper side, VECTOR~\citep{arxiv260523258} and
+CriticalKV~\citep{arxiv250203805} are plug-and-play augmentations over
+multiple base evictors, and both always compress under a fixed budget and
+adapt \emph{which} tokens are kept, whereas our gate decides
+\emph{whether} to evict at all, a priori from a label-free attention
+signal. The serving system EvicPress~\citep{arxiv251214946} also chooses
+whether to evict per context, but as part of a profiled quality-latency
+optimization over storage tiers rather than from an attention statistic,
+and without a task-type partition. Cross-family transfer of an eviction
+control is itself known, via CompilerKV's~\citep{arxiv260208686} portable
+per-head retention tables, though we transfer one threshold instead,
+fixed across the Qwen and Mistral families and extended to the
+Llama-architecture models and Qwen3 by an unlabeled per-model
+standardization. Further concurrent evictors and allocators,
+EntropyInfer~\citep{arxiv260609508}, CompressKV~\citep{arxiv260624467},
+MomentKV~\citep{arxiv260601563}, EpiKV~\citep{EPIkv-arxiv},
+DefensiveKV~\citep{defensive-kv-iclr2026},
+LookaheadKV~\citep{arxiv260310899}, and TAKE~\citep{hu2026take}, adapt
+budgets or scores per head, layer, token, or task, but none gates the
+eviction decision per input or identifies a task class where eviction
+hurts monotonically. AnchorKV~\citep{arxiv260617872} is also
+``safety-aware'' but in a different sense from ours: it biases retention
+scores away from harmful-prompt directions for jailbreak defense while
+always compressing, whereas our ``collapse-avoiding'' sense is about not
+destroying task accuracy. Learned gates
+(Attention-Gate~\citep{zeng2025incontextkvcacheevictionllms}, Fast
+KVzip~\citep{arxiv260117668}) share the ``gate'' name but train their
+gating parameters, unlike our inference-time scalar. A separate line uses
+learnable per-layer gates for cross-model KV-cache \emph{fusion}
+(C2C~\citep{arxiv251003215}), which addresses communication between
+models, orthogonal to eviction within one.
+
+Beyond the concurrent methods above, an older set of baselines and training-based
+predictors anchors the comparison. SnapKV~\citep{arxiv240414469},
+H2O~\citep{arxiv230614048}, StreamingLLM~\citep{arxiv230917453},
+PyramidKV~\citep{arxiv240602069}, and Ada-KV~\citep{arxiv240711550} are the
+standard training-free eviction baselines. We use SnapKV-style scoring as
+the base for our gate and demonstrate orthogonality on H2O, StreamingLLM,
+and PyramidKV. ForesightKV~\citep{arxiv260203203} and
+Learning-to-Evict~\citep{arxiv260210238} train predictors of future
+utility and require labels or rollouts to do so. UT-ACA~%
+\citep{arxiv260318446} and LU-KV~\citep{arxiv260208585} are
+calibration-based context allocators on a single substrate. None of these
+proposes a binary task-type partition or an a priori predictor.
+
+Finally, three methods adapt compute on axes adjacent to but distinct
+from ours: AdaCompute-GBM~\citep{arxiv260414853} on the self-consistency
+sample-count axis, BudgetThinker~\citep{arxiv250817196} on the CoT
+chain-length axis, and LaTER~\citep{arxiv260507315} on latent-then-explicit
+reasoning. These work on substrates orthogonal to the KV-cache axis we
+study.
+
+\subsection{Deployment cost of the gate}
+\label{subsec:deployment}
+
+The gate-open rate $p_{\text{open}}$ is a property of the workload rather than
+the method, tracking the distribution of $D$ over inputs served, so realized
+compression is not a constant of \method and savings are bounded by $1 -
+p_{\text{open}}$. Two consequences follow.
+
+Capacity planning drifts with traffic. A fleet provisioned for the $3\times$
+compression that $p_{\text{open}} = 0.75$ implies loses that headroom as
+traffic shifts toward low-$D$ inputs, and since $D$ falls as near-tie
+distractors accumulate, an adversary controlling prompt content can force the
+fallback, turning a memory attack into a denial-of-capacity attack. Capping
+the fallback fraction buys a bounded memory guarantee, and adapting $\tau$ to
+a running $q$-quantile of $D$ fixes $p_{\text{open}}$, at the cost of the
+safety property or a workload-dependent threshold. Batching sharpens this,
+since a batch provisioned for its largest resident cache realizes the
+\emph{minimum} compression over its sequences: mean compression at
+$p_{\text{open}} = 0.75$ falls from $2.91\times$ at batch $1$ to $1.31\times$
+at $4$, $1.07\times$ at $8$, and $1.00\times$ by $16$. That is worst-case
+provisioning rather than a property of \method, and does not describe
+continuous batching with per-sequence paged allocation, so we report
+$p_{\text{open}}$ alongside every compression number.
+
+
+
+\subsection{Additional empirical-partition analyses}
+
+\begin{table}[t]
+\centering
+\caption{Fixed-budget harm rate $\Pr_x[A(b, x) < A_{\mathrm{plain}}(1, x)]$,
+gated / plain at matched nominal budget, pooled over the seven SnapKV cells
+(Qwen2.5-1.5B/3B/14B and Mistral-7B at 4K; Qwen2.5-1.5B/3B and Mistral-7B at
+16K), $N = 500$ per (task, budget), $\tau = 0.07$. On the capacity-bound task
+the gate cuts harm by $29\times$ at $16\times$ compression; on QA\_1 it is
+exactly inert, since the gate opens on every input; on VT at $16\times$ both
+arms are harmed almost equally, so the gate does not help there.}
+\label{tab:harm-rate}
+\begin{tabular}{lcccc}
+\toprule
+Task & $b = 0.0625$ & $b = 0.125$ & $b = 0.25$ & $b = 0.5$ \\
+\midrule
+NIAH-MK3 & \textbf{0.026} / 0.750 & \textbf{0.026} / 0.744 & \textbf{0.024} / 0.724 & \textbf{0.018} / 0.546 \\
+FWE      & \textbf{0.236} / 0.414 & \textbf{0.162} / 0.298 & \textbf{0.118} / 0.224 & \textbf{0.064} / 0.116 \\
+QA\_1    & 0.110 / 0.110          & 0.064 / 0.064          & 0.030 / 0.030          & 0.010 / 0.010 \\
+VT       & 0.684 / 0.694          & 0.108 / 0.110          & 0.034 / 0.036          & 0.026 / 0.026 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+
+\begin{table}[t]
+\centering
+\caption{Per-input recovery rate $\rho$ on RULER with Wilson $95\%$ intervals
+(small type). Bold marks point estimates $\rho \ge 0.05$.
+NIAH-MK3 (precise multi-key retrieval) is the only task that systematically
+fails the threshold in every cell tested. $N = 100$ per (task, cell) except
+Qwen-14B ($N = 50$ at 4K, $N = 30$ at 16K), Mistral 16K VT/FWE/QA\_1/NIAH-MK3
+($N = 50$), Qwen-3B 16K NIAH-MK3 ($N = 50$), and Qwen-1.5B 16K NIAH-MK3
+($N = 46$). At these $N$ most single
+cells straddle the $0.05$ threshold and no per-cell call is individually
+powered; the claim rests on the pooled contrast, which is unambiguous
+(NIAH-MK3: $2/526$, $\rho = 0.004$, Wilson $[0.001, 0.014]$).}
+\label{tab:partition}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+Task & Qwen 1.5B 4K & Qwen 1.5B 16K & Qwen 3B 4K & Qwen 3B 16K & Qwen 14B 4K & Qwen 14B 16K & Mistral 4K & Mistral 16K \\
+\midrule
+VT               & \textbf{0.06} \pci{.03}{.13} & \textbf{0.19} \pci{.13}{.28} & 0.00 \pci{.00}{.04} & \textbf{0.05} \pci{.02}{.11} & 0.00 \pci{.00}{.07}          & 0.03 \pci{.01}{.17}          & 0.00 \pci{.00}{.04}          & \textbf{0.32} \pci{.21}{.46} \\
+FWE              & \textbf{0.06} \pci{.03}{.13} & 0.04 \pci{.02}{.10}          & 0.01 \pci{.00}{.05} & \textbf{0.32} \pci{.24}{.42} & 0.00 \pci{.00}{.07}          & \textbf{0.20} \pci{.10}{.37} & 0.02 \pci{.01}{.07}          & \textbf{0.22} \pci{.13}{.35} \\
+QA\_1            & \textbf{0.08} \pci{.04}{.15} & \textbf{0.14} \pci{.09}{.22} & 0.03 \pci{.01}{.09} & \textbf{0.08} \pci{.04}{.15} & \textbf{0.06} \pci{.02}{.16} & \textbf{0.10} \pci{.03}{.26} & 0.04 \pci{.02}{.10}          & 0.00 \pci{.00}{.07} \\
+QA\_2            & \textbf{0.08} \pci{.04}{.15} & \textbf{0.05} \pci{.02}{.11} & 0.04 \pci{.02}{.10} & 0.02 \pci{.01}{.07}          & 0.02 \pci{.00}{.11}          & 0.03 \pci{.01}{.17}          & 0.01 \pci{.00}{.05}          & 0.00 \pci{.00}{.04} \\
+niah\_multivalue & \textbf{0.07} \pci{.03}{.14} & \textbf{0.10} \pci{.06}{.17} & 0.02 \pci{.01}{.07} & \textbf{0.13} \pci{.08}{.21} & \textbf{0.08} \pci{.03}{.19} & \textbf{0.07} \pci{.02}{.21} & \textbf{0.06} \pci{.03}{.13} & \textbf{0.21} \pci{.14}{.30} \\
+NIAH-MK3         & 0.01 \pci{.00}{.05}          & 0.00 \pci{.00}{.08}          & 0.00 \pci{.00}{.04} & 0.02 \pci{.00}{.11}          & 0.00 \pci{.00}{.07}          & 0.00 \pci{.00}{.11}          & 0.00 \pci{.00}{.04}          & 0.00 \pci{.00}{.07} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+
+
+\begin{table}[t]
+\centering
+\caption{Mean head-agreement drop $D$ and gate-open fraction on four
+additional RULER tasks, $N = 100$ per cell, $\tau = 0.07$.
+niah\_multiquery (four required keys, no real distractors) closes the
+gate on two of three models and sits nearest the anchor on the third,
+confirming a second capacity-bound task. qa\_2 (29 real hard-negative
+documents), niah\_single\_1 (no distractors), and cwe (ten exact output
+tokens) all open the gate on most or all inputs, so neither distractor
+count nor exact-token output length predicts the class.}
+\label{tab:capbound}
+\begin{tabular}{lccc}
+\toprule
+Task & Qwen2.5-1.5B & Qwen2.5-3B & Mistral-7B \\
+\midrule
+niah\_multiquery & $D{=}0.076$, open $32\%$ & $D{=}0.021$, open $100\%$ & $D{=}0.042$, open $100\%$ \\
+qa\_2            & $D{=}0.213$, open $0\%$  & $D{=}0.097$, open $10\%$  & $D{=}0.086$, open $18\%$  \\
+niah\_single\_1  & $D{=}0.153$, open $0\%$  & $D{=}0.061$, open $87\%$  & $D{=}0.121$, open $0\%$   \\
+cwe              & $D{=}0.200$, open $0\%$  & $D{=}0.103$, open $0\%$   & $D{=}0.135$, open $0\%$   \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+
+
+\begin{table}[h]
+\centering
+\caption{The partition on a non-synthetic workload: three LongBench subtasks,
+Qwen2.5-14B, SnapKV, $\tau = 0.07$. $D$ is the mean head-agreement drop and
+``open'' the fraction of inputs on which the gate fires. ``Sensitivity'' is the
+fraction of full-cache-correct answers plain eviction destroys at $b = 0.0625$
+(the capacity signal) and $\rho$ the fraction of inputs on which eviction
+recovers a full-cache failure (the dilution signal). The gate's class call is
+made from $D$ alone, before decoding, and matches the empirical class on all
+three.}
+\label{tab:realistic-workload}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccccc}
+\toprule
+Subtask & $N$ & $A_{\mathrm{full}}$ & sens. & $\rho$ & $D$ & open & empirical class & gate call & $\Delta$ \\
+\midrule
+lcc         & 96  & 0.292 & 0.64 & 0.031 & 0.0543 & 0.250 & capacity-bound & do not evict & $+0.146$ \\
+repobench-p & 82  & 0.317 & 0.42 & 0.061 & 0.0541 & 0.256 & mixed          & do not evict & $+0.049$ \\
+hotpotqa    & 100 & 0.560 & 0.12 & 0.020 & 0.0973 & 0.860 & evict-robust   & evict        & $+0.000$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+The table above establishes the partition on a realistic workload. The
+next four analyses stress-test it: they explain why some cells fall below
+the dilution-prone threshold, track the partition as context length grows,
+rule out task identity as a confound, and check that it survives protection
+schemes heavier than our own.
+
+A cell can fall below the dilution-prone threshold for two different
+reasons, and only one of them is benign. Saturation is the benign case.
+Qwen2.5-3B has $\rho \approx 0$ on VT at 4K because $A_{\mathrm{full}}
+\approx 1$, and the same model reaches $\rho = 0.32$ on FWE at 16K once
+headroom opens. Mistral-7B repeats the pattern: at 4K it is largely
+saturated ($A_{\mathrm{full}} = 1.00$ on VT, $0.82$ on FWE), and at 16K VT
+and FWE recover strongly ($\rho = 0.32$ and $0.22$, niah\_multivalue
+$0.06 \to 0.21$). Budget-insensitivity is the informative case instead,
+because headroom exists and recovery still does not happen. On Mistral,
+QA\_1 has $\rho = 0.04 / 0.00$ at 4K/16K despite $A_{\mathrm{full}} = 0.81
+/ 0.70$, and QA\_2 has $\rho = 0.01 / 0.00$ despite $A_{\mathrm{full}} =
+0.50 / 0.56$, and QA\_2 on Qwen-14B behaves the same way. These three
+cells are the exceptions noted in Section~\ref{sec:partition}. All are
+QA, where the residual errors look like parametric-knowledge failures
+that no cache budget can repair, a different phenomenon from the capacity
+limit NIAH-MK3 exhibits.
+
+That headroom argument predicts what should happen as context grows, and
+Qwen2.5-14B tests it directly by re-entering the dilution regime at long
+context. At 4K, three dilution-prone tasks (VT, FWE, QA\_2) sit at $\rho
+\approx 0$: saturation, since $A_{\mathrm{full}} \in [0.92, 1.00]$ leaves
+no headroom for recovery, as Eq.~\eqref{eq:scaling} predicts. At 16K, two
+of five dilution-prone tasks cross the threshold (FWE $0.00 \to 0.20$,
+QA\_1 $0.06 \to 0.10$), niah\_multivalue stays above it ($0.08 \to
+0.07$), and the capacity-bound NIAH-MK3 stays at exactly $0.00$ at both
+scales. VT ($0.00 \to 0.03$) and QA\_2 ($0.02 \to 0.03$) remain below
+threshold because the inputs that the model gets wrong at 4K stay wrong
+at every budget at 16K. Headroom opens, dilution returns, and NIAH-MK3
+stays pinned: the partition behaves as the scaling formula dictates, not
+as task identity dictates.
+
+That last point deserves a direct test, since task identity and
+dilution-proneness could in principle be confounded. They are not: the
+partition is not a task-name heuristic. The NIAH family contains
+structurally different subtasks. niah\_multivalue (one key, many values)
+is dilution-prone in seven of the eight cells measured
+(Table~\ref{tab:partition}), while NIAH-MK3 (three near-tie keys, one of
+which is the answer) is capacity-bound in all of them, and the distractor
+sweep below places niah\_multikey\_1 (no near-tie distractors) on the
+dilution-prone side as well. The \emph{near-tie distractor} structure,
+not the surface task category, is what matters, and the head-agreement
+drop in Section~\ref{subsec:algo} catches the distinction. A non-RULER
+probe confirms this: LongBench passage\_retrieval\_en (pick 1 of 30
+paragraphs, $N = 100$, Qwen2.5-1.5B, prompts 10-16K tokens) \emph{looks}
+NIAH-like but has no near-tie distractors, and it is evict-robust in
+practice. Accuracy stays flat from $b = 1.0$ to $b = 0.0625$ ($0.29 \to
+0.26$, $\rho = 0.01$), while its mean drop $D = 0.105$ sits squarely in
+the dilution-prone cluster, so the gate opens on $100/100$ inputs. The
+predictor gets the surface-similar, structurally different task right a
+priori.
+
+The remaining question is whether the partition is an artifact of our
+own, relatively light protection setting, so we checked it against a
+substantially heavier one. \citet{arxiv260518053} argue that structural
+protection dominates scorer choice, so we re-ran the Qwen2.5-1.5B 4K
+partition tasks with their $10\%$ prefix $+$ $10\%$ suffix protection
+($n_{\text{sink}} = w = 410$, $N = 100$ per task). One accounting note:
+protection overrides the budget, so all nominal $b \le 0.1875$ share an
+effective floor of $824$ kept tokens ($\approx 0.21$ of context). Under
+this heavy protection the partition is unchanged. NIAH-MK3 still
+collapses ($0.65$ full-KV $\to 0.09$ at the floor, an $86\%$ relative
+loss despite the floor cache being $3.3\times$ our light-protection
+cache at nominal $b = 0.0625$), so the capacity-bound failure is not
+protection-fixable. The eviction-helps signal survives on the
+dilution-prone side ($\rho$: FWE $0.06 \to 0.13$, QA\_1 $0.08 \to 0.07$,
+VT $0.06 \to 0.03$, aggregate $0.077 \ge 0.05$), and FWE's floor accuracy
+($0.31$) exceeds its full-KV accuracy ($0.22$). Heavy protection is also
+not free: protected VT drops to $0.00$ at the floor while our
+light-protection run holds $0.75$ at nominal $b = 0.125$, because
+protected prefix/suffix tokens crowd out the scorer-selected middle
+tokens the task needs. One caveat on the comparison itself: in our
+harness $w$ is both the recency protection and the SnapKV scoring
+window, so this run is a protection-heavy SnapKV variant rather than an
+exact replication of their protocol.
+
+\subsection{Headline matrix figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The single-task showcase and the headline matrix from
+Section~\ref{sec:experiments} are reproduced here at full size.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.54\textwidth]{figs/mistral_niah_showcase.pdf}
+\caption{The single-task showcase of Section~\ref{sec:experiments}.
+Mistral-7B 4K NIAH-MK3, $N = 100$: accuracy vs.\ KV budget for plain SnapKV
+(solid, collapses to $0$) and gated SnapKV (dashed, $0.89$ flat across
+budgets). The gate prevents the collapse without retraining the base evictor
+or seeing labels.}
+\label{fig:mistral-showcase}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{figs/method_agnostic_matrix.pdf}
+\caption{The headline $4 \times 4$ method-agnostic matrix.
+Bars are gated $-$ plain accuracy averaged over budgets. The wrapper is positive
+in every one of $16$ cells with a single $\tau = 0.07$ and no per-base-evictor
+tuning. Grand mean $+22.9$pp; excluding NIAH-MK3, $+4.5$pp
+(Table~\ref{tab:per-task-delta}).}
+\label{fig:matrix}
+\end{figure}
+
+\subsection{Per-task decomposition of the matrix}
+
+\paragraph{Per-head allocation and the Mistral-7B exception.}
+Three caveats bound the matrix. The plain arm uses a shared single keep-mask
+and a clean per-head SnapKV collapses less sharply at $2\times$ ($0.32$ not
+$0.14$ on MK3), so these deltas overstate what the gate prevents there and
+should be read at $\ge 4\times$, where the collapse is scorer-independent.
+That restriction does not inflate the headline, the grand mean rising by only
+$+1.7$pp when the grid narrows to $\{0.125, 0.25\}$,
+and a clean per-head Ada-KV plain arm costs just $1.1$pp ($+25.8$ to $+24.7$pp
+at $b \le 0.25$), much closer to a wash than a collapse. That average hides
+one model: on Mistral-7B the per-head arm underperforms the shared mask at $4$
+of $8$ budgets on NIAH-MK3, growing to $10.5$pp at $b = 0.875$ ($0.79$ shared
+versus $0.35$ Ada-KV). The cause is not grouped-query geometry, since
+Qwen2.5-14B and a dedicated Llama-3.1-8B control matching Mistral's head shape
+($32$ query heads, $8$ key-value heads) are both clean at $0$ of $8$, the
+Llama control taking the opposite sign on the same comparison ($+14$pp on
+Llama versus $-44$pp on Mistral). The violation is confined to $4$ of $32$
+cell-budget combinations, all on Mistral-7B. The Qwen2.5-14B H2O column is
+separately not independent, since that run used two-pass prefill under which
+H2O's all-query score reduces exactly to SnapKV's, leaving fifteen independent
+cells.
+
+
+\begin{table}[t]
+\centering
+\caption{Headline $4 \times 4$ method-agnostic matrix. Same gate
+($\tau = 0.07$), no per-base-evictor tuning; $\Delta$ averages over budgets
+$b < 1.0$. All $16$ cells are positive with grand mean $+22.9$pp, but the
+second $\Delta$ row shows what that is made of: excluding NIAH-MK3 the grand
+mean falls to $+4.5$pp and is exactly $0.000$ in $8$ of $16$ cells, where the
+gate opens on every non-MK3 input and the two arms are the same system. The
+Qwen2.5-3B SnapKV cell ran at $\tau = 0.04$ and is reported at $\tau = 0.07$
+by exact post-hoc re-evaluation (Appendix~\ref{app:repro}).
+$^\dagger$Qwen2.5-14B H2O is not an independent cell (see text). Per-task
+decomposition: Table~\ref{tab:per-task-delta}.}
+\label{tab:matrix}
+\begin{tabular}{lcccccccc}
+\toprule
+ & \multicolumn{2}{c}{SnapKV} & \multicolumn{2}{c}{H2O} & \multicolumn{2}{c}{StreamingLLM} & \multicolumn{2}{c}{PyramidKV} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
+Model & plain & gated & plain & gated & plain & gated & plain & gated \\
+\midrule
+Qwen2.5-1.5B & 0.438 & 0.559 & 0.196 & 0.357 & 0.033 & 0.195 & 0.417 & 0.570 \\
+$\Delta$      & \multicolumn{2}{c}{$\!+\!0.121$} & \multicolumn{2}{c}{$\!+\!0.162$} & \multicolumn{2}{c}{$\!+\!0.163$} & \multicolumn{2}{c}{$\!+\!0.152$} \\
+{\scriptsize$\Delta$ no MK3} & \multicolumn{2}{c}{\scriptsize$+0.000$} & \multicolumn{2}{c}{\scriptsize$+0.000$} & \multicolumn{2}{c}{\scriptsize$+0.000$} & \multicolumn{2}{c}{\scriptsize$+0.000$} \\
+\midrule
+Qwen2.5-3B   & 0.580 & 0.839 & 0.339 & 0.642 & 0.052 & 0.482 & 0.536 & 0.865 \\
+$\Delta$      & \multicolumn{2}{c}{$\!+\!0.259$} & \multicolumn{2}{c}{$\!+\!0.303$} & \multicolumn{2}{c}{$\!+\!0.430$} & \multicolumn{2}{c}{$\!+\!0.329$} \\
+{\scriptsize$\Delta$ no MK3} & \multicolumn{2}{c}{\scriptsize$+0.101$} & \multicolumn{2}{c}{\scriptsize$+0.098$} & \multicolumn{2}{c}{\scriptsize$+0.263$} & \multicolumn{2}{c}{\scriptsize$+0.144$} \\
+\midrule
+Qwen2.5-14B  & 0.709 & 0.853 & 0.668$^\dagger$ & 0.868$^\dagger$ & 0.080 & 0.330 & 0.632 & 0.860 \\
+$\Delta$      & \multicolumn{2}{c}{$\!+\!0.143$} & \multicolumn{2}{c}{$\!+\!0.200$} & \multicolumn{2}{c}{$\!+\!0.250$} & \multicolumn{2}{c}{$\!+\!0.228$} \\
+{\scriptsize$\Delta$ no MK3} & \multicolumn{2}{c}{\scriptsize$+0.000$} & \multicolumn{2}{c}{\scriptsize$+0.000$} & \multicolumn{2}{c}{\scriptsize$+0.000$} & \multicolumn{2}{c}{\scriptsize$+0.000$} \\
+\midrule
+Mistral-7B    & 0.623 & 0.810 & 0.400 & 0.636 & 0.102 & 0.365 & 0.593 & 0.823 \\
+$\Delta$      & \multicolumn{2}{c}{$\!+\!0.187$} & \multicolumn{2}{c}{$\!+\!0.236$} & \multicolumn{2}{c}{$\!+\!0.263$} & \multicolumn{2}{c}{$\!+\!0.231$} \\
+{\scriptsize$\Delta$ no MK3} & \multicolumn{2}{c}{\scriptsize$+0.015$} & \multicolumn{2}{c}{\scriptsize$+0.020$} & \multicolumn{2}{c}{\scriptsize$+0.053$} & \multicolumn{2}{c}{\scriptsize$+0.020$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+\label{subsec:per-task-delta}
+
+The matrix figure reports one number per cell; decomposing that number by
+task explains where it comes from. Table~\ref{tab:per-task-delta} breaks
+down every matrix cell by task and reports the gate-open fraction that
+explains the zeros, and two structural facts follow from it. First,
+$\Delta_{\text{non-MK3}}$ is exactly $0.000$ in $8$ of $16$ cells, and in
+each of those the gate opens on $100\%$ of non-MK3 inputs, so the gated
+and plain arms execute identically: the zero is an identity, not a null
+result. Second, the mean $\Delta_{\mathrm{MK3}}$ is $+0.780$ while the
+grand mean is $+0.229 \approx \tfrac{1}{4}\Delta_{\mathrm{MK3}}$, the
+suite's MK3 share. Since per-task accuracy is additive under reweighting,
+the headline for a workload whose capacity-bound share is $f$ is
+$\Delta(f) = f \cdot \Delta_{\mathrm{MK3}} + (1 - f) \cdot
+\Delta_{\text{rest}}$, which is near-linear through the origin
+(Figure~\ref{fig:mixture-sweep}): $\Delta(0) = +0.045$, $\Delta(0.25) =
++0.229$ (the reported suite), $\Delta(0.5) = +0.412$. A deployment
+therefore sees the gate's benefit in proportion to how much
+capacity-bound traffic it actually serves, and the realistic-workload
+estimate of that share is in Table~\ref{tab:realistic-workload}.
+
+\begin{table}[h]
+\centering
+\caption{Per-task $\Delta$ (gated $-$ plain, budgets $b < 1.0$, $\tau = 0.07$)
+for all $16$ matrix cells, with the gate-open fraction on non-MK3 inputs.
+Rows marked $\dagger$ have $\Delta_{\text{non-MK3}}$ exactly $0.000$ with the
+gate open on every non-MK3 input, so gated $\equiv$ plain there by
+construction. Recomputed from the released per-input logs.}
+\label{tab:per-task-delta}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llccccccc}
+\toprule
+Base evictor & Model & MK3 & VT & FWE & QA\_1 & all & no MK3 & open (non-MK3) \\
+\midrule
+SnapKV & Qwen2.5-1.5B & $+0.484$ & $0.000$ & $0.000$ & $0.000$ & $+0.121$ & $+0.000^\dagger$ & $1.000$ \\
+       & Qwen2.5-3B   & $+0.734$ & $+0.004$ & $+0.300$ & $0.000$ & $+0.259$ & $+0.101$ & $0.653$ \\
+       & Qwen2.5-14B  & $+0.573$ & $0.000$ & $0.000$ & $0.000$ & $+0.143$ & $+0.000^\dagger$ & $1.000$ \\
+       & Mistral-7B   & $+0.701$ & $0.000$ & $+0.046$ & $0.000$ & $+0.187$ & $+0.015$ & $0.923$ \\
+\midrule
+H2O & Qwen2.5-1.5B & $+0.647$ & $0.000$ & $0.000$ & $0.000$ & $+0.162$ & $+0.000^\dagger$ & $1.000$ \\
+    & Qwen2.5-3B   & $+0.920$ & $+0.017$ & $+0.277$ & $0.000$ & $+0.303$ & $+0.098$ & $0.653$ \\
+    & Qwen2.5-14B  & $+0.800$ & $0.000$ & $0.000$ & $0.000$ & $+0.200$ & $+0.000^\dagger$ & $1.000$ \\
+    & Mistral-7B   & $+0.883$ & $0.000$ & $+0.043$ & $+0.017$ & $+0.236$ & $+0.020$ & $0.923$ \\
+\midrule
+StreamingLLM & Qwen2.5-1.5B & $+0.650$ & $0.000$ & $0.000$ & $0.000$ & $+0.163$ & $+0.000^\dagger$ & $1.000$ \\
+             & Qwen2.5-3B   & $+0.930$ & $+0.030$ & $+0.760$ & $0.000$ & $+0.430$ & $+0.263$ & $0.653$ \\
+             & Qwen2.5-14B  & $+1.000$ & $0.000$ & $0.000$ & $0.000$ & $+0.250$ & $+0.000^\dagger$ & $1.000$ \\
+             & Mistral-7B   & $+0.890$ & $0.000$ & $+0.140$ & $+0.020$ & $+0.263$ & $+0.053$ & $0.923$ \\
+\midrule
+PyramidKV & Qwen2.5-1.5B & $+0.610$ & $0.000$ & $0.000$ & $0.000$ & $+0.152$ & $+0.000^\dagger$ & $1.000$ \\
+          & Qwen2.5-3B   & $+0.883$ & $0.000$ & $+0.433$ & $0.000$ & $+0.329$ & $+0.144$ & $0.653$ \\
+          & Qwen2.5-14B  & $+0.913$ & $0.000$ & $0.000$ & $0.000$ & $+0.228$ & $+0.000^\dagger$ & $1.000$ \\
+          & Mistral-7B   & $+0.863$ & $0.000$ & $+0.060$ & $0.000$ & $+0.231$ & $+0.020$ & $0.923$ \\
+\midrule
+\textbf{mean} & & $+0.780$ & $+0.003$ & $+0.129$ & $+0.002$ & $\mathbf{+0.229}$ & $\mathbf{+0.045}$ & $0.894$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\paragraph{Budget convention.} $\Delta$ averages over the eviction budgets
+$b < 1.0$. Including $b = 1.0$ leaves the value unchanged because the gated and
+plain arms coincide there. Restricting instead to $\{0.125, 0.25, 0.5\}$ gives
+$+0.240$, and to the four budgets shared by all cells $+0.243$. We report
+$b < 1.0$ throughout.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.55\linewidth]{figs/mixture_sweep.pdf}
+\caption{Gating $\Delta$ as a function of the capacity-bound share $f$ of the
+workload, $\Delta(f) = f \Delta_{\mathrm{MK3}} + (1 - f) \Delta_{\text{rest}}$,
+mean-line slope $0.7354$. Grey lines are the $16$ matrix cells, the blue line
+their mean, and the dashed
+marker the $f = 0.25$ composition of our mixed suite. Because
+$\Delta_{\text{rest}}$ is exactly zero in half the cells, the mean is close to
+linear through the origin, so the headline $+22.9$pp should be read as a
+statement about a workload that is one quarter capacity-bound rather than as a
+property of the method.}
+\label{fig:mixture-sweep}
+\end{figure}
+
+\subsection{Detect-and-retry as an alternative design}
+\label{subsec:retry}
+
+The gate is not the only way to handle capacity-bound inputs. A natural
+objection is that one could evict unconditionally and simply re-run the
+inputs that fail, avoiding the gate and its attention-exposing pass
+entirely. The comparison is analytic, so we state it rather than measure
+it. Writing $p_{\mathcal{C}}$ for the prevalence of capacity-bound inputs
+and $c_{\mathrm{pre}}$, $c_{\mathrm{dec}}$ for prefill and decode cost,
+\method pays $c_{\mathrm{gate}}$ on every input plus a memory cost of
+$(1 - p_{\text{open}})$ full caches, where $c_{\mathrm{gate}}$ is $17$ms
+on Qwen2.5-1.5B and $89$ms on Mistral-7B at 4K (Table~\ref{tab:latency}).
+Detect-and-retry instead pays nothing up front but incurs a second full
+prefill and decode on every input it retries, so its expected overhead is
+$(p_{\mathcal{C}} \cdot \mathrm{TPR} + (1 - p_{\mathcal{C}}) \cdot
+\mathrm{FPR}) \cdot (c_{\mathrm{pre}} + c_{\mathrm{dec}})$, and every
+capacity-bound input its detector misses is returned wrong rather than
+merely late. At the prevalence $p_{\mathcal{C}} \approx 0.25$ measured on
+the realistic workload (Table~\ref{tab:realistic-workload}) and with
+$c_{\mathrm{gate}}$ two orders of magnitude below a full
+prefill-plus-decode, retry breaks even only if its detector is both
+near-perfect in recall and has a false-positive rate below roughly
+$0.03$, since each false positive costs a doubled request. The two
+designs also differ in kind rather than degree: the gate spends bounded
+memory to make a failure impossible, while retry spends unbounded tail
+latency to make it recoverable, and only the gate is available to a
+system that cannot re-run a request. We note this as a design point
+rather than a claim, since we did not build a decode-side distress
+detector, and a good one would be a contribution in its own right.
+
+The comparison above assumes the gate's signal generalizes beyond
+attention-score scoring, an assumption worth testing directly. To check
+composition beyond attention-score-based bases, we add a ManifoldKV-style
+scorer~\citep{arxiv260208343}: per-(layer, head) Euclidean distance of
+each key to the head's key centroid, averaged into a single shared keep
+mask (a single-mask variant of their per-layer design, forced by our
+uniform-cache harness). On the Qwen2.5-1.5B 4K mixed suite ($N =
+100$/task, four budgets), the same gate at the same $\tau = 0.07$ lifts
+it by $\Delta = +16.2$pp with no negative (task, budget) cell, and on
+NIAH-MK3 the gate recovers full-KV accuracy ($0.00 \to 0.65$) at every
+budget. Two observations follow. The gate signal is attention-based and
+scorer-independent, so composition extends outside the attention-score
+family, but our single-mask variant does \emph{not} reproduce
+ManifoldKV's reported multi-key rescue (plain accuracy $0.01$ at $b =
+0.5$). Since their per-layer, per-head design may behave differently, we
+treat their published numbers as the authoritative claim and scope ours
+accordingly (Section~\ref{sec:limitations}).
+
+\subsection{The capacity limit is scorer-independent}
+\label{subsec:scorer-independence}
+
+That single-mask variant is not a fair test of a geometry scorer's full
+capability, so we also built a faithful ManifoldKV+Ada-KV
+implementation~\citep{arxiv260208343,arxiv240711550}: score $s_i =
+\lVert k_i - \mu \rVert_2$ against the per-(layer, kv-head) key centroid
+$\mu$, with Ada-KV head-wise budget reallocation (safeguard floor
+$\texttt{floor\_alpha} = 0.5$ plus a global top-$k$ over the remaining
+per-head scores). Ragged per-head keep counts are realized by masking
+evicted keys to $-\infty$ per kv-head rather than physically pruning,
+which reproduces exactly the logits a ragged compressed cache would
+produce with no over-allocation, and the measured kept fraction matches
+the nominal budget to four decimals. We add KeyDiff~\citep{keydiff}
+(negative cosine to the same centroid) as the published attention-free
+scorer.
+
+Before trusting a negative result from this scorer, we first confirm it
+is competent. Table~\ref{tab:scorer-independence}(a) is the control that
+makes the negative result interpretable: on two-key NIAH the geometry
+scorer reproduces exactly the multi-key advantage its authors report,
+reaching $0.72$ at $b = 0.5$ where SnapKV is at $0.16$. A scorer that can
+do this is not failing MK3 for want of a better scoring rule, and indeed
+every scorer we test still collapses on MK3.
+Table~\ref{tab:scorer-independence}(b) shows that at $b \le 0.25$,
+SnapKV, KeyDiff, and ManifoldKV (post- and pre-RoPE, uniform and Ada-KV
+allocation) are all at or near $0.00$ against a full-cache $0.66$. The
+geometry scorer does not beat a properly per-head SnapKV at any budget
+here and is weaker at $b = 0.5$ ($0.06$-$0.10$ versus $0.32$). The
+conclusion we draw is the one the gate is built on: on capacity-bound
+inputs the recoverable information is not present in any $25\%$ subset
+of the cache, so no scoring rule, attention-based, geometric, or
+attention-free, can recover it, and the only safe action is not to
+evict.
+
+\begin{table}[h]
+\centering
+\caption{Scorer-independence of the capacity limit (Qwen2.5-1.5B, RULER 4K,
+$N = 50$). (a) The geometry scorer reproduces the published two-key advantage,
+so it is competent. (b) On three-key NIAH-MK3 every scorer collapses below
+$25\%$ budget. Accuracy at nominal budget $b$.}
+\label{tab:scorer-independence}
+\small
+(a) two-key NIAH, the positive control \\[2pt]
+\begin{tabular}{lccc}
+\toprule
+Scorer & full & $b = 0.5$ & $b = 0.25$ \\
+\midrule
+SnapKV                 & 0.76 & 0.16 & 0.04 \\
+ManifoldKV (post-RoPE) & 0.76 & \textbf{0.72} & \textbf{0.56} \\
+ManifoldKV (pre-RoPE)  & 0.76 & \textbf{0.76} & \textbf{0.52} \\
+\bottomrule
+\end{tabular}
+
+\vspace{6pt}
+(b) three-key NIAH-MK3 \\[2pt]
+\begin{tabular}{lccccc}
+\toprule
+Scorer (allocation) & full & $b = 0.5$ & $b = 0.25$ & $b = 0.125$ & $b = 0.0625$ \\
+\midrule
+SnapKV (uniform per-head)         & 0.66 & 0.20 & 0.02 & 0.00 & 0.00 \\
+SnapKV (Ada-KV)                   & 0.66 & 0.32 & 0.00 & 0.00 & 0.00 \\
+KeyDiff (uniform)                 & 0.66 & 0.02 & 0.00 & 0.00 & 0.00 \\
+KeyDiff (Ada-KV)                  & 0.66 & 0.02 & 0.00 & 0.00 & 0.00 \\
+ManifoldKV L2 post-RoPE (uniform) & 0.66 & 0.02 & 0.00 & 0.00 & 0.00 \\
+ManifoldKV L2 post-RoPE (Ada-KV)  & 0.66 & 0.06 & 0.00 & 0.00 & 0.00 \\
+ManifoldKV L2 pre-RoPE (uniform)  & 0.66 & 0.02 & 0.00 & 0.00 & 0.00 \\
+ManifoldKV L2 pre-RoPE (Ada-KV)   & 0.66 & 0.10 & 0.00 & 0.00 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Additional limitations}
+
+Section~\ref{sec:limitations} states the four limitations severe enough
+for the main text. Seven more, individually narrower, are collected here.
+
+Statistical power is the first. Per-cell $N$ ranges from $30$ to $100$
+inputs (per-task $N$ noted in each table). All headline deltas carry
+cluster-bootstrap $95\%$ intervals and all $\rho$ values carry Wilson
+intervals (Section~\ref{sec:experiments}, Appendix~\ref{app:ci}), and
+every matrix delta excludes zero, but the per-cell partition calls are
+individually low-powered, since most straddle the $0.05$ threshold, and
+small-$N$ cells (Qwen-14B 16K, $N = 30$; triviaqa head-to-head, $N = 24$)
+remain noisy. The partition claim rests on the pooled contrast instead,
+which is unambiguous. Decoding is greedy throughout, and five SnapKV
+cells carry three input-draw replicates each
+(Appendix~\ref{subsec:seed-variance}), while the remaining sweeps are one
+draw.
+
+A related question is whether the gate ever costs accuracy on a workload
+with no capacity-bound inputs at all, and LongBench under SnapKV scoring
+answers it. On qasper, triviaqa, trec, and multifieldqa\_en
+\citep{arxiv230814508} (plus passage\_retrieval\_en on the 1.5B model),
+the pooled gated $\Delta$ is within $\pm 1$pp of plain on all four models
+(Qwen2.5-1.5B $0.000$, Qwen2.5-3B $+0.002$, Mistral-7B $+0.003$,
+Qwen2.5-14B $-0.008$). The worst per-task cell is Qwen2.5-14B trec at
+$-2.2$pp, the only negative gating result in the project, which we
+attribute to gate misfires on a task with no capacity-bound inputs to
+rescue. LongBench, on this subset, has no capacity-bound task, so the
+partition predicts neutrality, and we observe it, including its mildly
+negative tail.
+
+One specific cell needs that calibration in practice: Qwen2.5-3B 16K,
+where the fixed $\tau = 0.07$ default fails. The 40-input recipe of
+Section~\ref{sec:recipe} fixes it, taking $\Delta$ from $+3.4$pp to
+$+5.4$pp. We recommend the recipe as the deployment default and keep the
+fixed-$\tau$ result throughout only to show that the gap it leaves is
+small.
+
+A separate, purely infrastructural limitation concerns how three cells
+were measured. \label{subsec:wrapper-provenance} The gate-signal probe
+requests every layer's full $[H, T, T]$ attention, which reaches roughly
+$120$\,GiB for Qwen2.5-14B at 4K and cannot be run directly. Two
+wrappers make it fit. The retention wrapper (v1) calls the stock
+attention and slices the returned tensor, and the query-chunk wrapper
+(v3) chunks the query axis while calling the stock function unchanged.
+We validated each against the stock script on the fitting cell before
+using it: v1 agrees exactly ($D = 0.0412$ against $0.0412$ on the same
+host) and v3 agrees to $+0.000029$, which is floating-point
+reassociation. We report this validation because a third wrapper failed
+the same check. Rewriting attention through SDPA moved mean $D$ from
+$0.0448$ to $0.0300$, a $33\%$ shift, reproducibly on two different
+GPUs, so the cause is the output path perturbing hidden states and
+compounding across layers rather than a hardware difference. No
+reported number uses this third wrapper. Separating that $0.0148$ code
+artifact from the $0.0035$ hardware effect required varying code path
+and hardware together, since either comparison alone against the
+released numbers confounds the two.
+
+Two further limitations concern which baselines appear where. DBTrimKV's
+pretrained gates exist only for Qwen3 variants, so
+Section~\ref{subsec:dbtrimkv} runs on Qwen3-4B-Instruct-2507 rather than
+the Qwen2.5-keyed matrix, which is why DBTrimKV stays a standalone
+head-to-head rather than a matrix row. The matrix itself covers only
+training-free policies for the same reason: trained or learned evictors
+(DBTrimKV, CapKV, IndexMem, DynamicKV) are cited but not included in it.
+
+The last limitation concerns how confidently NIAH-MK3 can stand in for
+the capacity-bound class generally. It is the only task where empirical
+capacity-boundedness (accuracy collapse under eviction) and the gate's
+capacity-bound classification coincide. On LongBench passage\_count at
+Qwen2.5-14B the gate closes on all inputs (mean $D = -0.013$) yet
+eviction is empirically \emph{safe} (accuracy flat under $16\times$
+eviction, $\rho = 0$): a benign \emph{false positive} (over-conservative,
+costing compression not accuracy), the dual of the MK2 false negative
+(Appendix~\ref{app:deferred}). The head-agreement drop is therefore a
+one-sided predictor, reliable at firing on dilution-prone inputs, not a
+perfect classifier. Multilingual and code tasks remain out of scope. We
+expect the mechanism to transfer, since it is architecture-level, but we
+have not measured it.
+
+\subsection{Mechanism-validation detail: near-tie distractor count drives \texorpdfstring{$D$}{D}}
+
+The capacity-bound classification above rests on a mechanism claim: that
+near-tie distractors, not task identity, distractor count, or output
+length in general, drive $D$ down. Section~\ref{sec:partition} already
+shows that real hard-negative distractors do not have this effect, since
+qa\_1 and qa\_2 carry the most distractors in the suite and the largest
+$D$ (Table~\ref{tab:drops}), and that exact-token output length does not
+either, since cwe requires ten exact low-redundancy tokens yet keeps the
+gate open on every input tested (Table~\ref{tab:capbound}). This
+subsection isolates the near-tie case
+directly. The RULER NIAH-MultiKey family lets us sweep the near-tie
+distractor count with the number of documents held fixed:
+niah\_multikey\_1 (no near-tie distractors), niah\_multikey\_2 (one),
+niah\_multikey\_3 (two). The dilution mechanism of
+\citet{arxiv260509649} predicts that more near-tie distractors should
+produce larger expected dilution $\delta_t$ and, via
+App.~\ref{app:sufficient}, smaller head-agreement drop $D$. On
+Qwen2.5-1.5B at RULER 4K, $N = 50$ per task, we observe exactly this: a
+clean monotone gradient (Table~\ref{tab:distractor}).
+
+\begin{table}[t]
+\centering
+\caption{Distractor-count sweep on the NIAH-MultiKey family
+(Qwen2.5-1.5B, RULER 4K, $N = 50$ per task). Mean head-agreement drop
+$D$ shrinks monotonically as the near-tie distractor count grows.}
+\label{tab:distractor}
+\begin{tabular}{lccccc}
+\toprule
+Task & mean $D$ & gate-open frac & $\rho_{\mathrm{plain}}$ & $\rho_{\mathrm{gated}}$ & plain at $b{=}0.0625$ \\
+\midrule
+niah\_multikey\_1 & $+0.155$ & $1.00$ & $0.04$ & $0.04$ & $0.36$ \\
+niah\_multikey\_2 & $+0.122$ & $1.00$ & $0.00$ & $0.00$ & $0.00$ \\
+niah\_multikey\_3 & $+0.045$ & $0.00$ & $0.00$ & $0.00$ & $0.00$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+$D$ shrinks by $\sim 3.5\times$ from $0 \to 2$ near-tie distractors,
+and per-input ranges between MK2 and MK3 do not overlap
+($\max_{\text{MK3}} D = 0.062 < \min_{\text{MK2}} D = 0.088$): the
+partition predictor separates 2-distractor inputs from
+$\leq 1$-distractor inputs $100\%$ of the time at $\tau = 0.07$. The
+monotone gradient replicates on Mistral-7B-v0.3 ($D = 0.081, 0.072,
+0.060$ for MK1/MK2/MK3, $N = 50$ per task), confirming the mechanism
+is not Qwen-specific, though the finer per-input MK2/MK3 non-overlap is
+(their ranges overlap on Mistral).
+
+This clean separation between $0$ and $2$ distractors leaves open what
+happens at the single-distractor boundary, and MK2 is exactly that case.
+It is empirically capacity-bound at low budgets (plain SnapKV collapses
+from $80\%$ at $b{=}1$ to $0\%$ at $b{=}0.0625$) yet is classified as
+dilution-prone by the predictor at $\tau = 0.07$: MK2's mean $D = 0.122$
+sits between the MK3 cluster ($D \leq 0.062$) and the MK1 cluster ($D
+\geq 0.099$), co-located with genuinely dilution-prone FWE ($D = 0.098$)
+and niah\_multivalue ($D = 0.107$). No single mean-$D$ threshold
+separates MK2 from the dilution-prone cluster on this model, so the
+predictor falls back to its weakest form here: it correctly classifies
+MK3 and the standard dilution-prone tasks but mis-classifies single-near-tie
+MK2. Per-input recovery information beyond mean $D$ would be needed to
+catch it at deployment.
+
+\subsection{Gate-signal ablation: why the head-agreement drop}
+
+The previous section validates the dilution mechanism behind $D$; this
+one checks whether $D$ is actually the best way to read that mechanism
+off the prefill attention, against five cheaper alternatives. A
+same-inputs ablation (Table~\ref{tab:signal-ablation}, one shared
+prefill per input, $N = 50$ per task across seven RULER tasks) shows $D$
+is not merely the best candidate but the only one that separates the
+partition at all: MK3's mean $D$ sits strictly below all four
+dilution-prone task means with per-input AUC $1.000$, while every
+alternative fails task-level separation and tops out at AUC $0.805$.
+The dissection is informative. Raw attention entropy is at chance
+($0.508$), taking its early-vs-late layer contrast lifts it to $0.805$,
+and replacing entropy with head \emph{agreement} makes the separation
+exact, so both the layer contrast and the agreement measure matter,
+with agreement decisive. No alternative is even a redundant proxy (all
+$|r|$ with $D \le 0.64$). Consistent with the MK2 boundary case of
+Section~\ref{sec:partition}, extending the capacity-bound anchor to
+MK3$+$MK2 breaks task-level separation for $D$ too (AUC $0.859$): $D$
+tracks the near-tie distractor gradient, not a binary task label.
+
+\begin{table}[t]
+\centering
+\caption{Gate-signal ablation on Qwen2.5-1.5B-Instruct (RULER 4K, $N=50$ per
+task, one shared prefill per input). Each cheap prefill statistic is tested
+for separating the capacity-bound anchor (NIAH-MK3, and MK3+MK2) from the
+dilution-prone tasks (vt, fwe, qa\_1, multivalue). ``Sep.'' = a single
+threshold puts the capacity-bound task mean(s) strictly on one side of all
+four dilution task means; AUCs are per-input and oriented per signal
+(0.5 = chance); ``MK mono.'' = task means are monotone along the
+MK1$\to$MK2$\to$MK3 distractor gradient; $r$ = Pearson correlation with $D$.}
+\label{tab:signal-ablation}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+Signal & Sep.\ MK3 & Sep.\ MK3+MK2 & AUC MK3 & AUC MK3+MK2 & MK mono.\ & $r$ w/ $D$ \\
+\midrule
+head-agreement drop $D$ (paper) & \yes & \no & \textbf{1.000} & \textbf{0.859} & \yes & $+1.00$ \\
+mean attention entropy (norm.) & \no & \no & 0.508 & 0.670 & \no & $+0.08$ \\
+top-32 attention mass share & \no & \no & 0.784 & 0.574 & \yes & $+0.22$ \\
+max single-position share & \no & \no & 0.723 & 0.708 & \yes & $+0.32$ \\
+key-norm dispersion (std/mean) & \no & \no & 0.570 & 0.560 & \no & $+0.01$ \\
+early$-$late entropy drop & \no & \no & 0.805 & 0.575 & \no & $-0.64$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{The same ablation on cells that did not select the signal}
+\label{subsec:heldout-ablation}
+
+Table~\ref{tab:signal-ablation} is measured on the cell that $D$ was chosen on,
+and an AUC of $1.000$ there is the number a reader should trust least. We
+therefore repeat the ablation on three cells that played no part in selecting
+the statistic (Table~\ref{tab:heldout-ablation}), and the result splits into
+what survives held-out testing and what does not.
+
+What survives is the qualitative claim: $D$ remains the only one of the six
+statistics that achieves task-level separation anywhere, and it does so on
+two of the three held-out cells. Every alternative fails on every cell,
+held out or not, so the claim Table~\ref{tab:signal-ablation} makes now
+rests on more than the measurement that selected the signal.
+
+What does not survive is the fitting cell's exact number. The per-input
+AUC of $1.000$ is a property of that cell alone. Held out, it is $0.899$,
+$0.978$, and $0.741$, so we report $1.000$ as a fitting-cell figure rather
+than as the separability of $D$ in general.
+
+The two weak held-out cells share a common cause: both are decided by a
+single task, niah\_multivalue. On Llama-3.1-8B, NIAH-MK3 sits at $D =
+0.0710$ while niah\_multivalue sits at $0.0607$, giving an unrestricted
+margin of $-0.0103$. This is the result: $D$ separates on two of the
+three held-out cells, not three, once niah\_multivalue is counted. The
+other three
+dilution-prone tasks lie above MK3, and against the nearest of them (VT
+at $0.0783$) the margin is $+0.0073$ if niah\_multivalue is excluded.
+That figure is the one Appendix~\ref{subsec:layer-profile} derives from
+the depth profile, reached here from an independent measurement.
+Section~\ref{sec:limitations} already places this exclusion on the
+task-level ordering claim for a stated reason: niah\_multivalue is
+eviction-fragile on Llama-architecture models, so a low $D$ there is
+arguably the behaviorally correct call rather than a mis-ordering. We did
+not register that exclusion before running this ablation, so we report
+it here as a post-hoc diagnostic rather than a confirmed prediction, and
+Table~\ref{tab:heldout-ablation} gives both margins so either reading is
+checkable. On Qwen2.5-14B the margin of $+0.0032$ is likewise set by
+niah\_multivalue at $0.0487$, and excluding it the margin is $+0.0436$
+against FWE.
+
+\begin{table}[h]
+\centering
+\caption{Gate-signal ablation repeated on held-out cells. ``sep.'' counts the
+signals whose mean on NIAH-MK3 lies strictly below their mean on every
+dilution-prone task, which is the property the gate thresholds, and ``margin''
+is that gap for $D$. ``margin$^-$'' excludes niah\_multivalue, the exclusion
+Section~\ref{sec:limitations} places on the Llama-architecture ordering claim.
+AUC is per-input separability of NIAH-MK3 from the pooled dilution-prone tasks. The wrapper column records which memory workaround
+produced the cell (Appendix~\ref{subsec:wrapper-provenance}).}
+\label{tab:heldout-ablation}
+\small
+\begin{tabular}{llccccccc}
+\toprule
+Cell & Status & Wrap. & $D$ MK3 & min dil. & margin & margin$^-$ & AUC($D$) & sep. \\
+\midrule
+Qwen2.5-1.5B 4K & fitting  & stock & 0.0448 & 0.1114 & $+0.0667$ & $+0.0667$ & 1.000 & 1/6 \\
+Qwen2.5-14B 4K  & held out & v1    & 0.0455 & 0.0487 & $+0.0032$ & $+0.0436$ & 0.899 & 1/6 \\
+Llama-3.1-8B 4K & held out & v1    & 0.0710 & 0.0607 & $\mathbf{-0.0103}$ & $+0.0073$ & 0.741 & \textbf{0/6} \\
+Mistral-7B 16K  & held out & v3    & 0.0544 & 0.0756 & $+0.0212$ & $+0.0393$ & 0.978 & 1/6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The per-layer profile behind \texorpdfstring{$D$}{D}, and what it says about (A3)}
+\label{subsec:layer-profile}
+
+The small Llama-3.1-8B margin above is a symptom; this subsection
+diagnoses the cause by looking inside $D$ at the per-layer profile it
+summarizes. Assumption (A3) in App.~\ref{app:sufficient} asserts a layer
+structure: early layers respond to local context, late layers to task
+structure, which is why an early-minus-late contrast should separate the
+two classes. The paper elsewhere reports only the binned scalar $D$, so
+we plot the profile $a_\ell$ itself (Figure~\ref{fig:layer-profile}). It
+is recomputed from the released per-layer logs at zero GPU cost.
+
+On Qwen2.5-1.5B the profile behaves as (A3) describes. Agreement decays with
+depth, and NIAH-MK3 holds a markedly higher late plateau ($0.283$) than the
+dilution-prone tasks ($0.227$ on VT), so the contrast separates them by
+$+0.068$. On Llama-3.1-8B it does not. The profile is non-monotone, with a
+pronounced mid-stack spike, and NIAH-MK3 and VT become nearly
+indistinguishable under the contrast ($D = +0.071$ against $+0.078$, a margin
+of $+0.007$, an order of magnitude smaller than on Qwen).
+
+We report this because it is the mechanistic content behind a failure the paper
+otherwise leaves unexplained. The fixed threshold does not transfer to the
+Llama architecture, and per-input AUC there is $\approx 0.80$ rather than
+$1.000$, not because the signal is absent but because the depth profile it
+summarises has a different shape. An early-minus-late contrast is the right
+summary of a monotone profile and the wrong summary of a profile with interior
+structure, which is also why the depth-correlation statistic comes out
+anti-correlated on Llama rather than merely weak. A statistic that reads the
+profile shape rather than its endpoints is the natural next step, and this is
+the concrete form of the ``per-input statistic beyond mean $D$'' that
+Section~\ref{sec:limitations} names as future work.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figs/layer_profile.pdf}
+\caption{Per-layer head agreement $a_\ell$, averaged over inputs
+($N = 100$ per task, RULER 4K). Shaded bands are the early and late thirds
+that define $D$. Left: on Qwen2.5-1.5B the profile decays with depth and the
+capacity-bound task holds the highest late plateau, as (A3) predicts. Right:
+on Llama-3.1-8B the profile is non-monotone and NIAH-MK3 is nearly
+indistinguishable from VT under the same contrast, which is why the fixed
+$\tau$ does not transfer to that family.}
+\label{fig:layer-profile}
+\end{figure}
+
+\subsection{Does a task-label oracle do the same job?}
+\label{subsec:task-oracle}
+
+The per-layer diagnosis above concerns signal quality; a separate question
+is how much of the gate's value is genuinely per-input rather than a proxy
+for task identity. The gate is advertised as a per-input predictor, but
+most of its validation is per task, so the sharp question is whether a
+policy that simply knew the task identity would match it.
+Table~\ref{tab:task-oracle} answers it. The oracle closes on every
+NIAH-MK3 input and opens on every other one, which is the best any
+task-level policy can achieve, and it requires a label \method never sees.
+
+The honest reading has three parts. In $8$ of $16$ cells \method
+reproduces the oracle \emph{exactly}, so there the gate is a perfect task
+classifier and $D$ buys label-freeness rather than per-input resolution.
+In $5$ cells \method \emph{beats} the oracle, by up to $+0.198$, which no
+task-level policy can do, since the surplus comes from closing on
+individual dilution-prone inputs that the oracle wrongly opens. In $3$
+Mistral cells \method loses by at most $0.009$ through false positives on
+MK3. Overall the oracle reaches $+20.1$pp against \method's $+22.9$pp.
+
+So most of the matrix $\Delta$ is a task-level effect that a cheating
+baseline could match, and we say so. The per-input claim rests on the
+cells where \method exceeds the oracle and, more cleanly, on
+Llama-3.1-8B NIAH-MK3, where the mean $D = 0.071$ sits \emph{above}
+$\tau$: a task-level policy keyed on that mean opens on every input and
+gains nothing, while per-input dispersion closes the gate on $\approx
+44\%$ of them and recovers $+43.5$pp (App.~\ref{subsec:drops-ordering}).
+
+\begin{table}[h]
+\centering
+\caption{\method against a task-label oracle that closes on NIAH-MK3 and opens
+elsewhere. $\Delta$ is gated minus plain over budgets $b < 1.0$. A gap of
+exactly $0.000$ means the gate reproduced the oracle's decisions on every
+input; a positive gap requires within-task per-input variation.}
+\label{tab:task-oracle}
+\small
+\begin{tabular}{llccc}
+\toprule
+Base evictor & Model & \method $\Delta$ & oracle $\Delta$ & gap \\
+\midrule
+SnapKV & Qwen2.5-1.5B & $+0.121$ & $+0.121$ & $0.000$ \\
+       & Qwen2.5-3B   & $+0.259$ & $+0.183$ & $+0.076$ \\
+       & Qwen2.5-14B  & $+0.143$ & $+0.143$ & $0.000$ \\
+       & Mistral-7B   & $+0.187$ & $+0.195$ & $-0.008$ \\
+\midrule
+H2O & Qwen2.5-1.5B & $+0.162$ & $+0.162$ & $0.000$ \\
+    & Qwen2.5-3B   & $+0.303$ & $+0.230$ & $+0.073$ \\
+    & Qwen2.5-14B  & $+0.200$ & $+0.200$ & $0.000$ \\
+    & Mistral-7B   & $+0.236$ & $+0.243$ & $-0.007$ \\
+\midrule
+StreamingLLM & Qwen2.5-1.5B & $+0.163$ & $+0.163$ & $0.000$ \\
+             & Qwen2.5-3B   & $+0.430$ & $+0.232$ & $\mathbf{+0.198}$ \\
+             & Qwen2.5-14B  & $+0.250$ & $+0.250$ & $0.000$ \\
+             & Mistral-7B   & $+0.263$ & $+0.247$ & $+0.015$ \\
+\midrule
+PyramidKV & Qwen2.5-1.5B & $+0.152$ & $+0.152$ & $0.000$ \\
+          & Qwen2.5-3B   & $+0.329$ & $+0.221$ & $+0.108$ \\
+          & Qwen2.5-14B  & $+0.228$ & $+0.228$ & $0.000$ \\
+          & Mistral-7B   & $+0.231$ & $+0.240$ & $-0.009$ \\
+\midrule
+\textbf{grand mean} & & $\mathbf{+0.229}$ & $\mathbf{+0.201}$ & $+0.028$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{How many layers does $D$ need?} The gate's cost grows with the
+number of layers scanned, so we ask whether a subset suffices. Recomputing $D$
+from layer subsets of the stored per-layer agreements needs no GPU. We first
+check validity: recomputing over all $L$ layers reproduces the \texttt{drop}
+the deployed gate actually thresholded, bit-exactly on the two Qwen cells and
+to $4 \times 10^{-4}$ on Mistral, which is two orders of magnitude below
+$\tau$. Table~\ref{tab:layer-subsample} then reports whether each subset
+preserves the ordering the gate relies on, NIAH-MK3 ranking below every other
+task. Halving the layers is safe on all three cells, though the margin shrinks
+by roughly a quarter on Qwen2.5-1.5B and by an order of magnitude on
+Qwen2.5-3B. Beyond that the signal degrades and is cell-dependent: every-4th
+holds only on Qwen2.5-3B, the early bin alone inverts the ordering everywhere,
+and the single first-and-last-layer pair happens to work on Qwen2.5-1.5B while
+failing badly on Mistral. We therefore do not recommend subsampling below
+$L/2$, and we read the coincidental successes as a caution against tuning the
+layer set per cell.
+
+\paragraph{How many head \emph{pairs} does $D$ need?}
+\label{subsec:head-pair-subsample}
+Layer count is only half of the $O(L H^2 k)$ cost. The other half is the
+pair count, and it is the half that scales badly: $66$ pairs at $H = 12$
+but $780$ at $H = 40$. The released logs cannot answer this, because the
+probe averages over pairs before writing, so we re-ran the probe
+retaining the per-pair Jaccards and subsampled offline
+(Table~\ref{tab:head-pair-subsample}). Random subsets are drawn $20$
+times per fraction, since a single unlucky draw would understate what
+subsampling can do.
+
+The ordering the gate depends on survives \emph{every} draw down to one pair in
+$66$. At $2\%$ of the pairs the margin is $+0.0735$, against $+0.0717$ using all
+of them. We read this as a statement about the cost model rather than a
+recommendation to gate on a single pair: the $H^2$ term is not load-bearing, so
+the gate can be made substantially cheaper on exactly the wide-head models where
+it is most expensive, which is the deployment objection of
+Section~\ref{sec:limitations}. The caveats are that this is one model at one
+context length, that it is an ordering result on task means rather than a
+per-input one, and that the margin is not monotone in the fraction (the $5\%$
+row dips to $+0.0665$), which is sampling noise at $120$ inputs.
+
+\begin{table}[h]
+\centering
+\caption{Head-pair subsampling (Qwen2.5-1.5B, RULER 4K, $H = 12$, $66$ pairs,
+$L = 28$, $N = 120$). ``Margin'' is the gap between mean $D$ on NIAH-MK3 and the
+smallest mean $D$ among the dilution-prone tasks; ``ordering'' counts the draws
+in which that margin stayed positive.}
+\label{tab:head-pair-subsample}
+\small
+\begin{tabular}{lccccc}
+\toprule
+Pairs kept & count & mean $D$ MK3 & min mean $D$ dil. & margin & ordering \\
+\midrule
+$100\%$ & 66 & 0.0413 & 0.1131 & $+0.0717$ & 1/1 \\
+$50\%$  & 33 & 0.0404 & 0.1109 & $+0.0705$ & 20/20 \\
+$25\%$  & 16 & 0.0456 & 0.1179 & $+0.0724$ & 20/20 \\
+$10\%$  & 7  & 0.0280 & 0.1035 & $+0.0754$ & 20/20 \\
+$5\%$   & 3  & 0.0541 & 0.1206 & $+0.0665$ & 20/20 \\
+$2\%$   & 1  & 0.0529 & 0.1264 & $+0.0735$ & 20/20 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Layer subsampling. ``Margin'' is the gap between mean $D$ on NIAH-MK3
+and the smallest mean $D$ among the other tasks, so a positive margin means a
+separating threshold still exists on that subset. Recomputed with zero GPU from
+\texttt{head\_agreement\_per\_layer} in the released per-layer logs.}
+\label{tab:layer-subsample}
+\small
+\begin{tabular}{lccccc}
+\toprule
+ & \multicolumn{2}{c}{Qwen2.5-1.5B ($L{=}28$)} & \multicolumn{2}{c}{Qwen2.5-3B ($L{=}36$)} & Mistral-7B ($L{=}32$) \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-6}
+Layer subset & margin & kept & margin & kept & margin \\
+\midrule
+all layers        & $+0.0676$ & \yes & $+0.0415$ & \yes & $+0.0174$ \\
+every 2nd         & $+0.0520$ & \yes & $+0.0125$ & \yes & $+0.0152$ \\
+every 4th         & $-0.0017$ & \no  & $+0.0035$ & \yes & $-0.0194$ \\
+early bin only    & $-0.0410$ & \no  & $-0.0280$ & \no  & $-0.0225$ \\
+first+last layer  & $+0.0660$ & \yes & $-0.0532$ & \no  & $-0.1541$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-architecture, scale, and best-plain results}
+
+The held-out cells above test whether the signal transfers. This
+subsection tests whether the method's headline effect does, across
+architecture, scale, and a stronger baseline in turn.
+
+\begin{table}[t]
+\centering
+\caption{Cross-architecture SnapKV-only runs on two Llama-architecture models.
+These use the four most aggressive budgets $\{0.0625, 0.125, 0.25, 0.5\}$
+rather than the eight-budget grid of Table~\ref{tab:matrix}, so the
+$\Delta$ values are not directly comparable to the matrix rows
+(aggressive-budget-only averaging inflates $\Delta$).}
+\label{tab:crossarch}
+\begin{tabular}{lccc}
+\toprule
+Model & plain SnapKV & gated SnapKV & $\Delta$ \\
+\midrule
+Yi-1.5-9B    & 0.464 & 0.854 & $+0.390$ \\
+Llama-3.1-8B & 0.509 & 0.618 & $+0.109$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On architecture, Yi-1.5-9B ($\Delta = +39.0$pp) and Llama-3.1-8B
+($\Delta = +10.9$pp, Table~\ref{tab:crossarch}) are Llama-architecture
+descendants distinct from Qwen and Mistral. Only the SnapKV column was
+run for compute, and on a smaller, more aggressive budget grid (see
+caption). The sign is positive on both, but on these two models part of
+the gain comes from the gate closing conservatively on tasks where
+plain SnapKV collapses, rather than from a correctly recovered
+partition. The per-task breakdown and the shared Llama-arch family
+caveat (niah\_multivalue mis-classifies on both Yi and Llama) are in
+Section~\ref{subsec:drops-ordering} and Section~\ref{sec:limitations}.
+
+On scale, a SnapKV-only run on Qwen2.5-32B-Instruct (RULER 4K mixed
+suite, $N = 100$) confirms the predictor scales but also illustrates the
+saturation arm of the scaling formula. The drop ordering transfers
+cleanly (NIAH-MK3 smallest at $D = 0.025$, then FWE $0.052$, VT
+$0.079$, QA\_1 $0.103$). At the same time the 32B model is
+near-saturated at 4K ($A_{\mathrm{full}} = 1.00$ on VT and NIAH-MK3,
+$0.93-0.94$ on FWE/QA\_1), so by Eq.~\eqref{eq:scaling} there is
+essentially no dilution headroom, and the gate's value is
+capacity-bound protection rather than recovery: plain SnapKV collapses
+at $b = 0.0625$ (NIAH-MK3 $0.00$, VT $0.00$, FWE $0.09$) while the gate
+holds the full cache on the low-drop tasks, giving mean $\Delta =
++0.335$ at $\tau = 0.07$ (driven by NIAH-MK3 $+0.88$ and FWE $+0.44$)
+and $+0.237$ at the z-scored threshold with more compression ($0.45$
+vs.\ $0.63$ kept-KV). We report this as a scale point for the partition
+and predictor, not as additional dilution evidence.
+
+On the choice of baseline, a natural concern is that the gate only
+looks good against a weak base evictor. Comparing the best plain
+evictor against the best gated evictor for each model rules this out
+(Table~\ref{tab:bestplain}).
+
+\begin{table}[t]
+\centering
+\caption{Best plain evictor vs.\ best gated evictor per model, over
+the four base evictors of Table~\ref{tab:matrix} at the same budget grid.}
+\label{tab:bestplain}
+\begin{tabular}{lccc}
+\toprule
+Model & Best plain & Best gated & $\Delta$ \\
+\midrule
+Qwen2.5-1.5B & 0.438 (SnapKV)    & 0.570 (PyramidKV) & $+0.132$ \\
+Qwen2.5-3B   & 0.580 (SnapKV)    & 0.865 (PyramidKV) & $+0.285$ \\
+Qwen2.5-14B  & 0.709 (SnapKV)    & 0.868 (H2O)       & $+0.159$ \\
+Mistral-7B    & 0.623 (SnapKV)    & 0.823 (PyramidKV) & $+0.201$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The best-plain-versus-best-gated comparison still leaves open why the
+matrix's gains differ across base evictors rather than landing at one
+number, which the per-evictor behavior explains. StreamingLLM keeps only
+$36$ tokens regardless of budget, so on the dilution-prone fraction it is
+near zero plain and near zero gated, and gating contributes only via the
+gate-closed NIAH-MK3 inputs that go from $0$ to full-KV accuracy. SnapKV
+is budget-scaled and degrades more gracefully, so it has less room for
+gating to recover. PyramidKV's depth-weighted scoring biases toward
+bottom layers but produces similar absolute gains to SnapKV. The pattern
+is that gating $\Delta$ tracks how much the base evictor collapses on
+the capacity-bound fraction. Two implementation caveats apply: our
+PyramidKV is a depth-weighted variant of the published per-layer budget
+schedule, and under two-pass prefill scoring (used on Qwen2.5-14B for
+memory) the H2O score only sees the last $w$ queries, so the 14B H2O
+column degenerates toward SnapKV-style scoring. Its $\Delta$ there
+should be read as a near-duplicate of the SnapKV cell rather than an
+independent base evictor.
+
+\subsection{Calibration recipe details}
+\label{subsec:recipe-details}
+
+Section~\ref{sec:recipe} summarizes the calibration recipe. This
+subsection gives the full recipe, its validation, its sensitivity to
+$\tau$, and the architecture-normalized variant that follows from it.
+We provide a one-shot, label-free calibration recipe.
+
+\paragraph{Two senses of ``label-free''.} \method never observes correctness,
+making it \emph{accuracy-label-free}, which is weaker than
+\emph{task-label-free}: the fixed-$\tau$ recipe below needs $20$ inputs from
+a known capacity-bound task and $20$ from a known dilution-prone one. The
+$z$-scored variant assumes neither, and we use the stronger term only for it.
+
+\paragraph{Recipe.} For a new (model, context):
+\begin{enumerate}
+  \item Pick $20$ inputs from a known capacity-bound task (NIAH-MK3) and
+  compute the head-agreement drop $D_i$ on each. Average to get
+  $\bar D_{\mathcal C}$.
+  \item Pick $20$ inputs from a known dilution-prone task (VT) and compute
+  $\bar D_{\mathcal D}$.
+  \item Set
+  \begin{equation}
+  \label{eq:tau}
+  \tau = \tfrac{1}{2}\bigl(\bar D_{\mathcal C} + \bar D_{\mathcal D}\bigr).
+  \end{equation}
+\end{enumerate}
+$40$ prefills, no labels, no decode, $<5$ minutes on a single A100.
+
+\paragraph{Validation.} On four cells (Table~\ref{tab:recipe}). The recipe
+lifts Qwen2.5-3B 16K from $+3.4$pp to $+5.4$pp (the only failure cell turned
+into a win) and lifts Mistral 4K from $+18.7$pp to $+22.3$pp. It is
+neutral on average across the four cells but with smaller variance.
+
+\begin{table}[t]
+\centering
+\caption{Calibration-recipe validation. $\bar D_{\mathcal C}$ uses NIAH-MK3
+($N = 20$); $\bar D_{\mathcal D}$ uses VT ($N = 20$).
+Bolded $\tau$-choice column is the winner per cell. The pilot means here
+are computed on $20$-input samples and therefore differ slightly from the
+$N \ge 50$ per-task means of Table~\ref{tab:drops}.}
+\label{tab:recipe}
+\begin{tabular}{lccccc}
+\toprule
+Cell & $\bar D_{\mathcal C}$ & $\bar D_{\mathcal D}$ & $\tau_{\mathrm{cal}}$
+& gated@$\tau_{\mathrm{cal}}$ & gated@$\tau\!=\!0.07$ \\
+\midrule
+Qwen2.5-1.5B 4K & $+0.045$ & $+0.161$ & $+0.103$ & $+0.121$ & $+0.121$ \\
+Qwen2.5-3B 4K   & $-0.002$ & $+0.076$ & $+0.037$ & $+0.213$ & $\boldsymbol{+0.259}$ \\
+Qwen2.5-3B 16K  & $-0.021$ & $+0.068$ & $+0.024$ & $\boldsymbol{+0.054}$ & $+0.034$ \\
+Mistral 4K       & $+0.060$ & $+0.096$ & $+0.078$ & $\boldsymbol{+0.223}$ & $+0.187$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The fixed threshold used above should not be reliable only by luck, so we
+swept it directly. Sweeping $\tau \in \{0.01, 0.025, 0.04, 0.055, 0.07,
+0.085, 0.10, 0.13, 0.16, 0.20\}$ on Qwen2.5-1.5B at RULER 4K (mixed
+suite, $N=100$, budgets $\{0.5, 0.25, 0.125, 0.0625\}$, SnapKV) shows an
+operational plateau $\tau \in [0.055, 0.10]$ inside which $\Delta$
+varies by under $1$pp, and both false-positive (gate fires on
+capacity-bound MK3) and false-negative (gate stays closed on
+dilution-prone VT/FWE/QA\_1) rates stay at or below $9\%$. The deployed
+$\tau = 0.07$ sits in the middle of this plateau
+(Figure~\ref{fig:tau-sensitivity}). Outside it the behavior changes
+character. Below $0.04$, FP $\geq 64\%$ and $\Delta \leq +0.06$. Above
+$0.13$, FN $\geq 33\%$ and the method degenerates toward ``always full
+KV,'' which on this full-KV-strong suite still yields a large $\Delta$,
+since the sweep's raw maximum is in fact at $\tau = 0.20$, but only at
+the price of never compressing, so it is not a useful operating point.
+The deployed threshold does not depend on a knife-edge.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.62\linewidth]{figs/tau_sensitivity.pdf}
+  \caption{$\tau$ sensitivity on Qwen2.5-1.5B, RULER 4K. Mean
+  $\Delta$ (gated $-$ plain) over (task, budget) cells. Shaded band:
+  operational plateau where $|\Delta - \Delta_{\tau=0.07}| \leq 1$pp
+  and FP$+$FN $\leq 0.10$. The deployed $\tau = 0.07$ sits in the
+  middle of the plateau.}
+  \label{fig:tau-sensitivity}
+\end{figure}
+
+\paragraph{Architecture-normalized variant: the z-scored drop.} The recipe
+above calibrates a per-cell threshold from two labeled pilot tasks. A
+stronger variant needs no task labels at all: standardize the drop
+per model, $z(x) = (D(x) - \mu_M) / \sigma_M$, with $\mu_M, \sigma_M$
+pooled over an unlabeled $\sim 100$-input pilot, and use one global
+threshold $\theta_z$. Fitting $\theta_z = -0.69$ on the five Qwen/Mistral
+cells \emph{only} and transferring it zero-shot to the two held-out
+Llama-architecture models: task-level separation of NIAH-MK3 from
+$\{$QA\_1, QA\_2, VT, FWE$\}$ succeeds in $7$ of $7$ cells (pooled
+cross-cell AUC $0.965$), where raw $D$ with one threshold manages $4$ of
+$7$. The reason is that raw $D$ is an architecture-invariant
+\emph{ordering} whose location and scale are model-specific: $\tau = 0.07$
+sits at $z = +0.69$ on Yi but $z = -0.97$ on Llama, two opposite failure
+modes that standardization removes. Downstream, the z-gate lifts
+Llama-3.1-8B from $\Delta = +0.109$ to $\boldsymbol{+0.174}$ (NIAH-MK3
+gate-open $0.56 \to 0.30$, MK3 accuracy $0.46 \to 0.72$) and gives Yi
+$\Delta = +0.145$ with \emph{real} compression (kept-KV $0.22$--$0.32$
+versus $0.76-0.89$ under the fixed-$\tau$ fallback). Two honest
+scopes: niah\_multivalue must be excluded from the task-level ordering
+claim (its mean $D$ sits below MK3 on both Llama-architecture models, which
+is behaviorally the right call there, since it is eviction-fragile on
+both), and per-input MK3-vs-rest AUC on the Llama-architecture models is
+intrinsically $\approx 0.80$, since no monotone rescaling changes
+within-model ranking. A depth-correlation statistic over the per-layer profile scores AUC
+$0.22$ on Llama. This does not mean the depth profile is uninformative there.
+An AUC of $0.22$ is \emph{anti}-correlated, and inverting its sign gives
+$0.78$, comparable to $D$'s own $\approx 0.80$ on that family. The profile
+carries signal on Llama with the opposite sign to the one assumption (A3)
+predicts, which Appendix~\ref{subsec:layer-profile} shows directly.
+
+\paragraph{A fourth family where fixed $\tau$ fails outright: Qwen3.} The
+starkest transfer test is Qwen3-4B-Instruct, a different model generation
+from the Qwen2.5 calibration set, whose drop distribution is compressed to
+a different scale entirely ($\mu = 0.034$, $\sigma = 0.017$ pooled over
+$400$ inputs). There the fixed $\tau = 0.07$ sits at $z = +2.0$ and the
+gate essentially never fires: it keeps $99.4\%$ of the cache and its
+apparent $\Delta = +0.43$ is a pure full-KV-fallback artifact with
+$0.6\%$ compression. The z-scored threshold ($\tau_{\text{Qwen3}} = \mu +
+\theta_z \sigma = 0.022$, same $\theta_z = -0.69$) restores a working
+gate: NIAH-MK3 stays closed (open fraction $0.02$, accuracy $0.05 \to
+0.98$) while the three dilution-prone tasks open ($0.94-1.00$),
+yielding $2.3\times$ compression ($43\%$ mean kept-KV) at
+$\Delta = +0.235$ over plain and recovering $54.5\%$ of the per-input
+oracle headroom. The NIAH-MK3-smallest ordering transfers cleanly.
+Qwen3 is thus the cleanest evidence for the paper's central claim about
+the predictor: the drop is an architecture-invariant \emph{ordering}
+whose scale must be standardized per model. Here fixed-$\tau$ does not
+merely underperform. It does nothing.
+
+\paragraph{Status.} The recipe is the deployment-friendly default: it always
+fixes the failure cell, and the z-scored variant extends it label-free
+across architecture families. We report fixed-$\tau$ numbers throughout as
+the conservative default so readers see both the robustness of one
+constant and what standardization buys.
+
+\subsection{Theory: mechanism, partition, and scaling derivations}
+
+Section~\ref{sec:theory} states the mechanism, the partition it implies,
+and the scaling formula in summary form. This subsection gives the full
+derivation of each in turn, followed by the sufficient-condition bridge
+connecting the mechanism to the observable predictor.
+
+\paragraph{Mechanism (adopted from Bui et al.).}
+We adopt verbatim the dilution mechanism from \citet{arxiv260509649}, which
+suffices to motivate our gating predictor. Fix a frozen decoder language
+model $M$. A single
+attention head reads from positions $t \in \{1, \dots, T\}$, each carrying
+a value $v_t$ and a pre-eviction probability $\alpha_t$ with $\sum_t
+\alpha_t = 1$. Partition positions into a relevant set $\mathcal{R} = \{t:
+r_t = 1\}$ ($|\mathcal{R}| = R$) and a noise set $\mathcal{N}$
+($|\mathcal{N}| = N$), with $R \ll N$. Following \citet{arxiv260509649}
+Eq.~(7), let $U_t \subseteq \mathcal{R}$ denote the \emph{useful} set at
+step $t$ (the positions whose retention preserves the next-token margin),
+and define dilution as the attention mass \emph{outside} $U_t$:
+\begin{equation}
+\label{eq:dilution}
+\delta_t := 1 - \sum_{i \in U_t} \alpha_{t,i}.
+\end{equation}
+(Notation rearranged to fit our manuscript. This is exactly their
+quantity.) Their Proposition~3.1 establishes that near-tie distractors
+($\alpha_t$ comparable across $\mathcal{N}$) force $\delta_t$ to be large.
+Their Corollary~3.2 shows that preferential retention with $\rho_U \geq
+\rho_D$ (where $\rho_U, \rho_D$ are the retained mass on useful and
+distractor positions) reduces $\delta_t$. We refer to their paper for the
+full proof and use this mechanism as given.
+
+\paragraph{The partition follows from the mechanism.}
+Define $\alpha_{\mathcal{R}} := \sum_{t \in \mathcal{R}} \alpha_t$ as the
+pre-eviction signal mass.
+\begin{itemize}
+  \item \emph{Dilution-prone} ($\mathcal{D}$): $\alpha_{\mathcal{R}} \ll 1$.
+  Most attention is on noise; eviction of noise positions monotonically
+  improves the head SNR.
+  \item \emph{Capacity-bound} ($\mathcal{C}$): $\alpha_{\mathcal{R}} \to 1$.
+  Attention is concentrated on the few relevant positions. Imperfect
+  scoring can only \emph{lose} signal; eviction strictly degrades the
+  head.
+\end{itemize}
+The partition we observe on RULER is the empirical projection of
+$\alpha_{\mathcal{R}}$ onto the task structure: NIAH-MK3 forces a
+single concentrated signal ($\alpha_{\mathcal{R}} \to 1$), while VT, FWE,
+QA, and niah\_multivalue all spread signal across many positions
+($\alpha_{\mathcal{R}} \ll 1$).
+
+\paragraph{Context-length scaling.}
+Fix the task and its relevant-set size $R$. Let $T = R + N$. Assume
+distractor attention is approximately uniform on $\mathcal{N}$:
+$\alpha_t \approx (1 - \alpha_{\mathcal{R}}) / N$ for $t \in \mathcal{N}$.
+Let $\sigma_v^2$ denote the per-distractor value-vector variance under
+isotropy (a different object from the pre-softmax logit noise scale
+$\sigma_z$ used in App.~\ref{app:sufficient}). Then the head SNR before
+eviction is
+\[
+\mathrm{SNR} = \frac{\alpha_{\mathcal{R}}^2}{\sigma_v^2 \sum_{t \in \mathcal{N}}
+\alpha_t^2} \approx \frac{\alpha_{\mathcal{R}}^2 \cdot N}{\sigma_v^2 (1 -
+\alpha_{\mathcal{R}})^2}.
+\]
+If $\alpha_{\mathcal{R}}$ decreases with $T$ (more distractors compete for
+softmax mass), the pre-eviction SNR decreases and the noise floor grows.
+Let the kept set be $\mathcal{K}$ and define $\rho_{\mathcal{R}} :=
+\sum_{t \in \mathcal{K} \cap \mathcal{R}} \alpha_t / \alpha_{\mathcal{R}}$
+(the retained fraction of relevant mass) and analogously $\rho_{\mathcal{N}}$.
+Under noise-retention ratio $\gamma \in (0, 1)$ (i.e.\ $|\mathcal{K} \cap
+\mathcal{N}| = \gamma N$), the post-eviction SNR ratio
+$\mathrm{SNR}_{\mathrm{post}} / \mathrm{SNR}_{\mathrm{pre}}$ is a
+monotone-increasing function of the \emph{gain argument}
+\begin{equation}
+\label{eq:gain-arg}
+g := \rho_{\mathcal{R}}^2 / \gamma
+\end{equation}
+(App.~\ref{app:proof-scaling}, Eq.~\eqref{eq:scaling-app}), and
+$p_{\mathrm{recov}}$ is written as a function of $g$. We flag one thing that
+is easy to get wrong here: $g$ cannot be replaced by $\rho_{\mathcal{R}} /
+\gamma$. The squaring survives the renormalisation step and $\rho_{\mathcal{R}}^2
+/ \gamma$ is not a function of $\rho_{\mathcal{R}} / \gamma$, as
+$(\rho_{\mathcal{R}}, \gamma) = (1, 0.5)$ and $(0.5, 0.25)$ show: both give
+argument $2$ but gains $2.0$ and $1.0$. The accuracy headroom
+$1 - A_{\mathrm{full}}(M, T)$ scales with $T$ on dilution-prone tasks.
+Combining, the per-input expected accuracy improvement at a single budget $b$
+obeys the scaling formula Eq.~\eqref{eq:scaling}.
+
+\textbf{Proposition (context-length scaling, informal).} \emph{Under the
+noise-isotropic single-head surrogate (App.~\ref{app:proof-scaling}) with
+constant noise-retention ratio $\gamma \in (0, 1)$, good scoring
+($\rho_{\mathcal{R}} \ge \rho_{\mathcal{N}}$), and a strictly increasing
+accuracy surrogate $\hat A(\mathrm{SNR}) \in [0, 1]$ saturating at $1$, the
+per-input expected accuracy improvement at a single budget $b$ satisfies
+Eq.~\eqref{eq:scaling} to leading order in $1/\mathrm{SNR}_{\mathrm{pre}}$,
+where $p_{\mathrm{recov}}(g) = 0$ for $g \le 1$ (no SNR gain, so no recovery)
+and is non-decreasing for $g > 1$.}
+
+The dead zone $g \le 1$ matters for reading the formula: it collects both
+degenerate cases, $\rho_{\mathcal{R}} = 0$ (no relevant mass survives) and
+$\gamma = 1$ (no eviction), and all of the formula's content lives at
+$g > 1$, a region the surrogate does not characterise quantitatively.
+
+\emph{Proof sketch.} Substituting the post-eviction SNR into the strictly
+increasing accuracy surrogate $\hat A(\mathrm{SNR})$ and using
+noise-isotropy, the improvement event factorises into the headroom
+indicator $\{A(b_{\max}, x) < 1\}$ and a recovery indicator depending only
+on $\rho_{\mathcal{R}}^2 / \gamma$. Marginalising over the prompt
+distribution gives the product, up to the independence approximation
+flagged honestly in App.~\ref{app:proof-scaling}. The operational metric
+$\rho_{\mathrm{KV}}$ (per-input strict-Pareto over budgets,
+Eq.~\eqref{eq:rho}) is upper-bounded by Eq.~\eqref{eq:scaling} under
+monotone recovery, but we do not promote this to a formal claim.
+
+Eq.~\eqref{eq:scaling} predicts three observed effects in one formula:
+\begin{enumerate}
+\item Context-length amplification on dilution-prone tasks: Qwen2.5-1.5B
+VT goes $\rho = 0.06 \to 0.19$ as $T = 4\mathrm{K} \to 16\mathrm{K}$, in
+lockstep with $1 - A_{\mathrm{full}} = 0.18 \to 0.75$.
+\item Larger-model saturation at short context: Qwen2.5-3B 4K VT has
+$1 - A_{\mathrm{full}} \approx 0.00$, so $\rho \approx 0$.
+\item Re-entry of larger models into the dilution regime at long
+context: Qwen2.5-3B 16K FWE has $1 - A_{\mathrm{full}} = 0.62$ and
+$\rho = 0.32$.
+\end{enumerate}
+Empirically, the ratios $\rho / [(1-A_{\mathrm{full}}) \cdot p_{\mathrm{recov}}]$
+cluster around $0.25 - 0.55$ on dilution-prone tasks
+(Section~\ref{sec:experiments}).
+
+\paragraph{Connecting the predictor to the mechanism: a sufficient
+condition for non-trivial dilution.}
+\label{subsec:conjecture}
+The mechanism uses the unobservable $\alpha_{\mathcal{R}}$ (the signal
+mass on the unknown relevant set). Our gating predictor uses the
+head-agreement drop $D$ (Eq.~\eqref{eq:D}), which is observable. We
+sketch a proof connecting the two in Appendix~\ref{app:sufficient}, and
+leave the formal version with explicit, tight constants to future work.
+Under noise isotropy, sub-Gaussian pre-softmax noise of scale
+$\sigma_z$, a bounded logit margin between $\mathcal{R}$ and
+$\mathcal{N}$, and good scoring with noise-retention ratio $\gamma \in
+(0, 1)$, there exist a model-specific constant $c_1$ and a
+$\gamma$-dependent constant $c_2(\gamma)$, with an additional $O(H)$
+multiplicative slack absorbed in both, such that
+\begin{equation}
+\label{eq:bridge}
+D \;\ge\; c_1 \cdot \log(1/\gamma)
+\;\Longrightarrow\;
+\mathbb{E}[\delta_t] \;\ge\; c_2(\gamma) \cdot (1 - A_{\mathrm{full}}),
+\end{equation}
+with probability $\geq 1 - \beta$ over the pre-softmax noise, where
+$\delta_t$ is the dilution term of Eq.~\eqref{eq:dilution}.
+We sketch a proof of Eq.~\eqref{eq:bridge} in
+Appendix~\ref{app:sufficient} on the same single-head surrogate model used
+in Appendix~\ref{app:proof-scaling}. The sketch gives explicit forms for
+$c_1, c_2$, the sub-Gaussian noise scale, and the margin parameter. What
+we do \emph{not} claim is that these constants are tight, that the
+pairwise-to-$H$-wise Jaccard step is identity (it is an inequality with
+up to $O(H)$ slack), or that a separate necessary-condition proof holds.
+The full, tight-constant version and the necessary direction are left to
+future work. The empirical evidence is consistent with the sufficient
+direction on Qwen and Mistral: ranking task families by drop $D$ matches
+ranking by $\rho$ in every Qwen/Mistral cell measured
+(Table~\ref{tab:drops}), with NIAH-MK3 the smallest drop in each. On the
+two Llama-architecture models the ordering is only partially preserved
+(NIAH-MK3 ranks second-smallest behind niah\_multivalue,
+Section~\ref{subsec:drops-ordering}).
+
+\subsection{Deferred experiment tables and secondary experiments}
+
+The sufficient-condition bridge above is the last piece of theory; the
+remainder of this appendix is empirical, collecting the uncertainty
+quantification, per-cell tables, and secondary robustness checks that
+the main text summarizes but does not reproduce in full.
+
+\paragraph{Uncertainty quantification.} All gating deltas come with $95\%$
+confidence intervals from a cluster bootstrap over inputs: we resample the
+$(\text{task}, \text{id})$ pairs with replacement ($10{,}000$ replicates),
+letting each input carry its full vector of per-budget paired
+gated$-$plain differences, and report percentile intervals
+(Appendix~\ref{app:ci}, Table~\ref{tab:matrix-ci}). Binomial quantities (the
+recovery rates $\rho$ of Table~\ref{tab:partition} and single-budget
+accuracies) use Wilson score intervals. Every one of the $16$ matrix deltas
+in Table~\ref{tab:matrix} is positive with its entire interval above zero
+(smallest lower bound $+9.3$pp), as are both cross-architecture deltas, the
+DBTrimKV head-to-head ($+23.3$pp, CI $[+17.2, +29.7]$pp), and the Mistral
+NIAH-MK3 showcase (gated $0.89$, Wilson $[0.81, 0.94]$, disjoint from plain
+$[0.00, 0.04]$ at $b = 0.0625$). The single exception is the Qwen2.5-3B 16K
+scaling cell ($\Delta = +0.034$, CI $[-0.002, +0.071]$), which we already
+describe as the gate-misfire regime. Those intervals hold the input draw fixed,
+so we also replicate five SnapKV cells across three draws: seed SD is $0.004$ to
+$0.011$ against a grand-mean $\Delta$ of $+0.229$
+(Appendix~\ref{subsec:seed-variance}). The per-cell $\rho$ values of
+Table~\ref{tab:partition} are individually low-powered at $N \le 100$ (most
+intervals straddle the $0.05$ threshold in both directions, though no bold
+cell has an interval below $0.05$ and no non-bold cell an interval above
+it). The partition claim we rely on is instead the pooled contrast, which is
+unambiguous: NIAH-MK3 recovers on $2/526$ inputs across all eight cells
+($\rho = 0.004$, Wilson $[0.001, 0.014]$) versus, e.g., $65/680$
+($\rho = 0.096$, $[0.076, 0.120]$) for niah\_multivalue.
+
+\paragraph{The $4 \times 4$ method-agnostic matrix, budget-axis
+decomposition.} Table~\ref{tab:qwen3b-curve} decomposes the Qwen2.5-3B 4K
+SnapKV cell along the budget axis, complementing the budget-averaged
+$\Delta$ values reported in Table~\ref{tab:matrix} (values at $\tau = 0.07$
+by exact post-hoc re-evaluation, as in that table).
+
+\begin{table}[h]
+\centering
+\caption{Qwen2.5-3B 4K, SnapKV, mixed suite. Plain accuracy collapses
+from $0.88$ to $0.19$ as the budget shrinks; gated holds $0.61-0.88$
+across the entire range.}
+\label{tab:qwen3b-curve}
+\begin{tabular}{rccc}
+\toprule
+budget $b$ & plain & gated & $\Delta$ \\
+\midrule
+1.000  & 0.882 & 0.882 & $+0.000$ \\
+0.875  & 0.802 & 0.880 & $+0.078$ \\
+0.750  & 0.733 & 0.880 & $+0.147$ \\
+0.625  & 0.688 & 0.880 & $+0.193$ \\
+0.500  & 0.647 & 0.882 & $+0.235$ \\
+0.375  & 0.585 & 0.873 & $+0.287$ \\
+0.250  & 0.535 & 0.877 & $+0.343$ \\
+0.125  & 0.458 & 0.830 & $+0.372$ \\
+0.0625 & 0.190 & 0.610 & $+0.420$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{The 8-cell scaling table.} Table~\ref{tab:scaling} reports the
+gating $\Delta$ on the mixed suite across four models and two context
+lengths. The pattern matches the context-length scaling formula: at 4K,
+$\Delta$ tracks both $1 - A_{\mathrm{full}}$ and $\alpha_{\mathcal{R}}$; at
+16K, $\Delta$ shrinks where the gate misfires (Qwen 3B 16K) and grows where
+headroom returns (Mistral 16K).
+
+\begin{table}[h]
+\centering
+\caption{Cross-(model, context) gating $\Delta$. Same $\tau = 0.07$
+across cells; column $\Delta@\tau_{\mathrm{cal}}$ shows the recipe-calibrated
+$\Delta$ on the four cells where it has been computed (``--'' otherwise).}
+\label{tab:scaling}
+\begin{tabular}{lccccc}
+\toprule
+Model & Context & plain mean & gated@$\tau\!=\!0.07$ & $\Delta$ &
+$\Delta@\tau_{\mathrm{cal}}$ \\
+\midrule
+Qwen2.5-1.5B   & 4K  & 0.438 & 0.559 & $+0.121$ & $+0.121$ \\
+Qwen2.5-3B     & 4K  & 0.580 & 0.839 & $+0.259$ & $+0.213$ \\
+Qwen2.5-14B    & 4K  & 0.709 & 0.853 & $+0.143$ & --       \\
+Mistral-7B      & 4K  & 0.623 & 0.810 & $+0.187$ & $+0.223$ \\
+\midrule
+Qwen2.5-1.5B   & 16K & 0.372 & 0.404 & $+0.032$ & --       \\
+Qwen2.5-3B     & 16K & 0.530 & 0.564 & $+0.034$ & $+0.054$ \\
+Qwen2.5-14B    & 16K & 0.796 & 0.867 & $+0.071$ & --       \\
+Mistral-7B      & 16K & 0.535 & 0.651 & $+0.116$ & --       \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Pre-registered 32K predictions.} Table~\ref{tab:prereg32k}
+gives the full per-task predictions and measurements behind the
+out-of-range test of Section~\ref{subsec:prereg32k}.
+
+\begin{table}[h]
+\centering
+\caption{Pre-registered 32K predictions vs.\ measurements
+(Qwen2.5-1.5B, $N = 100$ per task). Predicted intervals = 4K/16K ratio
+band $\times$ measured 32K headroom, frozen before the sweep.}
+\label{tab:prereg32k}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+Task & $A_{\mathrm{full}}$(32K) & predicted $\rho$ & measured $\rho$ (Wilson 95\%) & verdict \\
+\midrule
+VT  & 0.81 & $[0.048, 0.106]$ & $0.14$ $[0.085, 0.221]$ & outside (above) \\
+FWE & 0.49 & $[0.021, 0.263]$ & $0.05$ $[0.022, 0.112]$ & inside \\
+NIAH-MK3 & 0.14 & $\le 0.02$ & $0.04$ $[0.016, 0.098]$ & outside (above; CI overlaps) \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\paragraph{Achieved compression of the gated deployment.} Table~\ref{tab:achieved-compression}
+reports the per-model gate-open fraction and realized kept-KV behind the
+$3.4\times$ figure quoted throughout the paper.
+
+\begin{table}[t]
+\centering
+\caption{Achieved compression of the gated deployment at $\tau=0.07$ (SnapKV,
+4K mixed suite). Kept-KV is the mean over inputs of the retained cache
+fraction; ``grid mean'' averages the eight nominal budgets of
+Table~\ref{tab:matrix}. Plain SnapKV keeps exactly the nominal fraction
+($0.0625$ at $b=0.0625$; grid mean $0.453$). The gate-open fraction is a
+per-input property, independent of $b$, and sets the compression floor
+$1-p_{\text{open}}$.}
+\label{tab:achieved-compression}
+\begin{tabular}{lccccc}
+\toprule
+ & & \multicolumn{3}{c}{gated kept-KV fraction} & compression \\
+\cmidrule(lr){3-5}
+Model & $p_{\text{open}}$ & $b{=}0.0625$ & $b{=}0.25$ & grid mean & @ $b{=}0.0625$ \\
+\midrule
+Qwen2.5-1.5B & $0.75$ & $0.297$ & $0.437$ & $0.584$ & $3.4\times$ \\
+Qwen2.5-3B   & $0.49$ & $0.541$ & $0.632$ & $0.728$ & $1.8\times$ \\
+Qwen2.5-14B  & $0.75$ & $0.297$ & $0.437$ & $0.584$ & $3.4\times$ \\
+Mistral-7B   & $0.72$ & $0.327$ & $0.462$ & $0.602$ & $3.1\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Batching decay under static provisioning.}
+A batch is provisioned for its largest resident cache, so realized
+compression at batch size $B$ is $\mathbb{E}[\text{kept}](B) =
+p_{\text{open}}^{B} \cdot k_{\text{open}} + (1 - p_{\text{open}}^{B})$,
+where $k_{\text{open}}$ is the kept-KV fraction on gate-open sequences at
+$b = 0.0625$. Table~\ref{tab:batching-decay} evaluates this per model.
+Compression approaches $1\times$ by batch $16$ on every cell, since the
+probability that all $B$ sequences in a batch have the gate open falls
+geometrically in $B$. This is a property of provisioning for the batch
+maximum, not of \method, and does not describe continuous batching with
+per-sequence paged allocation, where each sequence is provisioned
+individually.
+
+\begin{table}[t]
+\centering
+\caption{Compression under static batch provisioning at $\tau = 0.07$
+(SnapKV, $b = 0.0625$). $p_{\text{open}}$ and $k_{\text{open}}$ are from
+Table~\ref{tab:achieved-compression}. Compression decays toward $1\times$
+as batch size grows because a single gate-closed sequence forces the
+whole batch to the full cache.}
+\label{tab:batching-decay}
+\begin{tabular}{lccccc}
+\toprule
+Model & $B{=}1$ & $B{=}4$ & $B{=}8$ & $B{=}16$ & $B{=}32$ \\
+\midrule
+Qwen2.5-1.5B & $3.37\times$ & $1.42\times$ & $1.10\times$ & $1.01\times$ & $1.00\times$ \\
+Qwen2.5-3B   & $1.85\times$ & $1.06\times$ & $1.00\times$ & $1.00\times$ & $1.00\times$ \\
+Qwen2.5-14B  & $3.37\times$ & $1.42\times$ & $1.10\times$ & $1.01\times$ & $1.00\times$ \\
+Mistral-7B   & $3.06\times$ & $1.33\times$ & $1.07\times$ & $1.00\times$ & $1.00\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Per-task drop ordering.}
+\label{subsec:drops-ordering}
+The head-agreement drop on each RULER task in each cell.
+Table~\ref{tab:drops} reports the mean drop per task ($N = 100$ inputs
+per task on the Qwen and Mistral columns, $N = 50$ on Yi and Llama;
+Mistral 4K qa\_1 has $N = 78$ and Mistral 16K niah\_multivalue $N = 98$
+due to run truncation). NIAH-MK3 is the smallest drop in every Qwen and
+Mistral cell, while on the two Llama-architecture models it ranks second-smallest,
+so the \emph{ordering} of the partition is fully preserved across Qwen
+and Mistral and partially preserved on the Llama-architecture models, even when the
+absolute threshold needs slight tuning. This is
+what gives the calibration recipe in Eq.~\eqref{eq:tau} its robustness.
+
+\begin{table}[h]
+\centering
+\caption{Per-task mean head-agreement drop $D$ across three
+architecture families (Qwen, Mistral, and Llama-architecture: Yi-1.5 and
+Llama-3.1). This table uses the strict-thirds bins, early
+$= [0, \lfloor L/3 \rfloor)$ and late $= [\lfloor 2L/3 \rfloor, L)$; the
+deployed gate uses equal-size bins and differs by at most $0.004$ where
+$3 \nmid L$ (Appendix~\ref{app:repro}). Bold marks the smallest drop
+per column. NIAH-MK3 is
+the smallest drop on Qwen and Mistral cells; on Yi-1.5 and Llama-3.1
+it ranks 2nd-smallest behind niah\_multivalue (Llama-arch family
+artifact; see prose). Yi-1.5-9B
+serves as a parallel Llama-class architecture with a distinct training
+corpus (different tokenizer, deeper layer geometry).}
+\label{tab:drops}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccc}
+\toprule
+Task & Qwen 1.5B 4K & Qwen 3B 4K & Qwen 3B 16K & Mistral 4K & Mistral 16K & Yi-1.5-9B 4K & Llama-3.1-8B 4K \\
+\midrule
+QA\_1            & 0.218 & 0.105  & 0.099  & 0.096 & 0.132 & 0.080         & 0.097 \\
+QA\_2            & 0.191 & 0.097  & 0.092  & 0.087 & --    & 0.079         & 0.101 \\
+VT               & 0.152 & 0.076  & 0.069  & 0.095 & 0.096 & 0.065         & 0.083 \\
+niah\_multivalue & 0.107 & 0.045  & 0.070  & 0.079 & 0.075 & \textbf{$-0.013$} & \textbf{0.064} \\
+FWE              & 0.098 & 0.038  & 0.046  & 0.079 & 0.091 & 0.043         & 0.114 \\
+NIAH-MK3         & \textbf{0.040} & \textbf{$-0.004$} & \textbf{$-0.021$} & \textbf{0.060} & \textbf{0.053} & 0.019 & 0.073 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\paragraph{Llama-class cross-architecture transfer is partial.} On
+Yi-1.5-9B and Llama-3.1-8B (both Llama-architecture descendants),
+niah\_multivalue ranks smallest by $D$ (Yi: $D = -0.013$; Llama: $D =
++0.064$), and NIAH-MK3 ranks 2nd-smallest. On the five Qwen and
+Mistral cells, NIAH-MK3 is the smallest. We attribute the swap to a
+Llama-arch artifact: the multi-value retrieval task happens to have
+unusually concentrated early-layer attention on these models, which
+inverts the early-vs-late drop sign. The capacity-bound side of the
+partition (small $D$, gate closes, full-KV fallback) still operates on
+both models, but the fixed $\tau = 0.07$ does \emph{not} transfer as a
+threshold. On Llama the mis-classification is confined to
+niah\_multivalue, where the wrapper holds full KV instead of
+compressing, which forfeits the eviction speed-up but does not damage
+accuracy, because plain SnapKV is already robust there. The
+Llama-3.1-8B gated SnapKV $\Delta$ is $+10.9$pp on the
+matrix-comparable mixed suite, driven almost entirely by NIAH-MK3
+($+43.5$pp) where plain SnapKV collapses to $0\%$ and gated holds
+$\sim 44\%$ (still well below the full-KV $1.00$). The other tasks
+have $\Delta \approx 0$ because Llama's plain SnapKV is robust on this
+budget range ($\geq 0.86$ at $b = 0.0625$ on QA\_1). The NIAH-MK3
+gate-open fraction on Llama is $0.56$ despite mean $D = 0.071$ sitting
+above $\tau$: per-input $D$ dispersion closes the gate on the other
+$\sim 44\%$ of NIAH-MK3 inputs, which is what rescues the cell. On Yi
+the mis-classification is broader: at $\tau = 0.07$ the gate also
+stays closed on FWE and VT (gate-open fractions $0.00$ and $0.10$), so
+most of Yi's $+39.0$pp comes from the full-KV fallback firing on tasks
+where plain SnapKV collapses. That outcome is accuracy-preserving but
+it is \emph{not} evidence that the raw threshold transfers to Yi, since the
+drop-vs-$\rho$ prediction is inverted there. The z-scored variant of
+Section~\ref{sec:recipe} resolves this: with a per-model standardization
+from an unlabeled pilot, Yi compresses for real (kept-KV
+$0.22 - 0.32$) while still gaining $\Delta = +0.145$, and Llama
+improves to $\Delta = +0.174$. We state the fixed-$\tau$ failure
+plainly in Section~\ref{sec:limitations}.
+
+\paragraph{Scaling formula verification.}
+Empirical verification of Eq.~\eqref{eq:scaling}. Table~\ref{tab:scaling-formula}
+reports the headroom $1 - A_{\mathrm{full}}$, the observed $\rho$, and the
+ratio. A through-origin fit on the dilution-prone rows gives a slope of
+$0.34$. The Qwen2.5-3B 4K FWE row (ratio $0.04$) is excluded from that fit:
+at $N = 100$, $\rho = 0.01$ is a single recovery, Wilson $[0.002, 0.054]$,
+and is better read as counting noise than as part of the trend. On
+NIAH-MK3 the ratio is $\le 0.02$ regardless of headroom, so the partition is
+visible in the ratio alone. These are in-range (4K/16K) statements.
+Section~\ref{subsec:prereg32k} reports a pre-registered out-of-range
+test at 32K, where the ordering survives but the dilution-side ratio
+grows beyond the in-range band.
+
+\begin{table}[h]
+\centering
+\caption{Verification of the scaling formula. The ratio
+$\rho / (1 - A_{\mathrm{full}})$ is approximately constant on
+dilution-prone tasks across (model, context) cells and near zero on
+NIAH-MK3 regardless of headroom.}
+\label{tab:scaling-formula}
+\begin{tabular}{lccc}
+\toprule
+Sweep & $1 - A_{\mathrm{full}}$ & $\rho$ & ratio \\
+\midrule
+Qwen2.5-1.5B 4K  VT    & 0.18 & 0.06 & 0.33 \\
+Qwen2.5-1.5B 16K VT    & 0.75 & 0.19 & 0.25 \\
+Qwen2.5-3B   4K  VT    & 0.00 & 0.00 & --   \\
+Qwen2.5-3B   16K VT    & 0.09 & 0.05 & 0.55 \\
+Qwen2.5-3B   4K  FWE   & 0.24 & 0.01 & 0.04 \\
+Qwen2.5-3B   16K FWE   & 0.62 & 0.32 & 0.52 \\
+Qwen2.5-1.5B 4K  NIAH-MK3 & 0.35 & 0.01 & 0.03 \\
+Qwen2.5-1.5B 16K NIAH-MK3 & 0.74 & 0.00 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.7\textwidth]{figs/scaling_formula.pdf}
+\caption{Per-input recovery rate $\rho$ vs.\ accuracy headroom $1 -
+A_{\mathrm{full}}$ across the $(model, context, task)$ cells of
+Table~\ref{tab:scaling-formula}. Dilution-prone tasks (filled circles)
+lie on a band with a through-origin fitted slope of $0.34$. NIAH-MK3
+(open triangles) lies on the $\rho = 0$ axis regardless of headroom. The
+two populations are visibly separated.}
+\label{fig:scaling}
+\end{figure}
+
+\paragraph{Per-layer ablation.} The default gating uses a single
+key-mask shared across layers. A
+per-layer variant (each layer derives its own keep mask from its own
+attention) improves the aggregation tasks at 4K (FWE by $1.8 \times$
+$\rho$, niah\_multivalue by $2.1 \times \rho$ on Qwen2.5-1.5B 4K) and
+matches at 16K. Numbers in Appendix~\ref{app:per-layer}.
+
+\paragraph{Random-eviction control.} Uniform-random scoring at every
+budget destroys accuracy uniformly on
+both dilution-prone and capacity-bound inputs. The dilution effect is
+\emph{not} ``any eviction is regularization.'' The control rules out a
+generic regularization explanation, and the controlled numbers are in
+Appendix~\ref{app:random}.
+
+\paragraph{Cost of the gate, and what the deployment delivers.}
+The gate adds one prefill-time computation: $L \cdot H^2 \cdot k$
+top-$k$ Jaccard comparisons after the existing SnapKV scoring pass.
+Measured (Table~\ref{tab:latency}): $17$ms on Qwen2.5-1.5B at 4K
+($\sim 5\%$ of the $344$ms prefill, $< 1\%$ of end-to-end with $128$
+decode steps) and $89$ms on Mistral-7B, whose $8\times$ larger
+head-pair count dominates the $O(L H^2 k)$ term. The gate is free when
+the base evictor already runs the scoring pass, and otherwise it shares
+the cost.
+
+End-to-end, the payoff is scale-dependent and we report it honestly.
+On the 1.5B model at 4K, decode is weight-bound (2 KV heads, $106$MiB
+cache): eviction buys \emph{memory} ($8\times$ plain, $2.9\times$
+under the gated mix at the measured $0.75$ gate-open fraction), not
+speed. On Mistral-7B (8 KV heads, $513$MiB cache), plain eviction at
+$b = 0.125$ already yields a $1.29\times$ decode speedup at 4K
+($1.22\times$ under the gated mix), and the analytic KV formula
+(validated against measurement to $0.1$MiB) puts the gated saving at
+$\sim 2.7$GiB per sequence at 32K. Timings were taken on a shared
+A100 with a stable $25 - 29\%$ background load, so throughputs are
+mild lower bounds, and all configurations shared identical conditions.
+
+\begin{table}[t]
+\centering
+\caption{End-to-end efficiency of gated eviction (RULER 4K, batch 1,
+bf16, greedy, 128 decode steps, medians; A100-80GB). ``Gated expected''
+is the gate-open-weighted mix $0.75 \cdot (b{=}0.125) + 0.25 \cdot \mathrm{full}$ at
+the measured mixed-suite gate-open fraction ($\tau{=}0.07$); ``gated
+measured'' actually gates each input ($15/20$ open, matching the
+$N{=}400$ calibration fraction of $0.75$). On the 1.5B model (2 KV
+heads), 4K decode is weight-bound and eviction buys \emph{memory}
+($8\times$ plain, $2.9\times$ gated expected), not speed; on
+Mistral-7B (8 KV heads, 513\,MiB KV) eviction already yields a
+$1.29\times$ decode speedup at 4K. Measured KV matches the analytic
+$L \cdot H_{\mathrm{kv}} \cdot d \cdot T \cdot 4$\,B formula to
+$0.1$\,MiB, validating the 16K/32K scaling rows.}
+\label{tab:latency}
+\small
+\setlength{\tabcolsep}{4pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrr}
+\toprule
+Model & Config & Decode tok/s & KV cache (MiB) & Peak decode (MiB) \\
+\midrule
+\multirow{5}{*}{\shortstack[l]{Qwen2.5-1.5B\\($N{=}20$)}}
+ & Full KV                   & 37.9 & 106.1 & 3090 \\
+ & SnapKV $b{=}0.125$        & 37.8 & 13.2 ($8.0\times$)  & 2976 \\
+ & SnapKV $b{=}0.0625$       & 37.5 & 6.6 ($16.1\times$)  & 2968 \\
+ & Gated (measured, $\tau{=}0.07$) & 37.7 & 13.2 / 110.5 (open/closed) & 2976 \\
+ & Gated (expected mix)      & 37.9 & 36.5 ($2.9\times$)  & 3004 \\
+\midrule
+\multirow{2}{*}{\shortstack[l]{Mistral-7B-v0.3\\($N{=}12$)}}
+ & Full KV                   & 18.9 & 512.8 & 14429 \\
+ & SnapKV $b{=}0.125$        & 24.5 ($1.29\times$) & 64.1 ($8.0\times$) & 13929 \\
+\bottomrule
+\end{tabular}%
+}
+
+\vspace{0.6em}
+
+\small
+\setlength{\tabcolsep}{4pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrlr}
+\toprule
+\multicolumn{2}{l}{Prefill-time overhead (Qwen2.5-1.5B, 4K, median ms)} &
+\multicolumn{2}{l}{Analytic KV at $b{=}0.125$ gated (0.75 open)} \\
+\midrule
+Prefill (eager)            & 344  & Qwen2.5-1.5B, 16K / 32K & 448 $\to$ 154 / 896 $\to$ 308 MiB \\
+SnapKV scoring             & 1.2  & Mistral-7B, 16K / 32K   & 2.0 $\to$ 0.69 / 4.0 $\to$ 1.38 GiB \\
+Head-agreement gate        & 17.2 & \multicolumn{2}{l}{(gate on Mistral-7B: 88.5\,ms, $O(LH^2k)$ head-pair growth)} \\
+Eviction + cache rebuild   & 3.2  & & \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\paragraph{Deployment cost at scale.} We measured the two-pass gate on
+Qwen2.5-32B (64 layers, 40 heads): the gate costs $350$ms at 4K ($145$ms
+re-forward $+ 204$ms head-agreement drop, $\approx 18\%$ of the $1.9$s prefill),
+and the 16K two-pass run \emph{OOMs} on a contended 80GB card (weights $+$ KV
+$+$ the $w \times T$ attention transient). The drop cost is quadratic in head
+count: a head-count sweep gives an exponent of $2.0 - 2.4$ (per-model floors
+$2.1$ms on Qwen-1.5B, $27$ms Mistral-7B, $87$ms Qwen-32B, extrapolating to
+$\approx 291$ms on a 70B-class model), confirming the $O(L H^2 k)$ complexity.
+The $w \times T$ attention transient is $L H w T \cdot 2$ bytes ($5$GiB at 32K
+on Qwen-32B, $\approx 10$GiB on 70B-class). A 70B model at 32K is therefore not
+viable in a paged-FlashAttention stack: the two-pass re-forward needs contiguous
+(non-paged) KV and a non-fused eager kernel, and materializes a per-sequence
+transient that paged attention exists to avoid. \method is best read as an
+offline/prefill-time gate, not a fused-serving drop-in.
+
+\paragraph{Head-to-head with CapKV on LongBench.}
+CapKV~\citep{arxiv260425975} is the closest published method that
+reports on LongBench. No public CapKV codebase exists yet, since their
+preprint is dated 2026-04-28, so we re-implement CapKV's per-(layer, kv-head)
+statistical-leverage score $s_i = w_i \cdot v_i^\top A^{-1} v_i$ with
+$A = I + \sum_i w_i v_i v_i^\top$ and $w_i = \exp(\langle k_i,
+\mu_q\rangle \beta / \sqrt d)$ from their equations,
+then wrap it in our gate. Two
+LongBench subtasks, Qwen2.5-3B-Instruct, budget $b = 0.5$, CapKV
+temperature $\beta = 5$ (their default; we write $\beta$ for their
+$\tau$ to avoid clashing with our gate threshold). Results in
+Table~\ref{tab:capkv}.
+
+\begin{table}[h]
+\centering
+\caption{Gated vs.\ plain CapKV (our re-implementation) on two
+LongBench subtasks, Qwen2.5-3B-Instruct, $b = 0.5$.}
+\label{tab:capkv}
+\begin{tabular}{lcccc}
+\toprule
+Subtask & N & plain CapKV & gated CapKV & $\Delta$ \\
+\midrule
+LongBench/qasper   & 68 & 0.132 & 0.147 & $+0.015$ \\
+LongBench/triviaqa & 24 & 0.875 & 0.958 & $+0.083$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Both columns are positive at matched budget. Conditional on the gate
+firing (drop $\geq 0.07$, the same $\tau = 0.07$ we use everywhere),
+plain and gated agree by construction. On the gate-closed subset where
+the wrapper falls back to full KV, the difference is $+4.3$pp on qasper
+($N_{\text{closed}} = 23$) and $+18.2$pp on triviaqa
+($N_{\text{closed}} = 11$). The headline numbers are not a reproduction
+of CapKV's Table 1 (different model, different metric, 16K eager cap on
+prompt length) and we report them as a directional head-to-head: at
+these sample sizes ($N = 68, 24$) wrapping CapKV in the gate is
+weakly positive overall and concentrates its gain on the gate-closed
+subset, consistent with the orthogonality claim of
+Section~\ref{subsec:matrix}. We do not promote ``never hurts'' to a
+formal claim at these sample sizes, and larger LongBench runs are clean
+follow-up work.
+
+\paragraph{Head-to-head with DBTrimKV on RULER.}
+\citet{arxiv260509649} (DBTrimKV) is the published trained-gate evictor
+the paper's mechanism section adopts. The authors ship pretrained gates
+on Hugging Face for several Qwen3 variants (no Qwen2.5 checkpoint
+exists, so the head-to-head is necessarily on a different model
+family). We run DBTrimKV-Qwen3-4B-Instruct-2507 on RULER 4K, $N = 30$
+inputs per task on (NIAH-MK3, FWE, VT, QA\_1), at three memory budgets
+$M \in \{128, 256, 512\}$. The wrapper uses the same fixed
+$\tau = 0.07$ calibrated on Qwen2.5-1.5B, with no per-model tuning.
+Results in Table~\ref{tab:dbtrimkv}.
+
+\begin{table}[h]
+\centering
+\caption{Gated vs.\ plain DBTrimKV (pretrained Qwen3-4B-Instruct-2507
+gates) on RULER 4K at three memory budgets. See the caveat paragraph:
+the gate fires on only $1.7\%$ of records, so the win is dominated by
+the full-KV fallback.}
+\label{tab:dbtrimkv}
+\begin{tabular}{lcccc}
+\toprule
+ & N & plain DBTrimKV & gated DBTrimKV & $\Delta$ \\
+\midrule
+all (3 budgets $\times$ 4 tasks) & 360 & 0.617 & 0.850 & $\boldsymbol{+0.233}$ \\
+\midrule
+per task: NIAH-MK3 & 90 & 0.467 & 1.000 & $+0.533$ \\
+per task: FWE      & 90 & 0.222 & 0.600 & $+0.378$ \\
+per task: VT       & 90 & 0.989 & 1.000 & $+0.011$ \\
+per task: QA\_1    & 90 & 0.789 & 0.800 & $+0.011$ \\
+\midrule
+per budget: $M=128$ & 120 & 0.475 & 0.850 & $+0.375$ \\
+per budget: $M=256$ & 120 & 0.617 & 0.850 & $+0.233$ \\
+per budget: $M=512$ & 120 & 0.758 & 0.850 & $+0.092$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Honest caveat: the gate fires rarely on Qwen3 at $\tau = 0.07$.}
+At our default threshold the gate is open on $6/360 = 1.7\%$ of
+records. The remaining $\sim 98\%$ trigger the full-KV fallback, which
+explains the large $\Delta$ on NIAH-MK3 ($+0.533$): the gate closing
+turns off DBTrimKV's compress step entirely. As a consequence, cache
+occupancy under our wrapper is $\sim 14.5 \times$ plain DBTrimKV at the
+same nominal $M$. The $+0.233$ is therefore a \emph{quality} win at
+matched budget, not a \emph{memory-budget} win at matched cache size.
+The rare gate firing here is the same Qwen3 scale mismatch analyzed in
+Section~\ref{sec:recipe}: Qwen3-4B's drop distribution ($\mu = 0.034$)
+puts the fixed $\tau = 0.07$ at $z = +2.0$, so a per-model z-scored
+threshold ($\tau_{\text{Qwen3}} = 0.022$) is the right deployment
+default and, applied to the same suite, restores a genuinely
+compressing gate ($43\%$ kept-KV, $\Delta = +0.235$). The headline is that wrapping the strongest
+published trained-gate evictor with our partition-aware gate
+strictly improves matched-budget accuracy, with the gain concentrated
+on the capacity-bound task as the mechanism predicts.
+
+% DEFERRED-CONTENT-END
+
+\section{Random-eviction control}
+\label{app:random}
+
+The DBTrimKV head-to-head closes the deferred-tables appendix; this
+section and the two that follow give the full numbers behind three
+controls the main text cites only by result. We replace SnapKV scoring
+with uniform-random per-position scoring at every budget on a 4K, 4-key
+synthetic NIAH probe ($N = 150$, Qwen2.5-1.5B). To be clear about
+provenance, this 4-key probe is our own construction and is \emph{not} a
+RULER task: the NIAH-MK$k$ names used elsewhere in the paper refer to
+RULER's \texttt{niah\_multikey\_$k$}~\citep{arxiv240406654}, which tops
+out at three keys. The score-driven sweep retains accuracy at moderate
+budgets, while the uniform-random sweep collapses immediately.
+
+\begin{table}[h]
+\centering
+\caption{SnapKV vs.\ uniform-random scoring at matched budget on the 4K
+4-key synthetic NIAH probe. Random eviction destroys accuracy long before
+the budget gets aggressive; the dilution effect requires informed scoring.}
+\label{tab:random-control}
+\begin{tabular}{rccc}
+\toprule
+budget $b$ & SnapKV acc & Random acc & $\Delta$ \\
+\midrule
+1.000  & 0.827 & 0.827 & $+0.000$ \\
+0.875  & 0.820 & 0.400 & $+0.420$ \\
+0.750  & 0.820 & 0.173 & $+0.647$ \\
+0.625  & 0.827 & 0.040 & $+0.787$ \\
+0.500  & 0.833 & 0.033 & $+0.800$ \\
+0.375  & 0.807 & 0.007 & $+0.800$ \\
+0.250  & 0.760 & 0.000 & $+0.760$ \\
+0.125  & 0.207 & 0.000 & $+0.207$ \\
+0.0625 & 0.033 & 0.000 & $+0.033$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The per-input recovery rate $\rho$ under random scoring is $0.027$
+(vs.\ $0.013$ under SnapKV). The four ``recovered'' inputs under random
+are lucky hits among an otherwise destroyed distribution, and the control
+rules out a generic regularisation explanation: any-eviction-helps is
+falsified.
+
+\section{Per-layer eviction ablation}
+\label{app:per-layer}
+
+The random-eviction control checks whether informed scoring matters at
+all. This section checks a finer question: whether a single keep-mask
+shared across layers costs anything relative to a per-layer alternative.
+The default gating uses a single key-mask shared across layers. A per-layer
+variant derives each layer's keep mask from that layer's own last-window
+attention with the same total budget per layer (uniform cache shape).
+Table~\ref{tab:perlayer} reports $\rho$ on the four dilution-prone RULER tasks
+where per-layer might plausibly help, on Qwen2.5-1.5B at 4K and 16K.
+
+\begin{table}[h]
+\centering
+\caption{Per-layer vs.\ single-mask SnapKV on Qwen2.5-1.5B. Per-layer wins
+clearly on aggregation tasks at 4K (FWE $1.8\times$, niah\_multivalue
+$2.1\times$); ties at 16K and on sequential-integration tasks.}
+\label{tab:perlayer}
+\begin{tabular}{lcccc}
+\toprule
+Task & Context & Single-mask $\rho$ & Per-layer $\rho$ & Ratio \\
+\midrule
+VT               & 4K  & 0.060 & 0.040 & 0.67 \\
+FWE              & 4K  & 0.060 & \textbf{0.110} & 1.83 \\
+QA\_1            & 4K  & 0.080 & 0.070 & 0.88 \\
+niah\_multivalue & 4K  & 0.070 & \textbf{0.150} & 2.14 \\
+VT               & 16K & 0.190 & 0.190 & 1.00 \\
+FWE              & 16K & 0.040 & 0.050 & 1.25 \\
+QA\_1            & 16K & 0.140 & 0.140 & 1.00 \\
+niah\_multivalue & 16K & 0.100 & 0.100 & 1.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Per-input recovery distributions}
+\label{app:recovery-hist}
+
+The mean $\rho$ hides the shape of the per-input recovery, so we also
+report its distribution. For each input $x$ we form the recovery indicator
+$r(x) = \mathrm{sign}\!\left(\max_b A_{\mathrm{gated}}(b, x) - A_{\mathrm{plain}}(1, x)\right)
+\in \{-1, 0, +1\}$, where the maximum is over the budget sweep and
+$A_{\mathrm{plain}}(1, x)$ is the full-cache plain accuracy. Figure~\ref{fig:reco-by-task}
+pools all $(M, T)$ cells per task, and Figure~\ref{fig:reco-by-cell} reports the
+fraction of strictly recovered inputs ($r(x) > 0$) within each $(M, T)$ cell.
+
+\paragraph{What $r(x)$ can and cannot show.} The budget sweep includes
+$b = 1.0$, and at $b = 1.0$ the gated arm keeps the entire cache and
+reproduces the plain full-cache outcome. We audit this on all $16$ matrix
+cells plus the four $16$K cells: at $b = 1.0$, $n_{\text{kept}} = T$ and
+$A_{\mathrm{gated}} = A_{\mathrm{plain}}$ on every one of the $5{,}120$
+rows. Hence
+$\max_b A_{\mathrm{gated}}(b, x) \ge A_{\mathrm{gated}}(1, x) = A_{\mathrm{plain}}(1, x)$
+and $r(x) \ge 0$ is an \emph{identity}, not a measurement. The empty
+$r = -1$ bin is therefore true by construction and carries no information
+about whether gating ever harms an input. $r(x)$ should instead be read only as an
+\emph{oracle-budget recovery} measure, that is, how often some budget in the
+sweep beats the full cache. The question it cannot answer, whether a
+\emph{deployed} gate at a \emph{fixed} budget ever loses an answer the full
+cache would have got, is answered by the harm rate below.
+
+\paragraph{Fixed-budget harm rate.} Holding $b$ fixed makes ``worse than the
+full cache'' a real event. Table~\ref{tab:harm-rate} reports
+$\Pr_x[A(b, x) < A_{\mathrm{plain}}(1, x)]$ for the gated and plain arms at
+matched $b$, pooled over the seven SnapKV $(\text{model}, \text{context})$
+cells ($N = 500$ per task and budget).
+
+
+
+The $16$K Qwen2.5-1.5B cell is \texttt{gated\_16k\_qwen15b\_sdpa.jsonl}, the
+SDPA-prefill run reported throughout the paper. An earlier aborted eager run
+left a nine-row NIAH-MK3-only stub under a similar name; pooling that stub
+instead drops $50$ inputs per task from FWE, QA\_1 and VT and shifts the
+column above to $0.029 / 0.796$, $0.291 / 0.444$, $0.118 / 0.118$ and
+$0.751 / 0.756$. We state this because the two files are easy to confuse and
+the released analysis script pins the correct one.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{figs/recovery_histogram_by_task.pdf}
+\caption{Per-input recovery indicator $r(x)$ pooled across model and
+context cells, faceted by RULER task. The three dilution-prone tasks show
+a non-trivial right tail at $r{=}{+}1$; NIAH-MK3 is concentrated entirely
+at $r{=}0$, consistent with the capacity-bound regime. The $r{=}{-}1$ bin
+is empty by construction, not by measurement, because the budget sweep
+includes $b = 1.0$; see the identity argument above and
+Table~\ref{tab:harm-rate} for the harm rate this figure cannot report.}
+\label{fig:reco-by-task}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.98\linewidth]{figs/recovery_histogram_by_cell.pdf}
+\caption{Fraction of inputs with strict recovery $r(x) > 0$ per task,
+faceted by $(\text{model}, \text{context})$ cell. Dilution-prone bars are
+non-trivial in every cell with data, while NIAH-MK3 stays at or near zero,
+visualising the partition input by input.}
+\label{fig:reco-by-cell}
+\end{figure}
+
+The histograms show that $\rho$ is not driven by a few outliers: across
+the three dilution-prone tasks we recover a few percent to over ten
+percent of inputs in many cells. NIAH-MK3 sits at $r{=}0$ on
+essentially every input, confirming that the capacity-bound regime is a
+genuine null rather than a noisy average. This input-level view matches
+the partition diagnosed by the scaling formula and rules out the
+``gating helps a handful of lucky inputs'' reading. It does not license
+any claim that gating is harmless: Table~\ref{tab:harm-rate} shows that at
+a fixed budget the gate harms $2.6\%$ of NIAH-MK3 inputs and $23.6\%$ of
+FWE inputs at $16\times$ compression.
+
+\section{Proof sketch of the scaling proposition}
+\label{app:proof-scaling}
+
+We expand the sketch from Section~\ref{sec:theory}.
+
+\paragraph{Setup.} Let $T = R + N$ with $R$ relevant and $N$ noise positions.
+Assume noise isotropy: $\alpha_t \approx (1 - \alpha_{\mathcal{R}}) / N$ for
+$t \in \mathcal{N}$, with $\alpha_{\mathcal{R}} := \sum_{t \in \mathcal{R}} \alpha_t$.
+Let $\sigma_v^2$ be the per-distractor value-vector variance under isotropy
+(distinct from the pre-softmax logit noise scale $\sigma_z$ of
+App.~\ref{app:sufficient}). The pre-eviction head SNR is
+\[
+\mathrm{SNR}_{\mathrm{pre}} = \frac{\alpha_{\mathcal{R}}^2}
+{\sigma_v^2 \sum_{t \in \mathcal{N}} \alpha_t^2}
+\approx \frac{\alpha_{\mathcal{R}}^2 N}{\sigma_v^2 (1 - \alpha_{\mathcal{R}})^2}.
+\]
+Eviction with noise-retention ratio $\gamma \in (0, 1)$ keeps a fraction
+$\rho_{\mathcal{R}}$ of the relevant mass and a fraction $\rho_{\mathcal{N}}$
+of the noise mass. After softmax renormalisation over the kept set, the
+post-eviction relevant mass is
+$\widetilde{\alpha}_{\mathcal{R}} = \rho_{\mathcal{R}} \alpha_{\mathcal{R}} / Z$
+with $Z = \rho_{\mathcal{R}} \alpha_{\mathcal{R}} + \rho_{\mathcal{N}}
+(1 - \alpha_{\mathcal{R}})$, and the retained noise positions number
+$\gamma N$ with per-position mass $\rho_{\mathcal{N}}(1-\alpha_{\mathcal{R}})/(Z
+\gamma N)$. Substituting,
+\begin{equation}
+\label{eq:scaling-app}
+\mathrm{SNR}_{\mathrm{post}}
+= \frac{\widetilde{\alpha}_{\mathcal{R}}^2}
+{\sigma_v^2 \sum_{t \in \mathcal{K} \cap \mathcal{N}} \widetilde{\alpha}_t^2}
+\approx \frac{\rho_{\mathcal{R}}^2 \alpha_{\mathcal{R}}^2 \, \gamma N}
+{\sigma_v^2 \, \rho_{\mathcal{N}}^2 (1 - \alpha_{\mathcal{R}})^2}
+= \frac{\rho_{\mathcal{R}}^2}{\rho_{\mathcal{N}}^2 \, \gamma^{-1}} \cdot
+\mathrm{SNR}_{\mathrm{pre}}.
+\end{equation}
+Under good scoring ($\rho_{\mathcal{R}} \ge \rho_{\mathcal{N}}$ with
+$\rho_{\mathcal{N}} \approx \gamma$ on a calibrated scorer), the gain factor
+reduces to $\rho_{\mathcal{R}}^2 / \gamma$, so the post-eviction SNR strictly
+exceeds the pre-eviction SNR. The renormalisation $Z$ is the step that turns
+the raw fractions $(\rho_{\mathcal{R}}, \rho_{\mathcal{N}})$ into a usable
+SNR ratio. Without it the argument would collapse to $\rho_{\mathcal{R}}^2/\gamma$
+absent the squaring.
+
+\paragraph{Factorisation.} We work inside the surrogate, where the
+true accuracy indicator $\mathbf{1}[A(b, x) > A(b_{\max}, x)]$ is replaced
+by the surrogate indicator
+$\mathbf{1}[\hat A(\mathrm{SNR}(b, x)) > \hat A(\mathrm{SNR}(b_{\max}, x))]$
+with $\hat A: [0, \infty) \to [0, 1]$ strictly increasing and saturating at
+$1$. This replacement is the surrogate's content: it asserts that accuracy
+is a deterministic function of head SNR. Within the surrogate the
+improvement event factorises as
+\[
+\mathbf{1}[\hat A(\mathrm{SNR}_{\mathrm{post}}) > \hat A(\mathrm{SNR}(b_{\max}, x))]
+= \mathbf{1}[\hat A(\mathrm{SNR}(b_{\max}, x)) < 1] \cdot
+\mathbf{1}[\hat A(\mathrm{SNR}_{\mathrm{post}}) > \hat A(\mathrm{SNR}_{\mathrm{pre}})].
+\]
+Both monotonicity and saturation are needed: if $\hat A$ were not strictly
+increasing the second indicator could fire without an SNR gain, and if
+$\hat A$ did not saturate at $1$ the case $\hat A(\mathrm{SNR}(b_{\max}, x)) = 1$
+would not zero out the left-hand side. The first indicator is the headroom
+in the surrogate (a population-level proxy for the true full-cache failure
+probability $1 - A_{\mathrm{full}}$). The second depends only on
+$\rho_{\mathcal{R}}^2/\gamma$ via Eq.~\eqref{eq:scaling-app} once
+$\rho_{\mathcal{N}} \approx \gamma$ is folded in. The transfer from
+surrogate event to operational accuracy is mediated by the
+surrogate-fits-data assumption: we treat $\hat A$ as a good fit to the
+expected accuracy conditional on SNR, and deviations are absorbed into the
+empirical constant, fitted at $0.34$. Marginalising over the prompt
+distribution and treating the two indicators as independent gives
+\[
+\rho_{\mathrm{KV}}(\mathsf{T}, M, T) \approx
+\bigl(1 - A_{\mathrm{full}}(M, T)\bigr) \cdot
+p_{\mathrm{recov}}(\rho_{\mathcal{R}}^2 / \gamma),
+\]
+which is Eq.~\eqref{eq:scaling}. The boundary conditions on $p_{\mathrm{recov}}$
+follow from the surrogate, and both are statements about the gain argument
+$g = \rho_{\mathcal{R}}^2/\gamma$ of Eq.~\eqref{eq:gain-arg} rather than about
+$\rho_{\mathcal{R}}$ and $\gamma$ separately. At $\rho_{\mathcal{R}} = 0$ no
+relevant mass survives, so $\mathrm{SNR}_{\mathrm{post}} = 0$, recovery is
+impossible and $g = 0$. At $\gamma = 1$ (no eviction)
+$\mathrm{SNR}_{\mathrm{post}} = \mathrm{SNR}_{\mathrm{pre}}$ identically, the
+second indicator never fires, and $g = \rho_{\mathcal{R}}^2 \le 1$. More
+generally the second indicator requires $\mathrm{SNR}_{\mathrm{post}} >
+\mathrm{SNR}_{\mathrm{pre}}$, which by Eq.~\eqref{eq:scaling-app} is exactly
+$g > 1$. Hence $p_{\mathrm{recov}}(g) = 0$ on the whole dead zone $g \le 1$,
+and is non-decreasing above it. Stating the two endpoints separately as
+$p_{\mathrm{recov}}(0) = p_{\mathrm{recov}}(1) = 0$ with monotonicity on
+$[0, 1]$ would force $p_{\mathrm{recov}} \equiv 0$ there, which is the dead
+zone rather than a prediction of no recovery anywhere.
+
+\paragraph{From surrogate to operational $\rho_{\mathrm{KV}}$.} The
+factorisation argues about the improvement event at a single budget $b$,
+whereas the operational $\rho_{\mathrm{KV}}$ (Eq.~\eqref{eq:rho}) is the
+per-input strict-Pareto frequency over the best budget $b^{*}(x)$. The
+two are related by a union bound over the discrete budget grid $\mathcal{B}
+= \{b_1, \dots, b_K\}$:
+\begin{align*}
+\Pr_x\bigl[A(b^{*}(x), x) > A(b_{\max}, x)\bigr]
+&= \Pr_x\bigl[\exists\, b \in \mathcal{B} : A(b, x) > A(b_{\max}, x)\bigr] \\
+&\le \sum_{b \in \mathcal{B}} \Pr_x\bigl[A(b, x) > A(b_{\max}, x)\bigr].
+\end{align*}
+Under monotone recovery ($p_{\mathrm{recov}}$ non-decreasing in
+$\rho_{\mathcal{R}}^2/\gamma$, with $\rho_{\mathcal{R}}$ determined by the
+scorer's top-$k$ at each $b$), the right-hand side is bounded by
+$K \cdot \Pr_x[A(\widetilde b, x) > A(b_{\max}, x)]$ for the budget
+$\widetilde b$ that maximises the per-budget improvement probability.
+Under the independence approximation of the previous paragraph, this
+maximiser term equals Eq.~\eqref{eq:scaling}, so
+\[
+\rho_{\mathrm{KV}}(\mathsf{T}, M, T)
+\;\le\; K \cdot \bigl(1 - A_{\mathrm{full}}(M, T)\bigr)
+\cdot p_{\mathrm{recov}}\bigl(\rho_{\mathcal{R}}^2 / \gamma\bigr).
+\]
+This is a one-sided upper bound at the cost of a multiplicative grid factor
+$K$. \textbf{The factor is an artifact of the union step and is not needed.}
+Appendix~\ref{app:sharpened} shows that on any budget grid whose improvement
+events are nested, which is what a calibrated scorer produces, the correct
+leading constant is exactly $1$, and characterises the nested-versus-disjoint
+boundary at which a real factor $K$ could appear. We therefore state the
+bound with constant $1$ and keep the $K$ form only to show where the loose
+version comes from. It is never binding on our grid.
+
+\paragraph{Independence bound via covariance.} Let $A$ and $B$ denote the
+headroom and recovery indicators viewed as Bernoulli random variables under
+the prompt-distribution measure. The exact decomposition is
+$\Pr[A \cdot B] = \Pr[A]\,\Pr[B] + \mathrm{Cov}(A, B)$, so the independence
+step incurs only the covariance residual. Both indicators are monotonically
+decreasing in $\alpha_{\mathcal{R}}$: larger $\alpha_{\mathcal{R}}$ raises
+$\mathrm{SNR}_{\mathrm{pre}}$, pushing $A_{\mathrm{full}}$ toward $1$ (less
+headroom, so $A$ trends to $0$) and simultaneously saturating
+$\mathrm{SNR}_{\mathrm{post}}$ earlier under (A1) noise-isotropy (less
+recovery margin, so $B$ trends to $0$). Coupling $A$ and $B$ through the
+single scalar $\alpha_{\mathcal{R}}$ makes them comonotone in this driver, so
+Chebyshev's association (sum) inequality~\citep{Harris_1960} gives
+$\mathrm{Cov}(A, B) \ge 0$, i.e.\ $\Pr[A \cdot B] \ge \Pr[A]\,\Pr[B]$. The
+lattice-theoretic FKG inequality is not needed here and does not apply
+directly: both indicators are monotone functions of one scalar driver, which
+is the elementary Chebyshev/Harris setting. Lemma~\ref{lem:assoc} in
+App.~\ref{app:sharpened} proves the same step, including the case where $A$
+carries an auxiliary driver independent of $\alpha_{\mathcal{R}}$. The Cauchy--Schwarz / Bernoulli-variance
+bound $|\mathrm{Cov}(A, B)| \le \sqrt{\mathrm{Var}(A)\,\mathrm{Var}(B)} \le 1/4$
+then yields an absolute, distribution-free residual. Combining with the
+union-bound paragraph above,
+\[
+\rho_{\mathrm{KV}}(\mathsf{T}, M, T)
+\;\le\; K \cdot \bigl(1 - A_{\mathrm{full}}(M, T)\bigr)
+\cdot p_{\mathrm{recov}}\bigl(\rho_{\mathcal{R}}^2 / \gamma\bigr)
+\;+\; K/4.
+\]
+The $K/4$ term is rigorous but vacuous at our $K \le 7$, since a bound of
+$1.75$ on a probability says nothing. Both $K$ factors disappear under the
+sharpened treatment of Appendix~\ref{app:sharpened}, which replaces this
+paragraph's conclusion with the exact identity
+$\rho_{\mathrm{KV}} = (1 - A_{\mathrm{full}})\,p_{\mathrm{recov}}
++ \mathrm{Cov}(A, B)$ and a covariance term that is signed rather than
+merely bounded. The derivation above is included because it isolates the step
+that introduces the slack, though every empirical claim in the paper rests on the
+sharpened version.
+
+\section{Proof sketch: sufficient condition for the partition}
+\label{app:sufficient}
+
+We sketch a proof of the bridge inequality~\eqref{eq:bridge}: under the
+simplified attention model below, a large head-agreement drop $D$
+implies a non-trivial lower bound on Bui's dilution
+$\delta_t$~\citep{arxiv260509649}. The argument is structured as five
+numbered steps followed by a converse heuristic, an empirical-validation
+paragraph, and an explicit list of what is \emph{not} proved. We give
+closed forms for the constants $c_1$ and $c_2(\gamma)$ rather than
+leave them implicit. The constants carry an $O(H)$ multiplicative slack
+from the pairwise-to-$H$-wise Jaccard step in Step~3, and tightening the
+constants is left to future work.
+
+\paragraph{Notation reminder.}
+$T = R + N$ key positions partitioned into the relevant set
+$\mathcal{R}$ ($|\mathcal{R}| = R$) and noise set $\mathcal{N}$
+($|\mathcal{N}| = N$), with $R \ll N$. There are $L$ layers and $H$
+heads. For layer $\ell \in \{1, \dots, L\}$ and head $h \in \{1, \dots,
+H\}$, the pre-softmax logits are $z^{(\ell)}_{h, i} = (q^{(\ell)}_h)^\top
+k_i + \eta^{(\ell)}_{h, i}$, where $\eta^{(\ell)}_{h, i}$ is zero-mean
+$\sigma_z$-sub-Gaussian noise independent across $(\ell, h, i)$. The
+subscript $z$ distinguishes the pre-softmax logit noise scale used here
+from the value-vector variance $\sigma_v$ used in
+Appendix~\ref{app:proof-scaling}. We write $\alpha^{(\ell)}_{h, i}$ for
+the post-softmax attention. Bui's dilution $\delta_t = 1 - \sum_{i \in
+U_t} \alpha_{t, i}$ is taken at the decoding query at step $t$; we drop
+the $t$ subscript and write $\delta := \delta_t$.
+
+\paragraph{Step 1 (the surrogate model).}
+We use the multi-head lift of the single-head surrogate from
+Appendix~\ref{app:proof-scaling}:
+\begin{enumerate}
+  \item[\textbf{(A1)}] \emph{Signal coherence.} For each layer $\ell$ and head
+  $h$, there is a head-private relevant subset $\mathcal{R}^{(\ell)}_h
+  \subseteq \mathcal{R}$ such that for $i \in \mathcal{R}^{(\ell)}_h$ the
+  deterministic part of the logit satisfies
+  $(q^{(\ell)}_h)^\top k_i \geq m_+$, and for $i \in \mathcal{N}$,
+  $(q^{(\ell)}_h)^\top k_i \leq m_-$, with $m_+ - m_- \geq m > 0$.
+  This $m$ is the \emph{logit margin}; it is bounded above by $\log T$ in
+  the well-trained regime.
+  \item[\textbf{(A2)}] \emph{Sub-Gaussian noise.}
+  $\eta^{(\ell)}_{h, i}$ is zero-mean and $\sigma_z^2$-sub-Gaussian,
+  independent across $(\ell, h, i)$. This is the standard noise model
+  used in attention-as-feature-aggregation analyses.
+  \item[\textbf{(A3)}] \emph{Capacity-bound vs dilution-prone regimes.}
+  In the capacity-bound regime $\mathcal{C}$, all heads at all layers share a
+  common relevant set: $\mathcal{R}^{(\ell)}_h = \mathcal{R}$ for every
+  $(\ell, h)$. In the dilution-prone regime $\mathcal{D}$, late-layer head
+  subsets diverge: there exists a layer index $\ell^* > L/2$ such that for
+  any head pair $(h, h')$ at layer $\ell^*$,
+  $|\mathcal{R}^{(\ell^*)}_h \cap \mathcal{R}^{(\ell^*)}_{h'}|
+  / |\mathcal{R}^{(\ell^*)}_h \cup \mathcal{R}^{(\ell^*)}_{h'}|
+  \leq J_{\text{late}}$, while early-layer heads share their subsets,
+  $|\mathcal{R}^{(1)}_h \cap \mathcal{R}^{(1)}_{h'}| /
+  |\mathcal{R}^{(1)}_h \cup \mathcal{R}^{(1)}_{h'}| \geq J_{\text{early}}$,
+  with $J_{\text{early}} > J_{\text{late}}$. Both $J_{\text{early}}$
+  and $J_{\text{late}}$ are model-specific population constants of the
+  surrogate, not functions of $L$.
+  \item[\textbf{(A4)}] \emph{Identification of $U_t$.} We identify Bui's
+  useful set $U_t$ (a decoding-step quantity defined at the
+  residual-stream level) with the head-common signal set
+  $\mathcal{I}^{(\ell^*)} := \bigcap_h \mathcal{R}^{(\ell^*)}_h$ at the
+  divergence layer $\ell^*$ (a single-layer attention quantity). The
+  identification is a modelling choice (positions every head agrees are
+  signal). It collapses time-step and layer-index axes, and the two
+  coincide in the surrogate by fiat. We flag it in the ``What is not
+  proved'' list below.
+\end{enumerate}
+
+The empirical content of (A3) is the layer-dependence we measure: early
+layers respond to local context (similar $\mathcal{R}^{(\ell)}_h$ across
+heads, regardless of task), late layers respond to task structure (head
+divergence on dilution-prone tasks, head convergence on capacity-bound
+tasks). See \S\ref{subsec:algo} for the corresponding operational
+definitions.
+
+\paragraph{Step 2 (head-agreement drop as Jaccard divergence).}
+The head-agreement drop $D$ in Eq.~\eqref{eq:D} is the early-late
+difference of mean pairwise top-$k$ Jaccard agreement, with $k$ chosen
+to be commensurate with $R$ (in the experiments $k = 32 \sim |\mathcal{R}|$).
+In the high-SNR limit of the surrogate (Lemma~\ref{lem:topk} below),
+each head's top-$k$ set concentrates on its own private
+$\mathcal{R}^{(\ell)}_h$ with high probability. Hence at layer $\ell$,
+\begin{equation}
+a_\ell \;\approx\; \frac{1}{\binom{H}{2}} \sum_{h < h'}
+\frac{|\mathcal{R}^{(\ell)}_h \cap \mathcal{R}^{(\ell)}_{h'}|}
+{|\mathcal{R}^{(\ell)}_h \cup \mathcal{R}^{(\ell)}_{h'}|}.
+\end{equation}
+Binning into early third and late third and subtracting,
+\begin{equation}
+\label{eq:D-jaccard}
+D \;=\; a_{\text{early}} - a_{\text{late}}
+\;\approx\;
+\overline{J}_{\text{early}} - \overline{J}_{\text{late}},
+\end{equation}
+the difference of mean pairwise Jaccard between layers in the early and
+late bins. $D$ is therefore a direct measurement of the head-set
+divergence in (A3).
+
+\begin{lemma}[Top-$k$ concentration on the private set]
+\label{lem:topk}
+Under (A1), (A2) with $m \geq \sigma_z \sqrt{4 \log(2 H^2 L T^2 / \beta)}$,
+the top-$k$ set of head $(\ell, h)$ equals $\mathcal{R}^{(\ell)}_h$
+jointly across all $HL$ heads with probability $\geq 1 - \beta$, when
+$k = |\mathcal{R}^{(\ell)}_h|$.
+\end{lemma}
+
+\emph{Proof.} A standard sub-Gaussian maximal inequality: for any pair
+$(i, j)$ with $i \in \mathcal{R}^{(\ell)}_h$ and $j \in \mathcal{N}$,
+$\Pr[z_{h, i}^{(\ell)} < z_{h, j}^{(\ell)}] \leq \exp(-m^2 /
+(4 \sigma_z^2))$. There are $R \cdot N \leq T^2 / 4$ such relevant-vs-noise
+pairs at each layer-head. Substituting the threshold $m \geq
+\sigma_z \sqrt{4 \log(2 H^2 L T^2 / \beta)}$ gives a per-pair tail of
+$\beta / (2 H^2 L T^2)$. Union-bounding over up to $T^2$ pairs per
+layer-head and over all $HL$ layer-heads gives a total tail of $HL \cdot
+T^2 \cdot \beta / (2 H^2 L T^2) = \beta / (2 H) \leq \beta$.
+\hfill $\square$
+
+The threshold $m \geq \sigma_z \sqrt{4 \log(2 H^2 L T^2 / \beta)}$ is the
+\emph{margin condition}. If it holds, every step below holds with
+probability $\geq 1 - \beta$ over the noise.
+
+\paragraph{Step 3 (head-set divergence forces union expansion).}
+For each layer $\ell$ define the union of head-private sets
+$\mathcal{U}^{(\ell)} := \bigcup_{h=1}^{H} \mathcal{R}^{(\ell)}_h$ and
+the intersection $\mathcal{I}^{(\ell)} := \bigcap_{h=1}^{H}
+\mathcal{R}^{(\ell)}_h$. The mean pairwise Jaccard $\overline{J}_\ell$
+at layer $\ell$ is a \emph{pairwise} object, whereas
+$|\mathcal{U}^{(\ell)}|$ and $|\mathcal{I}^{(\ell)}|$ are $H$-wise
+objects, so the ratio $|\mathcal{U}|/|\mathcal{I}|$ is not equal to $1 -
+\overline{J}$ in general. Inclusion-exclusion only gives
+$|\mathcal{U}|/|\mathcal{I}| \leq 1 + (H-1)(1 - \overline{J})$ in the
+best case, and the union-vs-intersection gap can scale with $H$ in the
+worst case. We therefore avoid an $H$-wise identity and use the weaker
+pairwise inequality. Under (A3), $\overline{J}_{\ell^*} \leq
+J_{\text{late}}$, so there exists a head pair $(h, h')$ at layer
+$\ell^*$ with $|\mathcal{R}^{(\ell^*)}_h \cap
+\mathcal{R}^{(\ell^*)}_{h'}| \leq J_{\text{late}} \cdot
+|\mathcal{R}^{(\ell^*)}_h \cup \mathcal{R}^{(\ell^*)}_{h'}|$. Picking
+the head $h^\dagger$ with the largest private residual set
+$\mathcal{R}^{(\ell^*)}_{h^\dagger} \setminus \mathcal{I}^{(\ell^*)}$,
+\begin{equation}
+\label{eq:union-bound}
+|\mathcal{U}^{(\ell^*)} \setminus \mathcal{I}^{(\ell^*)}|
+\;\geq\;
+|\mathcal{R}^{(\ell^*)}_{h^\dagger} \setminus \mathcal{I}^{(\ell^*)}|
+\;\geq\;
+(1 - J_{\text{late}}) \cdot \max_h |\mathcal{R}^{(\ell^*)}_h|.
+\end{equation}
+This is strictly weaker than treating $(|\mathcal{U}| -
+|\mathcal{I}|)/|\mathcal{U}|$ as if it were equal to $1 -
+\overline{J}$, but it is correct, and the slack is absorbed in $c_1$ below.
+
+Under (A4), Bui's useful set is $U_t = \mathcal{I}^{(\ell^*)}$, so
+positions in $\mathcal{U}^{(\ell^*)} \setminus \mathcal{I}^{(\ell^*)}$
+are attended by some head but not by all, and from the perspective of
+the next layer's query they contribute attention mass outside $U_t$.
+
+\paragraph{Step 4 (bridge to Bui's $\delta_t$).}
+Let $\bar\alpha$ denote the average per-head, per-position attention on a
+position in $\mathcal{R}^{(\ell^*)}_h$ at layer $\ell^*$. Under (A1)
+with margin $m$, the softmax concentrates and $\bar\alpha \geq
+(1 - (N/R)e^{-m})/R$ on private positions, tight when $e^m \gg N/R$ (an
+earlier draft omitted the $N/R$ factor, which is not negligible in the
+paper's own $R \ll N$ regime). Treating per-head value
+contributions as additive after the output projection (a modelling
+choice we flag below), the attention mass \emph{outside}
+$\mathcal{I}^{(\ell^*)}$ contributed by the maximal-residual head is at
+least
+\begin{equation}
+\sum_{i \in \mathcal{R}^{(\ell^*)}_{h^\dagger} \setminus
+\mathcal{I}^{(\ell^*)}} \alpha^{(\ell^*)}_{h^\dagger, i}
+\;\geq\;
+\bar\alpha \cdot (1 - J_{\text{late}}) \cdot \max_h
+|\mathcal{R}^{(\ell^*)}_h|,
+\end{equation}
+using Eq.~\eqref{eq:union-bound}. Under eviction with noise-retention
+ratio $\gamma$ and a top-$k$ scorer that does not a priori distinguish
+signal-side residuals from noise positions (an additional modelling
+assumption beyond (A1)-(A4) which we make explicit here), positions in
+$\mathcal{U}^{(\ell^*)} \setminus \mathcal{I}^{(\ell^*)}$ inherit the
+same effective per-position retention rate $\gamma$ as the noise set.
+Those retained for only a subset of heads appear as distractors to the
+remaining heads after the cache is merged. Conditional on this
+retention,
+\begin{equation}
+\label{eq:Edelta-lb}
+\mathbb{E}[\delta_t]
+\;\geq\;
+\bar\alpha \cdot (1 - J_{\text{late}}) \cdot
+\max_h |\mathcal{R}^{(\ell^*)}_h|
+\cdot (1 - \gamma),
+\end{equation}
+because the $(1 - \gamma)$ fraction of un-retained positions in the
+residual private sets no longer balance the heads that did keep them,
+leaving a residual distractor mass proportional to $(1 - \gamma)$. This
+is a new bound derived in our surrogate. It is structurally analogous
+to Bui's Corollary~3.2 (which relates pre- and post-eviction dilution
+via $\delta' = (\rho_D/\rho_U)\delta / [(1 - \delta) +
+(\rho_D/\rho_U)\delta]$), but the input here is the
+head-disagreement-induced distractor set rather than a pre-existing
+dilution.
+
+\paragraph{Step 5 (closing the bridge: solve for $D$).}
+Eq.~\eqref{eq:Edelta-lb} uses $(1 - \overline{J}_{\text{late}})$, which we
+relate to the observable $D$ via Eq.~\eqref{eq:D-jaccard}: $D =
+\overline{J}_{\text{early}} - \overline{J}_{\text{late}}$. Since
+$\overline{J}_{\text{early}} \leq 1$ trivially (Jaccard is bounded by
+one), $D \leq 1 - \overline{J}_{\text{late}}$, so substituting gives
+\begin{equation}
+\label{eq:final-lb}
+\mathbb{E}[\delta_t]
+\;\geq\;
+\bar\alpha \cdot D \cdot \max_h |\mathcal{R}^{(\ell^*)}_h|
+\cdot (1 - \gamma).
+\end{equation}
+The substitution $1 - \overline{J}_{\text{late}} \geq D$ holds always; we
+do not require the stronger $\overline{J}_{\text{early}} \approx 1$
+assumption. The looser the value of $\overline{J}_{\text{early}}$, the
+larger the gap between $1 - \overline{J}_{\text{late}}$ and $D$, and the
+looser this bound is relative to its tightest form.
+
+The $\log(1/\gamma)$ factor on the right-hand side of
+Eq.~\eqref{eq:bridge} is a heuristic amplification term, not a rigorous
+consequence of the steps above. The intended argument is that after
+eviction the cache retains $\gamma N$ noise positions, and the maximum of
+$\gamma N$ sub-Gaussian logits concentrates near $\sigma_z \sqrt{2 \log
+\gamma N}$. The multiplicative penalty on the head signal-to-noise budget
+should scale with the post-eviction noise floor relative to the
+pre-eviction floor. A careful Taylor expansion of $\sqrt{2 \log N} -
+\sqrt{2 \log \gamma N}$ gives a difference of order $\log(1/\gamma) /
+\sqrt{2 \log N}$, not $\log(1/\gamma)$ itself, so the log factor therefore
+captures only the worst-case noise-tail shift at small $N$ and not the
+asymptotic regime. We retain the $\log(1/\gamma)$ factor in
+Eq.~\eqref{eq:bridge} as a convenient packaging of the eviction
+amplification, but we flag this as gap (G5) in the list below. Readers
+willing to drop the factor entirely can read Eq.~\eqref{eq:bridge} as $D
+\geq c_1$ with $c_1 = 1/J_{\text{early}}$. This is the conservative
+no-amplification reading, and it is also empirically consistent with the
+$\tau = 0.07$ threshold we calibrate (Section~\ref{sec:recipe}).
+
+Two heuristic observations close the bridge to $(1 - A_{\mathrm{full}})$.
+Both are leading-order estimates rather than rigorous bounds, and we
+flag them in the gap list.
+(i) Under (A1) noise-isotropy and the high-SNR regime, the average
+per-position mass on a relevant position satisfies $\bar\alpha \approx
+\alpha_{\mathcal{R}} / R$, and under (A3) the head-private sets
+collectively cover most of $\mathcal{R}$ in the dilution-prone regime so
+that $\max_h |\mathcal{R}^{(\ell^*)}_h| \approx R$. The product is
+therefore $\bar\alpha \cdot \max_h |\mathcal{R}^{(\ell^*)}_h| \approx
+\alpha_{\mathcal{R}}$ as an order-of-magnitude estimate. (The set
+containment $\mathcal{R}^{(\ell^*)}_h \subseteq \mathcal{R}$ alone gives
+the reverse inequality $\bar\alpha \cdot \max_h |\mathcal{R}^{(\ell^*)}_h|
+\leq \alpha_{\mathcal{R}}$, so the leading-order substitution is the
+honest reading and is flagged in the gap list.)
+(ii) Combining the headroom factorisation of
+Appendix~\ref{app:proof-scaling} (Eq.~\eqref{eq:scaling}) with the
+strictly increasing accuracy surrogate gives $(1 - A_{\mathrm{full}})
+\leq C \cdot \alpha_{\mathcal{R}}$ on dilution-prone tasks for a
+constant $C$ depending only on the slope of $\hat A(\cdot)$ near the
+operating SNR.
+
+Combining (i) (as a leading-order estimate) and (ii) with
+Eq.~\eqref{eq:final-lb} yields the operational bridge
+\begin{equation}
+\label{eq:bridge-final}
+\mathbb{E}[\delta_t]
+\;\gtrsim\;
+\frac{(1 - \gamma)}{C} \cdot D \cdot (1 - A_{\mathrm{full}}),
+\end{equation}
+where $\gtrsim$ denotes leading-order in the surrogate. The substitution
+$\bar\alpha \cdot \max_h |\mathcal{R}^{(\ell^*)}_h| \approx
+\alpha_{\mathcal{R}}$ is the source of the $\gtrsim$ rather than $\geq$.
+The conservative rigorous reading replaces $\alpha_{\mathcal{R}}$ on the
+right-hand side with $\bar\alpha \cdot \max_h |\mathcal{R}^{(\ell^*)}_h|
+\leq \alpha_{\mathcal{R}}$ and drops the bridge to $(1 - A_{\mathrm{full}})$
+entirely. We use $\gtrsim$ for the operational reading.
+
+Eq.~\eqref{eq:bridge-final} is the load-bearing bridge between the
+observable $D$ and Bui's dilution under the empirical headroom proxy.
+Eq.~\eqref{eq:bridge} in Section~\ref{sec:theory} packages this
+relationship as a threshold inequality. Substituting $D \geq \uptau$
+into Eq.~\eqref{eq:bridge-final} gives $\mathbb{E}[\delta_t] \gtrsim
+((1 - \gamma) \uptau / C) \cdot (1 - A_{\mathrm{full}})$, so any
+chosen threshold $\uptau$ on $D$ produces a corresponding
+$c_2 = (1 - \gamma) \uptau / C$. Choosing
+$\uptau = c_1 \log(1/\gamma)$ with $c_1 = 1/J_{\text{early}}$,
+\begin{equation}
+\label{eq:c1c2}
+\boxed{
+c_1 \;=\; \frac{1}{J_{\text{early}}}, \qquad
+c_2(\gamma) \;=\; \frac{(1 - \gamma) \cdot \log(1/\gamma)}{C \cdot J_{\text{early}}}.
+}
+\end{equation}
+$J_{\text{early}}$ enters the threshold as a model-specific scale that
+makes $c_1$ commensurate with the empirical Jaccard floor across heads.
+On our test models $J_{\text{early}} \in [0.4, 0.7]$, giving $c_1 \in
+[1.4, 2.5]$. The empirical $\tau = 0.07$ is well below this, consistent
+with the constants being loose (per the $O(H)$ slack in Step 3 and the
+heuristic substitution in observation (i) above). Both constants carry
+an $O(H)$ multiplicative slack from the pairwise-to-$H$-wise step of
+Step 3, and the $\log(1/\gamma)$ factor in $c_1 \log(1/\gamma)$ is
+heuristic per gap (G5). The conservative no-amplification reading drops
+the $\log(1/\gamma)$ factor and gives the threshold $D \geq c_1 =
+1/J_{\text{early}}$ with rate $c_2(\gamma) = (1 - \gamma)/(C \cdot
+J_{\text{early}})$ directly.
+
+\paragraph{The converse direction (heuristic, sufficient-side only).}
+The partition predictor's operational claim is the contrapositive:
+\emph{small $D$ $\Rightarrow$ low dilution $\Rightarrow$ eviction is
+risky}. We sketch two arguments and flag that neither is a separate
+necessity proof.
+
+The first is a comment on the sufficient-side lower bound: under (A3)
+for the capacity-bound regime $\mathcal{C}$ ($\mathcal{R}^{(\ell)}_h =
+\mathcal{R}$ for all $(\ell, h)$), the union and intersection coincide,
+so the right-hand side of Eq.~\eqref{eq:Edelta-lb} is zero. Since
+Eq.~\eqref{eq:Edelta-lb} is a \emph{lower} bound on
+$\mathbb{E}[\delta_t]$, a zero right-hand side does not bound
+$\delta_t$ from above. It only says the sufficient lower bound becomes
+vacuous.
+
+The second is an upper bound on $\delta_t$ that does provide some
+necessary-side content, but only inside the surrogate. Under (A1) with
+margin $m$ satisfying the threshold of Lemma~\ref{lem:topk}, and (A3)
+regime $\mathcal{C}$ so that $U_t = \mathcal{R}$ for every head, the
+pairwise top-$k$ Jaccard between heads is $\geq J_{\text{early}}$ at
+every layer (no late-layer divergence), so $|\mathcal{U}|/|\mathcal{I}|
+\to 1$ and there is no residual distractor mass. The attention mass on
+$\mathcal{N}$ for any single head is bounded by the sub-Gaussian tail
+$O(\exp(-m^2 / (4 \sigma_z^2)))$ by Lemma~\ref{lem:topk}, and Bui's
+dilution is $\delta_t \leq O(\exp(-m^2 / (4 \sigma_z^2)))$ in the
+surrogate. This is the surrogate-level converse; lifting it to real
+attention requires both a lower bound on $m$ for capacity-bound tasks
+(which we have not verified) and the surrogate identification (A4) of
+$U_t$ with $\mathcal{I}^{(\ell^*)}$. The boxed
+Eq.~\eqref{eq:bridge}/\eqref{eq:c1c2} is the sufficient direction only.
+
+\paragraph{Empirical validation.}
+Table~\ref{tab:drops} reports the mean head-agreement drop $D$ across the
+five dilution-prone tasks (qa\_1, qa\_2, vt, niah\_multivalue, fwe) and the
+capacity-bound task (NIAH-MK3) on Qwen 1.5B, Qwen 3B, and Mistral. In every
+(model, context) cell, NIAH-MK3 has the smallest drop (including the cell
+where it is negative, Qwen 3B 16K). The \emph{ordering} of tasks by $D$ is
+preserved across architectures, and the partition between dilution-prone and
+capacity-bound is exactly the partition predicted by
+Eq.~\eqref{eq:bridge-final}: cells with $D \approx 0$ have
+$\mathbb{E}[\delta_t]$ bounded by the noise floor, and the per-input
+recovery rate $\rho$ in Table~\ref{tab:partition} is $\leq 0.02$ on all such
+cells. The bridge inequality is therefore empirically consistent with both
+directions on this task suite. We do not promote this to a formal claim
+because the sample size per cell is $N = 20$ inputs, the constants in
+Eq.~\eqref{eq:c1c2} are not tight, and the necessity direction is not
+proved.
+
+\paragraph{What is \emph{not} proved.}
+We list the gaps so a reviewer reading this appendix sees the scope
+clearly.
+\begin{enumerate}
+  \item \textbf{The constants $c_1, c_2(\gamma)$ in
+  Eq.~\eqref{eq:c1c2} are loose.} The pairwise-to-$H$-wise step in
+  Step~3 loses tightness: the union-vs-intersection gap can scale with
+  $H$ in the worst case, so $c_1$ is honest only up to an $O(H)$
+  multiplicative slack. A tight version would replace the pairwise
+  inequality with a full higher-order union-intersection identity and
+  track the layerwise covariance of head subsets.
+  \item \textbf{The pairwise Jaccard is not the same object as the
+  $H$-wise union/intersection ratio.} Eq.~\eqref{eq:union-bound} uses
+  the weaker inequality ``some head has a large private residual
+  set,'' which is correct but discards information when many heads share
+  the same residual.
+  \item \textbf{Observation (i) in Step~5 is a leading-order estimate,
+  not a rigorous inequality.} The exact reverse inequality $\bar\alpha
+  \cdot \max_h |\mathcal{R}^{(\ell^*)}_h| \leq \alpha_{\mathcal{R}}$
+  holds (set containment), so the substitution $\bar\alpha \cdot \max_h
+  |\mathcal{R}^{(\ell^*)}_h| \approx \alpha_{\mathcal{R}}$ used in
+  Eq.~\eqref{eq:bridge-final} relies on (A1)+(A3) jointly to push the
+  high-SNR approximation $\max_h |\mathcal{R}^{(\ell^*)}_h| \approx R$.
+  Eq.~\eqref{eq:bridge-final} therefore uses $\gtrsim$ rather than
+  $\geq$.
+  \item \textbf{The identification of Bui's $U_t$ with the head-common
+  signal set $\mathcal{I}^{(\ell^*)}$ (A4) is a modelling choice, not a
+  derived equality.} Bui's $U_t$ is defined at the residual-stream
+  level; our $\mathcal{I}^{(\ell^*)}$ is an intersection over per-head
+  attended sets at a single layer. The two coincide in the surrogate by
+  fiat.
+  \item \textbf{The $\log(1/\gamma)$ factor in Step~5 is heuristic.} The
+  sub-Gaussian maximum over $\gamma N$ retained-noise positions shifts
+  noise-tail scale by $O(\log(1/\gamma) / \sqrt{\log N})$, not
+  $\log(1/\gamma)$. We retain the cleaner $\log(1/\gamma)$ packaging in
+  Eq.~\eqref{eq:bridge} as a worst-case bound at small $N$, and we offer
+  the conservative reading $D \geq c_1$ (no log term) as a strict
+  alternative for readers who reject the surrogate-level amplification
+  argument.
+  \item \textbf{The converse direction is conditional on a margin
+  assumption we have not verified.} In Step~5 we used $m \geq \sigma_z
+  \sqrt{4 \log(2 H^2 L T^2 / \beta)}$ to get Lemma~\ref{lem:topk}; the
+  surrogate-level converse additionally requires that capacity-bound
+  tasks satisfy this margin condition for the \emph{common} relevant
+  set $\mathcal{R}$. We do not test this on real attention weights;
+  doing so is a clean follow-up.
+  \item \textbf{The converse paragraph above is an upper bound on the
+  sufficient-condition argument, not a separate necessary-condition
+  proof.} Eq.~\eqref{eq:bridge} with constants from
+  Eq.~\eqref{eq:c1c2} is the sufficient direction only; the empirical
+  content of necessity is reported but not formalised.
+  \item \textbf{The assumption that heads share a common $\mathcal{R}$
+  in capacity-bound tasks (A3, regime $\mathcal{C}$) needs verification.}
+  Our evidence is the small empirical $D$ on NIAH-MK3 across cells;
+  whether the underlying mechanism is actually ``all heads agree on the
+  same needle position'' or some weaker form of agreement (heads
+  agreeing on a length-$O(1)$ neighborhood of the needle) is open. The
+  difference between these is invisible to top-$k$ Jaccard but matters
+  for the rigorous proof.
+  \item \textbf{Step~4 implicitly assumes the scorer does not
+  distinguish signal-side residual positions from noise positions a
+  priori.} The $(1 - \gamma)$ factor in Eq.~\eqref{eq:Edelta-lb} applies
+  the noise-retention ratio $\gamma$ to positions in
+  $\mathcal{U}^{(\ell^*)} \setminus \mathcal{I}^{(\ell^*)}
+  \subseteq \mathcal{R}$, which are signal-side. The retention rate
+  there equals $\gamma$ only when a top-$k$ scorer is symmetric across
+  signal vs noise on these residuals; under (A1) noise-isotropy this is
+  the leading-order assumption.
+  \item \textbf{The output-projection averaging in Step~4 treats
+  per-head value contributions as additive.} The single-head SNR
+  analysis of Appendix~\ref{app:proof-scaling} is lifted to multi-head
+  by summing attention masses across heads. A precise lift would use
+  the value-vector subspace decomposition of the output projection;
+  under non-orthogonal value subspaces this can shift the constants by
+  $O(H)$ in the worst case rather than $O(1)$.
+  \item \textbf{The assumed accuracy function $\hat A(\mathrm{SNR})$ is
+  treated as task-agnostic.} The constant $C$ in Eq.~\eqref{eq:bridge-final}
+  depends on the slope of $\hat A$ near the operating SNR, and on tasks where
+  $\hat A$ is steep (precise retrieval) versus shallow (aggregation), $C$
+  differs by an order of magnitude.
+\end{enumerate}
+
+The sketch is therefore a \emph{structural} proof of the sufficient
+direction: the form of the bound and the dependence on $(H, \gamma)$
+are derived from the surrogate, while the numerical values of the constants,
+the $H$-tightness, the $\log(1/\gamma)$ factor, and the necessity
+direction are flagged as future work.
+
+\section{Confidence intervals for the headline numbers}
+\label{app:ci}
+
+Tables~\ref{tab:matrix-ci} and~\ref{tab:other-ci} report $95\%$ intervals
+for every headline delta, computed as described in the uncertainty
+paragraph of Section~\ref{sec:experiments}. Full per-cell derivations ship
+with the released logs.
+
+\begin{table}[t]
+\centering
+\caption{95\% confidence intervals for the $16$ gating deltas of
+Table~\ref{tab:matrix}. Cluster bootstrap over inputs: we resample the
+$(\text{task}, \text{id})$ pairs with replacement ($10{,}000$ replicates);
+each input contributes its per-budget paired gated$-$plain differences,
+preserving the pairing and the within-input correlation across budgets;
+intervals are $2.5-97.5$ percentiles. All gated outcomes are the exact
+$\tau = 0.07$ post-hoc reconstruction of Appendix~\ref{app:repro}.
+$N = 400$ inputs per cell ($4$ tasks $\times$ $100$), $N = 200$ for
+Qwen2.5-14B. \emph{Every one of the $16$ intervals excludes zero}; the
+smallest lower bound is $+0.093$ (Qwen2.5-1.5B, SnapKV).}
+\label{tab:matrix-ci}
+\begin{tabular}{llccc}
+\toprule
+Model & Base evictor & $\Delta$ & 95\% CI & $N$ \\
+\midrule
+Qwen2.5-1.5B & SnapKV       & $+0.121$ & $[+0.093,\,+0.151]$ & 400 \\
+Qwen2.5-1.5B & H2O          & $+0.162$ & $[+0.126,\,+0.199]$ & 400 \\
+Qwen2.5-1.5B & StreamingLLM & $+0.163$ & $[+0.128,\,+0.200]$ & 400 \\
+Qwen2.5-1.5B & PyramidKV    & $+0.152$ & $[+0.118,\,+0.188]$ & 400 \\
+\midrule
+Qwen2.5-3B   & SnapKV       & $+0.259$ & $[+0.225,\,+0.295]$ & 400 \\
+Qwen2.5-3B   & H2O          & $+0.303$ & $[+0.261,\,+0.347]$ & 400 \\
+Qwen2.5-3B   & StreamingLLM & $+0.430$ & $[+0.383,\,+0.477]$ & 400 \\
+Qwen2.5-3B   & PyramidKV    & $+0.329$ & $[+0.286,\,+0.372]$ & 400 \\
+\midrule
+Qwen2.5-14B  & SnapKV       & $+0.143$ & $[+0.108,\,+0.181]$ & 200 \\
+Qwen2.5-14B  & H2O          & $+0.200$ & $[+0.152,\,+0.250]$ & 200 \\
+Qwen2.5-14B  & StreamingLLM & $+0.250$ & $[+0.190,\,+0.310]$ & 200 \\
+Qwen2.5-14B  & PyramidKV    & $+0.228$ & $[+0.175,\,+0.285]$ & 200 \\
+\midrule
+Mistral-7B   & SnapKV       & $+0.187$ & $[+0.154,\,+0.220]$ & 400 \\
+Mistral-7B   & H2O          & $+0.236$ & $[+0.196,\,+0.278]$ & 400 \\
+Mistral-7B   & StreamingLLM & $+0.263$ & $[+0.220,\,+0.305]$ & 400 \\
+Mistral-7B   & PyramidKV    & $+0.231$ & $[+0.191,\,+0.272]$ & 400 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{95\% CIs for the remaining headline deltas. Cross-architecture rows
+(Table~\ref{tab:crossarch}) use the four-budget grid and the same cluster
+bootstrap; 16K rows are the second half of Table~\ref{tab:scaling}; the
+DBTrimKV row is Table~\ref{tab:dbtrimkv} ($N = 120$ inputs, budgets
+$\{128, 256, 512\}$). The Mistral NIAH-MK3 showcase entries are Wilson
+score intervals on $N = 100$. The only headline delta whose interval
+includes zero is Qwen2.5-3B at 16K, the gate-misfire cell that
+Section~\ref{subsec:matrix} already reports as a shrunken effect.}
+\label{tab:other-ci}
+\begin{tabular}{lccc}
+\toprule
+Quantity & Point & 95\% CI & $N$ \\
+\midrule
+Yi-1.5-9B $\Delta$ (SnapKV, 4-budget)      & $+0.390$ & $[+0.338,\,+0.444]$ & 200 \\
+Llama-3.1-8B $\Delta$ (SnapKV, 4-budget)   & $+0.109$ & $[+0.069,\,+0.154]$ & 200 \\
+\midrule
+Qwen2.5-1.5B 16K $\Delta$                  & $+0.032$ & $[+0.013,\,+0.053]$ & 200 \\
+Qwen2.5-3B 16K $\Delta$                    & $+0.034$ & $[-0.002,\,+0.071]$ & 200 \\
+Qwen2.5-14B 16K $\Delta$                   & $+0.071$ & $[+0.034,\,+0.107]$ & 120 \\
+Mistral-7B 16K $\Delta$                    & $+0.116$ & $[+0.079,\,+0.156]$ & 200 \\
+\midrule
+DBTrimKV wrapper $\Delta$ (RULER 4K)       & $+0.233$ & $[+0.172,\,+0.297]$ & 120 \\
+\midrule
+Mistral 4K NIAH-MK3, gated acc.\ @ $b{=}0.0625$ & $0.89$ & $[0.814,\,0.937]$ & 100 \\
+Mistral 4K NIAH-MK3, plain acc.\ @ $b{=}0.0625$ & $0.00$ & $[0.000,\,0.037]$ & 100 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Seed replicates}
+\label{subsec:seed-variance}
+
+The intervals above are cluster bootstraps over a fixed set of inputs, so they
+quantify sampling within one draw and say nothing about the draw itself. We
+therefore re-ran five SnapKV cells under three draws of the RULER split, varying
+only the shuffle seed (Table~\ref{tab:seed-variance}). Decoding is greedy, so
+there is no decoding stochasticity to average over. The question a replicate can
+answer here is whether a different hundred inputs would give a different
+$\Delta$.
+
+Seed SD ranges from $0.004$ to $0.011$ against a grand-mean $\Delta$ of
+$+0.229$, so draw-to-draw spread runs roughly an order of magnitude below the
+effect it measures. The published SnapKV entries of Table~\ref{tab:matrix} fall
+inside the replicate range for Qwen2.5-1.5B, Qwen2.5-3B and Mistral-7B. The
+Qwen2.5-14B entry, $+0.143$, sits $0.001$ above the largest replicate, which we
+attribute to $N$: that cell is $N = 200$ in Table~\ref{tab:matrix} and
+$N = 400$ here.
+
+Restricted to NIAH-MK3, where nearly all of $\Delta$ lives, the spread widens to
+$0.009 - 0.045$ on a much larger effect. Qwen2.5-1.5B is the loosest cell at
+$0.045$ on a mean near $+0.45$, still an order of magnitude below its own
+effect.
+
+All fifteen runs used one host, and the replicates of a cell are never split
+across machines. That matters because the reproduction gate
+(Appendix~\ref{app:repro}) finds a small but real host effect on mean $D$, which
+would otherwise appear in this table as seed variance.
+
+\begin{table}[h]
+\centering
+\caption{Seed replicates of the SnapKV cells. Three draws of the RULER 4K split,
+identical in every other respect: greedy decoding, $\tau = 0.07$, $\Delta$
+averaged over budgets $b < 1.0$, $N = 400$ ($4$ tasks $\times$ $100$). The
+lower block restricts to NIAH-MK3.}
+\label{tab:seed-variance}
+\small
+\begin{tabular}{lccccccc}
+\toprule
+Model & seed 1 & seed 2 & seed 3 & mean & SD & range \\
+\midrule
+\multicolumn{7}{l}{\emph{All four tasks}} \\
+Qwen2.5-1.5B & $+0.113$ & $+0.099$ & $+0.122$ & $+0.111$ & 0.011 & 0.022 \\
+Qwen2.5-3B   & $+0.255$ & $+0.267$ & $+0.275$ & $+0.266$ & 0.010 & 0.019 \\
+Qwen2.5-14B  & $+0.133$ & $+0.140$ & $+0.142$ & $+0.138$ & 0.005 & 0.010 \\
+Mistral-7B   & $+0.187$ & $+0.194$ & $+0.183$ & $+0.188$ & 0.006 & 0.011 \\
+Llama-3.1-8B & $+0.078$ & $+0.071$ & $+0.078$ & $+0.076$ & 0.004 & 0.007 \\
+\midrule
+\multicolumn{7}{l}{\emph{NIAH-MK3 only}} \\
+Qwen2.5-1.5B & $+0.454$ & $+0.398$ & $+0.486$ & $+0.446$ & 0.045 & 0.089 \\
+Qwen2.5-3B   & $+0.738$ & $+0.747$ & $+0.729$ & $+0.738$ & 0.009 & 0.019 \\
+Qwen2.5-14B  & $+0.530$ & $+0.559$ & $+0.568$ & $+0.552$ & 0.020 & 0.037 \\
+Mistral-7B   & $+0.709$ & $+0.710$ & $+0.669$ & $+0.696$ & 0.023 & 0.041 \\
+Llama-3.1-8B & $+0.310$ & $+0.282$ & $+0.311$ & $+0.301$ & 0.016 & 0.029 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Reproduction notes}
+\label{app:repro}
+The seed replicates above bound one source of variation; this section
+documents the remaining implementation details that matter for exact
+reproduction. The cache slicing uses explicit \texttt{position\_ids} to
+preserve RoPE alignment, since the naive attention-mask trick produces a
+silent position shift on evicted positions. Long-context (16K) runs use
+SDPA for prefill and switch to eager for the $w \times T$
+observation-window scoring pass to avoid the $O(T^2)$ attention-matrix
+allocation on 80GB. Head agreement uses Jaccard similarity of top-$32$
+key sets per head pair, averaged over pairs. The deployed gate takes
+the early bin as the first $\lfloor L/3 \rfloor$ layers and the late
+bin as the \emph{last} $\lfloor L/3 \rfloor$, i.e.\ $[0, \lfloor L/3
+\rfloor)$ and $[L - \lfloor L/3 \rfloor, L)$, so the two bins are
+equal in size and, when $3 \nmid L$, the middle band is one layer
+wider than a strict partition into thirds. Table~\ref{tab:drops}
+instead reports the strict-thirds variant $[\lfloor 2L/3 \rfloor, L)$
+for the late bin. The two agree whenever $3 \mid L$ (Qwen2.5-3B, $L =
+36$) and differ by at most $0.004$ in mean $D$ elsewhere (Qwen2.5-1.5B
+$L = 28$: $0.044$ vs $0.040$; Llama-3.1-8B $L = 32$: $0.071$ vs
+$0.073$), which changes no gate decision at $\tau = 0.07$. Every gated
+number in the paper uses the equal-size convention that the released
+code implements. Decoding is greedy throughout, so the gated outcome
+of any input is exactly reproducible from its recorded head-agreement
+drop plus the plain-eviction and full-KV outcomes. We use this
+identity to evaluate gate thresholds post-hoc, and one matrix cell
+(Qwen2.5-3B 4K SnapKV, executed at $\tau = 0.04$) is reported at $\tau
+= 0.07$ via this exact re-evaluation. A pipeline audit verifies that
+eviction at budget $1.0$ matches clean prefill-decode token-for-token
+up to a trailing-period mismatch on one of six audited examples, and
+the released logs include the audit script.
+
+\input{theory_appendix_additions.tex}
+
+\section{Use of large language models}
+\label{app:llm}
+Large language models were used as general-purpose assistants during this
+project: for literature search and triage, for drafting and copy-editing prose,
+and as coding aids when writing and analyzing the experiment scripts. All
+research ideas, hypotheses, experimental designs, and claims are the authors'
+own. Every reported number was produced by the released code on the stated
+models and data, and the authors verified the experiments and their reporting.
+LLMs were not used as a source of scientific facts or citations without
+verification against primary sources.
+
+

@@ -1,0 +1,736 @@
+\documentclass{article}
+
+% figs/PAGE-setup.pdf is a PDF 1.7 export; without this pdfTeX warns on every
+% run that it exceeds the default 1.5 output level.
+\ifdefined\pdfminorversion \pdfminorversion=7 \fi
+\ifdefined\pdfvariable \pdfvariable minorversion=7 \fi
+
+\usepackage{iclr2027_conference,times}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{upgreek}
+\newtheorem{lemma}{Lemma}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{xcolor}
+\graphicspath{{../}{./}}
+
+\newcommand{\method}{PAGE\xspace}
+\newcommand{\pci}[2]{{\scriptsize$[#1,#2]$}}
+\newcommand{\yes}{\checkmark}
+\newcommand{\no}{--}
+
+\title{PAGE: Partition-Aware Gated KV-Cache Eviction}
+
+\author{%
+  Anonymous Authors%
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+KV-cache eviction is deployed as a uniform accuracy-memory trade, but its per-input effect is bimodal. On many long-context inputs a compressed cache
+matches the full one, while on precise multi-key retrieval the same evictor
+drives accuracy from $99\%$ to $0\%$. Existing evictors choose which tokens to
+keep under a fixed budget and report benchmark means that average this failure
+away, never treating whether to evict as a decision. We show that one label-free scalar read from prefill attention identifies the regime before any
+decoding: the early-to-late drop $D$ in mean pairwise top-$k$ Jaccard
+agreement between attention heads, which stays small when heads converge on
+the few tokens carrying the answer. \method thresholds $D$, running any
+SnapKV-style evictor when the drop is large and keeping the full cache when it
+is small, with no training, labels, or fine-tuning. Across four base evictors,
+four models, RULER, and LongBench, gating cuts the rate at which eviction
+destroys a correct answer from $0.75$ to $0.026$ at a nominal $16\times$
+budget, $3.4\times$ realized once the protected cache is counted, and raises
+matched-cache accuracy by $3$-$19$pp above a crossover near one third of
+retained cache. This is a batch-1, offline-scoring safeguard whose memory
+saving decays toward $1\times$ by batch $16$ under static provisioning. A
+geometry-based and an attention-free scorer collapse on the same inputs below
+$25\%$ budget, indicating an information floor no scorer we tested removes and
+recasting cache compression as per-input admission control rather than token
+selection.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+Long-context inference spends most of its memory on the KV-cache, and eviction
+is the standard remedy: score the prompt positions once, keep a fraction $b$,
+and accept a small average accuracy cost. Recent work sharpens this trade
+surprisingly. \citet{arxiv260509649} prove that selective retention
+reduces a quantifiable \emph{attention dilution} term and report a learned-gate evictor exceeding the full cache on long-context dialogue,
+\citet{arxiv260425975} derive a closed-form information-bottleneck score
+producing the same paradox on LongBench, and an indexer-and-latent-memory
+architecture~\citep{arxiv260525475} reports an information-density peak at
+moderate compression. Their common claim is that less compute can yield more
+accuracy.
+
+Each result averages over a suite where the effect occurs, and a benchmark
+mean positive in expectation can hide a subset of inputs on which eviction is
+catastrophic. The two cases call for opposite actions. Where the answer is
+spread over redundant tokens, discarding them concentrates attention and
+eviction is safe. Where it sits in a handful of tokens, any scorer that drops
+the wrong one loses it outright at every budget. Averaging the two populations
+produces a number describing neither. Adaptive methods nonetheless train a
+scorer~\citep{arxiv260509649, arxiv260525475, arxiv260203203, arxiv260210238}
+or derive an unconditional capacity score from query
+statistics~\citep{arxiv260425975}, and in both cases the decision is
+\emph{which} tokens to keep. Whether the two populations are separable in the
+pre-eviction attention alone, before any token is scored, is open. If they are,
+the safe deployment of eviction is not a better scoring rule but a decision to
+abstain.
+
+We answer affirmatively. The \emph{head-agreement drop} on prefill attention,
+the difference between mean Jaccard top-$k$ head agreement in early and late
+layer-bins, partitions inputs into a dilution-prone class $\mathcal{D}$ and a
+capacity-bound class $\mathcal{C}$, and a drop-in wrapper turns that partition
+into a training-free policy. The signal reflects how heads specialize with depth. Heads agree broadly in
+early layers and diverge in late ones, but when the answer occupies only a few
+tokens those tokens hold them together and the divergence is shallow, so a
+small drop is evidence that the cache holds little redundancy to discard.
+
+Because a benchmark mean hides the failure mode we target, we evaluate \method
+by what it prevents on the capacity-bound class rather than by a suite
+average. It cuts the rate at which eviction destroys a correct answer by
+$29\times$ at $16\times$ compression and lifts the accuracy-memory frontier at
+matched \emph{achieved} cache above a crossover near $1/3$ kept cache, losing
+below it. The converse deserves equal prominence: the gate is inert wherever
+eviction is already safe, and in half the matrix cells of
+Section~\ref{subsec:matrix} it opens on every non-capacity-bound input, so the
+measured difference is exactly zero.
+
+\paragraph{Contributions.}
+
+\begin{enumerate}
+\item \textbf{An empirical partition.} Across eight (model, context) cells and
+six RULER~\citep{arxiv240406654} task families (Section~\ref{sec:partition}),
+three-key retrieval (NIAH-MK3) is the one task where eviction never recovers
+accuracy, while five dilution-prone families recover wherever the model has
+headroom. A distractor sweep confirms the mechanism, and the partition holds on
+three LongBench subtasks the gate calls correctly a priori.
+
+\item \textbf{A label-free predictor.} The early-to-late head-agreement drop
+$D := \mathrm{agr}_{\text{early}} - \mathrm{agr}_{\text{late}}$ ranks the
+capacity-bound task smallest and is the only one of six cheap prefill
+statistics that separates the partition at all (Section~\ref{subsec:signal}).
+It is one-sided: reliable at closing the gate on capacity-bound inputs, weakly
+discriminative on dilution-prone ones, which bounds what the gate can promise.
+
+\item \textbf{\method, a gating algorithm built on $D$.} One conditional on
+the prefill attention, with no training and no labels
+(Section~\ref{subsec:algo}). We set the threshold per model from an unlabeled
+$z$-score pilot, which transfers across all four architecture families we test;
+the fixed $\tau = 0.07$ we run everywhere is a within-family convenience that
+fails on Qwen3 (Section~\ref{subsec:calibration}).
+
+\item \textbf{Scorer-independence of the capacity limit.} A faithful
+ManifoldKV+Ada-KV geometry scorer and the attention-free
+KeyDiff~\citep{keydiff} both collapse on NIAH-MK3 below $25\%$ budget
+(Section~\ref{subsec:scorer-indep}), even though the same scorer reproduces its
+published two-key advantage. No scoring rule recovers information the retained
+subset does not contain.
+
+\item \textbf{Head-to-heads, and a scaling relation.} The gate lifts
+matched-budget accuracy around CapKV and pretrained DBTrimKV
+(Section~\ref{subsec:headtohead}), though on DBTrimKV the full-cache fallback
+dominates and plain DBTrimKV wins at matched \emph{memory}. A closed form,
+$\rho \approx (1 - A_{\mathrm{full}}) \cdot
+p_{\mathrm{recov}}(\rho_{\mathcal{R}}^2/\gamma)$, unifies the scaling evidence
+(Section~\ref{subsec:theory}), and a pre-registered 32K test preserves its
+ordinal content while falsifying constant-ratio proportionality.
+\end{enumerate}
+
+\paragraph{Scope.} We claim as novel neither the paradigm that less compute
+can beat full attention nor the dilution mechanism, since
+\citet{arxiv260509649} state both and we adopt their Proposition 3.1 and
+Corollary 3.2, and we repurpose a known head-agreement primitive rather than
+proposing a new statistic. We claim no compression win: at matched memory a
+strong trained evictor beats us. Most of the headline $\Delta$ protects one
+task family, since excluding NIAH-MK3 the grand mean falls from $+22.9$pp to
+$+4.5$pp and a cheating task-label oracle reaches $+20.1$pp. The contribution
+is the label-free per-input decision, not the compression ratio it delivers
+where eviction was already safe.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.72\linewidth]{figs/PAGE-setup.pdf}
+  \caption{\method decides \emph{whether} to evict, once per input, from a
+  prefill-only pass. Head agreement peaks in early layers and falls with depth
+  as heads specialize. On dilution-prone inputs the early consensus spans a
+  large redundant set and the fall is steep; on capacity-bound inputs the few
+  tokens carrying the answer hold heads together and the fall is shallow.
+  Thresholding the drop $D$ at $\tau$ separates redundancy safe to discard from
+  evidence that is not.}
+  \label{fig:PAGE_setup}
+\end{figure}
+
+\section{Related work}
+\label{sec:related}
+
+The nearest KV-eviction methods differ from ours in what they decide.
+DBTrimKV~\citep{arxiv260509649}, whose dilution mechanism we adopt,
+CapKV~\citep{arxiv260425975}, DynamicKV~\citep{arxiv241214838}, which also
+shows task type modulates which KV positions matter, and
+IndexMem~\citep{arxiv260525475} all choose \emph{which} tokens to keep under a
+budget, as do the wrappers (VECTOR~\citealp{arxiv260523258},
+CriticalKV~\citealp{arxiv250203805}) and the learned gates (Attention-Gate~\citealp{zeng2025incontextkvcacheevictionllms}, Fast
+KVzip~\citealp{arxiv260117668}), which also require training. With the budget
+fixed in advance, none represents the case where the correct action is to
+spend no budget. EvicPress~\citep{arxiv251214946} does choose per context
+\emph{whether} to evict, but as one term in a profiled quality-latency
+optimization over storage tiers rather than a label-free call from prefill
+attention. SAGE-KV~\citep{sagekv} comes closest, reading a one-shot post-prefill attention signal, but spends it choosing which tokens and heads to
+keep and never identifies a class where eviction cannot be made safe.
+
+Diagnostic work establishes that such a partition should exist without
+providing a predictor. \citet{arxiv251000231} document that eviction degrades
+some task types and \citet{arxiv260508234} ask when value-aware eviction
+helps, but neither pairs a helping class with a hurting one on one axis or
+predicts the side a priori. Our signal differs from the \emph{within-layer}
+head consensus of \citet{arxiv260301426}, used there descriptively, in being a
+directional \emph{cross-layer} contrast computed online and thresholded to
+gate. Retrieval heads~\citep{wu2025retrieval} show a small, sparse head subset
+drives long-context retrieval, the mechanism making capacity-bound inputs
+fragile; $D$ measures that subset's layer-wise convergence rather than
+identifying its members. We claim the conjunction absent from all of these: a
+helps-versus-hurts partition on one axis, predicted a priori from a single
+prefill scalar, deployed as a whether-to-evict gate, with the capacity-bound
+side shown scorer-independent. We wrap SnapKV~\citep{arxiv240414469},
+H2O~\citep{arxiv230614048}, StreamingLLM~\citep{arxiv230917453} and
+PyramidKV~\citep{arxiv240602069}; Appendix~\ref{app:deferred} treats all
+neighbors in full.
+
+\section{The empirical partition}
+\label{sec:partition}
+
+A claim about inputs has to be established on inputs, so we demonstrate the
+partition before proposing a predictor. This section asks whether a class
+exists on which eviction never recovers accuracy, whether it survives outside
+synthetic data, and whether simpler properties explain it away.
+
+\paragraph{Setup.} We use RULER~\citep{arxiv240406654} via the
+\texttt{simonjegou/ruler}~\citep{ruler-hf} port distributed with
+kvpress~\citep{kvpress}, at $T \in \{4\mathrm{K}, 16\mathrm{K}\}$ on
+Qwen2.5-1.5B/3B/14B-Instruct~\citep{arxiv241215115} and
+Mistral-7B-Instruct-v0.3~\citep{arxiv231006825}. Eviction is SnapKV-style by
+default: score each prompt position by the average attention from the last $w
+= 32$ queries across heads and layers, keep the top-$b$ positions for nine
+budgets $b \in [0.0625, 1.0]$, and always preserve the first $n_{\text{sink}}
+= 4$ sink positions~\citep{arxiv230917453} and last $w = 32$ recent positions.
+Cache slicing uses explicit \texttt{position\_ids} to preserve RoPE
+alignment~\citep{roformer} rather than the attention-mask trick that silently
+shifts RoPE on evicted positions. Task codes are RULER's: VT, FWE,
+QA\_1/QA\_2, and NIAH-MK$k$ = \texttt{niah\_multikey\_}$k$ ($k$ near-tie keys,
+one carrying the answer). Full protocol in Appendix~\ref{app:repro}.
+
+\paragraph{Metric.} A mean-accuracy comparison cannot express a claim about
+individual inputs. For task $\mathsf{T}$, model $M$, context length $T$, and
+$A(b, x)$ the accuracy on input $x$ at budget $b$, with $b_{\max} = 1$ the
+full cache, we report the per-input recovery rate
+
+\paragraph{The partition.} We measured $\rho$ on six RULER tasks across eight
+(model, context) cells under attention-score eviction
+(Table~\ref{tab:partition}, Appendix~\ref{app:deferred}). Five task families
+clear $\rho \ge 0.05$ at some context length, while NIAH-MK3 stays at $\rho
+\le 0.02$ on every model and every context. Per-cell counts are low, so the
+claim rests on the pooled contrast, which is unambiguous: NIAH-MK3 recovers on
+$2/526$ inputs ($\rho = 0.004$, Wilson $[0.001, 0.014]$) against, for example,
+$65/680$ ($\rho = 0.096$, $[0.076, 0.120]$) for niah\_multivalue. Two effects explain the
+cells that fall below threshold without contradicting the partition. Saturation
+suppresses $\rho$ wherever $A_{\mathrm{full}} \to 1$ leaves no headroom, and the
+same models recover at longer context, exactly as Eq.~\eqref{eq:scaling}
+predicts. The remaining three exceptions are budget-insensitive rather than
+saturated, in that headroom exists but the wrong inputs stay wrong at every
+budget. All three are QA cells, pointing to parametric-knowledge failures that
+no cache budget can fix. We claim the partition at 4K and 16K only, since a
+single 32K probe puts NIAH-MK3 at $\rho = 0.04$, one point under the threshold
+that defines the class (Section~\ref{subsec:prereg32k}).
+
+\paragraph{The class has more than one member.} A single capacity-bound task
+leaves open whether NIAH-MK3 names a class or an isolated construction, so we
+tested the boundary on four further RULER tasks chosen by mechanism rather
+than outcome: a second near-tie retrieval task predicted capacity-bound, a
+real-hard-negative task predicted dilution-prone despite carrying the most
+distractors in the suite, a distractor-free single-needle control predicted
+dilution-prone, and a code-completion task needing ten exact low-redundancy
+tokens predicted capacity-bound (Table~\ref{tab:capbound},
+Appendix~\ref{app:deferred}).
+
+The outcome rules out the two simplest alternative accounts. niah\_multiquery
+is capacity-bound on two of three models and borderline on the third, giving
+the class a confirmed second member. qa\_2, niah\_single\_1, and cwe are all
+dilution-prone, which defeats both a distractor-count and an
+exact-output-length account: qa\_2 carries the most distractors of any task
+tested yet sits comfortably on the dilution-prone side, and cwe requires ten
+exact low-redundancy tokens yet closes the gate on none of the $300$ inputs
+across the three models. What separates the classes is whether the distractors
+are near-tie surface-form variants of the answer, not their count or the
+exact-token demand. The single-model exception, niah\_single\_1 opening on
+$87\%$ of Qwen2.5-3B inputs against $0\%$ on the other two, tracks a scale
+shift in $D$ rather than a mechanism failure: task ordering is preserved
+across models (Spearman $\rho = 0.98$) but absolute scale compresses by
+$2.4\times$ on the larger model, which the $z$-score calibration of
+Section~\ref{subsec:calibration} corrects.
+
+RULER is constructed, so a partition found only there would not license a
+deployment claim. On three LongBench subtasks~\citep{arxiv230814508} with
+Qwen2.5-14B the gate calls all three correctly \emph{a priori} from $D$ alone,
+with no labels and no task identity (Table~\ref{tab:realistic-workload}). lcc
+code completion~\citep{liu2024repobench} is genuinely capacity-bound: plain
+SnapKV destroys $64\%$ of the answers the full cache gets right ($0.292 \to
+0.135$ at $16\times$) while recovering almost none ($\rho = 0.031$), the
+signature previously seen only on synthetic NIAH-MK3. Its mean drop $D =
+0.054$ sits below $\tau$, the gate closes on $75\%$ of inputs, and accuracy
+improves by $+0.146$. repobench-p is mixed and milder ($+0.049$), while multi-
+hop hotpotqa~\citep{hotpotqa} is evict-robust, the gate opening on $86\%$ of
+inputs and gaining nothing ($+0.000$): where eviction is safe the gate stays
+out of the way. These subtasks are also our one estimate of how much capacity-
+bound traffic a realistic workload carries.
+
+\paragraph{Three controls.} A distractor sweep over the RULER NIAH-MultiKey family confirms the dilution
+mechanism of \citet{arxiv260509649}, mean $D$ shrinking monotonically as near-tie distractors accumulate (Table~\ref{tab:distractor}). The partition is
+unchanged under the heavier $10\%$ prefix-and-suffix protection of
+\citet{arxiv260518053}, and uniform-random scoring destroys accuracy at every
+budget, ruling out a generic regularization explanation
+(Appendix~\ref{app:random}).
+
+\section{The gating method: \method}
+\label{sec:method}
+
+Measured outcomes define the partition, but a deployed system cannot observe
+them and needs a quantity computable before decoding. This section defines
+that quantity, shows why it is the one to use, and states the algorithm it
+drives.
+
+\subsection{The head-agreement drop}
+\label{subsec:signal}
+
+Take the prefill attention tensor $[L, H, T, T]$ for $L$ layers, $H$ heads and
+prompt length $T$. Project onto the last $w = 32$ rows, the observation
+queries, and average for a per-(layer, head, key) attention vector. For each
+layer and head pair take the Jaccard similarity of the two heads' top-$k$ key
+sets ($k = 32$), averaged over pairs, giving per-layer agreement $a_\ell$.
+Binning the $L$ layers into thirds, with $a_{\text{early}}$, $a_{\text{late}}$
+the mean agreement in the first and last bins,
+\begin{equation}
+\label{eq:D}
+D := a_{\text{early}} - a_{\text{late}}.
+\end{equation}
+$D$ is one scalar per input costing $O(L H^2 k)$, or $17$ms on Qwen2.5-1.5B
+and $89$ms on Mistral-7B at 4K. It is not free even when the base evictor
+already scores by attention, since that scoring uses head-\emph{averaged}
+attention whereas $D$ needs the per-head pattern, which requires materializing
+attention that fused FlashAttention~\citep{flash-attention} does not produce.
+This is the method's principal cost, treated in Section~\ref{sec:limitations}.
+
+That cost is justified only if no cheaper statistic does the same job, so we
+ran a same-inputs ablation against five alternatives from the same prefill
+pass: mean attention entropy, top-$32$ attention mass share, max single-
+position share, key-norm dispersion, and an early-minus-late entropy drop. $D$
+is not merely the best but the only one separating the partition at all, its
+NIAH-MK3 mean falling strictly below all four dilution-prone task means with
+per-input AUC $1.000$ on the selecting cell, while every alternative fails
+task-level separation and tops out at $0.805$. The dissection shows why: raw
+attention entropy is at chance ($0.508$), its early-versus-late contrast
+reaches $0.805$, and replacing entropy with head \emph{agreement} makes the
+separation exact, so both the layer contrast and the agreement measure are
+load-bearing (Table~\ref{tab:signal-ablation}). On Qwen2.5-1.5B at 4K the per-
+task means separate cleanly, NIAH-MK3 at $D = 0.040$ below $\tau = 0.07$ while
+the dilution-prone tasks run from FWE at $0.098$ to QA\_1 at $0.218$
+(Figure~\ref{fig:phenomenon}).
+
+An AUC of $1.000$ on the selecting cell is the number to trust least, so we
+repeated the ablation on three cells that played no part in that selection.
+$D$ remains the only one of the six separating tasks anywhere, on two of the
+three held-out cells, but the number does not survive: held out, per-input AUC
+is $0.899$, $0.978$, and $0.741$. The weak cell is Llama-3.1-8B, where
+niah\_multivalue sits below NIAH-MK3, a limit Section~\ref{sec:limitations}
+treats as real.
+
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.56\linewidth]{figs/head_agreement_phenomenon.pdf}
+  \caption{$D$ separates the two task classes (Qwen2.5-1.5B, RULER 4K,
+  $N = 50$ per task; dots are inputs, bars per-task means). NIAH-MK3 sits below
+  $\tau = 0.07$ and the dilution-prone tasks above it. The near-tie MK1/MK2
+  tasks fall on the boundary, tracking the distractor gradient
+  (App.~\ref{app:deferred}).}
+  \label{fig:phenomenon}
+\end{figure}
+
+\subsection{Algorithm}
+\label{subsec:algo}
+
+With the signal validated, the policy is one conditional. Given a prompt $x$,
+budget $b \in (0, 1]$, sink-and-recency protection $(n_{\text{sink}}, w)$
+preserving the first $n_{\text{sink}}$ and last $w$ positions, and threshold
+$\tau$,
+\begin{equation}
+\boxed{\
+\method(x;\, \text{base}, b, \tau) =
+\begin{cases}
+\text{base.evict}(\text{cache}, b) & \text{if } D(\text{cache}.\text{attentions}) \ge \tau \\
+\text{cache} & \text{otherwise}
+\end{cases}\
+}
+\end{equation}
+where prefill produces \texttt{cache} with its attentions, from which $D$
+follows by Eq.~\eqref{eq:D}. The gate fires once per input at prefill, before
+any decode step, with no backward pass, no training, and no per-token
+decision. \method never observes correctness, making it label-free in an
+accuracy sense.
+
+The asymmetry between branches determines how the method should be read.
+Closing the gate costs memory but not accuracy, since the full cache is what
+the unevicted model would have used, while opening it delegates entirely to
+the base evictor. \method inherits that behavior where it opens and adds a
+floor where it closes, so the evaluation measures harm prevented rather than
+accuracy gained.
+
+\subsection{Calibrating the threshold}
+\label{subsec:calibration}\label{sec:recipe}
+
+The single free parameter is $\tau$, and how it is set determines whether the
+method transfers. We recommend calibrating $\tau$ by standardizing $D$ per model over an
+unlabeled $\sim 100$-input pilot from the serving distribution. This $z$-score
+transformation transfers one global threshold zero-shot to every held-out
+family we test, the Llama-architecture models (Yi-1.5-9B, Llama-3.1-8B) and
+Qwen3-4B~\citep{Yi_tc,llama_tc,qwen_tc}. It needs no task labels and is the
+only variant that transfers uniformly.
+
+The fixed $\tau = 0.07$ behind every headline number is a within-family
+convenience, not a generalizable constant. It mis-classifies Qwen2.5-3B at
+16K, where layer-bin drops compress at long context, and fails outright on
+Qwen3, whose drops sit at a different scale ($\mu = 0.034$, $\sigma = 0.017$)
+placing $\tau = 0.07$ at $z = +2.0$ so the gate essentially never fires. We
+report it uniformly so no cell is tuned, not because it generalizes. A sweep
+on Qwen2.5-1.5B shows a plateau over $\tau \in [0.055, 0.10]$ within which
+$\Delta$ varies by under $1$pp and false-positive and false-negative rates
+stay at or below $9\%$, so the deployed value is not a knife-edge
+(Figure~\ref{fig:tau-sensitivity}).
+
+\paragraph{What the gate costs a deployment.} The gate-open rate
+$p_{\text{open}}$ is a property of the workload rather than the method, so
+realized compression is not a constant of \method and savings are bounded by
+$1 - p_{\text{open}}$. Two consequences matter in deployment. Capacity
+planning drifts as traffic shifts toward low-$D$ inputs, and because $D$ falls
+as near-tie distractors accumulate, an adversary controlling prompt content
+can force the fallback and turn a memory attack into a denial-of-capacity
+attack. Batching compounds this, since a batch provisioned for its largest
+resident cache realizes the \emph{minimum} compression over its sequences: at
+$p_{\text{open}} = 0.75$ mean compression falls from $2.91\times$ at batch $1$
+to $1.00\times$ by batch $16$. Both effects, their mitigations, and the per-model numbers are in Appendix~\ref{app:deferred}.
+
+\section{Experiments}
+\label{sec:experiments}
+
+Models, contexts, eviction policies, and protection match
+Section~\ref{sec:partition}. The matrix uses RULER 4K with the four-task mixed
+suite ($N = 100$ each); the scaling table uses 4K and 16K. Gating deltas carry
+$95\%$ cluster-bootstrap intervals, recovery rates Wilson intervals. We ask in
+turn whether the gate prevents the harm it targets (\ref{subsec:harm}),
+whether it depends on the base evictor (\ref{subsec:matrix}), whether it pays
+for itself at matched memory (\ref{subsec:pareto}), and whether the capacity
+limit belongs to the input or to our scorer (\ref{subsec:scorer-indep}).
+
+\subsection{Does the gate prevent the failure it targets?}
+\label{subsec:harm}
+
+The motivating claim is about harm rather than average accuracy, so we measure
+it directly: $\Pr_x[A(b, x) < A_{\mathrm{plain}}(1, x)]$ at fixed $b$, the
+fraction of inputs on which a deployed system loses an answer the full cache
+would have produced, for both arms at matched nominal budget over seven SnapKV
+cells (Table~\ref{tab:harm-rate}, Appendix~\ref{app:deferred}).
+
+The capacity-bound task carries the result. At $16\times$ compression plain
+eviction destroys $75.0\%$ of the answers the full cache gets right on NIAH-MK3 while gating destroys $2.6\%$, a $29\times$ reduction holding across
+budgets ($0.024$ against $0.724$ at $b = 0.25$). The other three tasks matter
+equally. On QA\_1 the arms are numerically identical at every budget ($0.110$
+against $0.110$ at $b = 0.0625$), the gate opening on every input so the
+systems coincide. On VT at the most aggressive budget both are harmed at
+nearly $70\%$ ($0.684$ against $0.694$), so the gate neither helps nor hurts
+where the base evictor fails on inputs it correctly calls safe. Only FWE shows
+partial protection ($0.236$ against $0.414$). The gate is not a general
+accuracy improvement but a floor under one failure mode, inert elsewhere by
+design.
+
+The cleanest single cell makes the same point without aggregation. On Mistral
+4K NIAH-MK3, plain SnapKV collapses from $0.99$ to $0.00$ at $b = 0.0625$
+while gated SnapKV holds $0.89$ at every budget, closing on $90/100$ inputs
+with $10/100$ false positives where it opens and eviction destroys the needle
+(Figure~\ref{fig:mistral-showcase}).
+
+\subsection{Does the result depend on the base evictor?}
+\label{subsec:matrix}
+
+A gate working with only one scoring rule would be a property of that rule. We
+ran a $4 \times 4$ matrix of four base evictors (SnapKV, H2O, StreamingLLM,
+PyramidKV) and four models under the same gate and $\tau$, with no per-method
+tuning (Table~\ref{tab:matrix}, Appendix~\ref{app:deferred}). All sixteen
+cells are positive, grand mean $+22.9$pp, every $95\%$ interval above zero
+(smallest lower bound $+9.3$pp), establishing transfer across base evictors.
+
+That grand mean is not the number to quote. Dropping NIAH-MK3 takes it to
+$+4.5$pp, and in eight of sixteen cells the non-MK3 $\Delta$ is exactly
+$0.000$, the gate opening on every non-MK3 input so the arms execute
+identically. The matrix is close to one measurement, $\Delta_{\mathrm{MK3}} =
++0.780$, replicated sixteen times and diluted by the suite's one-quarter MK3
+share. Read as a claim about a suite it misleads; read as a claim about
+transfer it is what it should be, since a whether-to-evict gate ought to do
+nothing when eviction is safe, and the zeros are an identity rather than a
+null result. Per-task accuracy is additive under reweighting, so
+for a workload with capacity-bound share $f$ the headline is $\Delta(f) = f
+\Delta_{\mathrm{MK3}} + (1-f) \Delta_{\mathrm{rest}}$, near-linear through the
+origin, with $\Delta(0) = +0.045$ and $\Delta(0.25) = +0.229$.
+
+Three caveats bound the matrix. The plain arm uses a shared single keep-mask
+and a clean per-head SnapKV collapses less sharply at $2\times$ ($0.32$ not
+$0.14$ on MK3), so these deltas should be read at $\ge 4\times$, where the
+collapse is scorer-independent; restricting the grid to $\{0.125, 0.25\}$
+raises the grand mean by only $+1.7$pp. A clean per-head Ada-KV plain arm
+costs $1.1$pp ($+25.8$ to $+24.7$pp at $b \le 0.25$), a wash rather than a
+collapse, with one model-specific exception on Mistral-7B that a Llama-3.1-8B
+control rules out as a grouped-query-geometry artifact
+(Appendix~\ref{app:deferred}). The Qwen2.5-14B H2O column is separately not
+independent, since that run used two-pass prefill under which H2O's all-query
+score reduces exactly to SnapKV's, leaving fifteen independent cells.
+
+Beyond the matrix, SnapKV runs on Yi-1.5-9B ($\Delta = +39.0$pp) and
+Llama-3.1-8B ($+10.9$pp) extend the mechanism to two more architectures, and a
+32B-scale run confirms the predictor scales while illustrating the saturation
+arm, that model being near-saturated at 4K so the gate's value is protection
+rather than recovery. Comparing best plain against best gated evictor per
+model checks the strongest baseline
+(Tables~\ref{tab:crossarch},~\ref{tab:bestplain}). Composition also extends
+outside the attention-score family, lifting a fifth, geometry-based
+(ManifoldKV-style) base evictor by $\Delta = +16.2$pp. That variant uses a
+single shared mask forced by our uniform-cache harness and does not reproduce
+ManifoldKV's reported multi-key rescue, so it tests composition rather than
+standing in for the faithful implementation of
+Section~\ref{subsec:scorer-indep}.
+
+\subsection{Does the gate pay for itself at matched memory?}
+\label{subsec:pareto}
+
+A closed gate holds the full cache, so matched-\emph{nominal}-budget
+comparison flatters the gated arm; the honest comparison is at matched
+\emph{achieved} kept-KV (Figure~\ref{fig:pareto-gated},
+Appendix~\ref{app:deferred}). Gating beats plain SnapKV by $3$ to $19$pp once
+the target retains more than about a third of the cache, and loses below that,
+where the full-KV fallback floors compression near $3\times$. \method is a moderate-compression safeguard rather than an aggressive-regime
+compressor, recovering $69\%$ of the headroom available to a per-input oracle.
+What a deployment compresses is set by the gate-open fraction rather than the
+nominal budget, since $1 - p_{\text{open}}$ of the cache stays resident
+whatever $b$ is.
+
+Whether per-input resolution earns its cost is testable against a policy
+knowing each input's task label. Against such an oracle \method reaches
+$+22.9$pp against $+20.1$pp, matching it exactly in eight of sixteen cells, so
+most of the matrix $\Delta$ is a task-level effect a cheating baseline could
+reproduce. The per-input claim rests on the cells where \method exceeds it,
+most clearly Llama-3.1-8B NIAH-MK3, where the task mean $D = 0.071$ sits
+\emph{above} $\tau$: any policy keyed on that mean opens everywhere and gains
+nothing, while per-input dispersion closes the gate on $\approx 44\%$ of
+inputs and recovers $+43.5$pp.
+
+This matches how $D$ orders tasks: it ranks NIAH-MK3 smallest in every Qwen
+and Mistral cell, and on the 4K/16K cells $\rho / (1 - A_{\mathrm{full}})$
+fits a through-origin slope of $0.34$ on dilution-prone tasks while staying
+$\le 0.02$ on NIAH-MK3 regardless of headroom.
+
+
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.62\linewidth]{figs/pareto_gated.pdf}
+  \caption{Accuracy vs.\ \emph{achieved} kept-KV fraction on the mixed 4K
+  suite, SnapKV. The gate falls back to the full cache when it closes, so
+  gated points sit at larger kept-KV than their nominal budget and the honest
+  comparison is at matched achieved cache. Above a target of $\approx 1/3$
+  kept-KV (Qwen3B: $0.57$) the gated curve is the Pareto frontier by up to
+  $+19$pp; at the leftmost gated point plain eviction dominates it. Gated
+  results use the post-hoc $\tau = 0.07$ reconstruction
+  (Appendix~\ref{app:repro}).}
+  \label{fig:pareto-gated}
+\end{figure}
+
+\subsection{Is the capacity limit a property of the input or of our scorer?}
+\label{subsec:scorer-indep}
+
+A better scoring rule might make the capacity-bound class evictable and render
+the gate unnecessary. The framing depends on ruling this out, so we tested two
+scorers from outside the attention-score family: a faithful
+ManifoldKV~\citep{arxiv260208343} implementation scoring $s_i = \|k_i -
+\mu\|_2$ against the per-(layer, kv-head) key centroid, paired with Ada-KV~\citep{arxiv240711550} per-head budget reallocation, and the attention-free
+KeyDiff~\citep{keydiff}.
+
+A negative result is interpretable only if the scorer is competent. On two-key
+NIAH the geometry scorer reproduces the multi-key advantage its authors
+report, reaching $0.72$ at $b = 0.5$ where SnapKV is at $0.16$. On three-key
+NIAH-MK3 the same scorer, in all four allocation variants, sits at or near
+$0.00$ against a full-cache $0.66$ once the budget falls below $25\%$, and
+KeyDiff does the same.
+
+The gate is built on the conclusion this licenses. On capacity-bound inputs
+the recoverable information is not present in any $25\%$ subset of the cache,
+so no scoring rule, attention-based, geometric, or attention-free, recovers
+it, and the only safe action is not to evict. The result holds at $\ge
+4\times$ compression rather than $2\times$, consistent with the caveat on
+Table~\ref{tab:matrix}.
+
+\subsection{Head-to-heads with published methods}
+\label{subsec:headtohead}\label{subsec:capkv-longbench}\label{subsec:dbtrimkv}
+
+We also wrapped published evictors the gate was not designed around. Around a
+CapKV re-implementation~\citep{arxiv260425975} on LongBench it is weakly
+positive ($+1.5$/$+8.3$pp, $N = 68$ and $24$), and around pretrained
+DBTrimKV~\citep{arxiv260509649} it lifts matched-budget accuracy by $+23.3$pp
+on RULER 4K.
+
+That second number is a memory-spending win rather than a matched-memory one.
+At $\tau = 0.07$ the gate fires on only $1.7\%$ of DBTrimKV records, so the
+wrapped system holds $\approx 14.5\times$ the cache of the plain one, and at
+matched \emph{memory} plain DBTrimKV \emph{beats} it. The rare firing is the
+Qwen3 scale mismatch of Section~\ref{subsec:calibration} in a head-to-head,
+since DBTrimKV's pretrained gates exist only for Qwen3 variants; the per-model
+$z$-scored threshold ($\tau_{\mathrm{Qwen3}} = 0.022$) restores a genuinely
+compressing gate at $43\%$ kept-KV with $\Delta = +0.235$. \method does not
+advance the frontier over a strong trained method at matched memory. Its value
+is the label-free decision to keep the full cache when eviction is unsafe.
+
+\subsection{Mechanism and scaling}
+\label{subsec:theory}\label{sec:theory}
+
+We adopt the dilution mechanism of \citet{arxiv260509649} verbatim. For a head
+reading a relevant set $\mathcal{R}$ against noise $\mathcal{N}$ with
+pre-eviction signal mass $\alpha_{\mathcal{R}}$, near-tie distractors force
+the dilution $\delta_t$ large and preferential retention reduces it, so the
+partition follows: capacity-bound tasks concentrate the signal
+($\alpha_{\mathcal{R}} \to 1$), dilution-prone tasks spread it
+($\alpha_{\mathcal{R}} \ll 1$). With the accuracy headroom $1 -
+A_{\mathrm{full}}(M, T)$ this gives
+\begin{equation}
+\label{eq:scaling}
+\rho_{\mathrm{KV}}(\mathsf{T}, M, T) \;\approx\;
+\bigl(1 - A_{\mathrm{full}}(M, T)\bigr) \cdot p_{\mathrm{recov}}\bigl(\rho_{\mathcal{R}}^2 / \gamma\bigr),
+\qquad p_{\mathrm{recov}}: [0, \infty) \to [0, 1],
+\end{equation}
+with $\rho_{\mathcal{R}}$ the retained fraction of relevant mass and $\gamma$
+the noise-retention ratio. We test only the headroom factor, holding
+$p_{\mathrm{recov}}$ fixed, so the recovery factor is a structural
+placeholder, and the surrogate motivates the predictor on the dilution-prone
+side only: on the capacity-bound side the bridge from $D$ to $\delta_t$ needs
+$\kappa \ge 10.11$ while the measured NIAH-MK3 value is $\kappa = 3.33$. Our
+claims therefore rest on the observed partition rather than the bridge (Append
+ices~\ref{app:proof-scaling},~\ref{app:sufficient},~\ref{app:sharpened}).
+
+\paragraph{A pre-registered out-of-range test at 32K.}
+\label{subsec:prereg32k}
+Every scaling result above is in-range, so we pre-registered an extrapolation
+test: fit $\rho / (1 - A_{\mathrm{full}})$ on 4K/16K, measure
+$A_{\mathrm{full}}$ at 32K (Qwen2.5-1.5B, $N = 100$), and hash the predicted
+intervals before sweeping.
+
+One of three predictions lands strictly inside its interval. VT exceeding its
+band is conservative, while NIAH-MK3 rising to $0.04$ against a $\rho \le
+0.02$ pin is an anti-conservative miss whose Wilson interval still covers
+$0.02$. A second draw replicates FWE and NIAH-MK3 but not VT, so we drop the
+claim that eviction beats full-KV on VT in mean accuracy. What survives is
+ordinal, MK3's ratio staying far below VT's at any length even as constant-ratio proportionality fails. We claim a directional relation, not a law, and
+do not extend the partition beyond 16K.
+
+\section{Limitations}
+\label{sec:limitations}
+
+Four limits bound the gate's value, stated here rather than left implicit;
+Appendix~\ref{app:deferred} adds seven narrower ones.
+
+\emph{The signal is not free.} It needs materialized prefill attention, which
+fused FlashAttention and paged-attention serving~\citep{kwon2023efficient} do
+not provide. Our two-pass mode keeps the extra pass to $O(w \cdot T)$ rather
+than $O(T^2)$, but it remains a pass a vanilla stack does not run, at
+$O(LH^2k)$ cost growing in head count. \method therefore suits deployments
+that can afford one such pass or already run one for attention-scored
+eviction. KeyDiff presses this hardest, being attention-free for exactly this
+reason, but it too falls to chance on NIAH-MK3 below $25\%$ budget
+(Section~\ref{subsec:scorer-indep}), so its cheapness does not buy safety on
+the class the signal guards.
+
+\emph{The safety property rests on a surrogate.} On a single-head
+deterministic-SNR surrogate we obtain a two-sided scaling bound, a converse
+vacuous at our $(H, L, T)$, and an approximate useful-set identification that
+fails on the capacity-bound side. These are properties of the surrogate, not
+the deployed system, so our claims rest on the empirical partition.
+
+\emph{The threshold is only partly portable.} On Yi-1.5-9B and Llama-3.1-8B
+the drop ordering transfers but $\tau = 0.07$ does not, mis-classifying
+niah\_multivalue on both and inverting the drop-versus-$\rho$ prediction on
+Yi. The $z$-scored variant repairs this from an unlabeled pilot but remains a
+calibration step, and per-input separation stays at AUC $\approx 0.80$ there,
+a gap traceable to the non-monotone depth profile on Llama.
+
+\emph{The gate is a detector, not a calibrated predictor.} It is one-sided: on
+LongBench passage\_count it closes on all inputs (mean $D = -0.013$) although
+eviction is safe there, a benign false positive costing compression rather
+than accuracy. The scorer-independence result likewise holds at $\ge 4\times$,
+not $2\times$, and multilingual tasks remain untested.
+
+\section{Conclusion}
+
+KV-cache eviction is deployed as if its cost were uniform across inputs, and
+it is not. Where the answer is spread over redundant tokens compression is
+safe; where it sits in a few near-tie tokens eviction destroys three quarters
+of the answers the full cache gets right. One label-free prefill statistic, the
+early-to-late head-agreement drop, predicts which side an input falls on
+before any token is generated. \method turns that into a collapse-avoiding safeguard: the harm rate at
+$16\times$ compression falls from $0.750$ to $0.026$ and a $99\% \to 0\%$
+collapse holds flat on Mistral-7B NIAH-MK3, across four base evictors, four
+model families, and \texttt{lcc} code completion. It costs one prefill pass
+that exposes attention, and loses at matched memory to a strong trained
+evictor.
+
+\subsection*{Reproducibility statement}
+
+Our SnapKV-family runs (the partition, the matrix, the scaling and 32K sweeps,
+and the LongBench probes) use single NVIDIA A100 80GB GPUs with PyTorch 2.11,
+Transformers 5.9, and Python 3.13, in bfloat16 with greedy (argmax) decoding,
+\texttt{max\_new\_tokens = 128}, and a fixed seed, with three input-draw
+replicates on five SnapKV cells (Appendix~\ref{app:ci}). The two published
+head-to-heads run in the baselines' own pinned environments: the DBTrimKV
+comparison uses the authors' \texttt{trimkv} environment (Transformers 4.57.1,
+PyTorch 2.8, FlashAttention 2), and the CapKV comparison is our
+re-implementation in an isolated environment, both documented with the released
+logs. Models are the public Hugging Face checkpoints of Qwen2.5-1.5B/3B/14B/32B-Instruct,
+Mistral-7B-Instruct-v0.3, Yi-1.5-9B-Chat, Llama-3.1-8B-Instruct, and
+Qwen3-4B-Instruct-2507, the last two of which carry the cross-architecture and
+DBTrimKV results respectively. Tasks come from the
+\texttt{simonjegou/ruler} port of RULER~\citep{ruler-hf,kvpress} and from
+LongBench~\citep{arxiv230814508}. Cache slicing preserves RoPE alignment via
+explicit \texttt{position\_ids}, and 16K runs use SDPA prefill with an eager
+re-forward of the $w = 32$ observation window for scoring
+(Appendix~\ref{app:repro}). Each table caption states its per-cell sample
+sizes. The gate is one thresholded scalar (Eq.~\eqref{eq:D}), so anyone can
+recompute every gated number in the paper from the released per-input logs.
+Code, sweep configurations, and raw per-input jsonl outputs will be released
+with the camera-ready.
+
+\subsection*{Ethics statement}
+
+This work studies inference-time efficiency of publicly released language
+models on public benchmarks. It involves no human subjects, no personal data,
+and no new model training. Better KV-cache eviction lowers the memory and
+energy cost of long-context inference, and we see no ethical risk specific to
+this method beyond those of the underlying models.
+
+\bibliographystyle{iclr2027_conference}
+\bibliography{main}
+
+\input{appendix.tex}
+
+\end{document}

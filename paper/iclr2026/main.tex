@@ -158,7 +158,13 @@ whether-to-evict gate, together with the recovery-fraction scaling relation. We
 also do not claim a new attention statistic; we repurpose a known
 head-agreement primitive (early-minus-late layers) as the gating signal.
 
-\section{Related work}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figs/PAGE_setup.pdf}
+  \caption{The head-agreement drop $D$ separates the two task classes. The gate closes below the line (keep the full cache) and opens above it (run the base evictor).}
+  \label{fig:PAGE_setup}
+\end{figure}
+
 \label{sec:related}
 
 The KV-eviction methods nearest to ours motivate it but differ in kind.

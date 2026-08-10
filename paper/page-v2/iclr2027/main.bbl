@@ -1,0 +1,611 @@
+\begin{thebibliography}{55}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Ahn et~al.(2026)Ahn, Seong, Kedia, Kim, Jang, Lee, and
+  Jeon]{arxiv260310899}
+Jinwoo Ahn, Ingyu Seong, Akhil Kedia, Junhan Kim, Hyemi Jang, Kangwook Lee, and
+  Yongkweon Jeon.
+\newblock Lookaheadkv: Fast and accurate kv cache eviction by glimpsing into
+  the future without generation, 2026.
+\newblock URL \url{https://arxiv.org/abs/2603.10899}.
+
+\bibitem[AI et~al.(2025)AI, :, Young, Chen, Li, Huang, Zhang, Zhang, Wang, Li,
+  Zhu, Chen, Chang, Yu, Liu, Liu, Yue, Yang, Yang, Xie, Huang, Hu, Ren, Niu,
+  Nie, Li, Xu, Liu, Wang, Cai, Gu, Liu, and Dai]{Yi_tc}
+01. AI, :, Alex Young, Bei Chen, Chao Li, Chengen Huang, Ge~Zhang, Guanwei
+  Zhang, Guoyin Wang, Heng Li, Jiangcheng Zhu, Jianqun Chen, Jing Chang,
+  Kaidong Yu, Peng Liu, Qiang Liu, Shawn Yue, Senbin Yang, Shiming Yang, Wen
+  Xie, Wenhao Huang, Xiaohui Hu, Xiaoyi Ren, Xinyao Niu, Pengcheng Nie, Yanpeng
+  Li, Yuchi Xu, Yudong Liu, Yue Wang, Yuxuan Cai, Zhenyu Gu, Zhiyuan Liu, and
+  Zonghong Dai.
+\newblock Yi: Open foundation models by 01.ai, 2025.
+\newblock URL \url{https://arxiv.org/abs/2403.04652}.
+
+\bibitem[Ananthanarayanan et~al.(2026)Ananthanarayanan, Sengupta, and
+  Chakraborty]{arxiv260301426}
+Samhruth Ananthanarayanan, Ayan Sengupta, and Tanmoy Chakraborty.
+\newblock Understanding the physics of key-value cache compression for llms
+  through attention dynamics, 2026.
+\newblock URL \url{https://arxiv.org/abs/2603.01426}.
+
+\bibitem[Bai et~al.(2024)Bai, Lv, Zhang, Lyu, Tang, Huang, Du, Liu, Zeng, Hou,
+  Dong, Tang, and Li]{arxiv230814508}
+Yushi Bai, Xin Lv, Jiajie Zhang, Hongchang Lyu, Jiankai Tang, Zhidian Huang,
+  Zhengxiao Du, Xiao Liu, Aohan Zeng, Lei Hou, Yuxiao Dong, Jie Tang, and
+  Juanzi Li.
+\newblock Longbench: A bilingual, multitask benchmark for long context
+  understanding, 2024.
+\newblock URL \url{https://arxiv.org/abs/2308.14508}.
+
+\bibitem[Bui et~al.(2026)Bui, Nguyen, Cohan, and Ying]{arxiv260509649}
+Ngoc Bui, Hieu~Trung Nguyen, Arman Cohan, and Rex Ying.
+\newblock Make each token count: Towards improving long-context performance
+  with kv cache eviction, 2026.
+\newblock URL \url{https://arxiv.org/abs/2605.09649}.
+
+\bibitem[Cai et~al.(2025)Cai, Zhang, Gao, Liu, Li, Liu, Lu, Xiong, Dong, Hu,
+  and Xiao]{arxiv240602069}
+Zefan Cai, Yichi Zhang, Bofei Gao, Yuliang Liu, Yucheng Li, Tianyu Liu, Keming
+  Lu, Wayne Xiong, Yue Dong, Junjie Hu, and Wen Xiao.
+\newblock Pyramidkv: Dynamic kv cache compression based on pyramidal
+  information funneling, 2025.
+\newblock URL \url{https://arxiv.org/abs/2406.02069}.
+
+\bibitem[Chang et~al.(2026)Chang, Fu, Fu, Yang, Thomason, and
+  Jia]{arxiv260603928}
+Ting-Yun Chang, Harvey~Yiyun Fu, Deqing Fu, Chenghao Yang, Jesse Thomason, and
+  Robin Jia.
+\newblock Value-aware stochastic kv cache eviction for reasoning models, 2026.
+\newblock URL \url{https://arxiv.org/abs/2606.03928}.
+
+\bibitem[Chen et~al.(2026)Chen, Geh, Grover, den Broeck, and
+  Israel]{arxiv251000231}
+Alex Chen, Renato Geh, Aditya Grover, Guy~Van den Broeck, and Daniel Israel.
+\newblock The pitfalls of kv cache compression, 2026.
+\newblock URL \url{https://arxiv.org/abs/2510.00231}.
+
+\bibitem[Dao et~al.(2022)Dao, Fu, Ermon, Rudra, and R\'{e}]{flash-attention}
+Tri Dao, Daniel~Y. Fu, Stefano Ermon, Atri Rudra, and Christopher R\'{e}.
+\newblock Flashattention: fast and memory-efficient exact attention with
+  io-awareness.
+\newblock In \emph{Proceedings of the 36th International Conference on Neural
+  Information Processing Systems}, NIPS '22, Red Hook, NY, USA, 2022. Curran
+  Associates Inc.
+\newblock ISBN 9781713871088.
+
+\bibitem[Datta et~al.(2026)Datta, Neeraj, Paudel, Sharma, and
+  Mukherjee]{arxiv260208343}
+Debajyoti Datta, Trishala Neeraj, Bibek Paudel, Vyom Sharma, and Subhabrata
+  Mukherjee.
+\newblock Manifoldkv: Training-free kv cache compression via euclidean outlier
+  detection, 2026.
+\newblock URL \url{https://arxiv.org/abs/2602.08343}.
+
+\bibitem[Dong et~al.(2026)Dong, Liu, Li, Chen, Peng, Wang, and
+  Zhao]{arxiv260203203}
+Zican Dong, Peiyu Liu, Junyi Li, Zhipeng Chen, Han Peng, Shuo Wang, and
+  Wayne~Xin Zhao.
+\newblock Foresightkv: Optimizing kv cache eviction for reasoning models by
+  learning long-term contribution, 2026.
+\newblock URL \url{https://arxiv.org/abs/2602.03203}.
+
+\bibitem[Feng et~al.(2025{\natexlab{a}})Feng, Liu, Li, Chen, Shen, Du, Gu,
+  Zhang, Huang, Cheng, Yao, Zhang, Ananthanarayanan, and Jiang]{arxiv251214946}
+Shaoting Feng, Yuhan Liu, Hanchen Li, Xiaokun Chen, Samuel Shen, Kuntai Du,
+  Zhuohan Gu, Rui Zhang, Yuyang Huang, Yihua Cheng, Jiayi Yao, Qizheng Zhang,
+  Ganesh Ananthanarayanan, and Junchen Jiang.
+\newblock Evicpress: Joint kv-cache compression and eviction for efficient llm
+  serving, 2025{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2512.14946}.
+
+\bibitem[Feng et~al.(2025{\natexlab{b}})Feng, Lv, Cao, Xie, and
+  Zhou]{arxiv240711550}
+Yuan Feng, Junlin Lv, Yukun Cao, Xike Xie, and S.~Kevin Zhou.
+\newblock Ada-kv: Optimizing kv cache eviction by adaptive budget allocation
+  for efficient llm inference, 2025{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2407.11550}.
+
+\bibitem[Feng et~al.(2026{\natexlab{a}})Feng, Guo, Lv, Zhou, and
+  Xie]{defensive-kv-iclr2026}
+Yuan Feng, Haoyu Guo, Junlin Lv, S~Kevin Zhou, and Xike Xie.
+\newblock Defensive{KV}: Taming the fragility of {KV} cache eviction in {LLM}
+  inference.
+\newblock In \emph{The Fourteenth International Conference on Learning
+  Representations}, 2026{\natexlab{a}}.
+\newblock URL \url{https://openreview.net/forum?id=nJgS06sX3O}.
+
+\bibitem[Feng et~al.(2026{\natexlab{b}})Feng, Lv, Guo, Cao, Zhou, and
+  Xie]{arxiv250203805}
+Yuan Feng, Junlin Lv, Haoyu Guo, Yukun Cao, S~Kevin Zhou, and Xike Xie.
+\newblock Criticalkv: Optimizing kv cache eviction from an output perturbation
+  perspective, 2026{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2502.03805}.
+
+\bibitem[Fu et~al.(2025)Fu, Min, Zhang, Yan, Dai, Ouyang, and
+  Wang]{arxiv251003215}
+Tianyu Fu, Zihan Min, Hanling Zhang, Jichao Yan, Guohao Dai, Wanli Ouyang, and
+  Yu~Wang.
+\newblock Cache-to-cache: Direct semantic communication between large language
+  models, 2025.
+\newblock URL \url{https://arxiv.org/abs/2510.03215}.
+
+\bibitem[Garcia(2026)]{arxiv260518053}
+Gabriel Garcia.
+\newblock Protection is (nearly) all you need: Structural protection dominates
+  scoring in globally capped kv eviction, 2026.
+\newblock URL \url{https://arxiv.org/abs/2605.18053}.
+
+\bibitem[Grattafiori et~al.(2024)Grattafiori, Dubey, Jauhri, Pandey, Kadian,
+  Al-Dahle, Letman, Mathur, Schelten, Vaughan, Yang, Fan, Goyal, Hartshorn,
+  Yang, Mitra, Sravankumar, Korenev, Hinsvark, Rao, Zhang, Rodriguez,
+  Gregerson, Spataru, Roziere, Biron, Tang, Chern, Caucheteux, Nayak, Bi,
+  Marra, McConnell, Keller, Touret, Wu, Wong, Ferrer, Nikolaidis, Allonsius,
+  Song, Pintz, Livshits, Wyatt, Esiobu, Choudhary, Mahajan, Garcia-Olano,
+  Perino, Hupkes, Lakomkin, AlBadawy, Lobanova, Dinan, Smith, Radenovic,
+  Guzmán, Zhang, Synnaeve, Lee, Anderson, Thattai, Nail, Mialon, Pang,
+  Cucurell, Nguyen, Korevaar, Xu, Touvron, Zarov, Ibarra, Kloumann, Misra,
+  Evtimov, Zhang, Copet, Lee, Geffert, Vranes, Park, Mahadeokar, Shah, van~der
+  Linde, Billock, Hong, Lee, Fu, Chi, Huang, Liu, Wang, Yu, Bitton, Spisak,
+  Park, Rocca, Johnstun, Saxe, Jia, Alwala, Prasad, Upasani, Plawiak, Li,
+  Heafield, Stone, El-Arini, Iyer, Malik, Chiu, Bhalla, Lakhotia,
+  Rantala-Yeary, van~der Maaten, Chen, Tan, Jenkins, Martin, Madaan, Malo,
+  Blecher, Landzaat, de~Oliveira, Muzzi, Pasupuleti, Singh, Paluri, Kardas,
+  Tsimpoukelli, Oldham, Rita, Pavlova, Kambadur, Lewis, Si, Singh, Hassan,
+  Goyal, Torabi, Bashlykov, Bogoychev, Chatterji, Zhang, Duchenne, Çelebi,
+  Alrassy, Zhang, Li, Vasic, Weng, Bhargava, Dubal, Krishnan, Koura, Xu, He,
+  Dong, Srinivasan, Ganapathy, Calderer, Cabral, Stojnic, Raileanu, Maheswari,
+  Girdhar, Patel, Sauvestre, Polidoro, Sumbaly, Taylor, Silva, Hou, Wang,
+  Hosseini, Chennabasappa, Singh, Bell, Kim, Edunov, Nie, Narang, Raparthy,
+  Shen, Wan, Bhosale, Zhang, Vandenhende, Batra, Whitman, Sootla, Collot,
+  Gururangan, Borodinsky, Herman, Fowler, Sheasha, Georgiou, Scialom,
+  Speckbacher, Mihaylov, Xiao, Karn, Goswami, Gupta, Ramanathan, Kerkez,
+  Gonguet, Do, Vogeti, Albiero, Petrovic, Chu, Xiong, Fu, Meers, Martinet,
+  Wang, Wang, Tan, Xia, Xie, Jia, Wang, Goldschlag, Gaur, Babaei, Wen, Song,
+  Zhang, Li, Mao, Coudert, Yan, Chen, Papakipos, Singh, Srivastava, Jain,
+  Kelsey, Shajnfeld, Gangidi, Victoria, Goldstand, Menon, Sharma, Boesenberg,
+  Baevski, Feinstein, Kallet, Sangani, Teo, Yunus, Lupu, Alvarado, Caples, Gu,
+  Ho, Poulton, Ryan, Ramchandani, Dong, Franco, Goyal, Saraf, Chowdhury,
+  Gabriel, Bharambe, Eisenman, Yazdan, James, Maurer, Leonhardi, Huang, Loyd,
+  Paola, Paranjape, Liu, Wu, Ni, Hancock, Wasti, Spence, Stojkovic, Gamido,
+  Montalvo, Parker, Burton, Mejia, Liu, Wang, Kim, Zhou, Hu, Chu, Cai, Tindal,
+  Feichtenhofer, Gao, Civin, Beaty, Kreymer, Li, Adkins, Xu, Testuggine, David,
+  Parikh, Liskovich, Foss, Wang, Le, Holland, Dowling, Jamil, Montgomery,
+  Presani, Hahn, Wood, Le, Brinkman, Arcaute, Dunbar, Smothers, Sun, Kreuk,
+  Tian, Kokkinos, Ozgenel, Caggioni, Kanayet, Seide, Florez, Schwarz, Badeer,
+  Swee, Halpern, Herman, Sizov, Guangyi, Zhang, Lakshminarayanan, Inan,
+  Shojanazeri, Zou, Wang, Zha, Habeeb, Rudolph, Suk, Aspegren, Goldman, Zhan,
+  Damlaj, Molybog, Tufanov, Leontiadis, Veliche, Gat, Weissman, Geboski, Kohli,
+  Lam, Asher, Gaya, Marcus, Tang, Chan, Zhen, Reizenstein, Teboul, Zhong, Jin,
+  Yang, Cummings, Carvill, Shepard, McPhie, Torres, Ginsburg, Wang, Wu, U,
+  Saxena, Khandelwal, Zand, Matosich, Veeraraghavan, Michelena, Li, Jagadeesh,
+  Huang, Chawla, Huang, Chen, Garg, A, Silva, Bell, Zhang, Guo, Yu, Moshkovich,
+  Wehrstedt, Khabsa, Avalani, Bhatt, Mankus, Hasson, Lennie, Reso, Groshev,
+  Naumov, Lathi, Keneally, Liu, Seltzer, Valko, Restrepo, Patel, Vyatskov,
+  Samvelyan, Clark, Macey, Wang, Hermoso, Metanat, Rastegari, Bansal,
+  Santhanam, Parks, White, Bawa, Singhal, Egebo, Usunier, Mehta, Laptev, Dong,
+  Cheng, Chernoguz, Hart, Salpekar, Kalinli, Kent, Parekh, Saab, Balaji,
+  Rittner, Bontrager, Roux, Dollar, Zvyagina, Ratanchandani, Yuvraj, Liang,
+  Alao, Rodriguez, Ayub, Murthy, Nayani, Mitra, Parthasarathy, Li, Hogan,
+  Battey, Wang, Howes, Rinott, Mehta, Siby, Bondu, Datta, Chugh, Hunt, Dhillon,
+  Sidorov, Pan, Mahajan, Verma, Yamamoto, Ramaswamy, Lindsay, Lindsay, Feng,
+  Lin, Zha, Patil, Shankar, Zhang, Zhang, Wang, Agarwal, Sajuyigbe, Chintala,
+  Max, Chen, Kehoe, Satterfield, Govindaprasad, Gupta, Deng, Cho, Virk,
+  Subramanian, Choudhury, Goldman, Remez, Glaser, Best, Koehler, Robinson, Li,
+  Zhang, Matthews, Chou, Shaked, Vontimitta, Ajayi, Montanez, Mohan, Kumar,
+  Mangla, Ionescu, Poenaru, Mihailescu, Ivanov, Li, Wang, Jiang, Bouaziz,
+  Constable, Tang, Wu, Wang, Wu, Gao, Kleinman, Chen, Hu, Jia, Qi, Li, Zhang,
+  Zhang, Adi, Nam, Yu, Wang, Zhao, Hao, Qian, Li, He, Rait, DeVito, Rosnbrick,
+  Wen, Yang, Zhao, and Ma]{llama_tc}
+Aaron Grattafiori, Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek
+  Kadian, Ahmad Al-Dahle, Aiesha Letman, Akhil Mathur, Alan Schelten, Alex
+  Vaughan, Amy Yang, Angela Fan, Anirudh Goyal, Anthony Hartshorn, Aobo Yang,
+  Archi Mitra, Archie Sravankumar, Artem Korenev, Arthur Hinsvark, Arun Rao,
+  Aston Zhang, Aurelien Rodriguez, Austen Gregerson, Ava Spataru, Baptiste
+  Roziere, Bethany Biron, Binh Tang, Bobbie Chern, Charlotte Caucheteux, Chaya
+  Nayak, Chloe Bi, Chris Marra, Chris McConnell, Christian Keller, Christophe
+  Touret, Chunyang Wu, Corinne Wong, Cristian~Canton Ferrer, Cyrus Nikolaidis,
+  Damien Allonsius, Daniel Song, Danielle Pintz, Danny Livshits, Danny Wyatt,
+  David Esiobu, Dhruv Choudhary, Dhruv Mahajan, Diego Garcia-Olano, Diego
+  Perino, Dieuwke Hupkes, Egor Lakomkin, Ehab AlBadawy, Elina Lobanova, Emily
+  Dinan, Eric~Michael Smith, Filip Radenovic, Francisco Guzmán, Frank Zhang,
+  Gabriel Synnaeve, Gabrielle Lee, Georgia~Lewis Anderson, Govind Thattai,
+  Graeme Nail, Gregoire Mialon, Guan Pang, Guillem Cucurell, Hailey Nguyen,
+  Hannah Korevaar, Hu~Xu, Hugo Touvron, Iliyan Zarov, Imanol~Arrieta Ibarra,
+  Isabel Kloumann, Ishan Misra, Ivan Evtimov, Jack Zhang, Jade Copet, Jaewon
+  Lee, Jan Geffert, Jana Vranes, Jason Park, Jay Mahadeokar, Jeet Shah, Jelmer
+  van~der Linde, Jennifer Billock, Jenny Hong, Jenya Lee, Jeremy Fu, Jianfeng
+  Chi, Jianyu Huang, Jiawen Liu, Jie Wang, Jiecao Yu, Joanna Bitton, Joe
+  Spisak, Jongsoo Park, Joseph Rocca, Joshua Johnstun, Joshua Saxe, Junteng
+  Jia, Kalyan~Vasuden Alwala, Karthik Prasad, Kartikeya Upasani, Kate Plawiak,
+  Ke~Li, Kenneth Heafield, Kevin Stone, Khalid El-Arini, Krithika Iyer, Kshitiz
+  Malik, Kuenley Chiu, Kunal Bhalla, Kushal Lakhotia, Lauren Rantala-Yeary,
+  Laurens van~der Maaten, Lawrence Chen, Liang Tan, Liz Jenkins, Louis Martin,
+  Lovish Madaan, Lubo Malo, Lukas Blecher, Lukas Landzaat, Luke de~Oliveira,
+  Madeline Muzzi, Mahesh Pasupuleti, Mannat Singh, Manohar Paluri, Marcin
+  Kardas, Maria Tsimpoukelli, Mathew Oldham, Mathieu Rita, Maya Pavlova,
+  Melanie Kambadur, Mike Lewis, Min Si, Mitesh~Kumar Singh, Mona Hassan, Naman
+  Goyal, Narjes Torabi, Nikolay Bashlykov, Nikolay Bogoychev, Niladri
+  Chatterji, Ning Zhang, Olivier Duchenne, Onur Çelebi, Patrick Alrassy,
+  Pengchuan Zhang, Pengwei Li, Petar Vasic, Peter Weng, Prajjwal Bhargava,
+  Pratik Dubal, Praveen Krishnan, Punit~Singh Koura, Puxin Xu, Qing He,
+  Qingxiao Dong, Ragavan Srinivasan, Raj Ganapathy, Ramon Calderer,
+  Ricardo~Silveira Cabral, Robert Stojnic, Roberta Raileanu, Rohan Maheswari,
+  Rohit Girdhar, Rohit Patel, Romain Sauvestre, Ronnie Polidoro, Roshan
+  Sumbaly, Ross Taylor, Ruan Silva, Rui Hou, Rui Wang, Saghar Hosseini, Sahana
+  Chennabasappa, Sanjay Singh, Sean Bell, Seohyun~Sonia Kim, Sergey Edunov,
+  Shaoliang Nie, Sharan Narang, Sharath Raparthy, Sheng Shen, Shengye Wan,
+  Shruti Bhosale, Shun Zhang, Simon Vandenhende, Soumya Batra, Spencer Whitman,
+  Sten Sootla, Stephane Collot, Suchin Gururangan, Sydney Borodinsky, Tamar
+  Herman, Tara Fowler, Tarek Sheasha, Thomas Georgiou, Thomas Scialom, Tobias
+  Speckbacher, Todor Mihaylov, Tong Xiao, Ujjwal Karn, Vedanuj Goswami, Vibhor
+  Gupta, Vignesh Ramanathan, Viktor Kerkez, Vincent Gonguet, Virginie Do, Vish
+  Vogeti, Vítor Albiero, Vladan Petrovic, Weiwei Chu, Wenhan Xiong, Wenyin Fu,
+  Whitney Meers, Xavier Martinet, Xiaodong Wang, Xiaofang Wang, Xiaoqing~Ellen
+  Tan, Xide Xia, Xinfeng Xie, Xuchao Jia, Xuewei Wang, Yaelle Goldschlag,
+  Yashesh Gaur, Yasmine Babaei, Yi~Wen, Yiwen Song, Yuchen Zhang, Yue Li,
+  Yuning Mao, Zacharie~Delpierre Coudert, Zheng Yan, Zhengxing Chen, Zoe
+  Papakipos, Aaditya Singh, Aayushi Srivastava, Abha Jain, Adam Kelsey, Adam
+  Shajnfeld, Adithya Gangidi, Adolfo Victoria, Ahuva Goldstand, Ajay Menon,
+  Ajay Sharma, Alex Boesenberg, Alexei Baevski, Allie Feinstein, Amanda Kallet,
+  Amit Sangani, Amos Teo, Anam Yunus, Andrei Lupu, Andres Alvarado, Andrew
+  Caples, Andrew Gu, Andrew Ho, Andrew Poulton, Andrew Ryan, Ankit Ramchandani,
+  Annie Dong, Annie Franco, Anuj Goyal, Aparajita Saraf, Arkabandhu Chowdhury,
+  Ashley Gabriel, Ashwin Bharambe, Assaf Eisenman, Azadeh Yazdan, Beau James,
+  Ben Maurer, Benjamin Leonhardi, Bernie Huang, Beth Loyd, Beto~De Paola,
+  Bhargavi Paranjape, Bing Liu, Bo~Wu, Boyu Ni, Braden Hancock, Bram Wasti,
+  Brandon Spence, Brani Stojkovic, Brian Gamido, Britt Montalvo, Carl Parker,
+  Carly Burton, Catalina Mejia, Ce~Liu, Changhan Wang, Changkyu Kim, Chao Zhou,
+  Chester Hu, Ching-Hsiang Chu, Chris Cai, Chris Tindal, Christoph
+  Feichtenhofer, Cynthia Gao, Damon Civin, Dana Beaty, Daniel Kreymer, Daniel
+  Li, David Adkins, David Xu, Davide Testuggine, Delia David, Devi Parikh,
+  Diana Liskovich, Didem Foss, Dingkang Wang, Duc Le, Dustin Holland, Edward
+  Dowling, Eissa Jamil, Elaine Montgomery, Eleonora Presani, Emily Hahn, Emily
+  Wood, Eric-Tuan Le, Erik Brinkman, Esteban Arcaute, Evan Dunbar, Evan
+  Smothers, Fei Sun, Felix Kreuk, Feng Tian, Filippos Kokkinos, Firat Ozgenel,
+  Francesco Caggioni, Frank Kanayet, Frank Seide, Gabriela~Medina Florez,
+  Gabriella Schwarz, Gada Badeer, Georgia Swee, Gil Halpern, Grant Herman,
+  Grigory Sizov, Guangyi, Zhang, Guna Lakshminarayanan, Hakan Inan, Hamid
+  Shojanazeri, Han Zou, Hannah Wang, Hanwen Zha, Haroun Habeeb, Harrison
+  Rudolph, Helen Suk, Henry Aspegren, Hunter Goldman, Hongyuan Zhan, Ibrahim
+  Damlaj, Igor Molybog, Igor Tufanov, Ilias Leontiadis, Irina-Elena Veliche,
+  Itai Gat, Jake Weissman, James Geboski, James Kohli, Janice Lam, Japhet
+  Asher, Jean-Baptiste Gaya, Jeff Marcus, Jeff Tang, Jennifer Chan, Jenny Zhen,
+  Jeremy Reizenstein, Jeremy Teboul, Jessica Zhong, Jian Jin, Jingyi Yang, Joe
+  Cummings, Jon Carvill, Jon Shepard, Jonathan McPhie, Jonathan Torres, Josh
+  Ginsburg, Junjie Wang, Kai Wu, Kam~Hou U, Karan Saxena, Kartikay Khandelwal,
+  Katayoun Zand, Kathy Matosich, Kaushik Veeraraghavan, Kelly Michelena, Keqian
+  Li, Kiran Jagadeesh, Kun Huang, Kunal Chawla, Kyle Huang, Lailin Chen,
+  Lakshya Garg, Lavender A, Leandro Silva, Lee Bell, Lei Zhang, Liangpeng Guo,
+  Licheng Yu, Liron Moshkovich, Luca Wehrstedt, Madian Khabsa, Manav Avalani,
+  Manish Bhatt, Martynas Mankus, Matan Hasson, Matthew Lennie, Matthias Reso,
+  Maxim Groshev, Maxim Naumov, Maya Lathi, Meghan Keneally, Miao Liu,
+  Michael~L. Seltzer, Michal Valko, Michelle Restrepo, Mihir Patel, Mik
+  Vyatskov, Mikayel Samvelyan, Mike Clark, Mike Macey, Mike Wang, Miquel~Jubert
+  Hermoso, Mo~Metanat, Mohammad Rastegari, Munish Bansal, Nandhini Santhanam,
+  Natascha Parks, Natasha White, Navyata Bawa, Nayan Singhal, Nick Egebo,
+  Nicolas Usunier, Nikhil Mehta, Nikolay~Pavlovich Laptev, Ning Dong, Norman
+  Cheng, Oleg Chernoguz, Olivia Hart, Omkar Salpekar, Ozlem Kalinli, Parkin
+  Kent, Parth Parekh, Paul Saab, Pavan Balaji, Pedro Rittner, Philip Bontrager,
+  Pierre Roux, Piotr Dollar, Polina Zvyagina, Prashant Ratanchandani, Pritish
+  Yuvraj, Qian Liang, Rachad Alao, Rachel Rodriguez, Rafi Ayub, Raghotham
+  Murthy, Raghu Nayani, Rahul Mitra, Rangaprabhu Parthasarathy, Raymond Li,
+  Rebekkah Hogan, Robin Battey, Rocky Wang, Russ Howes, Ruty Rinott, Sachin
+  Mehta, Sachin Siby, Sai~Jayesh Bondu, Samyak Datta, Sara Chugh, Sara Hunt,
+  Sargun Dhillon, Sasha Sidorov, Satadru Pan, Saurabh Mahajan, Saurabh Verma,
+  Seiji Yamamoto, Sharadh Ramaswamy, Shaun Lindsay, Shaun Lindsay, Sheng Feng,
+  Shenghao Lin, Shengxin~Cindy Zha, Shishir Patil, Shiva Shankar, Shuqiang
+  Zhang, Shuqiang Zhang, Sinong Wang, Sneha Agarwal, Soji Sajuyigbe, Soumith
+  Chintala, Stephanie Max, Stephen Chen, Steve Kehoe, Steve Satterfield,
+  Sudarshan Govindaprasad, Sumit Gupta, Summer Deng, Sungmin Cho, Sunny Virk,
+  Suraj Subramanian, Sy~Choudhury, Sydney Goldman, Tal Remez, Tamar Glaser,
+  Tamara Best, Thilo Koehler, Thomas Robinson, Tianhe Li, Tianjun Zhang, Tim
+  Matthews, Timothy Chou, Tzook Shaked, Varun Vontimitta, Victoria Ajayi,
+  Victoria Montanez, Vijai Mohan, Vinay~Satish Kumar, Vishal Mangla, Vlad
+  Ionescu, Vlad Poenaru, Vlad~Tiberiu Mihailescu, Vladimir Ivanov, Wei Li,
+  Wenchen Wang, Wenwen Jiang, Wes Bouaziz, Will Constable, Xiaocheng Tang,
+  Xiaojian Wu, Xiaolan Wang, Xilun Wu, Xinbo Gao, Yaniv Kleinman, Yanjun Chen,
+  Ye~Hu, Ye~Jia, Ye~Qi, Yenda Li, Yilin Zhang, Ying Zhang, Yossi Adi, Youngjin
+  Nam, Yu, Wang, Yu~Zhao, Yuchen Hao, Yundi Qian, Yunlu Li, Yuzi He, Zach Rait,
+  Zachary DeVito, Zef Rosnbrick, Zhaoduo Wen, Zhenyu Yang, Zhiwei Zhao, and
+  Zhiyu Ma.
+\newblock The llama 3 herd of models, 2024.
+\newblock URL \url{https://arxiv.org/abs/2407.21783}.
+
+\bibitem[Harris(1960)]{Harris_1960}
+T.~E. Harris.
+\newblock A lower bound for the critical probability in a certain percolation
+  process.
+\newblock \emph{Mathematical Proceedings of the Cambridge Philosophical
+  Society}, 56\penalty0 (1):\penalty0 13–20, 1960.
+\newblock \doi{10.1017/S0305004100034241}.
+
+\bibitem[Hsieh et~al.(2024)Hsieh, Sun, Kriman, Acharya, Rekesh, Jia, Zhang, and
+  Ginsburg]{arxiv240406654}
+Cheng-Ping Hsieh, Simeng Sun, Samuel Kriman, Shantanu Acharya, Dima Rekesh, Fei
+  Jia, Yang Zhang, and Boris Ginsburg.
+\newblock Ruler: What's the real context size of your long-context language
+  models?, 2024.
+\newblock URL \url{https://arxiv.org/abs/2404.06654}.
+
+\bibitem[Hu et~al.(2026)Hu, Jia, Wang, Li, Yang, Hao, Li, and Liao]{hu2026take}
+Long Hu, Nan Jia, Rui Wang, Jiahui Li, Qingyi Yang, Yixue Hao, Xianzhi Li, and
+  Xiaofei Liao.
+\newblock {TAKE}: Task-aware chunked {KV} cache eviction for efficient
+  long-context {LLM} prefill, 2026.
+\newblock URL \url{https://openreview.net/forum?id=kMLfUshPwo}.
+
+\bibitem[Jiang et~al.(2023)Jiang, Sablayrolles, Mensch, Bamford, Chaplot,
+  de~las Casas, Bressand, Lengyel, Lample, Saulnier, Lavaud, Lachaux, Stock,
+  Scao, Lavril, Wang, Lacroix, and Sayed]{arxiv231006825}
+Albert~Q. Jiang, Alexandre Sablayrolles, Arthur Mensch, Chris Bamford,
+  Devendra~Singh Chaplot, Diego de~las Casas, Florian Bressand, Gianna Lengyel,
+  Guillaume Lample, Lucile Saulnier, Lélio~Renard Lavaud, Marie-Anne Lachaux,
+  Pierre Stock, Teven~Le Scao, Thibaut Lavril, Thomas Wang, Timothée Lacroix,
+  and William~El Sayed.
+\newblock Mistral 7b, 2023.
+\newblock URL \url{https://arxiv.org/abs/2310.06825}.
+
+\bibitem[Jégou(2024)]{ruler-hf}
+Simon Jégou.
+\newblock Ruler: Hugging face port of the ruler benchmark (simonjegou/ruler).
+\newblock Hugging Face dataset, 2024.
+\newblock URL \url{https://huggingface.co/datasets/simonjegou/ruler}.
+\newblock Accessed 2026-07-02.
+
+\bibitem[Kim et~al.(2026)Kim, Han, and Yun]{arxiv260117668}
+Jang-Hyun Kim, Dongyoon Han, and Sangdoo Yun.
+\newblock Fast kvzip: Efficient and accurate llm inference with gated kv
+  eviction, 2026.
+\newblock URL \url{https://arxiv.org/abs/2601.17668}.
+
+\bibitem[Kolawole \& Smith(2026)Kolawole and Smith]{EPIkv-arxiv}
+Steven Kolawole and Virginia Smith.
+\newblock Epiphany-aware kv cache eviction without the attention matrix, 2026.
+\newblock URL \url{https://arxiv.org/abs/2606.26472}.
+
+\bibitem[Kwon et~al.(2023)Kwon, Li, Zhuang, Sheng, Zheng, Yu, Gonzalez, Zhang,
+  and Stoica]{kwon2023efficient}
+Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, Ying Sheng, Lianmin Zheng, Cody~Hao Yu,
+  Joseph Gonzalez, Hao Zhang, and Ion Stoica.
+\newblock Efficient memory management for large language model serving with
+  pagedattention.
+\newblock In \emph{Proceedings of the 29th Symposium on Operating Systems
+  Principles}, SOSP '23, pp.\  611–626, New York, NY, USA, 2023. Association
+  for Computing Machinery.
+\newblock ISBN 9798400702297.
+\newblock \doi{10.1145/3600006.3613165}.
+\newblock URL \url{https://doi.org/10.1145/3600006.3613165}.
+
+\bibitem[Li et~al.(2026{\natexlab{a}})Li, Wang, Liu, Liu, Qiu, Liu, Liang,
+  Huang, Yu, and Zhu]{arxiv260507315}
+Xuan Li, Yining Wang, Yuchen Liu, Guanjun Liu, Delai Qiu, Shengping Liu, Jiaen
+  Liang, Wei Huang, Jun Yu, and Junnan Zhu.
+\newblock Later: Efficient test-time reasoning via latent exploration and
+  explicit verification, 2026{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2605.07315}.
+
+\bibitem[Li et~al.(2026{\natexlab{b}})Li, Li, and Lan]{arxiv260601563}
+Yu~Li, Binxu Li, and Tian Lan.
+\newblock Momentkv: Closing the directional gap in kv cache eviction for
+  long-context inference, 2026{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2606.01563}.
+
+\bibitem[Li et~al.(2024)Li, Huang, Yang, Venkitesh, Locatelli, Ye, Cai, Lewis,
+  and Chen]{arxiv240414469}
+Yuhong Li, Yingbing Huang, Bowen Yang, Bharat Venkitesh, Acyr Locatelli,
+  Hanchen Ye, Tianle Cai, Patrick Lewis, and Deming Chen.
+\newblock Snapkv: Llm knows what you are looking for before generation, 2024.
+\newblock URL \url{https://arxiv.org/abs/2404.14469}.
+
+\bibitem[Lin et~al.(2026{\natexlab{a}})Lin, Wang, Kondrateva, Shi, Li, and
+  Zhang]{arxiv260624467}
+Xiaolin Lin, Jingcun Wang, Olga Kondrateva, Yiyu Shi, Bing Li, and Grace~Li
+  Zhang.
+\newblock Compresskv: Semantic-retrieval-guided kv-cache compression for
+  resource-efficient long-context llm inference, 2026{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2606.24467}.
+
+\bibitem[Lin et~al.(2026{\natexlab{b}})Lin, Ding, Xing, He, Tang, and
+  Mukherjee]{arxiv260523258}
+Yuping Lin, Jiayuan Ding, Yue Xing, Pengfei He, Jiliang Tang, and Subhabrata
+  Mukherjee.
+\newblock A simple plug-in for improving eviction-based kv cache compression,
+  2026{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2605.23258}.
+
+\bibitem[Liu et~al.(2024)Liu, Xu, and McAuley]{liu2024repobench}
+Tianyang Liu, Canwen Xu, and Julian McAuley.
+\newblock Repobench: Benchmarking repository-level code auto-completion
+  systems.
+\newblock In \emph{The Twelfth International Conference on Learning
+  Representations}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=pPjZIOuQuF}.
+
+\bibitem[Moschella et~al.(2026)Moschella, Manduchi, and Sener]{arxiv260210238}
+Luca Moschella, Laura Manduchi, and Ozan Sener.
+\newblock Learning to evict from key-value cache, 2026.
+\newblock URL \url{https://arxiv.org/abs/2602.10238}.
+
+\bibitem[Ni \& Lao(2026)Ni and Lao]{arxiv260617872}
+Ning Ni and Yingjie Lao.
+\newblock Anchorkv: Safety-aware kv cache compression via soft penalty with a
+  refusal anchor, 2026.
+\newblock URL \url{https://arxiv.org/abs/2606.17872}.
+
+\bibitem[{NVIDIA}(2024)]{kvpress}
+{NVIDIA}.
+\newblock kvpress: Llm kv cache compression made easy.
+\newblock GitHub repository, 2024.
+\newblock URL \url{https://github.com/NVIDIA/kvpress}.
+\newblock Accessed 2026-07-02.
+
+\bibitem[Park et~al.(2025)Park, Jones, Morse, Goel, Lee, and Lott]{keydiff}
+Junyoung Park, Dalton Jones, Matthew~J Morse, Raghavv Goel, Mingu Lee, and
+  Christopher Lott.
+\newblock Keydiff: Key similarity-based {KV} cache eviction for long-context
+  {LLM} inference in resource-constrained environments.
+\newblock In \emph{The Thirty-ninth Annual Conference on Neural Information
+  Processing Systems}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=uBaFH7aQnC}.
+
+\bibitem[Su et~al.(2024)Su, Ahmed, Lu, Pan, Bo, and Liu]{roformer}
+Jianlin Su, Murtadha Ahmed, Yu~Lu, Shengfeng Pan, Wen Bo, and Yunfeng Liu.
+\newblock Roformer: Enhanced transformer with rotary position embedding.
+\newblock \emph{Neurocomput.}, 568\penalty0 (C), February 2024.
+\newblock ISSN 0925-2312.
+\newblock \doi{10.1016/j.neucom.2023.127063}.
+\newblock URL \url{https://doi.org/10.1016/j.neucom.2023.127063}.
+
+\bibitem[Tang et~al.(2026)Tang, Jiao, Chen, Liu, Li, and Chen]{arxiv260208585}
+Ziyao Tang, Pengkun Jiao, Xinhang Chen, Wei Liu, Shiyong Li, and Jingjing Chen.
+\newblock Predicting future utility: Global combinatorial optimization for
+  task-agnostic kv cache eviction, 2026.
+\newblock URL \url{https://arxiv.org/abs/2602.08585}.
+
+\bibitem[Wang et~al.(2025)Wang, Upasani, Wu, Gandhi, Li, Hu, Li, and
+  Thakker]{sagekv}
+Guangtao Wang, Shubhangi Upasani, Chen Wu, Darshan Gandhi, Jonathan~Lingjie Li,
+  Changran Hu, Bo~Li, and Urmish Thakker.
+\newblock {LLM}s know what to drop: Self-attention guided {KV} cache eviction
+  for efficient long-context inference.
+\newblock In \emph{Sparsity in LLMs (SLLM): Deep Dive into Mixture of Experts,
+  Quantization, Hardware, and Inference}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=qg9dlCcNzr}.
+
+\bibitem[Wen et~al.(2025)Wen, Wu, Sun, Zhang, Chen, Wang, Liu, Liu, Zhang, and
+  Li]{arxiv250817196}
+Hao Wen, Xinrui Wu, Yi~Sun, Feifei Zhang, Liye Chen, Jie Wang, Yunxin Liu,
+  Yunhao Liu, Ya-Qin Zhang, and Yuanchun Li.
+\newblock Budgetthinker: Empowering budget-aware llm reasoning with control
+  tokens, 2025.
+\newblock URL \url{https://arxiv.org/abs/2508.17196}.
+
+\bibitem[Wu et~al.(2025)Wu, Wang, Xiao, Peng, and Fu]{wu2025retrieval}
+Wenhao Wu, Yizhong Wang, Guangxuan Xiao, Hao Peng, and Yao Fu.
+\newblock Retrieval head mechanistically explains long-context factuality.
+\newblock In \emph{The Thirteenth International Conference on Learning
+  Representations}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=EytBpUGB1Z}.
+
+\bibitem[Xiao et~al.(2024)Xiao, Tian, Chen, Han, and Lewis]{arxiv230917453}
+Guangxuan Xiao, Yuandong Tian, Beidi Chen, Song Han, and Mike Lewis.
+\newblock Efficient streaming language models with attention sinks.
+\newblock In \emph{The Twelfth International Conference on Learning
+  Representations}, 2024.
+\newblock URL \url{https://openreview.net/forum?id=NG7sS51zVF}.
+
+\bibitem[Xu et~al.(2026)Xu, Li, Xiao, Teng, Zhang, Chen, and
+  Li]{arxiv260609508}
+Zhanchao Xu, Haoyang Li, Qingfa Xiao, Fei Teng, Chen~Jason Zhang, Lei Chen, and
+  Qing Li.
+\newblock From rigid to dynamic: Entropy-guided adaptive inference for
+  long-context llms, 2026.
+\newblock URL \url{https://arxiv.org/abs/2606.09508}.
+
+\bibitem[Yang et~al.(2025{\natexlab{a}})Yang, Li, Yang, Zhang, Hui, Zheng, Yu,
+  Gao, Huang, Lv, Zheng, Liu, Zhou, Huang, Hu, Ge, Wei, Lin, Tang, Yang, Tu,
+  Zhang, Yang, Yang, Zhou, Zhou, Lin, Dang, Bao, Yang, Yu, Deng, Li, Xue, Li,
+  Zhang, Wang, Zhu, Men, Gao, Liu, Luo, Li, Tang, Yin, Ren, Wang, Zhang, Ren,
+  Fan, Su, Zhang, Zhang, Wan, Liu, Wang, Cui, Zhang, Zhou, and Qiu]{qwen_tc}
+An~Yang, Anfeng Li, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo~Zheng, Bowen
+  Yu, Chang Gao, Chengen Huang, Chenxu Lv, Chujie Zheng, Dayiheng Liu, Fan
+  Zhou, Fei Huang, Feng Hu, Hao Ge, Haoran Wei, Huan Lin, Jialong Tang, Jian
+  Yang, Jianhong Tu, Jianwei Zhang, Jianxin Yang, Jiaxi Yang, Jing Zhou,
+  Jingren Zhou, Junyang Lin, Kai Dang, Keqin Bao, Kexin Yang, Le~Yu, Lianghao
+  Deng, Mei Li, Mingfeng Xue, Mingze Li, Pei Zhang, Peng Wang, Qin Zhu, Rui
+  Men, Ruize Gao, Shixuan Liu, Shuang Luo, Tianhao Li, Tianyi Tang, Wenbiao
+  Yin, Xingzhang Ren, Xinyu Wang, Xinyu Zhang, Xuancheng Ren, Yang Fan, Yang
+  Su, Yichang Zhang, Yinger Zhang, Yu~Wan, Yuqiong Liu, Zekun Wang, Zeyu Cui,
+  Zhenru Zhang, Zhipeng Zhou, and Zihan Qiu.
+\newblock Qwen3 technical report, 2025{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2505.09388}.
+
+\bibitem[Yang et~al.(2025{\natexlab{b}})Yang, Yang, Zhang, Hui, Zheng,
+  et~al.]{arxiv241215115}
+An~Yang, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo~Zheng, et~al.
+\newblock Qwen2.5 technical report, 2025{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2412.15115}.
+
+\bibitem[Yang et~al.(2026{\natexlab{a}})Yang, Tang, Zhen, and
+  Lv]{arxiv260425975}
+Jiaming Yang, Chenwei Tang, Liangli Zhen, and Jiancheng Lv.
+\newblock Rethinking kv cache eviction via a unified information-theoretic
+  objective, 2026{\natexlab{a}}.
+\newblock URL \url{https://arxiv.org/abs/2604.25975}.
+
+\bibitem[Yang et~al.(2026{\natexlab{b}})Yang, Wang, Liu, Tian, and
+  Zhang]{arxiv260208686}
+Ning Yang, Chengzhi Wang, Yibo Liu, Baoliang Tian, and Haijun Zhang.
+\newblock Compilerkv: Risk-adaptive kv compression via offline experience
+  compilation, 2026{\natexlab{b}}.
+\newblock URL \url{https://arxiv.org/abs/2602.08686}.
+
+\bibitem[Yang et~al.(2026{\natexlab{c}})Yang, Gu, Xu, Li, Liu, Liu, Zhu, Han,
+  and Guo]{arxiv260525475}
+Xintong Yang, Hao Gu, Binxing Xu, Lujun Li, Bei Liu, Jiacheng Liu, Qiyuan Zhu,
+  Sirui Han, and Yike Guo.
+\newblock Indexmem: Learned kv-cache eviction with latent memory for
+  long-context llm inference, 2026{\natexlab{c}}.
+\newblock URL \url{https://arxiv.org/abs/2605.25475}.
+
+\bibitem[Yang et~al.(2018)Yang, Qi, Zhang, Bengio, Cohen, Salakhutdinov, and
+  Manning]{hotpotqa}
+Zhilin Yang, Peng Qi, Saizheng Zhang, Yoshua Bengio, William Cohen, Ruslan
+  Salakhutdinov, and Christopher~D. Manning.
+\newblock {H}otpot{QA}: A dataset for diverse, explainable multi-hop question
+  answering.
+\newblock In Ellen Riloff, David Chiang, Julia Hockenmaier, and Jun{'}ichi
+  Tsujii (eds.), \emph{Proceedings of the 2018 Conference on Empirical Methods
+  in Natural Language Processing}, pp.\  2369--2380, Brussels, Belgium,
+  October-November 2018. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/D18-1259}.
+\newblock URL \url{https://aclanthology.org/D18-1259/}.
+
+\bibitem[Zeng et~al.(2025)Zeng, Lin, Hou, Zhang, and
+  Deng]{zeng2025incontextkvcacheevictionllms}
+Zihao Zeng, Bokai Lin, Tianqi Hou, Hao Zhang, and Zhijie Deng.
+\newblock In-context kv-cache eviction for llms via attention-gate, 2025.
+\newblock URL \url{https://arxiv.org/abs/2410.12876}.
+
+\bibitem[Zhai et~al.(2026)Zhai, Li, Xiao, Li, and Wang]{arxiv260414853}
+Zhiyuan Zhai, Bingcong Li, Bingnan Xiao, Ming Li, and Xin Wang.
+\newblock Adaptive test-time compute allocation for reasoning llms via
+  constrained policy optimization, 2026.
+\newblock URL \url{https://arxiv.org/abs/2604.14853}.
+
+\bibitem[Zhang et~al.(2026)Zhang, Liang, Chang, Hu, Kong, Yin, and
+  Li]{arxiv260508234}
+Ruijie Zhang, Haozhe Liang, Da~Chang, Li~Hu, Fanqi Kong, Huaxiao Yin, and
+  Yu~Li.
+\newblock When does value-aware kv eviction help? a fixed-contract diagnostic
+  for non-monotone cache compression, 2026.
+\newblock URL \url{https://arxiv.org/abs/2605.08234}.
+
+\bibitem[Zhang et~al.(2023)Zhang, Sheng, Zhou, Chen, Zheng, Cai, Song, Tian,
+  Ré, Barrett, Wang, and Chen]{arxiv230614048}
+Zhenyu Zhang, Ying Sheng, Tianyi Zhou, Tianlong Chen, Lianmin Zheng, Ruisi Cai,
+  Zhao Song, Yuandong Tian, Christopher Ré, Clark Barrett, Zhangyang Wang, and
+  Beidi Chen.
+\newblock H$_2$o: Heavy-hitter oracle for efficient generative inference of
+  large language models, 2023.
+\newblock URL \url{https://arxiv.org/abs/2306.14048}.
+
+\bibitem[Zhou et~al.(2026)Zhou, Li, Li, Liu, Zhao, and Zheng]{arxiv260318446}
+Lang Zhou, Shuxuan Li, Zhuohao Li, Shi Liu, Zhilin Zhao, and Wei-Shi Zheng.
+\newblock Ut-aca: Uncertainty-triggered adaptive context allocation for
+  long-context inference, 2026.
+\newblock URL \url{https://arxiv.org/abs/2603.18446}.
+
+\bibitem[Zhou et~al.(2025)Zhou, Wang, Zeng, Guo, Liu, Shen, Zhang, and
+  Ding]{arxiv241214838}
+Xiabin Zhou, Wenbin Wang, Minyan Zeng, Jiaxian Guo, Xuebo Liu, Li~Shen, Min
+  Zhang, and Liang Ding.
+\newblock Dynamickv: Task-aware adaptive kv cache compression for long context
+  llms, 2025.
+\newblock URL \url{https://arxiv.org/abs/2412.14838}.
+
+\end{thebibliography}
