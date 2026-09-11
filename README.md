@@ -8,7 +8,7 @@ evictor when the drop is large, otherwise keeps the full cache. Read honestly, P
 (precise multi-key retrieval, exact code completion) at a bounded memory cost, and improves the
 accuracy–memory frontier where moderate compression is the target.
 
-> **Status.** Research code for an ICLR-format submission. The method is deliberately scoped:
+> **Status.** Research code for a paper submission. The method is deliberately scoped:
 > it is a moderate-compression (≤ ~3×) safety wrapper, not an aggressive-regime compressor, and
 > it does not beat strong *trained* evictors at matched memory. See [Limitations](#limitations).
 

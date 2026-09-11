@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Zero-GPU reanalyses for the ICLR-2026 revision round.
+# Zero-GPU reanalyses for the paper's revision round.
 #
-# Reads the per-input logs from PAGE/page-kv/experiments/results (override with
-# PAGE_RESULTS) and writes tables to PAGE/page-kv/experiments/results
+# Reads the per-input logs from experiments/results (override with
+# PAGE_RESULTS) and writes tables to experiments/results
 # (override with PAGE_OUT). Every script exits non-zero if its numbers stop
 # matching the ones promoted into the paper.
 #

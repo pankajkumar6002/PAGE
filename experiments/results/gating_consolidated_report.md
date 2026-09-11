@@ -148,7 +148,7 @@ The gating step adds:
 - **τ sensitivity sweep** — calibrating τ on different validation splits
   to show the result is robust to τ choice in the [0.05, 0.10] range.
 
-## ICLR contribution summary
+## Contribution summary
 
 What this paper claims:
 
