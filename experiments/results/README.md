@@ -39,16 +39,16 @@ cd ..            # experiments/
 ./run_all.sh     # 11 steps, exits non-zero on any CHECK failure
 ```
 
-Regenerate the budget/batching/baseline-fidelity set:
+Regenerate the budget/batching/baseline-fidelity set (stdlib only — no venv activation needed,
+same as `run_all.sh` above):
 
 ```bash
 cd ../scripts
-source $HOME/miniconda3/etc/profile.d/conda.sh && conda activate page-repro
 python matrix_budget_restricted.py
 python batching_decay.py
 python h2o_degeneracy_audit.py
 python scaling_slope_fit.py
-python adakv_analysis.py          # needs the per-head Ada-KV GPU run
+python adakv_analysis.py          # needs the per-head Ada-KV GPU run to have been run first
 ```
 
 Regenerate the generalization/robustness set (zero-GPU on released logs):
