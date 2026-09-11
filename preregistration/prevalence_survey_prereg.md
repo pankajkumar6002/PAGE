@@ -131,5 +131,5 @@ family" clause must be softened (coupling noted in the revision plan).
 ## Addendum (measurement notes, appendable without invalidating the hash)
 
 Everything above the "## Addendum" heading is frozen; the digest in
-`E11_prevalence_prereg.sha256` covers only that frozen portion (same convention
+`prevalence_survey_prereg.sha256` covers only that frozen portion (same convention
 as `paths.verify_prereg`, which strips from "## Addendum" onward before hashing).

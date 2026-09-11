@@ -7,7 +7,7 @@ mid-stack spike, so the endpoint contrast inverts and per-input AUC sits at
 question: does a <=3-parameter logistic regression over the INTERIOR of the
 profile, z-normalized on an unlabeled pilot, raise the held-out Llama AUC?
 
-Label (frozen in preregistration/E12_profile_probe_prereg.md): the paper's own
+Label (frozen in preregistration/profile_probe_ablation_prereg.md): the paper's own
 per-input AUC label from heldout_ablation.py -- separability of NIAH-MK3 inputs
 (positive) from the dilution-prone-task pool (vt, fwe, qa_1, niah_multivalue;
 negative), scored by the signal. Task identity IS the label and is present in

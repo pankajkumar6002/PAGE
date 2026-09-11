@@ -8,7 +8,7 @@ already does what PAGE does":
   * uniform vs plain  -> what the ADAPTIVITY buys, independent of admission.
   * plain  vs gated   -> the residual ADMISSION value on top of allocation.
 
-Frozen predictions (preregistration/E13_dynamickv_prereg.md):
+Frozen predictions (preregistration/dynamickv_headtohead_prereg.md):
   P1  adaptive alloc does NOT recover MK3 at aggressive budgets (plain MK3
       acc @ b<=0.0625 stays far below full-KV).
   P2  gated - plain on MK3 at b<=0.125 strongly positive (>= +0.3 on >=1 model).

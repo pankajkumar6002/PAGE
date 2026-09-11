@@ -1,6 +1,6 @@
 # E10 — Llama-3.1-8B bias control for the E8 P1 violation
 
-Written 2026-08-09 08:44 IST. Pre-registration `E10_llama_bias_control_prereg.md`,
+Written 2026-08-09 08:44 IST. Pre-registration `llama_architecture_bias_prereg.md`,
 sha256 `1dd0094de0b1bc0b...`, verified at launch before any data existed.
 
 ## Why this control exists

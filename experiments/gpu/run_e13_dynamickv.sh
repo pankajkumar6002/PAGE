@@ -27,7 +27,7 @@ conda activate page-repro
 # Gate on the E13 pre-registration hash.
 python - <<'PY' || exit 1
 import hashlib, sys
-p = "/home/pankaj/Work/PAGE/new-exp-page-kv-r2/preregistration/E13_dynamickv_prereg.md"
+p = "/home/pankaj/Work/PAGE/new-exp-page-kv-r2/preregistration/dynamickv_headtohead_prereg.md"
 raw = open(p, "rb").read()
 i = raw.find(b"## Addendum")
 frozen = raw[:i-6] if i != -1 else raw

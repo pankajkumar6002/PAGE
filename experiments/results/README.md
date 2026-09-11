@@ -142,7 +142,7 @@ Some of these help and some hurt. All are reported.
 
 ## E8 pre-registration
 
-`../../preregistration/E8_adakv_prereg.md`, sha256 of the frozen predictions
+`../../preregistration/adakv_perhead_prereg.md`, sha256 of the frozen predictions
 section `c112a20265464a4f...`, hashed and recorded in the run log **before**
 the first GPU job started. `paths.verify_prereg()` re-checks it at launch and
 at analysis time, hashing only the predictions so the setup addendum can be

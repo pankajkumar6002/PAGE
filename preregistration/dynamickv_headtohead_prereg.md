@@ -89,4 +89,4 @@ them as orthogonal. Registered in advance as a substantive finding.
 ## Addendum (measurement notes, appendable without invalidating the hash)
 
 Frozen portion ends at "## Addendum"; the digest in
-`E13_dynamickv_prereg.sha256` covers only the frozen portion.
+`dynamickv_headtohead_prereg.sha256` covers only the frozen portion.

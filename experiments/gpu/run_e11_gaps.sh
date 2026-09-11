@@ -24,7 +24,7 @@ conda activate page-repro
 # Gate: refuse to run if the E11 pre-registration was edited after hashing.
 python - <<'PY' || exit 1
 import hashlib, sys
-p = "/home/pankaj/Work/PAGE/new-exp-page-kv-r2/preregistration/E11_prevalence_prereg.md"
+p = "/home/pankaj/Work/PAGE/new-exp-page-kv-r2/preregistration/prevalence_survey_prereg.md"
 raw = open(p, "rb").read()
 i = raw.find(b"## Addendum")
 frozen = raw[:i-6] if i != -1 else raw

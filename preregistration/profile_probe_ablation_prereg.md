@@ -110,7 +110,7 @@ required for the headline; if run it is prefill-only, minutes per 100 inputs.
 ## Addendum (measurement notes, appendable without invalidating the hash)
 
 Frozen portion ends at "## Addendum"; the digest in
-`E12_profile_probe_prereg.sha256` covers only the frozen portion.
+`profile_probe_ablation_prereg.sha256` covers only the frozen portion.
 
 ---
 

@@ -98,9 +98,9 @@ def out_path(name):
 
 
 def verify_prereg():
-    """E8's pre-registration must be intact and unmodified since hashing."""
+    """The per-head Ada-KV pre-registration must be intact and unmodified since hashing."""
     import hashlib
-    p = os.path.join(PREREG, "E8_adakv_prereg.md")
+    p = os.path.join(PREREG, "adakv_perhead_prereg.md")
     if not os.path.exists(p):
         raise SystemExit(f"pre-registration missing: {p}")
     # Only the predictions are frozen. Everything from the "## Addendum"

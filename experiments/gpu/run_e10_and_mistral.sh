@@ -3,7 +3,7 @@
 #
 # Llama-3.1-8B has (L=32, Q=32, KV=8), identical in shape to Mistral-7B but a
 # different family, so it separates "8 KV-heads" from "Mistral-specific" as the
-# cause of the E8 P1 violation. Prereg: E10_llama_bias_control_prereg.md,
+# cause of the E8 P1 violation. Prereg: llama_architecture_bias_prereg.md,
 # sha256 1dd0094de0b1bc0b...
 #
 # Mistral is re-run because the double-BOS bug flipped 18/400 of its gate calls,
@@ -17,7 +17,7 @@ source "$HOME/miniconda3/etc/profile.d/conda.sh"; conda activate page-repro
 
 python - <<'PY' || exit 1
 import hashlib, sys
-p="/home/pankaj/Work/PAGE/page-kv/preregistration/E10_llama_bias_control_prereg.md"
+p="/home/pankaj/Work/PAGE/page-kv/preregistration/llama_architecture_bias_prereg.md"
 want="1dd0094de0b1bc0bfe2dfd488032a732d065084628b366ba2a14a415350245b0"
 got=hashlib.sha256(open(p,"rb").read()).hexdigest()
 if got!=want: sys.exit(f"E10 prereg hash mismatch\n  expected {want}\n  got      {got}")

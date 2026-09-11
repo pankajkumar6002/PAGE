@@ -25,7 +25,7 @@ conda activate page-repro
 # Gate on the E12 pre-registration hash.
 python - <<'PY' || exit 1
 import hashlib, sys
-p = "/home/pankaj/Work/PAGE/new-exp-page-kv-r2/preregistration/E12_profile_probe_prereg.md"
+p = "/home/pankaj/Work/PAGE/new-exp-page-kv-r2/preregistration/profile_probe_ablation_prereg.md"
 raw = open(p, "rb").read()
 i = raw.find(b"## Addendum")
 frozen = raw[:i-6] if i != -1 else raw
