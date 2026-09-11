@@ -48,7 +48,7 @@ INGEST = [
     ("hotpotqa",            "longbench_realistic_hotpotqa_qwen14b.jsonl", "qwen14b", True),
     ("passage_count",       "longbench_passcount_qwen14b.jsonl",          "qwen14b", True),
     ("passage_retrieval_en", "longbench_passret_qwen15b_n100.jsonl",      "qwen15b", False),
-    # E11 gap runs (run_e11_gaps.sh) write these into PAGE_DATA. Listed so they
+    # E11 gap runs (run_prevalence_gaps.sh) write these into PAGE_DATA. Listed so they
     # fold into the pooled f once produced; until then the loop marks them
     # MISSING and skips (they do not affect f). resolve() finds them in DATA.
     ("2wikimqa",            "longbench_2wikimqa_qwen14b.jsonl",           "qwen14b", True),
@@ -206,10 +206,10 @@ def main():
          f"Wilson 95% [{lo_n:.4f}, {hi_n:.4f}].")
     emit(f"- Subtasks analyzed: {n_ok}/{len(INGEST)} ingestible; gap subtasks "
          "(2wikimqa, musique, gov_report/multi_news) and AgentLongBench are added "
-         "by the GPU runs in experiments/gpu/run_e11_gaps.sh.")
+         "by the GPU runs in experiments/gpu/run_prevalence_gaps.sh.")
     emit("")
 
-    out = out_path("E11_prevalence.md")
+    out = out_path("prevalence_survey.md")
     try:
         with open(out, "w") as f:
             f.write("\n".join(lines) + "\n")

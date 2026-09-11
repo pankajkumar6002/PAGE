@@ -21,5 +21,5 @@ tau = 0.07. Per-subtask class via analyze_realistic_workload (imported). Per-inp
 
 - **Headline (matched floor b≤0.125): f = 18/493 = 0.0365**, Wilson 95% [0.0232, 0.0570]. Every pooled subtask is stressed to the same b=0.125 floor, so f is comparable across subtasks.
 - Sensitivity (native per-subtask b_min, mixes 0.125 and 0.0625 floors): f = 28/493 = 0.0568, Wilson 95% [0.0396, 0.0809].
-- Subtasks analyzed: 9/12 ingestible; gap subtasks (2wikimqa, musique, gov_report/multi_news) and AgentLongBench are added by the GPU runs in experiments/gpu/run_e11_gaps.sh.
+- Subtasks analyzed: 9/12 ingestible; gap subtasks (2wikimqa, musique, gov_report/multi_news) and AgentLongBench are added by the GPU runs in experiments/gpu/run_prevalence_gaps.sh.
 

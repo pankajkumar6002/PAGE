@@ -29,7 +29,7 @@ gate-closure / D-ordering, consistent with this. Downstream analysis must honor
 that (do not compute f or Delta from these rows).
 
 This module is import-only for longbench_gating (it monkeypatches load_dataset),
-mirroring longbench_capkv_seed2.py's pattern. Run via run_e11_gaps.sh.
+mirroring longbench_capkv_seed2.py's pattern. Run via run_prevalence_gaps.sh.
 """
 import io
 import json

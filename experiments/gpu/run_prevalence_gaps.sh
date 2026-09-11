@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # E11 (W1 / Q1 / DA-2): prevalence gap subtasks + AgentLongBench agentic slice.
 #
-# The 9 ingestible LongBench subtasks need NO GPU (prevalence_fshare.py reads
+# The 9 ingestible LongBench subtasks need NO GPU (prevalence_survey.py reads
 # released logs). This script fills the gap subtasks that have no released log:
 #   - LongBench multi-hop / summarization (2wikimqa, musique, gov_report)
 #   - AgentLongBench agentic tool-call traces (out-of-fitting-range, 32k bucket)
@@ -91,6 +91,6 @@ lg.main()
 print("[e11] AgentLongBench done (OUT OF FITTING RANGE; gate-closure only).")
 PY
 
-echo "[e11] all gap cells launched. Re-run prevalence_fshare.py after they finish"
+echo "[e11] all gap cells launched. Re-run prevalence_survey.py after they finish"
 echo "      to fold the LongBench gaps into the pooled f; AgentLongBench is"
 echo "      analyzed separately as out-of-range (do NOT pool it)."

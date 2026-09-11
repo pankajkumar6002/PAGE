@@ -34,7 +34,7 @@ DIL = ["vt", "fwe", "qa_1", "niah_multivalue"]
 
 # (label, released profile-dump filename, id-tagged re-dump filename, expected
 # paper AUC for RAW drop_D). The released drops_* files are the offline default;
-# run_e12_profiles.sh produces id-tagged profiles_* dumps in DATA which, if
+# run_profile_probe.sh produces id-tagged profiles_* dumps in DATA which, if
 # present, are preferred (more inputs + explicit ids). resolve() picks whichever
 # exists. NB the ~0.80 in main.tex:382 is the *z-scored* D variant, NOT raw D;
 # raw D on the Llama held-out cell is 0.741 (main.tex:244).
@@ -43,7 +43,7 @@ EVAL_CELL = ("Llama-3.1-8B", "drops_llama31_8b_4k.jsonl", "profiles_llama31_4k.j
 
 
 def resolve(released_name, redump_name):
-    """Prefer the id-tagged re-dump in DATA (from run_e12_profiles.sh) if it
+    """Prefer the id-tagged re-dump in DATA (from run_profile_probe.sh) if it
     exists; otherwise fall back to the released profile dump in RESULTS. Return
     the released path if neither exists so require() reports it consistently."""
     d = os.path.join(DATA, redump_name)
@@ -261,7 +261,7 @@ def main():
     emit("## Verdict\n")
     emit(v + "\n")
 
-    out = out_path("E12_profile_probe.md")
+    out = out_path("profile_probe_ablation.md")
     try:
         with open(out, "w") as f:
             f.write("\n".join(lines) + "\n")

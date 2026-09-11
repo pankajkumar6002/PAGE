@@ -3,7 +3,7 @@
 #
 # The E13 headline already holds on the released Qwen3-4B run
 # (dynamickv_qwen3_4k.jsonl): P1 (adaptive alloc does NOT rescue MK3) and P2
-# (gate recovers +1.000) both hold; dynamickv_analysis.py CHECK: PASS. This
+# (gate recovers +1.000) both hold; dynamickv_headtohead_analysis.py CHECK: PASS. This
 # script broadens the claim to more models via the SAME runner, unchanged.
 #
 # Runner facts (verified): single card (--gpu, cuda:{gpu}, eager attn, .to(dev)
@@ -54,10 +54,10 @@ for SPEC in "Qwen/Qwen2.5-3B-Instruct:qwen3b" "mistralai/Mistral-7B-Instruct-v0.
     > "$LOGDIR/e13_dynamickv_${SLUG}.log" 2>&1
 
   echo "[e13] analyzing $SLUG"
-  python "$R2/experiments/scripts/dynamickv_analysis.py" \
+  python "$R2/experiments/scripts/dynamickv_headtohead_analysis.py" \
     "$OUT/dynamickv_${SLUG}_4k.jsonl" \
     >> "$LOGDIR/e13_dynamickv_${SLUG}.log" 2>&1
 done
 
-echo "[e13] extra-model runs done. dynamickv_analysis.py can take all logs at"
+echo "[e13] extra-model runs done. dynamickv_headtohead_analysis.py can take all logs at"
 echo "      once (multiple paths) to produce a combined per-model E13 table."

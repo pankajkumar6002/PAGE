@@ -30,7 +30,7 @@ MK3 = "niah_multikey_3"
 def read_rows(path):
     if not os.path.exists(path):
         raise SystemExit(f"missing DynamicKV log: {path}\n"
-                         f"pass a path, or run experiments/gpu/run_e13_dynamickv.sh first")
+                         f"pass a path, or run experiments/gpu/run_dynamickv_headtohead_analysis.sh first")
     rows = []
     try:
         with open(path, errors="replace") as f:
@@ -178,7 +178,7 @@ def main():
         emit(f"**Verdict ({label}):** {verdict}.\n")
         overall_ok = overall_ok and True  # analysis itself succeeded; predictions reported as-is
 
-    out = out_path("E13_dynamickv.md")
+    out = out_path("dynamickv_headtohead_analysis.md")
     try:
         with open(out, "w") as f:
             f.write("\n".join(lines) + "\n")

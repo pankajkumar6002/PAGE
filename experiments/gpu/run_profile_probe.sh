@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # E12 (Q2 / W4): OPTIONAL id-tagged profile re-dump to harden the probe.
 #
-# The E12 headline runs OFFLINE on released drops_*.jsonl (profile_probe.py),
+# The E12 headline runs OFFLINE on released drops_*.jsonl (profile_probe_ablation.py),
 # and its result is already computed (NO IMPROVEMENT: probe 0.571 < raw-D 0.741
 # on Llama). This script only produces a hardened, id-tagged profile dump so the
 # probe can be re-fit with more inputs and an explicit (task,id) label, and to
@@ -40,7 +40,7 @@ PY
 # an id field. We add id by post-processing: the probe emits rows in
 # task-then-selection order, so an enumerate-per-task id reproduces the same
 # positional index the eviction logs use (verified: profile-derived D == logged
-# D exactly, per profile_probe.py's guard). This wrapper runs the dump then
+# D exactly, per profile_probe_ablation.py's guard). This wrapper runs the dump then
 # stamps ids.
 for SPEC in "Qwen/Qwen2.5-1.5B-Instruct:qwen15b" "meta-llama/Llama-3.1-8B-Instruct:llama31"; do
   MODEL="${SPEC%%:*}"; SLUG="${SPEC##*:}"
@@ -74,6 +74,6 @@ print(f"[e12] stamped ids on {len(rows)} rows of {path}")
 PY
 done
 
-echo "[e12] id-tagged profile dumps written. Re-run profile_probe.py pointed at"
+echo "[e12] id-tagged profile dumps written. Re-run profile_probe_ablation.py pointed at"
 echo "      profiles_*_4k.jsonl (via PAGE_RESULTS override) to re-fit with"
 echo "      explicit ids, and add the Llama-own-pilot in-architecture variant."

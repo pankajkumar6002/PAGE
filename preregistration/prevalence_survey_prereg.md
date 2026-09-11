@@ -124,7 +124,7 @@ family" clause must be softened (coupling noted in the revision plan).
   exists (reuse the full-cache-accuracy check pattern from `adakv_matrix.py`);
   a mismatch aborts.
 - Newly-run cells' logs must carry the runner's guard lines before their numbers
-  enter `results/E11_prevalence.md`.
+  enter `results/prevalence_survey.md`.
 - The aggregator recomputes every headline number from raw jsonl independently
   of the per-subtask analyzer, and exits `CHECK: PASS` only if they agree.
 
