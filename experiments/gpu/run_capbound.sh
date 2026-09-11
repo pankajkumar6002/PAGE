@@ -22,7 +22,7 @@ export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 # --- gate 1: pre-registration intact -----------------------------------------
 python - <<'PY' || exit 1
 import hashlib, sys
-p = "/home/pankaj/Work/PAGE/page-kv/preregistration/capacity_bound_second_family_prereg.md"
+p = "/home/pankaj/Work/PAGE/page-kv/preregistration/capacity_bound_class_generalization_prereg.md"
 want = "7d336844cd6cd055d6eb27b5df42bf5ef2cb3ff07516349c586c289e49c0a59a"
 got = hashlib.sha256(open(p, "rb").read()).hexdigest()
 if got != want:
