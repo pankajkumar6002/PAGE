@@ -2,7 +2,7 @@
 
 A training-free, label-free gate that decides, **per input and before decoding, whether to
 evict the KV cache at all**. It computes one scalar from the prefill attention — the
-early-to-late-layer drop in cross-layer attention-head agreement — and runs any SnapKV-style
+early-to-late-layer drop in cross-layer attention-head agreement and runs any SnapKV-style
 evictor when the drop is large, otherwise keeps the full cache. Read honestly, PAGE is a
 **safety mechanism**: it prevents catastrophic accuracy collapse on capacity-bound inputs
 (precise multi-key retrieval, exact code completion) at a bounded memory cost, and improves the
