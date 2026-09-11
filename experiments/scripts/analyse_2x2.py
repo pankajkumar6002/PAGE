@@ -1,4 +1,4 @@
-"""2x2 control: is the D shift caused by my low-memory wrapper, or by hardware?
+"""2x2 control: is the D shift caused by the low-memory wrapper, or by hardware?
 
 The low-memory wrapper reproduced the paper's AUC exactly but gave mean D on
 NIAH-MK3 of 0.030 against the paper's 0.045. Two explanations were consistent
@@ -11,9 +11,9 @@ with that single number:
 
 One measurement cannot separate them. Crossing code path with hardware can:
 
-                    ORIGINAL script      MY WRAPPER
-    jagannath (A100)      A                  B
-    sateri (Ada)          C                  D
+                    ORIGINAL script      LOW-MEM WRAPPER
+    HOST_A (A100)     A                  B
+    HOST_B (Ada)      C                  D
 
   A vs B  and  C vs D   isolate the code path, hardware held fixed.
   A vs C  and  B vs D   isolate hardware, code path held fixed.
@@ -32,10 +32,10 @@ ANCHOR = "niah_multikey_3"
 DIL = ["vt", "fwe", "qa_1", "niah_multivalue"]
 
 CELLS = [
-    ("jagannath (A100)", "ORIGINAL", "sigabl_qwen15b_hostA_original.jsonl"),
-    ("jagannath (A100)", "WRAPPER",  "sigabl_qwen15b_hostA_wrapper.jsonl"),
-    ("sateri (Ada)",     "ORIGINAL", "signal_ablation_qwen15b_ORIGINAL.jsonl"),
-    ("sateri (Ada)",     "WRAPPER",  "signal_ablation_qwen15b_VALIDATE.jsonl"),
+    ("HOST_A (A100)", "ORIGINAL", "sigabl_qwen15b_hostA_original.jsonl"),
+    ("HOST_A (A100)", "WRAPPER",  "sigabl_qwen15b_hostA_wrapper.jsonl"),
+    ("HOST_B (Ada)",  "ORIGINAL", "signal_ablation_qwen15b_ORIGINAL.jsonl"),
+    ("HOST_B (Ada)",  "WRAPPER",  "signal_ablation_qwen15b_VALIDATE.jsonl"),
 ]
 PAPER_D = 0.045
 
@@ -92,16 +92,16 @@ def main():
         return None
 
     emit("**Code-path effect** (hardware held fixed)")
-    cp1 = diff(("jagannath (A100)", "ORIGINAL"), ("jagannath (A100)", "WRAPPER"),
-               "jagannath: original vs wrapper")
-    cp2 = diff(("sateri (Ada)", "ORIGINAL"), ("sateri (Ada)", "WRAPPER"),
-               "sateri: original vs wrapper")
+    cp1 = diff(("HOST_A (A100)", "ORIGINAL"), ("HOST_A (A100)", "WRAPPER"),
+               "HOST_A: original vs wrapper")
+    cp2 = diff(("HOST_B (Ada)", "ORIGINAL"), ("HOST_B (Ada)", "WRAPPER"),
+               "HOST_B: original vs wrapper")
     emit()
     emit("**Hardware effect** (code path held fixed)")
-    hw1 = diff(("jagannath (A100)", "ORIGINAL"), ("sateri (Ada)", "ORIGINAL"),
-               "original: jagannath vs sateri")
-    hw2 = diff(("jagannath (A100)", "WRAPPER"), ("sateri (Ada)", "WRAPPER"),
-               "wrapper: jagannath vs sateri")
+    hw1 = diff(("HOST_A (A100)", "ORIGINAL"), ("HOST_B (Ada)", "ORIGINAL"),
+               "original: HOST_A vs HOST_B")
+    hw2 = diff(("HOST_A (A100)", "WRAPPER"), ("HOST_B (Ada)", "WRAPPER"),
+               "wrapper: HOST_A vs HOST_B")
     emit()
 
     if all(v is not None for v in (cp1, cp2, hw1, hw2)):

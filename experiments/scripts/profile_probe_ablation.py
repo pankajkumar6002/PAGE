@@ -1,11 +1,11 @@
-"""E12 (Q2 / W4): a tiny learned probe over the per-layer agreement profile a_l.
+"""A tiny learned probe over the per-layer agreement profile a_l.
 
 The paper's gate signal D collapses the per-layer head-agreement profile a_l to
 its endpoints (early - late). On Llama-3.1-8B the profile is non-monotone with a
 mid-stack spike, so the endpoint contrast inverts and per-input AUC sits at
-~0.80 under the z-scored variant. This script asks the reviewer's exact
-question: does a <=3-parameter logistic regression over the INTERIOR of the
-profile, z-normalized on an unlabeled pilot, raise the held-out Llama AUC?
+~0.80 under the z-scored variant. This asks the natural follow-up question:
+does a <=3-parameter logistic regression over the INTERIOR of the profile,
+z-normalized on an unlabeled pilot, raise the held-out Llama AUC?
 
 Label (frozen in preregistration/profile_probe_ablation_prereg.md): the paper's own
 per-input AUC label from heldout_ablation.py -- separability of NIAH-MK3 inputs
@@ -36,8 +36,8 @@ DIL = ["vt", "fwe", "qa_1", "niah_multivalue"]
 # paper AUC for RAW drop_D). The released drops_* files are the offline default;
 # run_profile_probe.sh produces id-tagged profiles_* dumps in DATA which, if
 # present, are preferred (more inputs + explicit ids). resolve() picks whichever
-# exists. NB the ~0.80 in main.tex:382 is the *z-scored* D variant, NOT raw D;
-# raw D on the Llama held-out cell is 0.741 (main.tex:244).
+# exists. NB the paper's ~0.80 figure for Llama is the *z-scored* D variant,
+# NOT raw D; raw D on the Llama held-out cell is 0.741.
 FIT_CELL = ("Qwen2.5-1.5B", "drops_qwen15b_4k_n100.jsonl", "profiles_qwen15b_4k.jsonl", 1.000)
 EVAL_CELL = ("Llama-3.1-8B", "drops_llama31_8b_4k.jsonl", "profiles_llama31_4k.jsonl", 0.741)
 
@@ -192,7 +192,7 @@ def auc_bruteforce(scores, labels):
 def main():
     lines = []
     emit = lines.append
-    emit("# E12: learned probe over the per-layer profile a_l (Q2 / W4)\n")
+    emit("# Learned probe over the per-layer profile a_l\n")
     emit("Label = the paper's per-input AUC label (heldout_ablation.py): NIAH-MK3 "
          "vs the dilution-prone pool (vt, fwe, qa_1, niah_multivalue). Features = "
          "interior profile summaries (min, argmin depth, mid-band mean) that the "

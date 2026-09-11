@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# E8 (W2): per-head Ada-KV plain arm for the headline matrix.
+# Per-head Ada-KV plain arm for the headline matrix.
 #
 # One model per card, four cards, all four cells in parallel. Follows the prior
 # round's run_stage.sh pattern: conda page-repro, PAGE_SRC exported, one log per
@@ -8,11 +8,12 @@
 # The pre-registration must be intact before anything launches.
 set -uo pipefail
 
-R2=/home/pankaj/Work/PAGE/page-kv
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+R2="$(cd "$HERE/../.." && pwd)"
 SCRIPTS="$R2/experiments/scripts"
 OUT="$R2/experiments/results"
 LOGDIR="$R2/experiments/logs"
-export PAGE_SRC=/home/pankaj/Work/PAGE/page-kv/experiments/scripts
+export PAGE_SRC="$R2/experiments/scripts"
 
 mkdir -p "$OUT" "$LOGDIR"
 
@@ -20,9 +21,9 @@ source "$HOME/miniconda3/etc/profile.d/conda.sh"
 conda activate page-repro
 
 # Gate: refuse to run if the predictions were edited after hashing.
-python - <<'PY' || exit 1
+python - <<PY || exit 1
 import sys
-sys.path.insert(0, "/home/pankaj/Work/PAGE/page-kv/experiments/scripts")
+sys.path.insert(0, "$SCRIPTS")
 from paths import verify_prereg
 print("prereg sha256 verified:", verify_prereg()[:16], "...")
 PY
@@ -36,7 +37,7 @@ N=${N:-100}
 # attention tensors plus ~28 GB of weights, which does not fit one 80 GB card
 # in one-pass mode. Sharding keeps it on the SAME one-pass path as the other
 # three cells; --two_pass would change what the scorer sees, which is exactly
-# the W9 degeneracy this round documents.
+# the H2O/SnapKV degeneracy documented in h2o_degeneracy_audit.md.
 CELLS=(
   "qwen15b:Qwen/Qwen2.5-1.5B-Instruct:0:"
   "qwen3b:Qwen/Qwen2.5-3B-Instruct:1:"
@@ -44,7 +45,7 @@ CELLS=(
   "qwen14b:Qwen/Qwen2.5-14B-Instruct:3,0:--device_map auto"
 )
 
-echo "=== E8 Ada-KV matrix: launching ${#CELLS[@]} cells, N=$N ==="
+echo "=== Ada-KV matrix: launching ${#CELLS[@]} cells, N=$N ==="
 date -u +"start: %Y-%m-%dT%H:%M:%SZ"
 
 pids=()

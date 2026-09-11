@@ -1,4 +1,4 @@
-"""E8 analysis: does the headline survive a per-head Ada-KV plain arm?
+"""Per-head Ada-KV analysis: does the headline survive a per-head plain arm?
 
 Evaluates P1 (per budget, as registered), P3 and P4. P2 and P5 are NOT checked
 here: P5 gate-invariance is asserted by the runner against the released logs,
@@ -63,7 +63,7 @@ def main():
     complete = {k: v for k, v in cells.items() if k not in incomplete}
 
     lines = [
-        "# E8 (W2): the headline matrix with a per-head Ada-KV plain arm",
+        "# The headline matrix with a per-head Ada-KV plain arm",
         "",
         "Both plain arms are recorded on the SAME inputs in the SAME run, so",
         "every comparison below is paired. The only thing that varies is the",

@@ -1,8 +1,9 @@
-"""E3 (W9): is the Qwen2.5-14B H2O column an independent base evictor?
+"""Is the Qwen2.5-14B H2O column an independent base evictor?
 
-The reviewer notes the column "degenerates toward SnapKV scoring under two-pass
-prefill" and asks that it be marked in the headline table. The measurement is
-stronger than the objection: the column is an EXACT duplicate.
+The column is suspected to degenerate toward SnapKV scoring under two-pass
+prefill, which would mean it should be marked as such in the headline table.
+The measurement is stronger than that suspicion: the column is an EXACT
+duplicate.
 
 Mechanism: Qwen2.5-14B is the only matrix cell run with --two_pass. In two-pass
 mode the attention matrix carries only obs_window queries, so H2O's "mean over
@@ -62,7 +63,7 @@ def main():
         raise SystemExit("no joinable cells; set PAGE_RESULTS")
 
     lines = [
-        "# E3 (W9): the Qwen2.5-14B H2O column duplicates SnapKV",
+        "# The Qwen2.5-14B H2O column duplicates SnapKV",
         "",
         "Joined on (task, id, budget) between `gated_4k_{slug}.jsonl` (SnapKV)",
         "and `gated_{h2o}_{slug}_4k.jsonl`, **excluding b = 1.0** where both",

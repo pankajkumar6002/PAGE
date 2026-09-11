@@ -1,4 +1,4 @@
-# E1 (W2): headline matrix restricted to b <= 0.25
+# Headline matrix restricted to b <= 0.25
 
 tau = 0.07. Delta = gated minus plain accuracy, over the same inputs.
 The `b < 1.0` column is the convention tab:matrix currently reports;
@@ -45,22 +45,23 @@ matched-grid effect (+0.0167), not the raw one.
 
 ## What this settles
 
-The reviewer asks for the headline recomputed at b <= 0.25 on the
-assumption that averaging over the disowned moderate-budget regime
-inflates it. It does not. The restricted mean is HIGHER, so the
+Restricting the headline to the aggressive (>= 4x) budget regime does
+not deflate it, as averaging over the disowned moderate-budget regime
+might be suspected to do. The restricted mean is HIGHER, so the
 reported +22.9pp is if anything conservative with respect to the
-budgets the caption endorses.
+budgets the paper's own caption endorses.
 
 This does not by itself answer the baseline objection: both columns
-use the shared single keep-mask. E8 replaces the plain arm with
-per-head Ada-KV allocation and is the experiment that settles it.
+use the shared single keep-mask. The per-head Ada-KV analysis
+(`adakv_matrix.md`) replaces the plain arm with per-head allocation
+and is the experiment that settles that question.
 
-## Which 'clean per-head SnapKV' the caption means
+## Which 'clean per-head SnapKV' figure is meant
 
-The caption's 0.32 and the reviewer's Question 6 refer to
-tab:scorer-independence: **0.32 is the Ada-KV per-head row**, and
-**0.20 is the uniform per-head row**. They are different allocations
-of the same SnapKV scores, and the caption should name which it cites.
+Two different per-head allocations of the same SnapKV scores appear
+elsewhere in the paper: **0.32 is the Ada-KV per-head row**, and
+**0.20 is the uniform per-head row**. Any citation of "clean per-head
+SnapKV" should name which one it means.
 
 ## Checks
 

@@ -1,9 +1,8 @@
-"""E2 (W3): expected compression as a function of batch size.
+"""Expected compression as a function of batch size.
 
-Section 5 states the mechanism ("realized compression is the minimum over the
+The paper states the mechanism ("realized compression is the minimum over the
 sequences in a batch, and a single gate-closed sequence erases the benefit for
-the entire batch") and never quantifies it. The reviewer computes the
-consequence and asks for it in the paper.
+the entire batch") but never quantifies it. This computes the consequence.
 
 Model: under a static allocator a batch is provisioned for its largest resident
 cache, so with per-sequence open probability p_open and kept-fraction k_open
@@ -14,10 +13,10 @@ when open,
 MODELLING SCOPE, which the paper must state: this is STATIC batch
 provisioning. Continuous batching with per-sequence paged allocation (vLLM,
 PagedAttention) does not behave this way, because it pages per sequence rather
-than provisioning the batch for its maximum. A reviewer who knows PagedAttention
-will otherwise read the table as alarmist. The honest claim is that PAGE's
-memory benefit is a single-stream / small-batch property under static
-provisioning.
+than provisioning the batch for its maximum, so a reader familiar with
+PagedAttention could otherwise misread the table as alarmist. The honest claim
+is that PAGE's memory benefit is a single-stream / small-batch property under
+static provisioning.
 """
 import os
 import sys
@@ -67,7 +66,7 @@ def main():
         raise SystemExit("no cells found; set PAGE_RESULTS")
 
     lines = [
-        "# E2 (W3): expected compression vs batch size",
+        "# Expected compression vs batch size",
         "",
         "Under a **static** allocator a batch is provisioned for its largest",
         "resident cache, so one gate-closed sequence erases the benefit for the",

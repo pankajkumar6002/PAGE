@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Step 0: does an A100 host reproduce the released logs?
-# The gate was only ever tested on sateri (RTX 6000 Ada), where generations
-# drifted on ~8% of inputs. jagannath is an A100, the same class as the machine
+# The gate was only ever tested on HOST_B (RTX 6000 Ada), where generations
+# drifted on ~8% of inputs. HOST_A is an A100, the same class as the machine
 # that produced the released logs, so this separates "different architecture"
 # from "different machine".
 set -uo pipefail
@@ -16,4 +16,4 @@ python "$R/page-kv/experiments/scripts/gated_eviction.py" \
 python "$R/page-kv/experiments/gpu/repro_diff.py" \
   "$OUT/repro_hostA.jsonl" \
   "$R/page-kv/experiments/results/gated_4k_qwen15b.jsonl"
-echo "JG-GATE-EXIT=$?"
+echo "GATE-REPRO-EXIT=$?"

@@ -7,12 +7,12 @@ Each is checked against the stock script on the fitting cell before use.
 
 | variant | mean $D$ on MK3 | delta vs stock |
 |---|---:|---:|
-| jagannath A100, stock | 0.0448 | +0.0000 |
-| sateri Ada, stock | 0.0412 | -0.0035 |
-| sateri Ada, v1 retention-only | 0.0412 | -0.0035 |
-| jagannath A100, v2 SDPA rewrite | 0.0300 | -0.0148 |
-| sateri Ada, v2 SDPA rewrite | 0.0299 | -0.0149 |
-| jagannath A100, v3 query-chunked | 0.0448 | +0.0000 |
+| HOST_A A100, stock | 0.0448 | +0.0000 |
+| HOST_B Ada, stock | 0.0412 | -0.0035 |
+| HOST_B Ada, v1 retention-only | 0.0412 | -0.0035 |
+| HOST_A A100, v2 SDPA rewrite | 0.0300 | -0.0148 |
+| HOST_B Ada, v2 SDPA rewrite | 0.0299 | -0.0149 |
+| HOST_A A100, v3 query-chunked | 0.0448 | +0.0000 |
 | paper, released (A100) | 0.0450 | +0.0002 |
 
 **Conclusions.**

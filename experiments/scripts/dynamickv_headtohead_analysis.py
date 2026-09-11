@@ -1,8 +1,8 @@
-"""E13 (EIC-4 / R2-1 / W4): DynamicKV adaptive-budget head-to-head vs the gate.
+"""DynamicKV adaptive-budget head-to-head vs the gate.
 
 Reads dynamickv_headtohead.py output (arms: plain = per-layer adaptive budget,
 uniform = same scorer at uniform per-layer budget, gated = PAGE gate over plain;
-all at matched memory) and answers the reviewer's threat "adaptive allocation
+all at matched memory) and answers the natural objection "adaptive allocation
 already does what PAGE does":
 
   * uniform vs plain  -> what the ADAPTIVITY buys, independent of admission.
@@ -90,7 +90,7 @@ def main():
     paths = sys.argv[1:] or [os.path.join(DATA, "dynamickv_qwen3_4k.jsonl")]
     lines = []
     emit = lines.append
-    emit("# E13: DynamicKV adaptive-budget head-to-head vs the PAGE gate\n")
+    emit("# DynamicKV adaptive-budget head-to-head vs the PAGE gate\n")
     emit("Arms at matched memory: **plain** = per-layer adaptive budget; "
          "**uniform** = same scorer, uniform per-layer budget (isolates the "
          "adaptivity); **gated** = PAGE gate over plain. `uniform` vs `plain` = "
@@ -136,7 +136,7 @@ def main():
         # P3: on dilution tasks the gate does NO HARM. The right predicate is
         # gated >= plain - eps (the gate never makes a dilution task worse),
         # NOT "all arms are within eps": on a model where the gate over-closes
-        # (Qwen3 fixed-tau failure, main.tex:170), gated sits ABOVE plain by
+        # (the Qwen3 fixed-tau transfer failure), gated sits ABOVE plain by
         # retaining full cache, which is protective, not harmful. Measuring
         # spread would wrongly flag that protection as a P3 failure.
         emit("### Dilution-prone tasks (gate should do no HARM: gated ≥ plain)\n")

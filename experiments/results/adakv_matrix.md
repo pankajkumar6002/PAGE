@@ -1,4 +1,4 @@
-# E8 (W2): the headline matrix with a per-head Ada-KV plain arm
+# The headline matrix with a per-head Ada-KV plain arm
 
 Both plain arms are recorded on the SAME inputs in the SAME run, so
 every comparison below is paired. The only thing that varies is the

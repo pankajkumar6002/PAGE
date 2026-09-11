@@ -1,4 +1,4 @@
-# E12: learned probe over the per-layer profile a_l (Q2 / W4)
+# Learned probe over the per-layer profile a_l
 
 Label = the paper's per-input AUC label (heldout_ablation.py): NIAH-MK3 vs the dilution-prone pool (vt, fwe, qa_1, niah_multivalue). Features = interior profile summaries (min, argmin depth, mid-band mean) that the endpoint statistic D discards. Fit on Qwen2.5-1.5B, held-out on Llama-3.1-8B. Pure numpy.
 

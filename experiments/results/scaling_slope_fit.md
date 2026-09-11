@@ -1,9 +1,9 @@
-# E6 (W12): the scaling-figure slope, actually fitted
+# The scaling-figure slope, actually fitted
 
-`fig:scaling` reports a slope, its caption reports a different one, and
-the surrounding text reports a band. Nothing in the paper is fitted:
-the string "OLS" does not appear. Below is the through-origin fit the
-figure claims to display.
+The scaling figure reports a slope, its caption reports a different
+one, and the surrounding text reports a band. Nothing in the paper is
+fitted: the string "OLS" does not appear. Below is the through-origin
+fit the figure claims to display.
 
 | population | n | through-origin OLS slope |
 |---|---:|---:|
@@ -12,8 +12,8 @@ figure claims to display.
 
 | number in the paper | value | where |
 |---|---:|---|
-| figure caption "band of slope" | 0.40 | main.tex:2362 |
-| text "ratio clusters in" | 0.25-0.55 | main.tex:2326 |
+| figure caption "band of slope" | 0.40 | scaling figure caption |
+| text "ratio clusters in" | 0.25-0.55 | body text |
 | **fitted, dilution-prone** | **0.34** | this script |
 
 ## Per-row ratios, and the outlier the band does not contain
@@ -53,10 +53,10 @@ relationship being modelled.
    stated. The band then honestly describes 4 of 5 dilution rows.
 2. Keep every row and widen the band to [0.04, 0.55]. This is
    more honest but the band no longer supports "approximately constant",
-   so the prose at main.tex:2326 must weaken accordingly.
+   so the surrounding prose must weaken accordingly.
 
 Either way, the paper must stop printing three different numbers for one
-slope. A reviewer recomputes this in two minutes.
+slope; it is a two-minute recomputation to check.
 
 ## Checks
 

@@ -130,8 +130,8 @@ member. The honest framing:
 > tokens (`cwe`).
 
 That is narrower than the paper's current "capacity-bound" wording, which is a
-real cost. It is also more defensible, and it converts the reviewer's "the
-class is not established as a class" from an unanswered objection into a
+real cost. It is also more defensible, and it converts the objection "the
+class is not established as a class" from an unanswered concern into a
 measured boundary with a pre-registered falsification attached.
 
 ## Caveats

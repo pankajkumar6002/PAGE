@@ -1,7 +1,7 @@
 # Deployment cost of PAGE's attention-materialization (two-pass) gate at scale (2026-07-04)
 
-Measures the cost of the FlashAttention-incompatible requirement a reviewer
-flagged: the PAGE gate scores the head-agreement drop **D** from *prefill
+Measures the cost of a real deployment constraint: the PAGE gate scores the
+head-agreement drop **D** from *prefill
 attention weights* (per-head, per-key), which fused FlashAttention / SDPA never
 materialize. The paper's escape is a **two-pass** mode:
 
@@ -89,7 +89,7 @@ Qwen-1.5B; the fraction grows with head count exactly as O(L·H²) predicts.
 
 ## 2. Peak memory: pass-2 scoring vs SDPA prefill
 
-The reviewer's core object is the **`w × T` attention materialization**: pass-2
+The main memory cost is the **`w × T` attention materialization**: pass-2
 retains, for **all L layers at once** (`output_attentions=True`), a `[H, w, T]`
 bf16 tensor. Analytic size **L·H·w·T·2 bytes** (Qwen-1.5B: 672 MiB at 32K). The
 measured Qwen-1.5B scoring-pass peak decomposes consistently as weights (2.9 GiB)
@@ -113,7 +113,7 @@ per-sequence allocation the pass must hold on top of weights + full-length KV.
 
 ---
 
-## 3. Head-count scaling of the gate — is it O(H²)? (the reviewer's contradiction)
+## 3. Head-count scaling of the gate — is it O(H²)?
 
 The drop computation is the head-agreement Jaccard over **all H(H-1)/2 head
 pairs**, per layer, over top-`k` sets → **O(L·H²·k)**. Timing it model-free

@@ -14,7 +14,7 @@ Reproduce:
   `experiments/results/plain_dbtrimkv_qwen3_4k_30pct.jsonl`. Aggregate with
   `experiments/scripts/matched_memory_dbtrimkv.py`.
 
-**This answers the reviewer's strongest objection.** The paper compares
+**This answers the strongest objection to the matched-budget comparison.** The paper compares
 gated-SnapKV (PAGE) vs plain SnapKV at matched *nominal* budget, but the gate's
 full-KV fallback means the gated policy always *holds more memory*. The honest
 question is: at a fixed **achieved kept-KV fraction**, does PAGE beat a strong

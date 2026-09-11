@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# E9 (W1): is the capacity-bound class broader than one synthetic task?
+# Is the capacity-bound class broader than one synthetic task?
 #
 # Tasks chosen by a-priori mechanism, not by result:
 #   cwe, niah_multiquery  -- predicted capacity-bound
@@ -9,42 +9,44 @@
 #                            near-tie-surface-form account predicts high D.
 #   niah_single_1         -- no distractors, negative control
 #
-# Waits for E8 to finish first: only GPUs 0 and 2 are free (1 and 3 belong to
-# other users) and contention already cost one 14B run to OOM.
+# Waits for the per-head Ada-KV matrix run to finish first: only GPUs 0 and 2
+# are free (1 and 3 belong to other users) and contention already cost one
+# 14B run to OOM.
 set -uo pipefail
 
-R2=/home/pankaj/Work/PAGE/page-kv
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+R2="$(cd "$HERE/../.." && pwd)"
 SCRIPTS="$R2/experiments/scripts"; OUT="$R2/experiments/results"; LOGDIR="$R2/experiments/logs"
-export PAGE_SRC=/home/pankaj/Work/PAGE/page-kv/experiments/scripts
+export PAGE_SRC="$R2/experiments/scripts"
 source "$HOME/miniconda3/etc/profile.d/conda.sh"; conda activate page-repro
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 # --- gate 1: pre-registration intact -----------------------------------------
-python - <<'PY' || exit 1
+python - <<PY || exit 1
 import hashlib, sys
-p = "/home/pankaj/Work/PAGE/page-kv/preregistration/capacity_bound_class_generalization_prereg.md"
+p = "$R2/preregistration/capacity_bound_class_generalization_prereg.md"
 want = "7d336844cd6cd055d6eb27b5df42bf5ef2cb3ff07516349c586c289e49c0a59a"
 got = hashlib.sha256(open(p, "rb").read()).hexdigest()
 if got != want:
-    sys.exit(f"E9 prereg hash mismatch\n  expected {want}\n  got      {got}")
-print("E9 prereg verified:", got[:16], "...")
+    sys.exit(f"prereg hash mismatch\n  expected {want}\n  got      {got}")
+print("prereg verified:", got[:16], "...")
 PY
 
-# --- gate 2: wait for E8 to release the GPUs ---------------------------------
-echo "waiting for E8 to finish before claiming GPUs 0,2 ..."
+# --- gate 2: wait for the Ada-KV matrix run to release the GPUs -------------
+echo "waiting for the Ada-KV matrix run to finish before claiming GPUs 0,2 ..."
 while pgrep -f "adakv_matrix.py --model Qwen/Qwen2.5-14B" >/dev/null 2>&1 \
    || pgrep -f "adakv_matrix.py --model Qwen/Qwen2.5-3B" >/dev/null 2>&1; do
   sleep 60
 done
-echo "E8 clear."
+echo "GPUs clear."
 
 # --- gate 3: the runner must be validated on the released tasks first --------
-# E9's tasks have no released reference, so the full-cache guard cannot fire on
-# them. Correctness rests on the same runner having reproduced the released
-# accuracies on the four known tasks.
-python - <<'PY' || exit 1
+# These tasks have no released reference, so the full-cache guard cannot fire
+# on them. Correctness rests on the same runner having reproduced the
+# released accuracies on the four known tasks.
+python - <<PY || exit 1
 import json, collections, sys, os
-OUT = "/home/pankaj/Work/PAGE/page-kv/experiments/results"
+OUT = "$OUT"
 REL = {"qwen15b":   {"niah_multikey_3":0.65,"vt":0.82,"fwe":0.22,"qa_1":0.74},
        "mistral7b": {"niah_multikey_3":0.99,"vt":1.00,"fwe":0.82,"qa_1":0.81},
        "qwen3b":    {"niah_multikey_3":0.93,"vt":1.00,"fwe":0.76,"qa_1":0.84},
@@ -53,7 +55,7 @@ ok = 0
 for slug, want in REL.items():
     f = os.path.join(OUT, f"adakv_4k_{slug}.jsonl")
     if not os.path.exists(f):
-        print(f"  {slug}: no E8 run, skipped"); continue
+        print(f"  {slug}: no Ada-KV matrix run, skipped"); continue
     acc, seen = collections.defaultdict(list), set()
     for line in open(f):
         r = json.loads(line); k = (r["task"], r["id"])
@@ -64,14 +66,14 @@ for slug, want in REL.items():
     print(f"  {slug}: {'OK' if not bad else 'MISMATCH ' + ', '.join(bad)}")
     ok += not bad
 if ok == 0:
-    sys.exit("no E8 cell reproduced the released accuracies; do not run E9")
+    sys.exit("no Ada-KV matrix cell reproduced the released accuracies; do not run this probe")
 print(f"runner validated on {ok} released cell(s)")
 PY
 
 TASKS=cwe,niah_multiquery,qa_2,niah_single_1
 BUDGETS=0.0625,0.125,0.25,0.375,0.5,0.625,0.75,0.875
 
-echo "=== E9 capacity-bound probe ==="; date -u +"start: %FT%TZ"
+echo "=== capacity-bound class generalization probe ==="; date -u +"start: %FT%TZ"
 
 # 14B first, alone across both free cards (it OOMs when it has to share).
 echo "--- [1/4] qwen14b on GPUs 0,2 ---"

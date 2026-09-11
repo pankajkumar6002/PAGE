@@ -1,4 +1,4 @@
-# E2 (W3): expected compression vs batch size
+# Expected compression vs batch size
 
 Under a **static** allocator a batch is provisioned for its largest
 resident cache, so one gate-closed sequence erases the benefit for the

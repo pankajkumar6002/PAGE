@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 # Pull GPU results and logs back from the run host into this checkout, so the
-# jsonl produced on sateri sits beside the zero-GPU outputs that run_all.sh
-# already asserts against.
+# jsonl produced on the remote GPU host sits beside the zero-GPU outputs that
+# run_all.sh already asserts against.
 set -uo pipefail
 
-HOST=${HOST:-pankaj@10.10.0.190}
-LOCAL=/home/pankaj/Work/PAGE/page-kv
-REMOTE=Work/PAGE/page-kv
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOCAL="$(cd "$HERE/../.." && pwd)"
+
+: "${HOST:?set HOST=user@remote-gpu-host}"
+: "${REMOTE:?set REMOTE=path/to/page-kv on the remote host}"
 
 mkdir -p "$LOCAL/experiments/results" "$LOCAL/logs"
 

@@ -1,6 +1,6 @@
-# Faithful ManifoldKV + Ada-KV on NIAH-MK3 (closing the reviewer gap)
+# Faithful ManifoldKV + Ada-KV on NIAH-MK3
 
-Reviewer ask: reproduce the *real* ManifoldKV pipeline (arXiv 2602.08343) — a
+Goal: reproduce the *real* ManifoldKV pipeline (arXiv 2602.08343) — a
 competent geometry-based scorer integrated with Ada-KV per-head budget
 allocation — and test whether it rescues RULER `niah_multikey_3` (MK3) where
 attention-score evictors are claimed to be capacity-bound. If it rescues MK3, the
@@ -69,8 +69,8 @@ keys retain their original RoPE rotation, evicted keys get zero weight — with
 **zero over-allocation** and no position surgery. Verified: the measured mean kept
 fraction equals the nominal budget to 4 decimals (e.g. nominal 0.0625 -> effective
 0.0626), so there is no memory cheat inflating accuracy. This measures ACCURACY
-under a logical budget, not wall-clock memory savings (which is all the reviewer
-question needs). Prefill is unmasked (eviction happens after prefill); the last
+under a logical budget, not wall-clock memory savings (which is a separate
+question from accuracy). Prefill is unmasked (eviction happens after prefill); the last
 prompt token is re-fed against the masked cache so no answer token benefits from
 full-prompt attention.
 
@@ -152,7 +152,7 @@ Two things are visible:
 
 ## Verdict: case (b) — faithful ManifoldKV+Ada-KV does NOT rescue MK3
 
-The reviewer's alternative ("a competent geometry scorer rescues MK3, so the
+The alternative hypothesis ("a competent geometry scorer rescues MK3, so the
 capacity-bound claim is scorer-specific") is **not supported**. A faithful
 ManifoldKV (Euclidean-outlier L2 key scoring, per (layer, kv-head) centroid,
 tried on both post-RoPE and pre-RoPE keys) integrated with Ada-KV per-head
@@ -163,7 +163,7 @@ adaptive budget allocation (floor_alpha=0.5 + global head-wise top-k):
   0.66, i.e. MK3 is already heavily capacity-bound at 50% and totally so at 25%).
 
 So MK3 is capacity-bound in a **scorer-independent** way under aggressive
-compression — including for the exact geometry method the reviewer asked about.
+compression — including for this specific geometry-based scorer.
 
 The decisive point: this same ManifoldKV+Ada-KV **does rescue 2-key NIAH** (0.72 vs
 SnapKV 0.16 at b=0.5; 0.56 vs 0.04 at b=0.25 — see validation above), faithfully
@@ -210,7 +210,7 @@ should be stated as MK3-specific.
 We did not reproduce ManifoldKV's headline 92.4%-at-50% number; that is on
 Llama-3.1-8B at 8K with the authors' full flattened-cache Ada-KV pipeline, whereas
 this is Qwen2.5-1.5B at 4K (full-KV MK3 is only 0.66 here). The verdict is about
-*relative* rescue on a matched harness, which is what the reviewer asked for.
+*relative* rescue on a matched harness.
 
 ## Files
 

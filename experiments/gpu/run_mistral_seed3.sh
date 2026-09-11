@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Mistral-7B seed 3, the one cell missing from the P3-1 re-baseline.
-# HOSTTAG distinguishes the output so the sateri and jagannath runs do not
-# overwrite each other: seeds 1 and 2 were measured on jagannath, so only the
-# jagannath copy is comparable with them.
+# Mistral-7B seed 3, the one cell missing from the seed-variance re-baseline.
+# HOSTTAG distinguishes the output so the HOST_B and HOST_A runs do not
+# overwrite each other: seeds 1 and 2 were measured on HOST_A, so only the
+# HOST_A copy is comparable with them.
 set -uo pipefail
 source "$HOME/miniconda3/etc/profile.d/conda.sh"; conda activate page-repro
 export PAGE_SRC="$HOME/Work/PAGE/page-kv/experiments/scripts"

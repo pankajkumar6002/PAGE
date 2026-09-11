@@ -1,14 +1,15 @@
-"""E1 (W2): the headline matrix restricted to aggressive budgets.
+"""The headline matrix restricted to aggressive budgets.
 
-The tab:matrix caption disowns its own moderate-budget regime ("a clean
-per-head SnapKV collapses less sharply at 2x ... read them at >= 4x"), yet the
-reported grand mean averages over every b < 1.0, which includes b = 0.875,
-0.75, 0.625 and 0.5. The reviewer asks for the matrix recomputed at b <= 0.25.
+The paper's headline-matrix caption disowns its own moderate-budget regime
+("a clean per-head SnapKV collapses less sharply at 2x ... read them at >=
+4x"), yet the reported grand mean averages over every b < 1.0, which includes
+b = 0.875, 0.75, 0.625 and 0.5. This recomputes the matrix restricted to
+b <= 0.25, the regime the caption actually endorses.
 
-The restriction RAISES the grand mean, from +0.2286 to +0.2584. The reviewer
-assumed restricting to the aggressive regime would deflate the headline; it
-does the opposite, because the collapse the gate prevents is deepest exactly
-where the caption says to read it.
+The restriction RAISES the grand mean, from +0.2286 to +0.2584: restricting to
+the aggressive regime does not deflate the headline as might be suspected,
+because the collapse the gate prevents is deepest exactly where the caption
+says to read it.
 """
 import os
 import sys
@@ -76,7 +77,7 @@ def main():
     gm_res_nomk3 = sum(res[k]["no_mk3"] for k in shared) / len(shared)
 
     lines = [
-        "# E1 (W2): headline matrix restricted to b <= 0.25",
+        "# Headline matrix restricted to b <= 0.25",
         "",
         f"tau = {TAU}. Delta = gated minus plain accuracy, over the same inputs.",
         "The `b < 1.0` column is the convention tab:matrix currently reports;",
@@ -121,22 +122,23 @@ def main():
         "",
         "## What this settles",
         "",
-        "The reviewer asks for the headline recomputed at b <= 0.25 on the",
-        "assumption that averaging over the disowned moderate-budget regime",
-        "inflates it. It does not. The restricted mean is HIGHER, so the",
+        "Restricting the headline to the aggressive (>= 4x) budget regime does",
+        "not deflate it, as averaging over the disowned moderate-budget regime",
+        "might be suspected to do. The restricted mean is HIGHER, so the",
         "reported +22.9pp is if anything conservative with respect to the",
-        "budgets the caption endorses.",
+        "budgets the paper's own caption endorses.",
         "",
         "This does not by itself answer the baseline objection: both columns",
-        "use the shared single keep-mask. E8 replaces the plain arm with",
-        "per-head Ada-KV allocation and is the experiment that settles it.",
+        "use the shared single keep-mask. The per-head Ada-KV analysis",
+        "(`adakv_matrix.md`) replaces the plain arm with per-head allocation",
+        "and is the experiment that settles that question.",
         "",
-        "## Which 'clean per-head SnapKV' the caption means",
+        "## Which 'clean per-head SnapKV' figure is meant",
         "",
-        "The caption's 0.32 and the reviewer's Question 6 refer to",
-        "tab:scorer-independence: **0.32 is the Ada-KV per-head row**, and",
-        "**0.20 is the uniform per-head row**. They are different allocations",
-        "of the same SnapKV scores, and the caption should name which it cites.",
+        "Two different per-head allocations of the same SnapKV scores appear",
+        "elsewhere in the paper: **0.32 is the Ada-KV per-head row**, and",
+        "**0.20 is the uniform per-head row**. Any citation of \"clean per-head",
+        "SnapKV\" should name which one it means.",
     ]
 
     ok = True

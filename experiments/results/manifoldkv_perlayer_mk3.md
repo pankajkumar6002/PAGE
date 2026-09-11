@@ -1,4 +1,4 @@
-# True per-layer ManifoldKV on NIAH-MK3 (closing the reviewer gap)
+# True per-layer ManifoldKV on NIAH-MK3
 
 Question: does the faithful per-layer/per-head ManifoldKV design (Euclidean-outlier
 key scoring) rescue NIAH-MK3 where SnapKV and our single-mask ManifoldKV variant

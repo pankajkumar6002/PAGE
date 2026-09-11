@@ -9,7 +9,7 @@ Configuration: Qwen2.5-1.5B-Instruct, RULER 4K, 4 tasks, `b` in {1.0, 0.25},
 N = 100, SnapKV scoring, greedy decoding, tau = 0.07. 800 rows compared against
 `page-kv/experiments/results/gated_4k_qwen15b.jsonl`.
 
-| field | jagannath (A100-SXM4-80GB) | sateri (RTX 6000 Ada) |
+| field | HOST_A (A100-SXM4-80GB) | HOST_B (RTX 6000 Ada) |
 |---|---|---|
 | `correct_plain` | 800/800 | differs on ~8% |
 | `correct_gated` | 800/800 | differs on ~8% |
@@ -19,12 +19,12 @@ N = 100, SnapKV scoring, greedy decoding, tau = 0.07. 800 rows compared against
 | max abs delta on `drop` | **0.000e+00** | small, mean D shifts -0.0035 |
 | gate decisions flipped across tau | 0 | 0 |
 
-**jagannath reproduces the released log exactly**, including the continuous
+**HOST_A reproduces the released log exactly**, including the continuous
 gate statistic. It is an A100 box, the same class as the machine that produced
 the released logs, and every seed replicate, held-out ablation cell and probe
 reported in this round ran there.
 
-**sateri does not reproduce generations**, but the parts of the pipeline the
+**HOST_B does not reproduce generations**, but the parts of the pipeline the
 method consists of, gate decisions, kept-counts and tau crossings, match
 exactly. Only decoded text drifts, which is the expected consequence of a
 different GPU architecture under greedy decoding.

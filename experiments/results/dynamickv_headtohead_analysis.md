@@ -1,4 +1,4 @@
-# E13: DynamicKV adaptive-budget head-to-head vs the PAGE gate
+# DynamicKV adaptive-budget head-to-head vs the PAGE gate
 
 Arms at matched memory: **plain** = per-layer adaptive budget; **uniform** = same scorer, uniform per-layer budget (isolates the adaptivity); **gated** = PAGE gate over plain. `uniform` vs `plain` = what adaptivity buys; `plain` vs `gated` = residual admission value.
 

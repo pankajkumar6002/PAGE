@@ -1,4 +1,4 @@
-# E3 (W9): the Qwen2.5-14B H2O column duplicates SnapKV
+# The Qwen2.5-14B H2O column duplicates SnapKV
 
 Joined on (task, id, budget) between `gated_4k_{slug}.jsonl` (SnapKV)
 and `gated_{h2o}_{slug}_4k.jsonl`, **excluding b = 1.0** where both

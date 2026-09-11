@@ -1,19 +1,15 @@
-"""E6 (W12): actually fit the scaling-figure slope.
+"""Actually fit the scaling-figure slope.
 
-The paper currently carries THREE different numbers for one quantity:
-
-  * fig:scaling caption (main.tex:2362): "a band of slope approx 0.4"
-  * main.tex:2326 / :620:               "the ratio clusters in [0.25, 0.55]"
-  * the word "OLS":                     0 hits, i.e. nothing is ever fitted
-
-and a fourth problem: Qwen2.5-3B 4K FWE has ratio 0.04 (tab:scaling-formula,
-main.tex:2348), an order of magnitude below the claimed band, with real
-headroom (0.24). It is neither excluded nor explained.
+The paper's scaling figure carries three different numbers for one quantity:
+a caption stating "a band of slope approx 0.4", body text stating "the ratio
+clusters in [0.25, 0.55]", and no OLS fit anywhere to justify either. There is
+also an unexplained outlier: Qwen2.5-3B 4K FWE has ratio 0.04, an order of
+magnitude below the claimed band, with real headroom (0.24).
 
 This script fits the through-origin OLS the figure claims to show. Data are
-transcribed from tab:scaling-formula, which is itself the promoted form of the
-released per-cell numbers; the row with no headroom (Qwen2.5-3B 4K VT, where
-1 - A_full = 0.00 and the ratio is undefined) is dropped, as the table does.
+transcribed from the paper's scaling-formula table; the row with no headroom
+(Qwen2.5-3B 4K VT, where 1 - A_full = 0.00 and the ratio is undefined) is
+dropped, as that table does.
 """
 import os
 import sys
@@ -22,8 +18,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from paths import out_path
 
-# (label, 1 - A_full, rho, is_capacity_bound). Transcribed from
-# tab:scaling-formula, main.tex:2344-2352.
+# (label, 1 - A_full, rho, is_capacity_bound). Transcribed from the paper's
+# scaling-formula table.
 ROWS = [
     ("Qwen2.5-1.5B 4K  VT",       0.18, 0.06, False),
     ("Qwen2.5-1.5B 16K VT",       0.75, 0.19, False),
@@ -68,12 +64,12 @@ def main():
     m_all = ols_through_origin(allr)
 
     lines = [
-        "# E6 (W12): the scaling-figure slope, actually fitted",
+        "# The scaling-figure slope, actually fitted",
         "",
-        "`fig:scaling` reports a slope, its caption reports a different one, and",
-        "the surrounding text reports a band. Nothing in the paper is fitted:",
-        "the string \"OLS\" does not appear. Below is the through-origin fit the",
-        "figure claims to display.",
+        "The scaling figure reports a slope, its caption reports a different",
+        "one, and the surrounding text reports a band. Nothing in the paper is",
+        "fitted: the string \"OLS\" does not appear. Below is the through-origin",
+        "fit the figure claims to display.",
         "",
         "| population | n | through-origin OLS slope |",
         "|---|---:|---:|",
@@ -82,8 +78,8 @@ def main():
         "",
         "| number in the paper | value | where |",
         "|---|---:|---|",
-        f"| figure caption \"band of slope\" | {CLAIMED_SLOPE:.2f} | main.tex:2362 |",
-        f"| text \"ratio clusters in\" | {CLAIMED_BAND[0]:.2f}-{CLAIMED_BAND[1]:.2f} | main.tex:2326 |",
+        f"| figure caption \"band of slope\" | {CLAIMED_SLOPE:.2f} | scaling figure caption |",
+        f"| text \"ratio clusters in\" | {CLAIMED_BAND[0]:.2f}-{CLAIMED_BAND[1]:.2f} | body text |",
         f"| **fitted, dilution-prone** | **{m_dil:.2f}** | this script |",
         "",
         "## Per-row ratios, and the outlier the band does not contain",
@@ -132,10 +128,10 @@ def main():
         "   stated. The band then honestly describes 4 of 5 dilution rows.",
         f"2. Keep every row and widen the band to [{0.01/0.24:.2f}, 0.55]. This is",
         "   more honest but the band no longer supports \"approximately constant\",",
-        "   so the prose at main.tex:2326 must weaken accordingly.",
+        "   so the surrounding prose must weaken accordingly.",
         "",
         "Either way, the paper must stop printing three different numbers for one",
-        "slope. A reviewer recomputes this in two minutes.",
+        "slope; it is a two-minute recomputation to check.",
     ]
 
     ok = True
