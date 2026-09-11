@@ -19,4 +19,9 @@ external/trimkv/venv/
 .DS_Store
 scratchpad/
 *.tmp
-github/**/__pycache__/
+
+# Run logs (large, low-value for a reader; regenerable by the gpu/ scripts)
+experiments/logs/
+
+# Internal agent-session notes, not part of the published code
+claude.md
