@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-# E9 Mistral-7B `cwe` only. Waits for the 3-task Mistral cell to release GPU 0,
-# then runs. cwe needs ~61.4 GB; three attempts on a card with 60.98 GB free
-# failed by ~0.4 GB, so the wait is not optional.
+# Capacity-bound-class Mistral-7B `cwe` only. Waits for the 3-task Mistral
+# cell to release GPU 0, then runs. cwe needs ~61.4 GB; three attempts on a
+# card with 60.98 GB free failed by ~0.4 GB, so the wait is not optional.
 set -uo pipefail
-R2=/home/pankaj/Work/PAGE/page-kv
-export PAGE_SRC=/home/pankaj/Work/PAGE/page-kv/experiments/scripts
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+R2="$(cd "$HERE/../.." && pwd)"
+export PAGE_SRC="$R2/experiments/scripts"
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 source "$HOME/miniconda3/etc/profile.d/conda.sh"; conda activate page-repro
 

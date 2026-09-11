@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
-# E8 remaining cells, sequential. Only GPUs 0 and 2 are free (1 and 3 belong to
-# other users), so qwen14b takes both cards to itself first -- it OOMed once
-# when it had to share GPU 0 -- and qwen3b follows on a single card.
+# Per-head Ada-KV remaining cells, sequential. Only GPUs 0 and 2 are free (1
+# and 3 belong to other users), so qwen14b takes both cards to itself first
+# -- it OOMed once when it had to share GPU 0 -- and qwen3b follows on a
+# single card.
 set -uo pipefail
-R2=/home/pankaj/Work/PAGE/page-kv
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+R2="$(cd "$HERE/../.." && pwd)"
 SCRIPTS="$R2/experiments/scripts"; OUT="$R2/experiments/results"; LOGDIR="$R2/experiments/logs"
-export PAGE_SRC=/home/pankaj/Work/PAGE/page-kv/experiments/scripts
+export PAGE_SRC="$R2/experiments/scripts"
 source "$HOME/miniconda3/etc/profile.d/conda.sh"; conda activate page-repro
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
-python - <<'PY' || exit 1
-import sys; sys.path.insert(0,"/home/pankaj/Work/PAGE/page-kv/experiments/scripts")
+python - <<PY || exit 1
+import sys; sys.path.insert(0,"$SCRIPTS")
 from paths import verify_prereg; print("prereg verified:", verify_prereg()[:16], "...")
 PY
 

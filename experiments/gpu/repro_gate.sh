@@ -5,15 +5,16 @@
 # environment that matches the paper's reproducibility statement, and diffs
 # row for row against the logged jsonl.
 #
-# Why this must pass before any seed run: P3-1 measures how much Delta moves
-# when the input draw changes. If the environment itself moves Delta, the two
-# effects are confounded and the seed numbers mean nothing. A clean diff here
-# licenses attributing later differences to the seed.
+# Why this must pass before any seed run: the seed-variance measurement
+# (seed_variance.py) measures how much Delta moves when the input draw
+# changes. If the environment itself moves Delta, the two effects are
+# confounded and the seed numbers mean nothing. A clean diff here licenses
+# attributing later differences to the seed.
 set -uo pipefail
 
-ROOT=/home/pankaj/Work/PAGE
-SRC=$ROOT/page-kv/experiments
-OUT=$ROOT/page-kv/experiments/results
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SRC="$(cd "$HERE/.." && pwd)"
+OUT="$SRC/results"
 mkdir -p "$OUT"
 
 source "$(conda info --base)/etc/profile.d/conda.sh"
@@ -42,7 +43,7 @@ time python "$SRC/scripts/gated_eviction.py" \
 
 echo
 echo "== diff against the released log =="
-python "$ROOT/page-kv/experiments/gpu/repro_diff.py" \
+python "$HERE/repro_diff.py" \
   "$OUT/repro_qwen15b_4k.jsonl" \
   "$SRC/results/gated_4k_qwen15b.jsonl"
 echo "REPRO-GATE-EXIT=$?"

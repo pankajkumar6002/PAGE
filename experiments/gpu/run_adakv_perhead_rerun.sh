@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-# E8 rerun after the shared-mask fix. Only GPUs 0 and 2 are ours.
+# Per-head Ada-KV rerun after the shared-mask fix. Only GPUs 0 and 2 are ours.
 # Stage 1: qwen15b (GPU 0) + mistral7b (GPU 2) in parallel.
 # Stage 2: qwen3b (GPU 0) + qwen14b sharded (0,2) would contend, so qwen3b
 #          runs on GPU 0 and 14B follows alone across both cards.
 set -uo pipefail
-R2=/home/pankaj/Work/PAGE/page-kv
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+R2="$(cd "$HERE/../.." && pwd)"
 S="$R2/experiments/scripts"; OUT="$R2/experiments/results"; L="$R2/experiments/logs"
-export PAGE_SRC=/home/pankaj/Work/PAGE/page-kv/experiments/scripts
+export PAGE_SRC="$R2/experiments/scripts"
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 source "$HOME/miniconda3/etc/profile.d/conda.sh"; conda activate page-repro
 python -c "import sys;sys.path.insert(0,'$S');from paths import verify_prereg;print('prereg:',verify_prereg()[:16],'...')" || exit 1
