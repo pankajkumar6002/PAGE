@@ -8,10 +8,7 @@ evictor when the drop is large, otherwise keeps the full cache. Read honestly, P
 (precise multi-key retrieval, exact code completion) at a bounded memory cost, and improves the
 accuracy–memory frontier where moderate compression is the target.
 
-This repository accompanies the ICLR-format paper in [`paper/iclr2026/`](paper/iclr2026/)
-(compiled: [`main.pdf`](paper/iclr2026/main.pdf)).
-
-> **Status.** Research code and a submission-format draft. The method is deliberately scoped:
+> **Status.** Research code for an ICLR-format submission. The method is deliberately scoped:
 > it is a moderate-compression (≤ ~3×) safety wrapper, not an aggressive-regime compressor, and
 > it does not beat strong *trained* evictors at matched memory. See [Limitations](#limitations).
 
@@ -42,34 +39,61 @@ This repository accompanies the ICLR-format paper in [`paper/iclr2026/`](paper/i
   matched memory, PAGE does not win.
 - **Transfer.** One fixed threshold works on the Qwen2.5 and Mistral families; an unlabeled
   per-model z-scoring pilot extends it to Llama-family and Qwen3 models.
+- **Prevalence.** In realistic (non-synthetic) traffic the capacity-bound class the gate
+  protects is concentrated, not common: ~3.7% of inputs pooled across 9 LongBench subtasks at
+  matched budget.
+- **Generalization checks.** An architecture-bias control (Llama-3.1-8B) rules out KV-head
+  count as the driver of a per-head-allocation anomaly seen on Mistral; a learned probe over
+  the richer per-layer profile does not out-predict the simple endpoint statistic `D`; and a
+  DynamicKV-style adaptive-budget baseline does not substitute for the gate's per-input
+  admission decision.
+
+## Setup
+
+```bash
+git clone <repo-url> && cd page-kv
+python -m venv .venv && . .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Requires Python 3.13 and a CUDA-capable GPU for any GPU experiment (single-card 80GB is enough
+for every cell except Qwen2.5-14B at 4K, which needs two cards — see the standing caveats in
+`experiments/results/README.md`). The zero-GPU analysis scripts (`experiments/run_all.sh` and
+most of `experiments/scripts/`) need only the released `.jsonl` logs already in
+`experiments/results/` and run on CPU.
+
+The DBTrimKV baseline (`external/trimkv/`) needs a **separate** environment with its own pinned
+versions (Transformers 4.57.1 / PyTorch 2.8 / FlashAttention 2); see `external/trimkv/README.md`
+and `NOTES.md`.
 
 ## Repository layout
 
 ```
-paper/
-  main.tex                 full-content master (NeurIPS-stub preamble)
-  iclr2026/main.tex        ICLR 2026 submission build (9-page main text + appendix)
-  make_figures.py          regenerates paper figures from experiments/results/
 experiments/
   scripts/                 all experiment + analysis code (entry points below)
   results/                 per-input .jsonl logs + .md reports for every experiment
-  logs/                    run logs
-  data/                    synthetic NIAH inputs
-literature/                landscape survey (topic folders + INDEX.md); 12_iclr_style_exemplars/
-external/trimkv/           DBTrimKV (Bui et al.) baseline, with our gated-DBTrimKV drivers
-theory_h3.md               working theory notes (SNR / dilution / scaling)
-problem_statement.md       problem framing and novelty positioning
+                            (see experiments/results/README.md for the full index)
+  gpu/                      GPU launch scripts for each experiment
+  logs/                     run logs (not published; local only)
+  data/                     synthetic NIAH inputs
+preregistration/            frozen, sha256-hashed predictions for six experiments,
+                            verified by the corresponding launch/analysis script at run time
+external/trimkv/             DBTrimKV (Bui et al.) baseline, with our gated-DBTrimKV drivers
 ```
 
 ## Reproducing
 
 Environment: Python 3.13, PyTorch 2.11, Transformers 5.9 (a local `.venv`, not tracked). The
-two published head-to-heads use the baselines' own pinned environments (DBTrimKV: the
-`external/trimkv` env with Transformers 4.57.1 / PyTorch 2.8 / FlashAttention 2).
+DBTrimKV head-to-head uses the baseline's own pinned environment (Transformers 4.57.1 /
+PyTorch 2.8 / FlashAttention 2, under `external/trimkv`).
 
 All runs use greedy decoding and a fixed seed. Every reported number is reproducible from the
 released per-input `.jsonl` in `experiments/results/`; the analysis scripts recompute the
-tables directly.
+tables directly. Run the full zero-GPU verification suite with:
+
+```bash
+cd experiments && ./run_all.sh     # 11 steps, exits non-zero on any CHECK failure
+```
 
 Core gate (single model, RULER 4K mixed suite):
 
@@ -94,12 +118,13 @@ Key entry points (see each script's `--help`):
 | `manifoldkv_adakv.py` | faithful ManifoldKV + Ada-KV control |
 | `measure_flashattn_gate.py` | two-pass gate deployment cost at scale |
 | `calibration_recipe.py` / `normalized_predictor.py` | tau calibration + z-scored transfer |
+| `adakv_matrix.py` / `adakv_analysis.py` | per-head Ada-KV baseline for the headline matrix |
+| `prevalence_survey.py` | capacity-bound class prevalence in realistic workloads |
+| `profile_probe_ablation.py` | learned per-layer probe vs. the endpoint statistic D |
+| `dynamickv_headtohead_analysis.py` | DynamicKV adaptive-budget baseline vs. the gate |
 
-Rebuild the paper:
-
-```bash
-cd paper/iclr2026 && pdflatex main && bibtex main && pdflatex main && pdflatex main
-```
+See `experiments/results/README.md` for the complete results index, grouped by what each
+experiment settles, with regeneration commands for every group.
 
 ## Limitations
 
@@ -110,16 +135,20 @@ cd paper/iclr2026 && pdflatex main && bibtex main && pdflatex main && pdflatex m
   is on/above the frontier, and a strong trained evictor (DBTrimKV) beats PAGE at matched memory.
 - Confirmed capacity-bound exemplars are NIAH-MK3 (synthetic) and `lcc` (realistic); the
   predictor is one-sided (a documented false positive on `passage_count`, a false negative on
-  the single-near-tie MK2).
+  the single-near-tie MK2). In realistic traffic the class is a small minority of inputs
+  (~3.7% pooled, see `experiments/results/prevalence_survey.md`), not a general property of
+  long-context workloads.
 - The theory is a conditional analysis on a single-head surrogate, not a statement about real
   transformers; the empirical results do not depend on it.
+- A richer learned predictor over the per-layer agreement profile does not fix the fixed-tau
+  transfer failure on Llama-family models; the failure is not in the endpoint statistic.
 
 ## Citation
 
 ```bibtex
-@misc{mishra2026page,
+@misc{anonymous2026page,
   title  = {PAGE: Partition-Aware Gated KV-Cache Eviction},
-  author = {Mishra, Subhankar},
+  author = {Anonymous},
   year   = {2026},
   note   = {Under review}
 }

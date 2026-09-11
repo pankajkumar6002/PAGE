@@ -8,7 +8,7 @@ torch==2.11.0            # +cu128 build used; install the CUDA build matching yo
 transformers==5.9.0
 numpy==2.4.6
 datasets==4.8.5          # RULER (simonjegou/ruler port) and LongBench loading
-matplotlib==3.10.9       # paper/make_figures.py and the phenomenon/Pareto figures
+matplotlib==3.10.9       # the phenomenon/Pareto figures under experiments/results/
 
 # --- model loading / runtime (pulled in by transformers, pinned for reproducibility) ---
 accelerate==1.13.0
