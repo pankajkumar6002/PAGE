@@ -34,6 +34,6 @@ across input draws. Had the runs sat on a host that shifts `D`, that shift
 would be reported as seed variance. The exact match here means the spread in
 that table is the input draw and nothing else.
 
-Reproduce: `experiments/gpu/repro_gate_jg.sh` (writes
-`experiments/results/repro_jagannath.jsonl`, then diffs with
+Reproduce: `experiments/gpu/repro_gate_hostA.sh` (writes
+`experiments/results/repro_hostA.jsonl`, then diffs with
 `experiments/gpu/repro_diff.py`).

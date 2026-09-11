@@ -28,7 +28,7 @@ SIGNALS = [("drop_D", "head-agreement drop $D$"),
            ("topk_mass_share", "top-32 mass share"),
            ("max_share", "max single-position share"),
            ("keynorm_disp", "key-norm dispersion")]
-CELLS = [("Qwen2.5-1.5B 4K", "sigabl_qwen15b_JG_ORIGINAL.jsonl", "fitting", "stock"),
+CELLS = [("Qwen2.5-1.5B 4K", "sigabl_qwen15b_hostA_original.jsonl", "fitting", "stock"),
          ("Qwen2.5-14B 4K", "signal_ablation_qwen14b_4k.jsonl", "held out", "v1"),
          ("Llama-3.1-8B 4K", "signal_ablation_llama31_4k.jsonl", "held out", "v1"),
          ("Mistral-7B 16K", "signal_ablation_mistral7b_16k.jsonl", "held out", "v3")]

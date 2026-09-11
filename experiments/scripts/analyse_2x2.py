@@ -32,8 +32,8 @@ ANCHOR = "niah_multikey_3"
 DIL = ["vt", "fwe", "qa_1", "niah_multivalue"]
 
 CELLS = [
-    ("jagannath (A100)", "ORIGINAL", "sigabl_qwen15b_JG_ORIGINAL.jsonl"),
-    ("jagannath (A100)", "WRAPPER",  "sigabl_qwen15b_JG_WRAPPER.jsonl"),
+    ("jagannath (A100)", "ORIGINAL", "sigabl_qwen15b_hostA_original.jsonl"),
+    ("jagannath (A100)", "WRAPPER",  "sigabl_qwen15b_hostA_wrapper.jsonl"),
     ("sateri (Ada)",     "ORIGINAL", "signal_ablation_qwen15b_ORIGINAL.jsonl"),
     ("sateri (Ada)",     "WRAPPER",  "signal_ablation_qwen15b_VALIDATE.jsonl"),
 ]

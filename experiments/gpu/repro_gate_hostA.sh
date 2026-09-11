@@ -12,8 +12,8 @@ python "$R/page-kv/experiments/scripts/gated_eviction.py" \
   --model Qwen/Qwen2.5-1.5B-Instruct --config 4096 \
   --tasks niah_multikey_3,vt,fwe,qa_1 --max_examples 100 \
   --budgets 1.0,0.25 --tau 0.07 --score_policy snapkv --gpu 0 \
-  --out "$OUT/repro_jagannath.jsonl" 2>&1 | tail -3
+  --out "$OUT/repro_hostA.jsonl" 2>&1 | tail -3
 python "$R/page-kv/experiments/gpu/repro_diff.py" \
-  "$OUT/repro_jagannath.jsonl" \
+  "$OUT/repro_hostA.jsonl" \
   "$R/page-kv/experiments/results/gated_4k_qwen15b.jsonl"
 echo "JG-GATE-EXIT=$?"

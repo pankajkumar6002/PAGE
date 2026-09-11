@@ -11,5 +11,5 @@ SHUFFLE_SEED="${SEED:-3}" python scripts/gated_eviction_seed_sharded.py \
   --tasks niah_multikey_3,vt,fwe,qa_1 --max_examples "${N:-100}" \
   --budgets 0.0625,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1.0 \
   --tau 0.07 --score_policy snapkv --gpu 0 \
-  --out "$R/experiments/results/rebase_4k_mistral7b_seed${SEED:-3}_sateri.jsonl"
+  --out "$R/experiments/results/rebase_4k_mistral7b_seed${SEED:-3}_hostB.jsonl"
 echo "SHARDED-EXIT=$?"
