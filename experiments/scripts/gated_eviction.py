@@ -480,8 +480,9 @@ def main():
     p.add_argument("--obs_window", type=int, default=32)
     p.add_argument("--n_sink", type=int, default=4)
     p.add_argument("--top_k", type=int, default=32, help="top-k for head agreement")
-    p.add_argument("--tau", type=float, default=0.05,
-                   help="threshold on agreement drop; if drop < tau, skip eviction")
+    p.add_argument("--tau", type=float, default=0.07,
+                   help="threshold on agreement drop; if drop < tau, skip eviction "
+                        "(0.07 is the value used for every reported result)")
     p.add_argument("--gpu", type=int, default=0)
     p.add_argument("--two_pass", action="store_true")
     p.add_argument("--attn_impl", default="eager", choices=["eager", "sdpa"],

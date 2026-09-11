@@ -56,11 +56,34 @@ python -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+`requirements.txt` pins `torch==2.11.0` without a CUDA build tag; a bare `pip install` from that
+file pulls whatever default build PyPI serves, which is not guaranteed to match your driver. For
+a GPU environment, install the CUDA build explicitly instead (adjust `cu128` to your driver's
+supported CUDA version):
+
+```bash
+pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cu128
+pip install -r requirements.txt   # the rest of the pins, torch already satisfied
+```
+
 Requires Python 3.13 and a CUDA-capable GPU for any GPU experiment (single-card 80GB is enough
 for every cell except Qwen2.5-14B at 4K, which needs two cards — see the standing caveats in
 `experiments/results/README.md`). The zero-GPU analysis scripts (`experiments/run_all.sh` and
-most of `experiments/scripts/`) need only the released `.jsonl` logs already in
-`experiments/results/` and run on CPU.
+most of `experiments/scripts/`) need only `numpy` and `matplotlib` from `requirements.txt` (no
+torch/transformers/datasets), read the released `.jsonl` logs already in `experiments/results/`,
+and run on CPU. Wall-clock runtime per GPU cell is not tracked in this checkout — see the
+compute-requirements note in `experiments/results/README.md`; VRAM is the documented constraint.
+
+**Hugging Face access.** `meta-llama/Llama-3.1-8B-Instruct` (used by the architecture-bias-control
+experiment) is a gated model: accept its license at huggingface.co and authenticate before running
+any script that loads it —
+
+```bash
+huggingface-cli login          # or: export HF_TOKEN=<your token>
+```
+
+Qwen2.5/Qwen3 and `mistralai/Mistral-7B-Instruct-v0.3` are not gated and need no login, though an
+`HF_TOKEN` still raises your download rate limit.
 
 The DBTrimKV baseline (`external/trimkv/`) needs a **separate** environment with its own pinned
 versions (Transformers 4.57.1 / PyTorch 2.8 / FlashAttention 2); see `external/trimkv/README.md`

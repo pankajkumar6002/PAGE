@@ -6,6 +6,32 @@ and generalization checks. Every summary `.md` here is regenerated from those
 logs by a script in `../scripts/`, and every script asserts its own numbers
 so it fails loudly if they stop reproducing.
 
+## `.jsonl` schema
+
+Every `*.jsonl` file here is one row per (input, budget) pair. The core
+fields, written by `../scripts/gated_eviction.py` and shared by most runners:
+
+| field | meaning |
+|---|---|
+| `id` | input index within its task |
+| `task` | RULER/LongBench/AgentLongBench task name |
+| `budget` | kept-KV fraction tested (1.0 = full cache) |
+| `T` | prompt length in tokens |
+| `drop` | the head-agreement drop statistic `D` |
+| `gate_open` | whether `D >= tau` (eviction runs) at this row's tau |
+| `score_policy` | which base evictor scored this row (snapkv/h2o/streamingllm/pyramidkv/manifoldkv/...) |
+| `n_kept_plain`, `n_kept_gated` | tokens actually retained, plain vs. gated arm |
+| `gold` | reference answer(s) |
+| `pred_plain`, `pred_gated` | generated text, plain vs. gated arm (truncated to 200 chars) |
+| `correct_plain`, `correct_gated` | exact/substring-match correctness, plain vs. gated arm |
+
+A few runners extend this with allocation-specific fields — e.g.
+`adakv_matrix.py` replaces `correct_plain`/`correct_gated` with
+`correct_plain_shared`/`correct_plain_adakv`/`correct_gated_shared`/
+`correct_gated_adakv` to compare the shared-mask and per-head allocations
+side by side. Check the `rec = {...}` construction in the specific runner
+(named in the per-file tables below) for the exact fields it writes.
+
 Regenerate the core zero-GPU set:
 
 ```bash
@@ -33,6 +59,14 @@ python prevalence_survey.py
 python profile_probe_ablation.py
 python dynamickv_headtohead_analysis.py
 ```
+
+**Compute requirements.** GPU memory is documented per cell where it drove a
+design decision (e.g. Qwen2.5-14B's two-card sharding, below). Wall-clock
+runtime per GPU cell is **TODO: verify** — it was not recorded in a form this
+checkout preserves; expect single-model RULER-4K cells (100 examples, a
+handful of budgets) to be the fastest, Qwen2.5-14B and 16K/32K-context cells
+the slowest, but no specific hour/minute figure should be assumed without
+timing it yourself.
 
 Paths resolve relative to this checkout via `../scripts/paths.py`, so the
 commands above need no env setup. `PAGE_RESULTS` points at the per-input logs,
