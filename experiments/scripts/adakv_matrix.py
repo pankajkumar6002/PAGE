@@ -1,4 +1,4 @@
-"""E8 (W2, strongest form): the headline matrix with a per-head Ada-KV plain arm.
+"""The headline matrix with a per-head Ada-KV plain arm.
 
 The paper's plain arm derives ONE keep-mask per layer and shares it across
 heads. Its own tab:matrix caption concedes this overstates the collapse at
@@ -94,7 +94,7 @@ def _make_patched(mod):
 def patch_families():
     """Patch every family we run.
 
-    Llama is required for the E8 bias control: Llama-3.1-8B has the same
+    Llama is required for the architecture bias control: Llama-3.1-8B has the same
     (L=32, Q=32, KV=8) shape as Mistral-7B but a different family, so it
     separates "8 KV-heads" from "Mistral-specific" as the cause of the P1
     violation. WITHOUT the patch the per-head mask silently does not apply and
@@ -241,7 +241,7 @@ def _global_snapkv_score(attentions, obs_window):
     single keep-mask shared by every layer and head. Deriving a per-LAYER mask
     instead (which an earlier version of this file did) gives the plain arm a
     per-layer adaptivity the paper's baseline does not have, making the shared
-    arm artificially strong and inverting the E8 comparison.
+    arm artificially strong and inverting the per-head Ada-KV comparison.
     """
     layer_scores = []
     for a in attentions:

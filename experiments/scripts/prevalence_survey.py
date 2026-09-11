@@ -1,11 +1,14 @@
-"""E11 (W1 / Q1 / DA-2): prevalence of the capacity-bound class in realistic
-workloads. Coarse D-and-sensitivity survey over LongBench subtasks, producing a
-per-subtask class and a pooled capacity-bound workload share f with a Wilson CI.
+"""Prevalence of the capacity-bound class in realistic workloads.
 
-The per-subtask classification reuses the EXACT operational definition already
+Coarse D-and-sensitivity survey over LongBench subtasks, producing a
+per-subtask classification and a pooled capacity-bound workload share f with a
+Wilson confidence interval. Answers: outside the synthetic RULER suite, how
+much of a realistic workload does the gate actually need to protect?
+
+The per-subtask classification reuses the exact operational definition already
 implemented in page-kv/.../analyze_realistic_workload.py (imported, not
-re-implemented), so E11 introduces no new discretion. This script adds the
-f-share aggregation that analyzer does not compute.
+re-implemented), so this survey introduces no new discretion. This script adds
+the f-share aggregation that analyzer does not compute.
 
 Per-input capacity-bound (the f numerator), matching the prereg:
   full-KV-correct AND destroyed by plain eviction at >=1 tested budget AND D<tau
@@ -48,7 +51,7 @@ INGEST = [
     ("hotpotqa",            "longbench_realistic_hotpotqa_qwen14b.jsonl", "qwen14b", True),
     ("passage_count",       "longbench_passcount_qwen14b.jsonl",          "qwen14b", True),
     ("passage_retrieval_en", "longbench_passret_qwen15b_n100.jsonl",      "qwen15b", False),
-    # E11 gap runs (run_prevalence_gaps.sh) write these into PAGE_DATA. Listed so they
+    # Prevalence gap runs (run_prevalence_gaps.sh) write these into PAGE_DATA. Listed so they
     # fold into the pooled f once produced; until then the loop marks them
     # MISSING and skips (they do not affect f). resolve() finds them in DATA.
     ("2wikimqa",            "longbench_2wikimqa_qwen14b.jsonl",           "qwen14b", True),
@@ -59,7 +62,7 @@ INGEST = [
 
 def resolve(fname):
     """A result file may live in the released RESULTS dir or in this round's
-    DATA dir (E11 gap runs write to DATA). Return whichever exists, preferring
+    DATA dir (prevalence gap runs write to DATA). Return whichever exists, preferring
     RESULTS; return the RESULTS path if neither exists so the caller reports it
     as MISSING consistently."""
     r = os.path.join(RESULTS, fname)
@@ -133,7 +136,7 @@ def cap_share(rows, floor=None):
 def main():
     lines = []
     emit = lines.append
-    emit("# E11: prevalence of the capacity-bound class in realistic workloads\n")
+    emit("# Prevalence of the capacity-bound class in realistic workloads\n")
     emit(f"tau = {TAU}. Per-subtask class via analyze_realistic_workload (imported). "
          "Per-input capacity-bound = full-correct ∧ destroyed at ≥1 budget ∧ D<τ. "
          "f = pooled input-weighted share over the in-range panel. AgentLongBench "

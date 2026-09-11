@@ -1,6 +1,6 @@
 # Quarantined: shared arm used a per-layer mask, 2026-08-06
 
-E8 runs produced before the `_global_snapkv_score` fix. Do not analyse.
+Per-head Ada-KV runs produced before the `_global_snapkv_score` fix. Do not analyse.
 
 **Bug.** The `shared` (plain baseline) arm pooled scores across heads but kept
 them PER LAYER, so every layer derived its own keep-mask. The paper's actual
@@ -34,10 +34,10 @@ in the arm that had NOT been copied from a reference.
 signal constrains the plain arm. The released per-budget plain accuracies are
 the only ground truth that does, and they are now checked.
 
-**Consequence for the E8 result.** The earlier run reported Ada-KV *losing* to
-the shared mask, which was an artifact of the inflated baseline. With the fix,
-Ada-KV behaves as expected (0.360 vs 0.080 at b=0.5 on MK3). Every E8 number
-from these files is void.
+**Consequence for the per-head Ada-KV result.** The earlier run reported
+Ada-KV *losing* to the shared mask, which was an artifact of the inflated
+baseline. With the fix, Ada-KV behaves as expected (0.360 vs 0.080 at b=0.5 on
+MK3). Every number from these files is void.
 
 ---
 

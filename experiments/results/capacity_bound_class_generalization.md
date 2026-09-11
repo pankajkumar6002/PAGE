@@ -1,4 +1,4 @@
-# E9 diagnosis: what actually went wrong, and what did not
+# Capacity-bound class generalization: what actually went wrong, and what did not
 
 > **COMPLETE as of 2026-08-10 02:16 IST.** All three models, all four tasks. The last cell
 > (Mistral `cwe`) needed >= 81 GB and only ran once two cards were free; it
@@ -9,7 +9,7 @@ Pre-registration `7d336844...`, predictions frozen before the run.
 
 ## Summary
 
-Two of my five predictions failed, but they failed for **different reasons, and
+Two of the five pre-registered predictions failed, but they failed for **different reasons, and
 only one is a finding about the method**:
 
 * **Q3 (partially failed) is a real, reportable result.** `cwe` is not
@@ -18,12 +18,12 @@ only one is a finding about the method**:
   closure on both).
 * **Q4 (failed on Qwen2.5-3B) is NOT a mechanism failure.** It is the
   already-documented fixed-tau transfer problem, and the paper's own z-score
-  recipe repairs it completely. I flagged this for escalation; it does not need
-  escalation.
+  recipe repairs it completely. This looked at first like it needed
+  escalation; on inspection it does not.
 
 ## The raw numbers that triggered the alarm
 
-Mean `D` per task, **all three models**, all 8 tasks (4 released + 4 from E9),
+Mean `D` per task, **all three models**, all 8 tasks (4 released + 4 new),
 complete as of 2026-08-10 02:19 IST:
 
 | task | Qwen2.5-1.5B | Qwen2.5-3B | Mistral-7B |
@@ -92,15 +92,15 @@ make the two class members interchangeable across families.
 
 This is not a new escape hatch invented after the fact: Section 8 and App. A.8
 already state that fixed tau = 0.07 is a within-family convenience and that
-the z-scored variant is what transfers. E9 is an independent confirmation of a
-limitation the paper already discloses, measured on four tasks it had never
-been tested against.
+the z-scored variant is what transfers. This is an independent confirmation
+of a limitation the paper already discloses, measured on four tasks it had
+never been tested against.
 
 ## What Q3 genuinely establishes, and what it costs
 
-Reviewer W1 asked for at least two more capacity-bound tasks. E9 delivers
-**one confirmed and one falsified**, both against predictions registered in
-advance:
+The goal was at least two more capacity-bound tasks beyond the original
+synthetic one. This probe delivers **one confirmed and one falsified**, both
+against predictions registered in advance:
 
 * **`niah_multiquery` is capacity-bound.** 4 needles, all required. Mean D
   0.0211 on Qwen2.5-3B and 0.0420 on Mistral-7B, with the gate closing on

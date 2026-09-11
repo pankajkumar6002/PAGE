@@ -1,11 +1,11 @@
-# E10 — Llama-3.1-8B bias control for the E8 P1 violation
+# Llama-3.1-8B architecture bias control for the Ada-KV P1 violation
 
 Written 2026-08-09 08:44 IST. Pre-registration `llama_architecture_bias_prereg.md`,
 sha256 `1dd0094de0b1bc0b...`, verified at launch before any data existed.
 
 ## Why this control exists
 
-E8's pre-registered P1 (`Delta_adakv <= Delta_shared` at every budget, every
+The per-head Ada-KV matrix's pre-registered P1 (`Delta_adakv <= Delta_shared` at every budget, every
 cell) failed **only on Mistral-7B**. The 3-cell design confounded two
 explanations, because "8 KV-heads" and "Mistral" were the same cell:
 
@@ -65,10 +65,10 @@ which is true on Qwen and Mistral and false on Llama.
 
 ## Independent corroboration from Qwen2.5-14B (2026-08-11 01:18 IST)
 
-E8's Qwen2.5-14B cell completed after this control was written and was **not
+The per-head Ada-KV matrix's Qwen2.5-14B cell completed after this control was written and was **not
 designed as a test of it**. It violates P1 at **0 of 8** budgets.
 
-Across all four E8 models the violation is confined to Mistral-7B alone —
+Across all four per-head Ada-KV models the violation is confined to Mistral-7B alone —
 **4 of 32 cell-budget points**:
 
 | cell | KV-heads | P1 violations |
@@ -92,4 +92,4 @@ second, unplanned refutation of the KV-head-count hypothesis.
   guard cannot fire on this cell. Full-cache MK3 accuracy was checked against
   the released log and matches (1.000 vs 1.000).
 * This cell makes **no capacity-bound claim**. Fixed tau is documented as
-  failing on this family; E10 is an allocation comparison only.
+  failing on this family; this control is an allocation comparison only.

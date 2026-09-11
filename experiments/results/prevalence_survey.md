@@ -1,4 +1,4 @@
-# E11: prevalence of the capacity-bound class in realistic workloads
+# Prevalence of the capacity-bound class in realistic workloads
 
 tau = 0.07. Per-subtask class via analyze_realistic_workload (imported). Per-input capacity-bound = full-correct ∧ destroyed at ≥1 budget ∧ D<τ. f = pooled input-weighted share over the in-range panel. AgentLongBench (32K+) reported separately, not pooled.
 

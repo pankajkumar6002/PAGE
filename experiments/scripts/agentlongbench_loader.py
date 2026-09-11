@@ -1,6 +1,6 @@
-"""E11 agentic slice: load AgentLongBench (ign1s/AgentLongBench, MIT) into the
-row shape longbench_gating.py consumes, so the same gate/eviction runner scores
-agentic tool-call traces.
+"""Prevalence-survey agentic slice: load AgentLongBench (ign1s/AgentLongBench,
+MIT) into the row shape longbench_gating.py consumes, so the same
+gate/eviction runner scores agentic tool-call traces.
 
 VERIFIED dataset shape (streamed, not assumed):
   * One HF config ("default"), WebDataset-style: each shard is a `jsonl` bytes
@@ -11,7 +11,7 @@ VERIFIED dataset shape (streamed, not assumed):
     tool_result, messages, answer_index, QA_type, enough_token, question.
     `messages` holds the agent/tool-call trace = the long context.
 
-BOUNDARY CAVEAT (frozen in E11 prereg): even the 32k bucket is 2x PAGE's 16K
+BOUNDARY CAVEAT (frozen in the prevalence-survey pre-registration): even the 32k bucket is 2x PAGE's 16K
 fitting max. longbench_gating.py skips inputs above --max_context_tokens
 (default 24000), so by default these rows are SKIPPED. Raising the cap admits
 them but takes them OUT of the fitting range; such results are reported
@@ -24,7 +24,7 @@ a substring match, so `correct_plain`/`correct_gated` on these rows are
 essentially uninformative (a verbose agent output almost always contains a
 single digit). Therefore only the GATE-CLOSURE fields (`drop`, `gate_open`) are
 trustworthy on AgentLongBench; the accuracy fields must NOT be read as an
-accuracy signal. The E11 prereg already restricts the agentic slice to
+accuracy signal. The pre-registration already restricts the agentic slice to
 gate-closure / D-ordering, consistent with this. Downstream analysis must honor
 that (do not compute f or Delta from these rows).
 
