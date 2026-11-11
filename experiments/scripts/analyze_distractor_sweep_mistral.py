@@ -26,7 +26,7 @@ def load(path):
 
 
 def main():
-    mistral = load("/home/smlab/projects/eff-nn/experiments/results/distractor_sweep_mistral7b.jsonl")
+    mistral = load("experiments/results/distractor_sweep_mistral7b.jsonl")
     order = ["niah_multikey_1", "niah_multikey_2", "niah_multikey_3"]
 
     mean_D = {}
@@ -87,7 +87,7 @@ def main():
     lines.append("")
 
     text = "\n".join(lines) + "\n"
-    with open("/home/smlab/projects/eff-nn/experiments/results/distractor_sweep_mistral.md", "w") as f:
+    with open("experiments/results/distractor_sweep_mistral.md", "w") as f:
         f.write(text)
     print(text)
     print("MEAN_D:", {t: round(mean_D[t], 4) for t in order})

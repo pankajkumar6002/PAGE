@@ -1,0 +1,42 @@
+Loading weights:   0%|          | 0/434 [00:00<?, ?it/s]Loading weights: 100%|██████████| 434/434 [00:00<00:00, 9300.96it/s]
+[10/400] babilong_qa2 T=3666 D=0.0453 34s skip=0 oom=0
+[20/400] babilong_qa2 T=3897 D=0.0865 67s skip=0 oom=0
+[30/400] babilong_qa2 T=3308 D=0.0714 105s skip=0 oom=0
+[40/400] babilong_qa2 T=3836 D=0.0722 136s skip=0 oom=0
+[50/400] babilong_qa2 T=3503 D=0.0630 166s skip=0 oom=0
+[60/400] babilong_qa2 T=3903 D=0.0701 200s skip=0 oom=0
+[70/400] babilong_qa2 T=3846 D=0.0620 234s skip=0 oom=0
+[80/400] babilong_qa2 T=3961 D=0.0821 267s skip=0 oom=0
+[90/400] babilong_qa2 T=3859 D=0.0570 303s skip=0 oom=0
+[100/400] babilong_qa2 T=3897 D=0.0634 331s skip=0 oom=0
+[110/400] babilong_qa2 T=7570 D=0.0376 378s skip=0 oom=0
+[120/400] babilong_qa2 T=7778 D=0.0720 435s skip=0 oom=0
+[130/400] babilong_qa2 T=7809 D=0.0099 485s skip=0 oom=0
+[140/400] babilong_qa2 T=7880 D=0.0528 526s skip=0 oom=0
+[150/400] babilong_qa2 T=7875 D=0.0632 564s skip=0 oom=0
+[160/400] babilong_qa2 T=5502 D=0.0547 616s skip=0 oom=0
+[170/400] babilong_qa2 T=7819 D=0.0527 664s skip=0 oom=0
+[180/400] babilong_qa2 T=7539 D=0.0884 707s skip=0 oom=0
+[190/400] babilong_qa2 T=7646 D=0.0618 752s skip=0 oom=0
+[200/400] babilong_qa2 T=7849 D=0.0878 793s skip=0 oom=0
+[210/400] babilong_qa3 T=3997 D=0.0617 825s skip=0 oom=0
+[220/400] babilong_qa3 T=3442 D=0.0602 857s skip=0 oom=0
+[230/400] babilong_qa3 T=3433 D=0.0611 889s skip=0 oom=0
+[240/400] babilong_qa3 T=4017 D=0.0481 921s skip=0 oom=0
+[250/400] babilong_qa3 T=3893 D=0.0368 953s skip=0 oom=0
+[260/400] babilong_qa3 T=3951 D=0.0597 986s skip=0 oom=0
+[270/400] babilong_qa3 T=3994 D=0.0631 1018s skip=0 oom=0
+[280/400] babilong_qa3 T=3898 D=0.0515 1050s skip=0 oom=0
+[290/400] babilong_qa3 T=3970 D=0.0551 1082s skip=0 oom=0
+[300/400] babilong_qa3 T=3880 D=0.0785 1115s skip=0 oom=0
+[310/400] babilong_qa3 T=7576 D=0.0428 1155s skip=0 oom=0
+[320/400] babilong_qa3 T=7939 D=0.0709 1199s skip=0 oom=0
+[330/400] babilong_qa3 T=7936 D=0.0672 1238s skip=0 oom=0
+[340/400] babilong_qa3 T=7915 D=0.0550 1279s skip=0 oom=0
+[350/400] babilong_qa3 T=7929 D=0.0696 1326s skip=0 oom=0
+[360/400] babilong_qa3 T=7958 D=0.0619 1374s skip=0 oom=0
+[370/400] babilong_qa3 T=7861 D=0.0659 1413s skip=0 oom=0
+[380/400] babilong_qa3 T=7282 D=0.0460 1454s skip=0 oom=0
+[390/400] babilong_qa3 T=8119 D=0.0381 1496s skip=0 oom=0
+[400/400] babilong_qa3 T=7985 D=0.0588 1548s skip=0 oom=0
+b8 done dataset=babilong rows=400 skipped=0 oom=0

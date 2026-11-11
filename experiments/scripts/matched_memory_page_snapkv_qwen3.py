@@ -8,7 +8,7 @@ import json
 from collections import defaultdict
 import numpy as np
 
-RES = "/home/smlab/projects/eff-nn/experiments/results/gated_4k_qwen3_4b_merged.jsonl"
+RES = "experiments/results/gated_4k_qwen3_4b_merged.jsonl"
 # per-task index < 30  ->  global id ranges matching DBTrimKV's first-30/task suite
 OFFSET = {"niah_multikey_3": 0, "vt": 100, "fwe": 200, "qa_1": 300}
 

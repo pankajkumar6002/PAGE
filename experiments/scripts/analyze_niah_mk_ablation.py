@@ -18,9 +18,9 @@ from collections import defaultdict
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--drops", default="/home/smlab/projects/eff-nn/experiments/results/drops_niah_mk_ablation.jsonl")
-    p.add_argument("--gated", default="/home/smlab/projects/eff-nn/experiments/results/gated_4k_niah_mk_ablation.jsonl")
-    p.add_argument("--out", default="/home/smlab/projects/eff-nn/experiments/results/niah_mk_ablation.md")
+    p.add_argument("--drops", default="experiments/results/drops_niah_mk_ablation.jsonl")
+    p.add_argument("--gated", default="experiments/results/gated_4k_niah_mk_ablation.jsonl")
+    p.add_argument("--out", default="experiments/results/niah_mk_ablation.md")
     args = p.parse_args()
 
     # Compute mean D per task from drops file

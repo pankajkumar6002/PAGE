@@ -51,7 +51,7 @@ def main():
     p.add_argument("--top_k", type=int, default=32)
     p.add_argument("--gpu", type=int, default=0)
     p.add_argument("--model", default="Qwen/Qwen2.5-1.5B-Instruct")
-    p.add_argument("--out", default="/home/smlab/projects/eff-nn/experiments/results/per_layer_agreement.jsonl")
+    p.add_argument("--out", default="experiments/results/per_layer_agreement.jsonl")
     p.add_argument("--two_pass", action="store_true",
                    help="Use SDPA pass-1 + eager pass-2 to avoid OOM at long contexts.")
     args = p.parse_args()

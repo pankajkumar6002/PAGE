@@ -1,0 +1,52 @@
+
+### Qwen2.5-1.5B 4K (drops_qwen15b_4k_n100.jsonl, 0 unparsable lines)
+
+| task | n | early third | late third | D (early - late) |
+|---|---:|---:|---:|---:|
+| fwe | 100 | 0.480 | 0.369 | +0.111 |
+| niah_multikey_3 | 100 | 0.327 | 0.283 | +0.044 |
+| niah_multivalue | 100 | 0.515 | 0.390 | +0.125 |
+| qa_1 | 100 | 0.525 | 0.289 | +0.236 |
+| qa_2 | 100 | 0.484 | 0.271 | +0.213 |
+| vt | 100 | 0.389 | 0.227 | +0.161 |
+
+NIAH-MK3 early 0.327 against 0.389 to 0.525: lowest. Late 0.283 against 0.227 to 0.390: inside the range.
+
+### Qwen2.5-3B 4K (drops_qwen3b_4k_n100.jsonl, 0 unparsable lines)
+
+| task | n | early third | late third | D (early - late) |
+|---|---:|---:|---:|---:|
+| fwe | 100 | 0.479 | 0.441 | +0.038 |
+| niah_multikey_3 | 100 | 0.331 | 0.335 | -0.004 |
+| niah_multivalue | 100 | 0.500 | 0.454 | +0.045 |
+| qa_1 | 100 | 0.513 | 0.408 | +0.105 |
+| qa_2 | 100 | 0.488 | 0.392 | +0.097 |
+| vt | 100 | 0.389 | 0.313 | +0.076 |
+
+NIAH-MK3 early 0.331 against 0.389 to 0.513: lowest. Late 0.335 against 0.313 to 0.454: inside the range.
+
+### Mistral-7B 4K (drops_mistral7b_4k_n100.jsonl, 1 unparsable lines)
+
+| task | n | early third | late third | D (early - late) |
+|---|---:|---:|---:|---:|
+| fwe | 100 | 0.435 | 0.354 | +0.081 |
+| niah_multikey_3 | 100 | 0.329 | 0.269 | +0.060 |
+| niah_multivalue | 100 | 0.400 | 0.323 | +0.077 |
+| qa_1 | 78 | 0.401 | 0.306 | +0.095 |
+| qa_2 | 100 | 0.390 | 0.305 | +0.086 |
+| vt | 100 | 0.373 | 0.277 | +0.095 |
+
+NIAH-MK3 early 0.329 against 0.373 to 0.435: lowest. Late 0.269 against 0.277 to 0.354: lowest.
+
+### Llama-3.1-8B 4K (drops_llama31_8b_4k.jsonl, 0 unparsable lines)
+
+| task | n | early third | late third | D (early - late) |
+|---|---:|---:|---:|---:|
+| fwe | 50 | 0.454 | 0.341 | +0.113 |
+| niah_multikey_3 | 50 | 0.343 | 0.272 | +0.071 |
+| niah_multivalue | 50 | 0.426 | 0.365 | +0.061 |
+| qa_1 | 50 | 0.429 | 0.338 | +0.092 |
+| qa_2 | 50 | 0.424 | 0.326 | +0.098 |
+| vt | 50 | 0.366 | 0.288 | +0.078 |
+
+NIAH-MK3 early 0.343 against 0.366 to 0.454: lowest. Late 0.272 against 0.288 to 0.365: lowest.

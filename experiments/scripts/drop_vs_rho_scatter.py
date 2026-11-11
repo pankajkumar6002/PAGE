@@ -89,7 +89,7 @@ def load_ruler_rho(path):
 
 
 def main():
-    base = "/home/smlab/projects/eff-nn/experiments/results"
+    base = "experiments/results"
 
     # Cells to assemble. drop_file (probe), rho_files (one or more), label
     cells = [

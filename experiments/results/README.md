@@ -6,6 +6,9 @@ and generalization checks. Every summary `.md` here is regenerated from those
 logs by a script in `../scripts/`, and every script asserts its own numbers
 so it fails loudly if they stop reproducing.
 
+The revision's new runs and analyses are in `revision/`. Their scripts are in `../scripts/revision/`, whose
+README maps each paper table to its command, logs and pre-registration.
+
 ## `.jsonl` schema
 
 Every `*.jsonl` file here is one row per (input, budget) pair. The core

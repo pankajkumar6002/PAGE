@@ -10,7 +10,7 @@ import gc, json, os, sys, time
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 
-TRIMKV = "/home/smlab/projects/eff-nn/external/trimkv"
+TRIMKV = "external/trimkv"
 sys.path.insert(0, TRIMKV)
 
 import torch
@@ -21,7 +21,7 @@ from transformers import AutoTokenizer
 from run_gated_dbtrimkv import build_prompt, generate_dbtrimkv, is_correct
 from trimkv.models.qwen3 import TrimKVQwen3ForCausalLM
 
-OUT = "/home/smlab/projects/eff-nn/experiments/results/plain_dbtrimkv_qwen3_4k_30pct.jsonl"
+OUT = "experiments/results/plain_dbtrimkv_qwen3_4k_30pct.jsonl"
 BUDGETS = [1024, 1152, 1280]
 TASKS = ["niah_multikey_3", "vt", "fwe", "qa_1"]
 PER_TASK = 30

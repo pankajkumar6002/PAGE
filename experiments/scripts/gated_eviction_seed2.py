@@ -9,7 +9,7 @@ different input draw. All model/eviction/gate logic is unchanged.
 import os
 import sys
 
-sys.path.insert(0, "/home/smlab/projects/eff-nn/experiments/scripts")
+sys.path.insert(0, "experiments/scripts")
 import gated_eviction
 from datasets import load_dataset as _real_load_dataset
 

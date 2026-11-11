@@ -95,15 +95,15 @@ def per_task_rho(rows):
 
 def main():
     paths = [
-        "/home/smlab/projects/eff-nn/experiments/results/gated_16k_qwen14b.jsonl",
-        "/home/smlab/projects/eff-nn/experiments/results/gated_16k_qwen14b_extra.jsonl",
+        "experiments/results/gated_16k_qwen14b.jsonl",
+        "experiments/results/gated_16k_qwen14b_extra.jsonl",
     ]
     rows = load(paths)
     print(f"loaded {len(rows)} rows from {len(paths)} files")
 
     stats = per_task_rho(rows)
 
-    out_jsonl = "/home/smlab/projects/eff-nn/experiments/results/partition_qwen14b_16k.jsonl"
+    out_jsonl = "experiments/results/partition_qwen14b_16k.jsonl"
     with open(out_jsonl, "w") as f:
         for task in sorted(stats):
             for rec in stats[task]["per_input"]:
@@ -202,7 +202,7 @@ def main():
     md.append("")
 
     md.append("## 4K vs 16K comparison (this model)\n")
-    md.append("rho values from /home/smlab/projects/eff-nn/experiments/results/partition_qwen14b_4k.md:\n")
+    md.append("rho values from experiments/results/partition_qwen14b_4k.md:\n")
     md.append("| Task | 4K rho (plain) | 16K rho (plain) | direction |")
     md.append("|------|----------------|------------------|-----------|")
     rho_4k = {
@@ -237,7 +237,7 @@ def main():
         "regime."
     )
 
-    out_md = "/home/smlab/projects/eff-nn/experiments/results/partition_qwen14b_16k.md"
+    out_md = "experiments/results/partition_qwen14b_16k.md"
     with open(out_md, "w") as f:
         f.write("\n".join(md) + "\n")
     print("\n".join(md))

@@ -1,0 +1,11 @@
+02037012e2002138ae573976d0fd0d2d826f2d9152beea9728103ba0d7e803c3  b7_leval_prereg.md
+60019941c9a14633d9f4192dad5ad33e6e974198512d854a4b8d34ccdbe0e74f  ../experiments/scripts/b7_leval.py
+eb79c6efae3cc96c4d2885dd9679688335792ed7c5eee2848d3074cff57cf7d5  ../experiments/scripts/analyze_b7.py
+cb3a6f89edc5ed52545ac3b47e3bf2d45a0331fbd805becf62ec5e0e0e14d26c  ../experiments/scripts/b2_gating.py
+fb155d4d45f1ec05d82be00dd825ec36ea7a58c1d9d7a8716aec4d39e30a6a9c  ../../experiments/scripts/longbench_gating.py
+f9c121d97a320fddad99c45c4ac72fb9c60a80530e3d31ea72f41cac533344ef  ../experiments/gpu/launch.sh
+e49de8516acdabc30ebd8ebfcac69831ab2aad148ceb5a2b08a61796226177a3  ../experiments/gpu/b7_queue.sh
+b8f69ee88e8412128abb9cb99db6f87bd40c85f4602f13d4f5963180788523ef  ../experiments/gpu/launch_multi.sh
+485b683ce5dd4440e8251173dcb97b4a000e73bbff07319522ca234129fd98a9  ../experiments/gpu/watchdog.py (not released)
+fd7cdb2e33452b2dd82864e747b55df85b421dae88570145a4e484fcfa8e4fa1  ../data/leval/SHA256SUMS
+40e49227dbd5f5404eb1fe5547d0f20441c38fea2804608f5efaf8f8a1e56e3d  ../../experiments/scripts/revision/checks/verify_2026-11-07.py (as recorded, before the release edits)

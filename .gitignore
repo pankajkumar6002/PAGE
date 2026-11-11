@@ -23,5 +23,14 @@ scratchpad/
 # Run logs (large, low-value for a reader; regenerable by the gpu/ scripts)
 experiments/logs/
 
+# Revision: keep the runner logs that analyze_b8.py reads and the expected check outputs
+!experiments/results/revision/logs/*.log
+!experiments/results/revision/checks/*.out
+# Revision data is downloaded by experiments/data/revision/fetch.sh, not committed
+experiments/data/revision/b8_raw/*
+!experiments/data/revision/b8_raw/SHA256SUMS
+!experiments/data/revision/b8_raw/SOURCES.md
+experiments/data/revision/leval/Exam/
+
 # Internal agent-session notes, not part of the published code
 claude.md

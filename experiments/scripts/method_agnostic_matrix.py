@@ -34,7 +34,7 @@ def headline(path):
 
 
 def main():
-    base = "/home/smlab/projects/eff-nn/experiments/results"
+    base = "experiments/results"
 
     models = [
         ("Qwen 1.5B", "qwen15b"),

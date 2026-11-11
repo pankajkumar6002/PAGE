@@ -43,8 +43,8 @@ def summarize(by_id):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--dir", default="/home/smlab/projects/eff-nn/experiments/results")
-    p.add_argument("--out", default="/home/smlab/projects/eff-nn/experiments/results/aggregate.md")
+    p.add_argument("--dir", default="experiments/results")
+    p.add_argument("--out", default="experiments/results/aggregate.md")
     args = p.parse_args()
 
     files = sorted(glob.glob(os.path.join(args.dir, "*.jsonl")))

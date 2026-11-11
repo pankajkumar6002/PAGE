@@ -127,8 +127,8 @@ def correct(pred, gold):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--data", default="/home/smlab/projects/eff-nn/experiments/data/niah_multikey.jsonl")
-    p.add_argument("--out", default="/home/smlab/projects/eff-nn/experiments/results/h1_sweep.jsonl")
+    p.add_argument("--data", default="experiments/data/niah_multikey.jsonl")
+    p.add_argument("--out", default="experiments/results/h1_sweep.jsonl")
     p.add_argument("--model", default="Qwen/Qwen2.5-1.5B-Instruct")
     p.add_argument("--budgets", default="1.0,0.5,0.25,0.125,0.0625")
     p.add_argument("--max_examples", type=int, default=100)

@@ -11,7 +11,7 @@ from collections import defaultdict
 from pathlib import Path
 import numpy as np
 
-RESULTS = Path("/home/smlab/projects/eff-nn/experiments/results")
+RESULTS = Path("experiments/results")
 TAU = 0.07
 TARGETS = [0.25, 0.35, 0.50]
 

@@ -41,8 +41,8 @@ from gated_eviction import (  # noqa: E402
     pool_score,
 )
 
-RESULTS_DIR = "/home/smlab/projects/eff-nn/experiments/results"
-SNIPPET_DIR = "/home/smlab/projects/eff-nn/paper/snippets"
+RESULTS_DIR = "experiments/results"
+SNIPPET_DIR = "paper/snippets"
 
 CAPACITY_ANCHOR = "niah_multikey_3"
 CAPACITY_PLUS = ["niah_multikey_3", "niah_multikey_2"]

@@ -18,7 +18,7 @@ import json
 import collections
 import numpy as np
 
-RES = "/home/smlab/projects/eff-nn/experiments/results/"
+RES = "experiments/results/"
 CELLS = [
     ("Qwen1.5B-4K", "drops_qwen15b_4k_n100.jsonl"),
     ("Qwen3B-4K", "drops_qwen3b_4k_n100.jsonl"),

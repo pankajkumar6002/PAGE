@@ -89,6 +89,23 @@ The DBTrimKV baseline (`external/trimkv/`) needs a **separate** environment with
 versions (Transformers 4.57.1 / PyTorch 2.8 / FlashAttention 2); see `external/trimkv/README.md`
 and `NOTES.md`.
 
+**Revision experiments.** The same environment runs everything under `experiments/scripts/revision/`.
+Its CPU checks and analyses need only `numpy`. Besides the models above, the GPU runners load these
+models, none of them gated on the Hub, all with `trust_remote_code=False`: `Qwen/Qwen3-14B`,
+`allenai/Olmo-Hybrid-Instruct-DPO-7B`, `Qwen/Qwen3-Next-80B-A3B-Instruct`, `LiquidAI/LFM2-24B-A2B`,
+`deepseek-ai/DeepSeek-V2-Lite-Chat` and `zai-org/GLM-4.7-Flash`. Table 48 also uses the gated
+`meta-llama/Llama-3.1-8B-Instruct` (see above). Qwen3-Next-80B-A3B needs four 80GB cards and
+GLM-4.7-Flash two. The others fit on one. The Table 47 runner loads QuALITY, LongBench-v2 and LongBench
+from the Hub at run time. The L-Eval, NQ and BABILong data for Tables 45 and 48 are not bundled. Download
+and verify them with:
+
+```bash
+bash experiments/data/revision/fetch.sh   # about 170 MB, checked against SHA256SUMS
+```
+
+See `experiments/scripts/revision/README.md` for commands, and
+`experiments/data/revision/THIRD_PARTY_NOTICES.md` for sources and licences.
+
 ## Repository layout
 
 ```
@@ -99,8 +116,13 @@ experiments/
   gpu/                      GPU launch scripts for each experiment
   logs/                     run logs (not published; local only)
   data/                     synthetic NIAH inputs
+  scripts/revision/         revision runners, analyses and log-only checks (README.md maps each
+                            paper table to its command)
+  results/revision/         revision logs, analysis outputs and expected check outputs
+  data/revision/            fetch script, checksums and licence notices for the revision data
 preregistration/            frozen, sha256-hashed predictions for six experiments,
                             verified by the corresponding launch/analysis script at run time
+preregistration/revision/   pre-registrations of the revision's B1, B2, B2b, B2c, B3, B7 and B8 experiments
 external/trimkv/             DBTrimKV (Bui et al.) baseline, with our gated-DBTrimKV drivers
 ```
 
@@ -148,6 +170,20 @@ Key entry points (see each script's `--help`):
 
 See `experiments/results/README.md` for the complete results index, grouped by what each
 experiment settles, with regeneration commands for every group.
+
+The revision's results (Tables 1 and 4, Figure 5, and Tables 33 to 49) are reproduced from
+`experiments/scripts/revision/`. Its CPU-only checks and analyses run on the logs in the repository:
+
+```bash
+python3 -I experiments/scripts/revision/checks/verify_2026-11-07.py   # Tables 4, 33-40, 42, 46, 49
+python3 -I experiments/scripts/revision/checks/table1_check.py        # Table 1
+python3 -I experiments/scripts/revision/checks/layer_profile_check.py # Figure 5
+python3 -I experiments/scripts/revision/analyze_b.py b1 b2 b2c b3 b5 b6   # Tables 41, 43, 44, 47
+python3 -I experiments/scripts/revision/analyze_b7.py                 # Table 48
+python3 -I experiments/scripts/revision/analyze_b8_corrected.py       # Table 45
+```
+
+`experiments/scripts/revision/README.md` lists the GPU commands and the expected outputs.
 
 ## Limitations
 

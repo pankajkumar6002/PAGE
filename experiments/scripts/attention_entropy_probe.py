@@ -36,7 +36,7 @@ def main():
     p.add_argument("--obs_window", type=int, default=32)
     p.add_argument("--gpu", type=int, default=0)
     p.add_argument("--model", default="Qwen/Qwen2.5-1.5B-Instruct")
-    p.add_argument("--out", default="/home/smlab/projects/eff-nn/experiments/results/entropy_probe.jsonl")
+    p.add_argument("--out", default="experiments/results/entropy_probe.jsonl")
     args = p.parse_args()
 
     device = f"cuda:{args.gpu}"

@@ -92,7 +92,7 @@ def build_example(rng, n_keys, target_tokens):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--out", default="/home/smlab/projects/eff-nn/experiments/data/niah_multikey.jsonl")
+    p.add_argument("--out", default="experiments/data/niah_multikey.jsonl")
     p.add_argument("--n", type=int, default=200)
     p.add_argument("--n_keys", type=int, default=4)
     p.add_argument("--target_tokens", type=int, default=16_000)

@@ -283,7 +283,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument(
         "--base",
-        default="/home/smlab/projects/eff-nn/experiments/results/gated_4k_qwen15b.jsonl",
+        default="experiments/results/gated_4k_qwen15b.jsonl",
         help="Base jsonl from gated_eviction.py with drop, pred_plain, and budget=1.0 records.",
     )
     ap.add_argument(
@@ -292,11 +292,11 @@ def main():
     )
     ap.add_argument(
         "--out_dir",
-        default="/home/smlab/projects/eff-nn/experiments/results",
+        default="experiments/results",
     )
     ap.add_argument(
         "--fig_dir",
-        default="/home/smlab/projects/eff-nn/paper/figs",
+        default="paper/figs",
     )
     args = ap.parse_args()
 

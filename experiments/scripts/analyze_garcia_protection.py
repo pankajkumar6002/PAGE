@@ -17,7 +17,7 @@ import argparse
 import json
 from collections import defaultdict
 
-BASE = "/home/smlab/projects/eff-nn/experiments/results"
+BASE = "experiments/results"
 
 BASELINE_FILES = {
     "niah_multikey_3": f"{BASE}/ruler_mk3_4k_snapkv.jsonl",

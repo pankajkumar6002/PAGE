@@ -14,7 +14,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.cache_utils import DynamicCache
 
 
-sys.path.insert(0, "/home/smlab/projects/eff-nn/experiments/scripts")
+sys.path.insert(0, "experiments/scripts")
 from ruler_sweep import (
     build_prompt,
     derive_keep_mask,

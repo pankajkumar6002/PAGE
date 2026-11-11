@@ -12,7 +12,7 @@ import sys
 
 from datasets import Dataset, concatenate_datasets, load_dataset
 
-sys.path.insert(0, "/home/smlab/projects/eff-nn/experiments/scripts")
+sys.path.insert(0, "experiments/scripts")
 import ruler_sweep
 
 SRC = "SaylorTwift/RULER-32768-Qwen2.5-3B-tokenizer"

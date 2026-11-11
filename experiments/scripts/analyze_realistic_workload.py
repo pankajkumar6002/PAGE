@@ -17,7 +17,7 @@ import statistics as st
 from collections import defaultdict
 
 TAU = 0.07
-OUT_MD = "/home/smlab/projects/eff-nn/experiments/results/realistic_workload_partition.md"
+OUT_MD = "experiments/results/realistic_workload_partition.md"
 
 
 def load(path):

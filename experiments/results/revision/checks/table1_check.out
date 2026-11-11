@@ -1,0 +1,54 @@
+| cell | task | log | N | rho | Table 1 |
+|---|---|---|---|---|---|
+| Qwen2.5-1.5B 4K | fwe | ruler_vt_fwe_4k_snapkv.jsonl | 100 | 0.06 | 0.06 |
+| Qwen2.5-1.5B 4K | vt | ruler_vt_fwe_4k_snapkv.jsonl | 100 | 0.06 | 0.06 |
+| Qwen2.5-1.5B 4K | niah_multikey_3 | ruler_mk3_4k_snapkv.jsonl | 100 | 0.01 | 0.01 |
+| Qwen2.5-1.5B 4K | qa_1 | ruler_qa_4k_qwen.jsonl | 100 | 0.08 | 0.08 |
+| Qwen2.5-1.5B 4K | qa_2 | ruler_qa_4k_qwen.jsonl | 100 | 0.08 | 0.08 |
+| Qwen2.5-1.5B 4K | niah_multivalue | ruler_extra_4k_qwen.jsonl | 100 | 0.07 | 0.07 |
+| Qwen2.5-1.5B 16K | fwe | ruler_vt_fwe_16k_qwen.jsonl | 100 | 0.04 | 0.04 |
+| Qwen2.5-1.5B 16K | vt | ruler_vt_fwe_16k_qwen.jsonl | 100 | 0.19 | 0.19 |
+| Qwen2.5-1.5B 16K | niah_multivalue | ruler_mv_fwe_16k_qwen.jsonl | 100 | 0.10 | 0.10 |
+| Qwen2.5-1.5B 16K | qa_1 | ruler_qa_16k_qwen.jsonl | 100 | 0.14 | 0.14 |
+| Qwen2.5-1.5B 16K | qa_2 | ruler_qa_16k_qwen.jsonl | 100 | 0.05 | 0.05 |
+| Qwen2.5-1.5B 16K | niah_multikey_3 | ruler_niah_16k_qwen.jsonl | 46 | 0.00 | 0.00 |
+| Qwen2.5-3B 4K | fwe | ruler_4k_qwen3b.jsonl | 100 | 0.01 | 0.01 |
+| Qwen2.5-3B 4K | niah_multikey_3 | ruler_4k_qwen3b.jsonl | 100 | 0.00 | 0.00 |
+| Qwen2.5-3B 4K | qa_1 | ruler_4k_qwen3b.jsonl | 100 | 0.03 | 0.03 |
+| Qwen2.5-3B 4K | vt | ruler_4k_qwen3b.jsonl | 100 | 0.00 | 0.00 |
+| Qwen2.5-3B 4K | niah_multivalue | ruler_4k_qwen3b_mv_qa2.jsonl | 100 | 0.02 | 0.02 |
+| Qwen2.5-3B 4K | qa_2 | ruler_4k_qwen3b_mv_qa2.jsonl | 100 | 0.04 | 0.04 |
+| Qwen2.5-3B 16K | qa_1 | ruler_16k_qwen3b.jsonl | 100 | 0.08 | 0.08 |
+| Qwen2.5-3B 16K | vt | ruler_16k_qwen3b.jsonl | 100 | 0.05 | 0.05 |
+| Qwen2.5-3B 16K | fwe | ruler_16k_qwen3b_mvfwe.jsonl | 100 | 0.32 | 0.32 |
+| Qwen2.5-3B 16K | niah_multivalue | ruler_16k_qwen3b_mvfwe.jsonl | 100 | 0.13 | 0.13 |
+| Qwen2.5-3B 16K | qa_2 | ruler_16k_qwen3b_qa2.jsonl | 100 | 0.02 | 0.02 |
+| Qwen2.5-3B 16K | niah_multikey_3 | gated_16k_qwen3b.jsonl | 50 | 0.02 | 0.02 |
+| Qwen2.5-14B 4K | fwe | partition_qwen14b_4k.jsonl | 50 | 0.00 | 0.00 |
+| Qwen2.5-14B 4K | niah_multikey_3 | partition_qwen14b_4k.jsonl | 50 | 0.00 | 0.00 |
+| Qwen2.5-14B 4K | niah_multivalue | partition_qwen14b_4k.jsonl | 50 | 0.08 | 0.08 |
+| Qwen2.5-14B 4K | qa_1 | partition_qwen14b_4k.jsonl | 50 | 0.06 | 0.06 |
+| Qwen2.5-14B 4K | qa_2 | partition_qwen14b_4k.jsonl | 50 | 0.02 | 0.02 |
+| Qwen2.5-14B 4K | vt | partition_qwen14b_4k.jsonl | 50 | 0.00 | 0.00 |
+| Qwen2.5-14B 16K | fwe | partition_qwen14b_16k.jsonl | 30 | 0.20 | 0.20 |
+| Qwen2.5-14B 16K | niah_multikey_3 | partition_qwen14b_16k.jsonl | 30 | 0.00 | 0.00 |
+| Qwen2.5-14B 16K | niah_multivalue | partition_qwen14b_16k.jsonl | 30 | 0.07 | 0.07 |
+| Qwen2.5-14B 16K | qa_1 | partition_qwen14b_16k.jsonl | 30 | 0.10 | 0.10 |
+| Qwen2.5-14B 16K | qa_2 | partition_qwen14b_16k.jsonl | 30 | 0.03 | 0.03 |
+| Qwen2.5-14B 16K | vt | partition_qwen14b_16k.jsonl | 30 | 0.03 | 0.03 |
+| Mistral-7B 4K | fwe | gated_4k_mistral7b.jsonl | 100 | 0.02 | 0.02 |
+| Mistral-7B 4K | niah_multikey_3 | gated_4k_mistral7b.jsonl | 100 | 0.00 | 0.00 |
+| Mistral-7B 4K | qa_1 | gated_4k_mistral7b.jsonl | 100 | 0.04 | 0.04 |
+| Mistral-7B 4K | vt | gated_4k_mistral7b.jsonl | 100 | 0.00 | 0.00 |
+| Mistral-7B 4K | niah_multivalue | ruler_4k_mistral7b_qa2_mv.jsonl | 100 | 0.06 | 0.06 |
+| Mistral-7B 4K | qa_2 | ruler_4k_mistral7b_qa2_mv.jsonl | 100 | 0.01 | 0.01 |
+| Mistral-7B 16K | fwe | gated_16k_mistral7b.jsonl | 50 | 0.22 | 0.22 |
+| Mistral-7B 16K | niah_multikey_3 | gated_16k_mistral7b.jsonl | 50 | 0.00 | 0.00 |
+| Mistral-7B 16K | qa_1 | gated_16k_mistral7b.jsonl | 50 | 0.00 | 0.00 |
+| Mistral-7B 16K | vt | gated_16k_mistral7b.jsonl | 50 | 0.32 | 0.32 |
+| Mistral-7B 16K | niah_multivalue | ruler_16k_mistral7b_qa2_mv.jsonl | 100 | 0.21 | 0.21 |
+| Mistral-7B 16K | qa_2 | ruler_16k_mistral7b_qa2_mv.jsonl | 100 | 0.00 | 0.00 |
+
+Cells reproduced: 48 of 48 (Table 1 has 48).
+NIAH-MK3 pooled: 2/526, rho = 0.004, Wilson [0.001, 0.014] (paper: 2/526, 0.004, [0.001, 0.014]).
+PASS

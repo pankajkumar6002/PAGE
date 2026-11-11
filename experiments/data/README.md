@@ -34,3 +34,10 @@ the exact-match target.
 These are all zero-cost to regenerate (a few seconds, no GPU, no external
 download) — they are committed only so results are reproducible from a fixed
 draw without re-running the generator.
+
+## Revision data
+
+`revision/` holds no data, only `fetch.sh`, which downloads the third-party L-Eval, NQ (30 passages) and
+BABILong files used by the revision's Table 45 and 48 runs from pinned public sources and checks them against
+`revision/b8_raw/SHA256SUMS` and `revision/leval/SHA256SUMS`. Sources and licences are in
+`revision/THIRD_PARTY_NOTICES.md`.

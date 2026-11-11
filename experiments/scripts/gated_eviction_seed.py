@@ -1,8 +1,8 @@
 """Seeded input-draw wrapper around gated_eviction.main().
 
-Replaces page-kv/experiments/scripts/gated_eviction_seed2.py, which hardcodes
-the original run machine's path (/home/smlab/projects/eff-nn/...) and so does
-not import anywhere else.
+Replaces page-kv/experiments/scripts/gated_eviction_seed2.py, which imports
+gated_eviction from a path relative to the repository root and so works only
+when run from page-kv/.
 
 What the seed varies: gated_eviction.py takes the first `max_examples` inputs
 per task deterministically, so shuffling the RULER split before that selection

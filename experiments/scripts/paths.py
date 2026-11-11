@@ -5,10 +5,10 @@ The two revision rounds were originally developed in sibling checkouts
 Both rounds now live here, alongside the original scripts, so this module is
 the union of the two: same env-var contract, same helpers, one set of roots.
 
-The original scripts in this directory hardcode the run machine's paths
-(`/home/smlab/projects/eff-nn/...`) and do not execute here. The revision-round
-scripts resolve everything relative to this checkout instead, with env
-overrides for other machines.
+The original scripts in this directory use paths relative to the repository
+root (`experiments/results/...`), so run them from `page-kv/`. The
+revision-round scripts resolve everything relative to this file instead, with
+env overrides for other machines.
 
   PAGE_RESULTS   per-input logs from the original released runs
                  (default: ../results, i.e. page-kv/experiments/results)

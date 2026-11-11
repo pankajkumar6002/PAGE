@@ -16,8 +16,8 @@ from collections import defaultdict
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--in", dest="inp", default="/home/smlab/projects/eff-nn/experiments/results/h1_sweep.jsonl")
-    p.add_argument("--out", default="/home/smlab/projects/eff-nn/experiments/results/h1_report.md")
+    p.add_argument("--in", dest="inp", default="experiments/results/h1_sweep.jsonl")
+    p.add_argument("--out", default="experiments/results/h1_report.md")
     args = p.parse_args()
 
     by_id = defaultdict(dict)  # id -> {budget -> bool}

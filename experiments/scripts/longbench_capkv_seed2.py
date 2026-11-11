@@ -7,7 +7,7 @@ of examples is evaluated. All CapKV-proxy / gating logic is unchanged.
 import os
 import sys
 
-sys.path.insert(0, "/home/smlab/projects/eff-nn/experiments/scripts")
+sys.path.insert(0, "experiments/scripts")
 import longbench_capkv
 from datasets import load_dataset as _real_load_dataset
 

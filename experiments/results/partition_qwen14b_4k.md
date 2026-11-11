@@ -1,8 +1,8 @@
 # Partition (per-task recovery rate) — Qwen2.5-14B-Instruct @ RULER 4K
 
 - Source files:
-  - /home/smlab/projects/eff-nn/experiments/results/gated_4k_qwen14b.jsonl
-  - /home/smlab/projects/eff-nn/experiments/results/gated_4k_qwen14b_extra.jsonl
+  - experiments/results/gated_4k_qwen14b.jsonl
+  - experiments/results/gated_4k_qwen14b_extra.jsonl
 - Metric: rho = Pr_x[some b<1.0 is correct AND b=1.0 is wrong]  (strict per-input Pareto).
 - N = 50 per task.
 

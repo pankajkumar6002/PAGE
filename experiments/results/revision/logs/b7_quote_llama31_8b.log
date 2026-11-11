@@ -1,0 +1,69 @@
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 6596.88it/s]
+b7 model meta-llama/Llama-3.1-8B-Instruct arm quote tasks tpo,quality,coursera questions 643 budgets [1.0, 0.5, 0.25, 0.125, 0.0625] eos 128009 cap 16000
+prompt head '<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCutting Knowledge Date: December 2023\nToday Date: 26 Jul 2024\n\nNow you are given a very long document. Please follow the instruction based on this document. For multi-choice questions, there is only a single correct option.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nDocument is as follows. <DOC> \nQuestion: why did frantzen go to the sales barn\nA. to study human form and movement\nB. to earn money by painting portraits\nC. to paint farm animals in an outdoor setting\nD. to meet people who could model for her paining\nFirst quote t'
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[10/643] tpo T=3648 D=+0.0326 144s skip=0 oom=0
+[20/643] tpo T=3598 D=+0.0370 272s skip=0 oom=0
+[30/643] tpo T=3586 D=+0.0290 400s skip=0 oom=0
+[40/643] tpo T=3802 D=+0.0240 533s skip=0 oom=0
+[50/643] tpo T=3793 D=+0.0249 675s skip=0 oom=0
+[60/643] tpo T=3734 D=+0.0315 798s skip=0 oom=0
+[70/643] tpo T=3734 D=+0.0283 942s skip=0 oom=0
+[80/643] tpo T=3660 D=+0.0372 1062s skip=0 oom=0
+[90/643] tpo T=3688 D=+0.0257 1202s skip=0 oom=0
+[100/643] tpo T=3526 D=+0.0315 1349s skip=0 oom=0
+[110/643] tpo T=3525 D=+0.0290 1496s skip=0 oom=0
+[120/643] tpo T=3356 D=+0.0320 1632s skip=0 oom=0
+[130/643] tpo T=3374 D=+0.0167 1771s skip=0 oom=0
+[140/643] tpo T=3513 D=+0.0325 1892s skip=0 oom=0
+[150/643] tpo T=3492 D=+0.0348 2015s skip=0 oom=0
+[160/643] tpo T=3615 D=+0.0274 2145s skip=0 oom=0
+[170/643] tpo T=3580 D=+0.0371 2273s skip=0 oom=0
+[180/643] tpo T=3559 D=+0.0417 2405s skip=0 oom=0
+[190/643] tpo T=3651 D=+0.0224 2519s skip=0 oom=0
+[200/643] tpo T=3647 D=+0.0333 2638s skip=0 oom=0
+[210/643] tpo T=3876 D=+0.0281 2765s skip=0 oom=0
+[220/643] tpo T=3361 D=+0.0338 2889s skip=0 oom=0
+[230/643] tpo T=3329 D=+0.0367 3021s skip=0 oom=0
+[240/643] tpo T=3683 D=+0.0253 3136s skip=0 oom=0
+[250/643] tpo T=3684 D=+0.0321 3274s skip=0 oom=0
+[260/643] tpo T=3682 D=+0.0466 3401s skip=0 oom=0
+[270/643] quality T=6499 D=+0.0387 3536s skip=0 oom=0
+[280/643] quality T=6391 D=+0.0423 3651s skip=0 oom=0
+[290/643] quality T=3029 D=+0.0312 3795s skip=0 oom=0
+[300/643] quality T=4259 D=+0.0494 3938s skip=0 oom=0
+[310/643] quality T=6993 D=+0.0361 4062s skip=0 oom=0
+[320/643] quality T=6980 D=+0.0407 4193s skip=0 oom=0
+[330/643] quality T=7007 D=+0.0552 4349s skip=0 oom=0
+[340/643] quality T=6998 D=+0.0517 4508s skip=0 oom=0
+[350/643] quality T=6657 D=+0.0519 4592s skip=0 oom=0
+[360/643] quality T=6657 D=+0.0408 4680s skip=0 oom=0
+[370/643] quality T=3119 D=+0.0343 4753s skip=0 oom=0
+[380/643] quality T=3085 D=+0.0276 4829s skip=0 oom=0
+[390/643] quality T=7511 D=+0.0500 4911s skip=0 oom=0
+[400/643] quality T=6669 D=+0.0534 4992s skip=0 oom=0
+[410/643] quality T=6635 D=+0.0398 5065s skip=0 oom=0
+[420/643] quality T=7138 D=+0.0340 5153s skip=0 oom=0
+[430/643] quality T=7108 D=+0.0510 5233s skip=0 oom=0
+[440/643] quality T=6780 D=+0.0576 5328s skip=0 oom=0
+[450/643] quality T=6777 D=+0.0545 5407s skip=0 oom=0
+[460/643] quality T=6958 D=+0.0575 5494s skip=0 oom=0
+[470/643] quality T=6961 D=+0.0368 5581s skip=0 oom=0
+[480/643] coursera T=5276 D=+0.0033 5653s skip=0 oom=0
+[490/643] coursera T=14651 D=+0.0105 5733s skip=0 oom=0
+[509/643] coursera T=7294 D=+0.0104 5824s skip=9 oom=0
+[519/643] coursera T=5427 D=+0.0127 5913s skip=9 oom=0
+[529/643] coursera T=5443 D=+0.0041 5987s skip=9 oom=0
+[539/643] coursera T=7872 D=+0.0072 6063s skip=9 oom=0
+[549/643] coursera T=9181 D=+0.0044 6156s skip=9 oom=0
+[559/643] coursera T=6984 D=+0.0052 6245s skip=9 oom=0
+[569/643] coursera T=5869 D=-0.0001 6313s skip=9 oom=0
+[579/643] coursera T=7042 D=+0.0016 6384s skip=9 oom=0
+[589/643] coursera T=6668 D=+0.0120 6475s skip=9 oom=0
+[599/643] coursera T=6683 D=+0.0121 6563s skip=9 oom=0
+[609/643] coursera T=7467 D=-0.0043 6632s skip=9 oom=0
+[619/643] coursera T=7495 D=-0.0077 6713s skip=9 oom=0
+[629/643] coursera T=4920 D=+0.0025 6791s skip=9 oom=0
+[639/643] coursera T=12925 D=+0.0211 6879s skip=9 oom=0
+peak memory 22.1 GiB
+b7 done questions=643 new=634 resumed=0 skipped=9 oom=0

@@ -71,7 +71,7 @@ without losing the dilution-prone gains).
    uniform cache shape.
 3. **No Bui's DBTrimKV or CapKV in the matrix.** Their codebases require
    isolated environments (different transformers / torch versions); see
-   `/home/smlab/projects/eff-nn/external/trimkv/NOTES.md` for the Bui
+   `external/trimkv/NOTES.md` for the Bui
    reproduction status. Estimated 3-4 days to wire gated-DBTrimKV cleanly.
 
 ## What this matrix establishes

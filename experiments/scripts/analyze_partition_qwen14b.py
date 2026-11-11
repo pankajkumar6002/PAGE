@@ -97,8 +97,8 @@ def per_task_rho(rows):
 
 def main():
     paths = [
-        "/home/smlab/projects/eff-nn/experiments/results/gated_4k_qwen14b.jsonl",
-        "/home/smlab/projects/eff-nn/experiments/results/gated_4k_qwen14b_extra.jsonl",
+        "experiments/results/gated_4k_qwen14b.jsonl",
+        "experiments/results/gated_4k_qwen14b_extra.jsonl",
     ]
     rows = load(paths)
     print(f"loaded {len(rows)} rows from {len(paths)} files")
@@ -106,7 +106,7 @@ def main():
     stats = per_task_rho(rows)
 
     # write per-input jsonl
-    out_jsonl = "/home/smlab/projects/eff-nn/experiments/results/partition_qwen14b_4k.jsonl"
+    out_jsonl = "experiments/results/partition_qwen14b_4k.jsonl"
     with open(out_jsonl, "w") as f:
         for task in sorted(stats):
             for rec in stats[task]["per_input"]:
@@ -209,7 +209,7 @@ def main():
         md.append("- Partition does NOT hold cleanly. See per-task numbers above.")
     md.append("")
 
-    out_md = "/home/smlab/projects/eff-nn/experiments/results/partition_qwen14b_4k.md"
+    out_md = "experiments/results/partition_qwen14b_4k.md"
     with open(out_md, "w") as f:
         f.write("\n".join(md) + "\n")
     print("\n".join(md))

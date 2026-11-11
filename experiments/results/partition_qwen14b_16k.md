@@ -1,8 +1,8 @@
 # Partition (per-task recovery rate) -- Qwen2.5-14B-Instruct @ RULER 16K
 
 - Source files:
-  - /home/smlab/projects/eff-nn/experiments/results/gated_16k_qwen14b.jsonl
-  - /home/smlab/projects/eff-nn/experiments/results/gated_16k_qwen14b_extra.jsonl
+  - experiments/results/gated_16k_qwen14b.jsonl
+  - experiments/results/gated_16k_qwen14b_extra.jsonl
 - Metric: rho = Pr_x[some b<1.0 is correct AND b=1.0 is wrong]  (strict per-input Pareto).
 - N = 30 per task.
 
@@ -45,7 +45,7 @@ NIAH-MK3          | 0.00
 
 ## 4K vs 16K comparison (this model)
 
-rho values from /home/smlab/projects/eff-nn/experiments/results/partition_qwen14b_4k.md:
+rho values from experiments/results/partition_qwen14b_4k.md:
 
 | Task | 4K rho (plain) | 16K rho (plain) | direction |
 |------|----------------|------------------|-----------|

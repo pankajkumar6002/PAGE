@@ -3,7 +3,7 @@ new 1024/1152/1280), and the matched-memory head-to-head at ~30% kept."""
 import json, collections, statistics
 import numpy as np
 
-R = "/home/smlab/projects/eff-nn/experiments/results/"
+R = "experiments/results/"
 NHEAD = None  # infer from n_kept/ memory
 
 

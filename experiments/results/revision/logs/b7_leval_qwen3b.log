@@ -1,0 +1,105 @@
+Loading weights:   0%|          | 0/434 [00:00<?, ?it/s]Loading weights: 100%|██████████| 434/434 [00:00<00:00, 5478.20it/s]
+b7 model Qwen/Qwen2.5-3B-Instruct arm leval tasks tpo,quality,coursera,topic_retrieval_longchat,gsm100,sci_fi questions 957 budgets [1.0, 0.5, 0.25, 0.125, 0.0625] eos 151645 cap 16000
+prompt head '<|im_start|>system\nNow you are given a very long document. Please follow the instruction based on this document. For multi-choice questions, there is only a sinlge correct option. Please only provide the letter corresponding to the answer (like A or B) when answering. For other questions, please directly give the concise and accurate answer. <|im_end|>\n<|im_start|>user\nDocument is as follows. <DOC> \nQuestion: why did frantzen go to the sales barn\nA. to study human form and movement\nB. to earn money by painting portraits\nC. to paint farm animals in an outdoor setting\nD. to meet people who could'
+[10/957] tpo T=3638 D=+0.0419 7s skip=0 oom=0
+[20/957] tpo T=3600 D=+0.0366 13s skip=0 oom=0
+[30/957] tpo T=3588 D=+0.0277 19s skip=0 oom=0
+[40/957] tpo T=3824 D=+0.0626 25s skip=0 oom=0
+[50/957] tpo T=3815 D=+0.0398 31s skip=0 oom=0
+[60/957] tpo T=3733 D=+0.0573 37s skip=0 oom=0
+[70/957] tpo T=3733 D=+0.0583 43s skip=0 oom=0
+[80/957] tpo T=3654 D=+0.0387 49s skip=0 oom=0
+[90/957] tpo T=3682 D=+0.0292 55s skip=0 oom=0
+[100/957] tpo T=3518 D=+0.0332 61s skip=0 oom=0
+[110/957] tpo T=3517 D=+0.0459 67s skip=0 oom=0
+[120/957] tpo T=3353 D=+0.0277 73s skip=0 oom=0
+[130/957] tpo T=3371 D=+0.0398 79s skip=0 oom=0
+[140/957] tpo T=3516 D=+0.0237 85s skip=0 oom=0
+[150/957] tpo T=3495 D=+0.0408 91s skip=0 oom=0
+[160/957] tpo T=3612 D=+0.0219 97s skip=0 oom=0
+[170/957] tpo T=3585 D=+0.0204 103s skip=0 oom=0
+[180/957] tpo T=3566 D=+0.0346 109s skip=0 oom=0
+[190/957] tpo T=3646 D=+0.0429 115s skip=0 oom=0
+[200/957] tpo T=3642 D=+0.0167 121s skip=0 oom=0
+[210/957] tpo T=3871 D=+0.0463 128s skip=0 oom=0
+[220/957] tpo T=3352 D=+0.0237 134s skip=0 oom=0
+[230/957] tpo T=3320 D=+0.0259 141s skip=0 oom=0
+[240/957] tpo T=3681 D=+0.0409 147s skip=0 oom=0
+[250/957] tpo T=3682 D=+0.0459 152s skip=0 oom=0
+[260/957] tpo T=3674 D=+0.0348 158s skip=0 oom=0
+[270/957] quality T=6487 D=+0.0206 163s skip=0 oom=0
+[280/957] quality T=6379 D=+0.0033 170s skip=0 oom=0
+[290/957] quality T=3035 D=+0.0374 176s skip=0 oom=0
+[300/957] quality T=4263 D=+0.0243 181s skip=0 oom=0
+[310/957] quality T=6982 D=+0.0149 187s skip=0 oom=0
+[320/957] quality T=6977 D=+0.0155 194s skip=0 oom=0
+[330/957] quality T=7004 D=+0.0078 201s skip=0 oom=0
+[340/957] quality T=6986 D=+0.0153 208s skip=0 oom=0
+[350/957] quality T=6692 D=+0.0248 215s skip=0 oom=0
+[360/957] quality T=6692 D=+0.0071 222s skip=0 oom=0
+[370/957] quality T=3110 D=+0.0347 228s skip=0 oom=0
+[380/957] quality T=3076 D=+0.0242 233s skip=0 oom=0
+[390/957] quality T=7503 D=+0.0161 240s skip=0 oom=0
+[400/957] quality T=6657 D=+0.0327 248s skip=0 oom=0
+[410/957] quality T=6623 D=+0.0098 255s skip=0 oom=0
+[420/957] quality T=7128 D=+0.0287 261s skip=0 oom=0
+[430/957] quality T=7098 D=+0.0118 269s skip=0 oom=0
+[440/957] quality T=6768 D=+0.0443 276s skip=0 oom=0
+[450/957] quality T=6765 D=+0.0226 283s skip=0 oom=0
+[460/957] quality T=6951 D=+0.0213 290s skip=0 oom=0
+[470/957] quality T=6954 D=+0.0291 297s skip=0 oom=0
+[480/957] coursera T=5293 D=+0.0013 304s skip=0 oom=0
+[490/957] coursera T=14829 D=-0.0190 313s skip=0 oom=0
+[509/957] coursera T=7284 D=+0.0224 326s skip=9 oom=0
+[519/957] coursera T=5398 D=-0.0062 333s skip=9 oom=0
+[529/957] coursera T=5414 D=-0.0310 344s skip=9 oom=0
+[539/957] coursera T=7864 D=+0.0014 354s skip=9 oom=0
+[549/957] coursera T=9168 D=-0.0361 364s skip=9 oom=0
+[559/957] coursera T=6960 D=+0.0158 374s skip=9 oom=0
+[569/957] coursera T=5838 D=+0.0300 380s skip=9 oom=0
+[579/957] coursera T=7030 D=+0.0055 387s skip=9 oom=0
+[589/957] coursera T=6690 D=+0.0282 395s skip=9 oom=0
+[599/957] coursera T=6715 D=-0.0015 402s skip=9 oom=0
+[609/957] coursera T=7489 D=-0.0024 410s skip=9 oom=0
+[619/957] coursera T=7518 D=+0.0161 418s skip=9 oom=0
+[629/957] coursera T=4900 D=+0.0067 426s skip=9 oom=0
+[639/957] coursera T=12957 D=-0.0267 436s skip=9 oom=0
+[649/957] topic_retrieval_longchat T=8020 D=+0.0676 454s skip=9 oom=0
+[659/957] topic_retrieval_longchat T=8251 D=+0.0571 470s skip=9 oom=0
+[669/957] topic_retrieval_longchat T=7955 D=+0.0473 485s skip=9 oom=0
+[679/957] topic_retrieval_longchat T=8181 D=+0.0541 499s skip=9 oom=0
+[689/957] topic_retrieval_longchat T=8196 D=+0.0503 514s skip=9 oom=0
+[699/957] topic_retrieval_longchat T=8086 D=+0.0690 530s skip=9 oom=0
+[709/957] topic_retrieval_longchat T=8066 D=+0.0711 545s skip=9 oom=0
+[719/957] topic_retrieval_longchat T=13435 D=+0.0495 561s skip=9 oom=0
+[729/957] topic_retrieval_longchat T=13644 D=+0.0653 580s skip=9 oom=0
+[739/957] topic_retrieval_longchat T=13661 D=+0.0559 600s skip=9 oom=0
+[749/957] topic_retrieval_longchat T=13766 D=+0.0593 618s skip=9 oom=0
+[759/957] topic_retrieval_longchat T=13422 D=+0.0620 637s skip=9 oom=0
+[769/957] topic_retrieval_longchat T=13422 D=+0.0448 655s skip=9 oom=0
+[779/957] topic_retrieval_longchat T=13510 D=+0.0427 673s skip=9 oom=0
+[789/957] topic_retrieval_longchat T=13666 D=+0.0691 691s skip=9 oom=0
+[799/957] gsm100 T=5062 D=-0.0276 916s skip=9 oom=0
+[809/957] gsm100 T=5100 D=-0.0187 1391s skip=9 oom=0
+[819/957] gsm100 T=5073 D=-0.0213 1747s skip=9 oom=0
+[829/957] gsm100 T=5058 D=-0.0417 2060s skip=9 oom=0
+[839/957] gsm100 T=5098 D=-0.0126 2434s skip=9 oom=0
+[849/957] gsm100 T=5056 D=-0.0148 2785s skip=9 oom=0
+[859/957] gsm100 T=5053 D=-0.0032 3156s skip=9 oom=0
+[869/957] gsm100 T=5072 D=-0.0089 3479s skip=9 oom=0
+Loading weights:   0%|          | 0/434 [00:00<?, ?it/s]Loading weights: 100%|██████████| 434/434 [00:00<00:00, 5537.56it/s]
+b7 model Qwen/Qwen2.5-3B-Instruct arm leval tasks tpo,quality,coursera,topic_retrieval_longchat,gsm100,sci_fi questions 957 budgets [1.0, 0.5, 0.25, 0.125, 0.0625] eos 151645 cap 16000
+prompt head '<|im_start|>system\nNow you are given a very long document. Please follow the instruction based on this document. For multi-choice questions, there is only a sinlge correct option. Please only provide the letter corresponding to the answer (like A or B) when answering. For other questions, please directly give the concise and accurate answer. <|im_end|>\n<|im_start|>user\nDocument is as follows. <DOC> \nQuestion: why did frantzen go to the sales barn\nA. to study human form and movement\nB. to earn money by painting portraits\nC. to paint farm animals in an outdoor setting\nD. to meet people who could'
+resume: 869 questions complete, 0 partial ones and 0 unreadable lines dropped
+[879/957] gsm100 T=5089 D=-0.0448 3818s skip=9 oom=0
+Loading weights:   0%|          | 0/434 [00:00<?, ?it/s]Loading weights: 100%|██████████| 434/434 [00:00<00:00, 5384.71it/s]
+b7 model Qwen/Qwen2.5-3B-Instruct arm leval tasks tpo,quality,coursera,topic_retrieval_longchat,gsm100,sci_fi questions 957 budgets [1.0, 0.5, 0.25, 0.125, 0.0625] eos 151645 cap 16000
+prompt head '<|im_start|>system\nNow you are given a very long document. Please follow the instruction based on this document. For multi-choice questions, there is only a sinlge correct option. Please only provide the letter corresponding to the answer (like A or B) when answering. For other questions, please directly give the concise and accurate answer. <|im_end|>\n<|im_start|>user\nDocument is as follows. <DOC> \nQuestion: why did frantzen go to the sales barn\nA. to study human form and movement\nB. to earn money by painting portraits\nC. to paint farm animals in an outdoor setting\nD. to meet people who could'
+resume: 869 questions complete, 0 partial ones and 0 unreadable lines dropped
+[888/957] gsm100 T=5057 D=-0.0332 380s skip=9 oom=0
+[898/957] sci_fi T=5013 D=+0.0148 577s skip=9 oom=0
+[919/957] sci_fi T=14394 D=+0.0091 596s skip=20 oom=0
+[939/957] sci_fi T=8668 D=+0.0145 612s skip=30 oom=0
+[956/957] sci_fi T=10081 D=+0.0084 627s skip=37 oom=0
+peak memory 10.9 GiB
+b7 done questions=957 new=51 resumed=869 skipped=37 oom=0

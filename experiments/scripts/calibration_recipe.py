@@ -76,7 +76,7 @@ def gated_acc_at_tau(gated_jsonl, tau):
 
 
 def main():
-    base = "/home/smlab/projects/eff-nn/experiments/results"
+    base = "experiments/results"
     cells = [
         ("Qwen 1.5B 4K", f"{base}/per_layer_agreement.jsonl",
                           f"{base}/gated_4k_qwen15b.jsonl"),
