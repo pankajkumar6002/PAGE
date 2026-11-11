@@ -1,14 +1,4 @@
-"""Check (b) of b5_arch.py in float32 on CPU (the GLM-4.7-Flash float32 check of Appendix I, Table 44).
-
-Repeats the runner's check (b) with the runner's own functions (imported from b5_arch.py, which is not changed):
-prefill the first T - 1 tokens with window capture on, derive the SnapKV keep set at b = 1/4 and 1/16, then compare
-the first decoding step from the sliced cache with a full-cache step whose attention mask hides the evicted positions.
-In float32 the two are equal up to summation order, so a slicing or position error cannot hide behind bf16 rounding.
-Also reports the float32 first-step difference between a full prefill and the held-back path.
-
-Pass: the same argmax and max|dlogit| <= 0.01 at both budgets. Exit 1 on failure.
-Usage: b6_fp32_checkb.py --model M --task T [--idx 0] [--threads 32]
-"""
+"""Float32 CPU repeat of the sliced-cache check of b5_arch.py (Table 44). Exit 1 on failure. Usage: b6_fp32_checkb.py --model M --task T [--idx 0] [--threads 32]"""
 import argparse
 import importlib.util
 import sys

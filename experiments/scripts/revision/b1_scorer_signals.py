@@ -1,21 +1,5 @@
 #!/usr/bin/env python
-"""B1: per-input scorer signals from one prefill, no decoding beyond one step.
-
-Pre-registered in preregistration/revision/b1_scorer_gates_prereg.md. One eager prefill
-without retained attentions (the stock hidden-state path). Pre-forward hooks on
-each self-attention capture hidden states and position embeddings, and the window
-attention is recomputed from them, following OBCache's compute_causal_attention.
-
-Signals per input:
-  - D, per-layer agreement, a_early, a_late, entropy drop, top-32 mass share.
-  - Share of middle-position score mass kept at each budget, for SnapKV, H2O and
-    OBCache value, key and joint scores.
-  - Activation change, KL and top-1 agreement at the first decode step, from the
-    SnapKV-pruned cache against the full cache.
-
-Validation: for the first inputs of each task, T must equal the logged value and
-|D - logged drop| must be within --drop_tol. A failure stops the run, exit code 3.
-"""
+"""Per-input scorer signals from one prefill (Table 41)."""
 import argparse
 import json
 import math
@@ -68,7 +52,6 @@ def query_states(module, hs, pe, start, end):
 
 
 def window_attention(module, hs, pe, keys, start, end):
-    """[1, H_q, Q, T] attention and logits for queries start..end, causal."""
     T = keys.shape[2]
     H = module.config.num_attention_heads
     groups = H // keys.shape[1]
@@ -84,7 +67,6 @@ def window_attention(module, hs, pe, keys, start, end):
 
 
 def obcache_scores(a, z, values, w):
-    """OBCache value, key and joint scores, [H_kv, T - w], in float32."""
     H_kv = values.shape[1]
     groups = a.shape[1] // H_kv
     A = a.float().view(1, H_kv, groups, *a.shape[2:]).mean(dim=2)
@@ -104,7 +86,6 @@ def obcache_scores(a, z, values, w):
 
 
 def layer_normalized(per_layer):
-    """Each layer's [T'] score sums to 1 in absolute value, then layers are averaged."""
     out = []
     for s in per_layer:
         out.append(s / (s.abs().sum() + 1e-12))
@@ -233,7 +214,6 @@ def main():
             a_early, a_late = sum(per_agree[:third]) / third, sum(per_agree[L - third:]) / third
             ent_drop = sum(ents[:third]) / third - sum(ents[L - third:]) / third
 
-            # Validation against the released log
             lg = logged.get(task, [])
             if idx < args.validate_first:
                 if idx >= len(lg) or int(lg[idx][0]) != int(T) or abs(lg[idx][1] - drop) > args.drop_tol:

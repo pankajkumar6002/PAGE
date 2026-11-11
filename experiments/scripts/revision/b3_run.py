@@ -1,8 +1,5 @@
 #!/usr/bin/env python
-"""B3: released gated_eviction.py on a newer model, with thinking off in the chat template.
-
-Pre-registered in preregistration/revision/b3_b4_models_prereg.md. All arguments pass through.
-"""
+"""Runs gated_eviction.py with thinking off in the chat template (Table 43). All arguments pass through."""
 import os
 import sys
 from pathlib import Path

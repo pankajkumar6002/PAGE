@@ -1,40 +1,5 @@
 #!/usr/bin/env python
-"""B5 and B6: PAGE on hybrid models (B5: Olmo-Hybrid-7B, Qwen3-Next-80B-A3B, LFM2-24B-A2B) and on MLA models
-(B6: DeepSeek-V2-Lite-Chat, GLM-4.7-Flash). Table 44.
-
-Method:
-  - D and the SnapKV score come from the layers that hold a key-value cache: the full-attention layers of a
-    hybrid, or every layer of an MLA model. D is the mean head agreement of the first third of those layers
-    minus the last third.
-  - Eviction keeps the same positions in every such layer. Recurrent and convolution states are left untouched.
-  - The last prompt token is held back from prefill and fed at the first decode step, so that recurrent
-    states never see a token twice.
-
-Implementation:
-  - Window attention (the last obs_window queries against all keys) is captured inside the attention
-    function during prefill, instead of returning every layer's full T x T attention map. Memory then
-    stays flat for models with many attention layers.
-    --attn eager  (default) attention runs through the model's own eager function; the window rows
-                  are sliced from its attention weights.
-    --attn sdpa   fallback only: outputs from SDPA, window rows recomputed the eager way.
-  - The kept-position copy of the cache shares the untouched key and value tensors and deep-copies the
-    rest, instead of deep-copying everything first.
-  - Decoding stops on the union of the generation config's and the tokenizer's end tokens.
-  - Multi-card loading: --gpu takes a comma list, main card first, with one --mem_gb cap per card; layers
-    fill the cards in that order.
-  - DeepSeek-V2: transformers 5.9's port omits the YaRN softmax factor mscale(factor, mscale_all_dim)^2
-    that DeepSeek's reference code and transformers' own deepseek_v3 and glm4_moe_lite ports apply. The
-    runner applies it, and keeps it only if it lowers the loss on the first prompt.
-
-Checks, on the first input of each task, always run:
-  (a) b = 1 reproduces greedy model.generate with the same end tokens and no logit processors;
-  (b) at b = 1/4 and 1/16 the first-step logits from the sliced cache pick the same token as a full-cache
-      step whose attention mask hides the evicted positions;
-  (c) the full-cache output contains no thinking trace;
-  (d) the number of layers with a key-value cache equals --expect_kv (if given).
-  Exit 4 on any failure, before the main run continues.
-Exit 5 if --out already has rows, so attempts never mix.
-"""
+"""PAGE on hybrid and MLA models (Table 44), with D and SnapKV eviction on the layers that keep a key-value cache. Exit 4 if a start-up check fails, exit 5 if --out already has rows."""
 import argparse
 import copy
 import json
@@ -52,8 +17,6 @@ from datasets import load_dataset  # noqa: E402
 from transformers import AttentionInterface, AutoConfig, AutoModelForCausalLM, AutoTokenizer, GenerationConfig  # noqa: E402
 from transformers.integrations.sdpa_attention import sdpa_attention_forward  # noqa: E402
 
-# Checks (a) and (b) compare computations that are equal in exact arithmetic but round differently in bf16 (and MoE
-# kernels add in a nondeterministic order). A choice that differs is accepted only where the logits are this close.
 NEAR_TIE = 0.25
 
 
@@ -61,12 +24,10 @@ class CheckFailed(Exception):
     pass
 
 
-# ---------------------------------------------------------------- window capture
 CAP = {"on": False, "w": 32, "top_k": 32, "dev": None, "agree": {}, "score": {}}
 
 
 def _record(module, window_probs):
-    """window_probs: [H, w, T] in the attention dtype, as eager would return it."""
     idx = module.layer_idx
     CAP["agree"][idx] = head_agreement_layer(window_probs, CAP["top_k"])
     CAP["score"][idx] = window_probs.float().mean(dim=(0, 1)).to(CAP["dev"])
@@ -80,8 +41,8 @@ def capturing_sdpa(module, query, key, value, attention_mask, dropout=0.0, scali
         if not (B == 1 and Tq == Tk):
             raise CheckFailed(f"capture expects a batch-1 prefill without past, got q {tuple(query.shape)} k {tuple(key.shape)}")
         s = scaling if scaling is not None else Dh ** -0.5
-        q = query[0, :, -w:, :].reshape(Hk, H // Hk, w, Dh)       # heads grouped as repeat_kv orders them
-        k = key[0].unsqueeze(1)                                    # [Hk, 1, Tk, Dh]
+        q = query[0, :, -w:, :].reshape(Hk, H // Hk, w, Dh)
+        k = key[0].unsqueeze(1)
         scores = (torch.matmul(q, k.transpose(-1, -2)) * s).reshape(H, w, Tk)
         i = torch.arange(w, device=scores.device).unsqueeze(1)
         j = torch.arange(Tk, device=scores.device).unsqueeze(0)
@@ -93,7 +54,6 @@ def capturing_sdpa(module, query, key, value, attention_mask, dropout=0.0, scali
 
 
 def patch_eager(model):
-    """Wrap each attention class's module-level eager function so its weights are sliced during prefill."""
     patched = set()
     for mod in model.modules():
         if hasattr(mod, "layer_idx") and hasattr(mod, "scaling"):
@@ -113,11 +73,10 @@ def patch_eager(model):
     return sorted(patched)
 
 
-# ---------------------------------------------------------------- cache access
 def get_kv(past, i):
     if hasattr(past, "layers"):
         return past.layers[i].keys, past.layers[i].values
-    return past.key_cache[i], past.value_cache[i]  # OlmoHybridDynamicCache
+    return past.key_cache[i], past.value_cache[i]
 
 
 def set_kv(past, i, k, v):
@@ -128,8 +87,6 @@ def set_kv(past, i, k, v):
 
 
 def sliced_copy(past, attn_idx, keep):
-    """Deep copy of everything except attention keys/values, which are sliced to `keep` (or shared at b = 1).
-    Cache updates concatenate into new tensors, so sharing the untouched originals is safe."""
     saved = {i: get_kv(past, i) for i in attn_idx}
     for i in attn_idx:
         set_kv(past, i, None, None)
@@ -148,7 +105,6 @@ def sliced_copy(past, attn_idx, keep):
     return c
 
 
-# ---------------------------------------------------------------- model, prompt, decode
 def build(tok, ex):
     user = ex["context"] + "\n\n" + ex["question"]
     if ex.get("answer_prefix"):
@@ -198,9 +154,6 @@ def decode(model, tok, cache, first_id, T, max_new, dev, n_kept, eos, return_ids
 
 
 def greedy_reference(model, ids, max_new, eos, pad):
-    """model.generate with a blank generation config, so no setting of the model's own config (repetition
-    penalty, minimum length, suppressed tokens, ...) changes greedy decoding. Returns new token ids and the
-    raw logits of every step."""
     saved = model.generation_config
     model.generation_config = GenerationConfig()
     try:
@@ -214,9 +167,6 @@ def greedy_reference(model, ids, max_new, eos, pad):
 
 
 def heldback_reference(model, ids, max_new, eos):
-    """Standard greedy decode with the same held-back last token as the runner: a fresh prefill of the first
-    T - 1 tokens, then plain model calls that let transformers infer positions and update its own cache. It
-    shares the runner's arithmetic but none of its cache copying or explicit positions."""
     toks, logits = [], []
     with torch.no_grad():
         cache = model(input_ids=ids[:, :-1], use_cache=True, logits_to_keep=1).past_key_values
@@ -264,7 +214,6 @@ def load(args):
 
 
 def deepseek_v2_scaling(model):
-    """(attention modules, factor) for transformers' deepseek_v2 port, which omits the YaRN softmax factor."""
     cfg = model.config.get_text_config(decoder=True)
     if cfg.model_type != "deepseek_v2":
         return [], 1.0
@@ -278,8 +227,6 @@ def deepseek_v2_scaling(model):
 
 
 def mean_nll(model, ids, n=1024):
-    """Mean next-token loss on the prompt's last n tokens; computing logits only there keeps memory small
-    (full logits at T ~ 4,300 and vocab 102,400 would add about 2.5 GiB)."""
     n = min(n, ids.shape[1] - 1)
     with torch.no_grad():
         logits = model(input_ids=ids, use_cache=False, logits_to_keep=n + 1).logits[0, :-1].float()
@@ -323,7 +270,6 @@ def main():
 
 
 def run(args):
-    # Registering under "sdpa" keeps the sdpa mask format; only the attention function is wrapped.
     AttentionInterface.register("sdpa", capturing_sdpa)
     tok, model, gpus = load(args)
     dev = model.get_input_embeddings().weight.device
@@ -435,7 +381,6 @@ def run(args):
                 fout.write(json.dumps(rec) + "\n")
                 fout.flush()
                 if check_this and b == 1.0:
-                    # (a) gate: the runner's decode must reproduce the standard held-back decode.
                     hb_ids, hb_logits = heldback_reference(model, ids, args.max_new, eos)
                     raw = tok.decode(hb_ids, skip_special_tokens=False)
                     if pred_ids == hb_ids:
@@ -449,7 +394,6 @@ def run(args):
                             raise CheckFailed(f"check (a) {task}: decode leaves the standard held-back decode at token {k}, top-2 gap {gap:.4f}")
                     if "<think>" in raw or "</think>" in raw:
                         raise CheckFailed(f"check (c) {task}: thinking trace in the full-cache output: {raw[:120]!r}")
-                    # Information only: greedy generate over the full prompt (last token inside the prefill).
                     ref_ids, scores = greedy_reference(model, ids, args.max_new, eos, pad)
                     d0 = float((scores[0] - hb_logits[0]).abs().max()) if scores and hb_logits else float("nan")
                     k2 = next((i for i, (x, y) in enumerate(zip(pred_ids, ref_ids)) if x != y), None)

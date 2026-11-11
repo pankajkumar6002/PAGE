@@ -1,10 +1,4 @@
-"""Reproduce Table 1 (per-input recovery rate rho, 48 cells) and the pooled NIAH-MK3 count 2/526 from the released logs (read-only).
-
-rho = share of inputs wrong with the full cache and right at some smaller budget (Eq. rho of the paper).
-Correctness: the paper's task-appropriate metric (all golds for vt, fwe, niah_multivalue; any gold otherwise)
-for the RULER sweep logs; the logged flags for the gated and partition logs, which carry no free text metric choice.
-    python3 -I table1_check.py
-"""
+"""Reproduces Table 1 and the pooled NIAH-MK3 count from the released logs. Usage: python3 -I table1_check.py"""
 import collections
 import json
 import math
@@ -16,7 +10,6 @@ T1 = {"vt": [.06, .19, .00, .05, .00, .03, .00, .32], "fwe": [.06, .04, .01, .32
       "qa_1": [.08, .14, .03, .08, .06, .10, .04, .00], "qa_2": [.08, .05, .04, .02, .02, .03, .01, .00],
       "niah_multivalue": [.07, .10, .02, .13, .08, .07, .06, .21], "niah_multikey_3": [.01, .00, .00, .02, .00, .00, .00, .00]}
 COLS = ["Qwen2.5-1.5B 4K", "Qwen2.5-1.5B 16K", "Qwen2.5-3B 4K", "Qwen2.5-3B 16K", "Qwen2.5-14B 4K", "Qwen2.5-14B 16K", "Mistral-7B 4K", "Mistral-7B 16K"]
-# (log, column, kind, tasks taken from it)
 SRC = [("ruler_vt_fwe_4k_snapkv.jsonl", 0, "sweep", None), ("ruler_mk3_4k_snapkv.jsonl", 0, "sweep", None),
        ("ruler_qa_4k_qwen.jsonl", 0, "sweep", None), ("ruler_extra_4k_qwen.jsonl", 0, "sweep", None),
        ("ruler_vt_fwe_16k_qwen.jsonl", 1, "sweep", None), ("ruler_mv_fwe_16k_qwen.jsonl", 1, "sweep", ["niah_multivalue"]),

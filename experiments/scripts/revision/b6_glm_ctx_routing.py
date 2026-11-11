@@ -1,10 +1,4 @@
-"""GLM-4.7-Flash, float32 on CPU, standard model code: do context tokens get different experts in a prefill of all T
-tokens than in a prefill of the first T - 1 tokens? In exact arithmetic the first T - 1 tokens are identical in both.
-A routing flip on a context token changes its keys and values in later layers, which the last token's attention then
-reads. That would explain a float32 full-prefill vs held-back gap that float64 removes (3e-13).
-Prints, per MoE layer, how many context tokens chose a different expert set, and the first layer with a flip.
-Usage: b6_glm_ctx_routing.py --model M --task T [--idx 0] [--threads 32]
-"""
+"""Float32 CPU test of whether GLM-4.7-Flash routes context tokens to different experts with and without the last prompt token. Usage: b6_glm_ctx_routing.py --model M --task T [--idx 0] [--threads 32]"""
 import argparse
 import importlib.util
 import sys

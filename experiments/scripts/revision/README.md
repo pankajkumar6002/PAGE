@@ -57,22 +57,22 @@ published value fails. `PAGE_RESULTS` overrides the released-log folder for the 
 | Table 38 | same | A3-T2 | same | none |
 | Table 39 | `checks/verify_2026-11-07.py --sections A4` | A4-T1 | released calibration logs | none |
 | Table 40 | same | A4-T2 | same | none |
-| Table 41 | `analyze_b.py b1` | B1-T1 | `b1_signals_{qwen15b,qwen3b,mistral7b,qwen14b}.jsonl`, joined with the released `gated_4k_*.jsonl` | `b1_scorer_gates_prereg.md` |
+| Table 41 | `analyze_b.py b1` | Table 41 | `b1_signals_{qwen15b,qwen3b,mistral7b,qwen14b}.jsonl`, joined with the released `gated_4k_*.jsonl` | `b1_scorer_gates_prereg.md` |
 | Table 42 | `checks/verify_2026-11-07.py --sections A7` | A7-T1 | released logs | none |
-| Table 43 | `analyze_b.py b3` | B3-T1 | `b3_qwen3_14b.jsonl` | `b3_b4_models_prereg.md` |
-| Table 44 | `analyze_b.py b5 b6` | B5-T0, B6-T0, per-model T1 and T4 | `b5_olmo_hybrid_7b.jsonl`, `b5_qwen3_next_80b.jsonl`, `b5_lfm2_24b_a2b.jsonl`, `b6_deepseek_v2_lite.jsonl`, `b6_glm47_flash.jsonl` | none |
+| Table 43 | `analyze_b.py b3` | Table 43 | `b3_qwen3_14b.jsonl` | `b3_b4_models_prereg.md` |
+| Table 44 | `analyze_b.py b5 b6` | the Table 44 tables: two summaries, and per model the gate gain and the selection at each budget | `b5_olmo_hybrid_7b.jsonl`, `b5_qwen3_next_80b.jsonl`, `b5_lfm2_24b_a2b.jsonl`, `b6_deepseek_v2_lite.jsonl`, `b6_glm47_flash.jsonl` | none |
 | Table 45 | `analyze_b8_corrected.py` | B8-T1 to B8-T3 | `b8_{nq30,babilong}_{qwen3b,mistral7b,qwen14b}.jsonl`, `b7_leval_{qwen3b,mistral7b,qwen14b}.jsonl`, `logs/*.log` | `b8_neartie_prereg.md` |
 | Table 46 | `checks/verify_2026-11-07.py --sections A0` | A0-T2 | `capbound_4k_mistral7b_cwe.jsonl` | none |
-| Table 47 | `analyze_b.py b2` and `analyze_b.py b2c` | B2-T1 and B2-T3 (letter, quote and LongBench rows), B2c-T1 and B2c-T3 (Qwen2.5-14B QuALITY rows) | `b2_{quality,lbv2}_{qwen3b,mistral7b}.jsonl`, `b2b_{quality,lbv2}_{qwen3b,mistral7b}.jsonl`, `b2_longbench_{qwen3b,qwen14b}.jsonl`, `b2_longbench_qwen14b_rougeL.jsonl`, `b2c_quality_qwen14b_{letter,quote}.jsonl` | `b2_beyond_ruler_prereg.md`, `b2b_reasoning_prompt_prereg.md`, `b2c_quality_qwen14b_prereg.md` |
+| Table 47 | `analyze_b.py b2` and `analyze_b.py b2c` | the Table 47 tables (letter, quote and LongBench rows from `b2`, Qwen2.5-14B QuALITY rows from `b2c`) | `b2_{quality,lbv2}_{qwen3b,mistral7b}.jsonl`, `b2b_{quality,lbv2}_{qwen3b,mistral7b}.jsonl`, `b2_longbench_{qwen3b,qwen14b}.jsonl`, `b2_longbench_qwen14b_rougeL.jsonl`, `b2c_quality_qwen14b_{letter,quote}.jsonl` | `b2_beyond_ruler_prereg.md`, `b2b_reasoning_prompt_prereg.md`, `b2c_quality_qwen14b_prereg.md` |
 | Table 48 | `analyze_b7.py` | pooled rows per model and arm (B7-T1); the table note uses B7-T2 | `b7_{leval,quote}_{qwen3b,mistral7b,qwen14b,qwen3_14b,llama31_8b}.jsonl`, `logs/b7_*.log` | `b7_leval_prereg.md` |
 | Table 49 | `checks/verify_2026-11-07.py --sections A6` | A6-T1 | released LongBench logs | none |
 
 Table 47 leaves out gov_report, because substring accuracy is zero at full cache. Its rows are in
-`b2_longbench_qwen14b.jsonl` and in `b2_analysis.md` (ROUGE-L in B2-T2, from `score_rouge.py`, which needs
+`b2_longbench_qwen14b.jsonl` and in `b2_analysis.md` (ROUGE-L in the official-metrics table, from `score_rouge.py`, which needs
 `rouge==1.0.1`).
 
-Table 44 columns: AUC(D) for MK3, MK3 closed, tau open and kept at 1/2 are in B5-T0 and B6-T0. Selection at
-b = 1/16 is in B5-T0 and B6-T0. Selection averaged over budgets is the z-gate row of each model's T1 table.
+Table 44 columns: AUC(D) for MK3, MK3 closed, tau open, kept at 1/2 and selection at b = 1/16 are in the two
+summary tables. Selection averaged over budgets is the z-gate row of each model's gate-gain table.
 
 Table 45 uses `analyze_b8_corrected.py`. It runs the pre-registered `analyze_b8.py` unchanged and adds one
 post-hoc correction to the reported p-values: the two-sided bootstrap p becomes
@@ -86,7 +86,8 @@ the runner's `done` line.
 Requirements are those of the main README (Python 3.13, `requirements.txt`, CUDA build of torch).
 `b8_neartie.py` also uses `regex`, which `transformers` installs. Models load with `trust_remote_code=False`. The runners import the
 released `experiments/scripts/gated_eviction.py` and `longbench_gating.py` (override the folder with
-`PAGE_SRC`). Each runner appends to `--out` and refuses or resumes as its docstring states.
+`PAGE_SRC`). Each runner appends to `--out`. `b5_arch.py` refuses an `--out` that already has rows, and
+`b7_leval.py` and `b8_neartie.py` resume from complete questions.
 
 Data for Tables 45 and 48 is not in the repository. Fetch it first (about 170 MB, checked against the SHA256SUMS
 files):
@@ -101,17 +102,17 @@ bash experiments/data/revision/fetch.sh
 R=experiments/results/revision
 S=experiments/scripts/revision
 
-# Table 41 (B1). Qwen2.5-14B with --n_per_task 50.
+# Table 41. Qwen2.5-14B with --n_per_task 50.
 python $S/b1_scorer_signals.py --gpu 0 --model Qwen/Qwen2.5-1.5B-Instruct --logged experiments/results/gated_4k_qwen15b.jsonl --out $R/b1_signals_qwen15b.jsonl
 python $S/b1_scorer_signals.py --gpu 0 --model Qwen/Qwen2.5-3B-Instruct   --logged experiments/results/gated_4k_qwen3b.jsonl  --out $R/b1_signals_qwen3b.jsonl
 python $S/b1_scorer_signals.py --gpu 0 --model mistralai/Mistral-7B-Instruct-v0.3 --logged experiments/results/gated_4k_mistral7b.jsonl --out $R/b1_signals_mistral7b.jsonl
 python $S/b1_scorer_signals.py --gpu 0 --model Qwen/Qwen2.5-14B-Instruct --n_per_task 50 --logged experiments/results/gated_4k_qwen14b.jsonl --out $R/b1_signals_qwen14b.jsonl
 
-# Table 43 (B3). The released runner with thinking off in the chat template.
+# Table 43. The released runner with thinking off in the chat template.
 python $S/b3_run.py --gpu 0 --model Qwen/Qwen3-14B --tasks niah_multikey_3,vt,fwe,qa_1 --budgets 1.0,0.5,0.25,0.125,0.0625 \
     --max_examples 50 --two_pass --attn_impl sdpa --out $R/b3_qwen3_14b.jsonl
 
-# Table 44 (B5, B6). --expect_kv is the number of layers with a key-value cache.
+# Table 44. --expect_kv is the number of layers with a key-value cache.
 # Models that need more than one card: --gpu takes a comma list (main card first) with one --mem_gb cap per card.
 python $S/b5_arch.py --gpu 0 --model allenai/Olmo-Hybrid-Instruct-DPO-7B --attn eager --expect_kv 8  --out $R/b5_olmo_hybrid_7b.jsonl
 python $S/b5_arch.py --gpu 0,1,2,3 --mem_gb <one cap per card> --model Qwen/Qwen3-Next-80B-A3B-Instruct --attn eager --expect_kv 12 --out $R/b5_qwen3_next_80b.jsonl
@@ -123,7 +124,7 @@ python $S/b5_arch.py --gpu 0,1 --mem_gb 54,12 --model zai-org/GLM-4.7-Flash --at
 python $S/b6_fp32_checkb.py --model zai-org/GLM-4.7-Flash --task T
 python $S/b6_glm_ctx_routing.py --model zai-org/GLM-4.7-Flash --task T
 
-# Table 45 (B8). The L-Eval background of each mixed workload, then the near-tie datasets.
+# Table 45. The L-Eval background of each mixed workload, then the near-tie datasets.
 for m in Qwen/Qwen2.5-3B-Instruct:qwen3b mistralai/Mistral-7B-Instruct-v0.3:mistral7b Qwen/Qwen2.5-14B-Instruct:qwen14b; do
   id=${m%%:*}; s=${m##*:}
   python $S/b7_leval.py --gpu 0 --attn_impl sdpa --two_pass --arm leval --model $id --out $R/b7_leval_$s.jsonl > $R/logs/b7_leval_$s.log 2>&1
@@ -134,7 +135,7 @@ done
 ```
 
 ```bash
-# Table 47 (B2 letter arm; B2b quote arm with --mcq_style reasoning; B2c on Qwen2.5-14B).
+# Table 47: letter arm, quote arm (--mcq_style reasoning), and both arms on Qwen2.5-14B.
 # QuALITY, LongBench-v2 and LongBench are loaded from the Hugging Face Hub at run time
 # (emozilla/quality, zai-org/LongBench-v2, Xnhyacinth/LongBench), without a pinned revision.
 for m in Qwen/Qwen2.5-3B-Instruct:qwen3b mistralai/Mistral-7B-Instruct-v0.3:mistral7b; do
@@ -154,7 +155,7 @@ python $S/b2_gating.py --gpu 0 --attn_impl sdpa --two_pass --dataset quality --n
 python $S/b2_gating.py --gpu 0 --attn_impl sdpa --two_pass --mcq_style reasoning --dataset quality --n 300 \
     --model Qwen/Qwen2.5-14B-Instruct --out $R/b2c_quality_qwen14b_quote.jsonl
 
-# Table 48 (B7). Both arms on five models. The leval arm of the first three models is already run for Table 45.
+# Table 48. Both arms on five models. The leval arm of the first three models is already run for Table 45.
 # Qwen3-14B runs with --no_thinking. meta-llama/Llama-3.1-8B-Instruct is gated (see the main README).
 for m in Qwen/Qwen2.5-3B-Instruct:qwen3b mistralai/Mistral-7B-Instruct-v0.3:mistral7b Qwen/Qwen2.5-14B-Instruct:qwen14b \
          meta-llama/Llama-3.1-8B-Instruct:llama31_8b Qwen/Qwen3-14B:qwen3_14b; do
@@ -203,3 +204,5 @@ runs, which are not released.
 - `analyze_b.py` and `checks/verify_2026-11-07.py` contain only the sections behind the paper's tables.
   Every section seeds its own random generator, so the remaining sections give the same values.
 - `b5_arch.py` contains only the options used for the reported runs.
+- Scripts without a recorded hash: comments removed, and the headings printed by `analyze_b.py` name the paper
+  table instead of an internal label. The code is otherwise unchanged, and every printed number is the same.

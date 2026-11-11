@@ -1,13 +1,13 @@
 
-## B5. Hybrid models, D and eviction on the layers with a key-value cache (G-Q3, G-Q2)
+## Hybrid models, D and eviction on the layers with a key-value cache
 
 
-### B5a. Olmo-Hybrid-7B (linear + full attention)
+### Olmo-Hybrid-7B (linear + full attention)
 
 Olmo-Hybrid-7B: 200 inputs (fwe 50, niah_multikey_3 50, qa_1 50, vt 50), budgets 1/16, 1/8, 1/4, 1/2, inputs dropped for missing budgets 0, unreadable lines 0.
 AUC of D for NIAH-MK3 (MK3 low) against the other three tasks: 1.000. Mean D by task: fwe -0.016, niah_multikey_3 -0.215, qa_1 +0.010, vt +0.002.
 
-### B5a-T1: Olmo-Hybrid-7B: gate gain over plain SnapKV, averaged over the budget grid
+### Table 44: Olmo-Hybrid-7B: gate gain over plain SnapKV, averaged over the budget grid
 
 | gate | open | MK3 closed | other tasks closed | mean kept | full | plain | gated | PAGE gain | random gain | selection | 95% CI |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -16,7 +16,7 @@ AUC of D for NIAH-MK3 (MK3 low) against the other three tasks: 1.000. Mean D by 
 
 Random gain = (1 - open) x (full - plain): a gate that opens at random at the same rate. Selection = PAGE gain - random gain. Bootstrap over inputs within task, 2000 replicates. The z-gate threshold is mean D + (-0.69) SD over all 200 inputs.
 
-### B5a-T2: Olmo-Hybrid-7B: accuracy by task and budget, plain SnapKV
+### Olmo-Hybrid-7B: accuracy by task and budget, plain SnapKV
 
 | task | N | mean D | full | 1/16 | 1/8 | 1/4 | 1/2 | z-gate, grid mean |
 |---|---|---|---|---|---|---|---|---|
@@ -25,7 +25,7 @@ Random gain = (1 - open) x (full - plain): a gate that opens at random at the sa
 | qa_1 | 50 | +0.010 | 0.880 | 0.760 | 0.840 | 0.920 | 0.880 | 0.850 |
 | vt | 50 | +0.002 | 0.900 | 0.000 | 0.940 | 0.900 | 0.900 | 0.685 |
 
-### B5a-T3: Olmo-Hybrid-7B: D against per-input harm, with A1-T1's comparators
+### Olmo-Hybrid-7B: D against per-input harm, with the comparators of Table 33
 
 | model | b | full correct | harmed | pooled AUC(D) | 95% CI | task id (in-sample) | task id (split-half) | D (same splits) | within-task AUC | 95% CI | same-task pairs | per task (at least 5 in each class) |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -34,7 +34,7 @@ Random gain = (1 - open) x (full - plain): a gate that opens at random at the sa
 
 Harm = correct at full cache and wrong at b. AUC of -D, so above 0.5 is the direction the gate assumes.
 
-### B5a-T4: Olmo-Hybrid-7B: selection against a random gate at each budget
+### Table 44: Olmo-Hybrid-7B: selection against a random gate at each budget
 
 | b | z-gate selection | 95% CI | tau=0.07 selection | 95% CI |
 |---|---|---|---|---|
@@ -45,12 +45,12 @@ Harm = correct at full cache and wrong at b. AUC of -D, so above 0.5 is the dire
 
 Bootstrap over inputs within task, 2000 replicates.
 
-### B5b. Qwen3-Next-80B-A3B (linear + full attention)
+### Qwen3-Next-80B-A3B (linear + full attention)
 
 Qwen3-Next-80B-A3B: 200 inputs (fwe 50, niah_multikey_3 50, qa_1 50, vt 50), budgets 1/16, 1/8, 1/4, 1/2, inputs dropped for missing budgets 0, unreadable lines 0.
 AUC of D for NIAH-MK3 (MK3 low) against the other three tasks: 1.000. Mean D by task: fwe -0.006, niah_multikey_3 -0.077, qa_1 -0.014, vt -0.029.
 
-### B5b-T1: Qwen3-Next-80B-A3B: gate gain over plain SnapKV, averaged over the budget grid
+### Table 44: Qwen3-Next-80B-A3B: gate gain over plain SnapKV, averaged over the budget grid
 
 | gate | open | MK3 closed | other tasks closed | mean kept | full | plain | gated | PAGE gain | random gain | selection | 95% CI |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -59,7 +59,7 @@ AUC of D for NIAH-MK3 (MK3 low) against the other three tasks: 1.000. Mean D by 
 
 Random gain = (1 - open) x (full - plain): a gate that opens at random at the same rate. Selection = PAGE gain - random gain. Bootstrap over inputs within task, 2000 replicates. The z-gate threshold is mean D + (-0.69) SD over all 200 inputs.
 
-### B5b-T2: Qwen3-Next-80B-A3B: accuracy by task and budget, plain SnapKV
+### Qwen3-Next-80B-A3B: accuracy by task and budget, plain SnapKV
 
 | task | N | mean D | full | 1/16 | 1/8 | 1/4 | 1/2 | z-gate, grid mean |
 |---|---|---|---|---|---|---|---|---|
@@ -68,7 +68,7 @@ Random gain = (1 - open) x (full - plain): a gate that opens at random at the sa
 | qa_1 | 50 | -0.014 | 0.940 | 0.840 | 0.920 | 0.940 | 0.940 | 0.910 |
 | vt | 50 | -0.029 | 1.000 | 0.000 | 0.320 | 1.000 | 1.000 | 0.580 |
 
-### B5b-T3: Qwen3-Next-80B-A3B: D against per-input harm, with A1-T1's comparators
+### Qwen3-Next-80B-A3B: D against per-input harm, with the comparators of Table 33
 
 | model | b | full correct | harmed | pooled AUC(D) | 95% CI | task id (in-sample) | task id (split-half) | D (same splits) | within-task AUC | 95% CI | same-task pairs | per task (at least 5 in each class) |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -77,7 +77,7 @@ Random gain = (1 - open) x (full - plain): a gate that opens at random at the sa
 
 Harm = correct at full cache and wrong at b. AUC of -D, so above 0.5 is the direction the gate assumes.
 
-### B5b-T4: Qwen3-Next-80B-A3B: selection against a random gate at each budget
+### Table 44: Qwen3-Next-80B-A3B: selection against a random gate at each budget
 
 | b | z-gate selection | 95% CI | tau=0.07 selection | 95% CI |
 |---|---|---|---|---|
@@ -88,12 +88,12 @@ Harm = correct at full cache and wrong at b. AUC of -D, so above 0.5 is the dire
 
 Bootstrap over inputs within task, 2000 replicates.
 
-### B5c. LFM2-24B-A2B (short convolution + attention)
+### LFM2-24B-A2B (short convolution + attention)
 
 LFM2-24B-A2B: 200 inputs (fwe 50, niah_multikey_3 50, qa_1 50, vt 50), budgets 1/16, 1/8, 1/4, 1/2, inputs dropped for missing budgets 0, unreadable lines 0.
 AUC of D for NIAH-MK3 (MK3 low) against the other three tasks: 0.946. Mean D by task: fwe -0.015, niah_multikey_3 -0.047, qa_1 -0.031, vt +0.020.
 
-### B5c-T1: LFM2-24B-A2B: gate gain over plain SnapKV, averaged over the budget grid
+### Table 44: LFM2-24B-A2B: gate gain over plain SnapKV, averaged over the budget grid
 
 | gate | open | MK3 closed | other tasks closed | mean kept | full | plain | gated | PAGE gain | random gain | selection | 95% CI |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -102,7 +102,7 @@ AUC of D for NIAH-MK3 (MK3 low) against the other three tasks: 0.946. Mean D by 
 
 Random gain = (1 - open) x (full - plain): a gate that opens at random at the same rate. Selection = PAGE gain - random gain. Bootstrap over inputs within task, 2000 replicates. The z-gate threshold is mean D + (-0.69) SD over all 200 inputs.
 
-### B5c-T2: LFM2-24B-A2B: accuracy by task and budget, plain SnapKV
+### LFM2-24B-A2B: accuracy by task and budget, plain SnapKV
 
 | task | N | mean D | full | 1/16 | 1/8 | 1/4 | 1/2 | z-gate, grid mean |
 |---|---|---|---|---|---|---|---|---|
@@ -111,7 +111,7 @@ Random gain = (1 - open) x (full - plain): a gate that opens at random at the sa
 | qa_1 | 50 | -0.031 | 0.720 | 0.500 | 0.740 | 0.680 | 0.680 | 0.665 |
 | vt | 50 | +0.020 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
 
-### B5c-T3: LFM2-24B-A2B: D against per-input harm, with A1-T1's comparators
+### LFM2-24B-A2B: D against per-input harm, with the comparators of Table 33
 
 | model | b | full correct | harmed | pooled AUC(D) | 95% CI | task id (in-sample) | task id (split-half) | D (same splits) | within-task AUC | 95% CI | same-task pairs | per task (at least 5 in each class) |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -120,7 +120,7 @@ Random gain = (1 - open) x (full - plain): a gate that opens at random at the sa
 
 Harm = correct at full cache and wrong at b. AUC of -D, so above 0.5 is the direction the gate assumes.
 
-### B5c-T4: LFM2-24B-A2B: selection against a random gate at each budget
+### Table 44: LFM2-24B-A2B: selection against a random gate at each budget
 
 | b | z-gate selection | 95% CI | tau=0.07 selection | 95% CI |
 |---|---|---|---|---|
@@ -131,7 +131,7 @@ Harm = correct at full cache and wrong at b. AUC of -D, so above 0.5 is the dire
 
 Bootstrap over inputs within task, 2000 replicates.
 
-### B5-T0: B5 summary: D, gates, selection at b = 1/16, and accuracy kept by plain SnapKV
+### Table 44: Hybrid models summary: D, gates, selection at b = 1/16, and accuracy kept by plain SnapKV
 
 | model | design | N | full accuracy by task | AUC(D) for MK3 | tau open | tau MK3 closed | z open | z MK3 closed | z selection at 1/16 | 95% CI | kept 1/2 | kept 1/4 | kept 1/8 | kept 1/16 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -141,15 +141,15 @@ Bootstrap over inputs within task, 2000 replicates.
 
 Kept = plain SnapKV accuracy at b over full-cache accuracy, all four tasks. Eviction applies only to layers with a key-value cache, so for hybrids nominal budgets are not comparable with full-attention models. Kept fractions use T - 1 positions (last prompt token held back).
 
-## B6. MLA models (G-Q3)
+## MLA models
 
 
-### B6a. DeepSeek-V2-Lite-Chat (MLA)
+### DeepSeek-V2-Lite-Chat (MLA)
 
 DeepSeek-V2-Lite-Chat: 200 inputs (fwe 50, niah_multikey_3 50, qa_1 50, vt 50), budgets 1/16, 1/8, 1/4, 1/2, inputs dropped for missing budgets 0, unreadable lines 0.
 AUC of D for NIAH-MK3 (MK3 low) against the other three tasks: 1.000. Mean D by task: fwe +0.042, niah_multikey_3 -0.049, qa_1 +0.035, vt +0.015.
 
-### B6a-T1: DeepSeek-V2-Lite-Chat: gate gain over plain SnapKV, averaged over the budget grid
+### Table 44: DeepSeek-V2-Lite-Chat: gate gain over plain SnapKV, averaged over the budget grid
 
 | gate | open | MK3 closed | other tasks closed | mean kept | full | plain | gated | PAGE gain | random gain | selection | 95% CI |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -158,7 +158,7 @@ AUC of D for NIAH-MK3 (MK3 low) against the other three tasks: 1.000. Mean D by 
 
 Random gain = (1 - open) x (full - plain): a gate that opens at random at the same rate. Selection = PAGE gain - random gain. Bootstrap over inputs within task, 2000 replicates. The z-gate threshold is mean D + (-0.69) SD over all 200 inputs.
 
-### B6a-T2: DeepSeek-V2-Lite-Chat: accuracy by task and budget, plain SnapKV
+### DeepSeek-V2-Lite-Chat: accuracy by task and budget, plain SnapKV
 
 | task | N | mean D | full | 1/16 | 1/8 | 1/4 | 1/2 | z-gate, grid mean |
 |---|---|---|---|---|---|---|---|---|
@@ -167,7 +167,7 @@ Random gain = (1 - open) x (full - plain): a gate that opens at random at the sa
 | qa_1 | 50 | +0.035 | 0.800 | 0.700 | 0.720 | 0.780 | 0.820 | 0.755 |
 | vt | 50 | +0.015 | 0.520 | 0.000 | 0.300 | 0.420 | 0.420 | 0.285 |
 
-### B6a-T3: DeepSeek-V2-Lite-Chat: D against per-input harm, with A1-T1's comparators
+### DeepSeek-V2-Lite-Chat: D against per-input harm, with the comparators of Table 33
 
 | model | b | full correct | harmed | pooled AUC(D) | 95% CI | task id (in-sample) | task id (split-half) | D (same splits) | within-task AUC | 95% CI | same-task pairs | per task (at least 5 in each class) |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -176,7 +176,7 @@ Random gain = (1 - open) x (full - plain): a gate that opens at random at the sa
 
 Harm = correct at full cache and wrong at b. AUC of -D, so above 0.5 is the direction the gate assumes.
 
-### B6a-T4: DeepSeek-V2-Lite-Chat: selection against a random gate at each budget
+### Table 44: DeepSeek-V2-Lite-Chat: selection against a random gate at each budget
 
 | b | z-gate selection | 95% CI | tau=0.07 selection | 95% CI |
 |---|---|---|---|---|
@@ -187,12 +187,12 @@ Harm = correct at full cache and wrong at b. AUC of -D, so above 0.5 is the dire
 
 Bootstrap over inputs within task, 2000 replicates.
 
-### B6b. GLM-4.7-Flash (MLA)
+### GLM-4.7-Flash (MLA)
 
 GLM-4.7-Flash: 200 inputs (fwe 50, niah_multikey_3 50, qa_1 50, vt 50), budgets 1/16, 1/8, 1/4, 1/2, inputs dropped for missing budgets 0, unreadable lines 0.
 AUC of D for NIAH-MK3 (MK3 low) against the other three tasks: 0.993. Mean D by task: fwe +0.087, niah_multikey_3 +0.051, qa_1 +0.104, vt +0.074.
 
-### B6b-T1: GLM-4.7-Flash: gate gain over plain SnapKV, averaged over the budget grid
+### Table 44: GLM-4.7-Flash: gate gain over plain SnapKV, averaged over the budget grid
 
 | gate | open | MK3 closed | other tasks closed | mean kept | full | plain | gated | PAGE gain | random gain | selection | 95% CI |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -201,7 +201,7 @@ AUC of D for NIAH-MK3 (MK3 low) against the other three tasks: 0.993. Mean D by 
 
 Random gain = (1 - open) x (full - plain): a gate that opens at random at the same rate. Selection = PAGE gain - random gain. Bootstrap over inputs within task, 2000 replicates. The z-gate threshold is mean D + (-0.69) SD over all 200 inputs.
 
-### B6b-T2: GLM-4.7-Flash: accuracy by task and budget, plain SnapKV
+### GLM-4.7-Flash: accuracy by task and budget, plain SnapKV
 
 | task | N | mean D | full | 1/16 | 1/8 | 1/4 | 1/2 | z-gate, grid mean |
 |---|---|---|---|---|---|---|---|---|
@@ -210,7 +210,7 @@ Random gain = (1 - open) x (full - plain): a gate that opens at random at the sa
 | qa_1 | 50 | +0.104 | 0.800 | 0.620 | 0.800 | 0.800 | 0.800 | 0.755 |
 | vt | 50 | +0.074 | 1.000 | 0.000 | 0.600 | 1.000 | 1.000 | 0.655 |
 
-### B6b-T3: GLM-4.7-Flash: D against per-input harm, with A1-T1's comparators
+### GLM-4.7-Flash: D against per-input harm, with the comparators of Table 33
 
 | model | b | full correct | harmed | pooled AUC(D) | 95% CI | task id (in-sample) | task id (split-half) | D (same splits) | within-task AUC | 95% CI | same-task pairs | per task (at least 5 in each class) |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -219,7 +219,7 @@ Random gain = (1 - open) x (full - plain): a gate that opens at random at the sa
 
 Harm = correct at full cache and wrong at b. AUC of -D, so above 0.5 is the direction the gate assumes.
 
-### B6b-T4: GLM-4.7-Flash: selection against a random gate at each budget
+### Table 44: GLM-4.7-Flash: selection against a random gate at each budget
 
 | b | z-gate selection | 95% CI | tau=0.07 selection | 95% CI |
 |---|---|---|---|---|
@@ -230,7 +230,7 @@ Harm = correct at full cache and wrong at b. AUC of -D, so above 0.5 is the dire
 
 Bootstrap over inputs within task, 2000 replicates.
 
-### B6-T0: B6 summary: D, gates, selection at b = 1/16, and accuracy kept by plain SnapKV
+### Table 44: MLA models summary: D, gates, selection at b = 1/16, and accuracy kept by plain SnapKV
 
 | model | design | N | full accuracy by task | AUC(D) for MK3 | tau open | tau MK3 closed | z open | z MK3 closed | z selection at 1/16 | 95% CI | kept 1/2 | kept 1/4 | kept 1/8 | kept 1/16 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|

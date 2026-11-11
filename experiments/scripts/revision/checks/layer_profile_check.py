@@ -1,9 +1,4 @@
-"""Early-third and late-third head agreement per RULER task, from the released per-layer logs (read-only).
-
-Checks the Figure 4 / Appendix A.3.3 / assumption (A3) statements about which task holds the highest late plateau.
-Bins follow the gate: m = floor(L/3) layers at each end. Lines that fail to parse are counted and skipped.
-    python3 -I layer_profile_check.py
-"""
+"""Early-third and late-third head agreement per RULER task (Figure 4). Usage: python3 -I layer_profile_check.py"""
 import collections
 import json
 import os

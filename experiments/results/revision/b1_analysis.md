@@ -1,12 +1,12 @@
 
-## B1. Scorer-based gates at a matched open rate (R-W4, R-Q1)
+## Scorer-based gates at a matched open rate
 
 - Qwen2.5-1.5B: joined 400 inputs, T mismatches 0, closures at tau 100, |D run - logged| max 0.0063, correlation 0.9997.
 - Qwen2.5-3B: joined 400 inputs, T mismatches 0, closures at tau 204, |D run - logged| max 0.0030, correlation 0.9998.
 - Mistral-7B: joined 400 inputs, T mismatches 0, closures at tau 113, |D run - logged| max 0.0003, correlation 1.0000.
 - Qwen2.5-14B: joined 200 inputs, T mismatches 0, closures at tau 50, |D run - logged| max 0.0195, correlation 0.9976.
 
-### B1-T1: Gate gain over plain SnapKV at D's closed count
+### Table 41: Gate gain over plain SnapKV at D's closed count
 
 | model | signal | orientation (fixed on Qwen2.5-1.5B) | gain | MK3 closed | gain, hindsight orientation | D minus signal | 95% CI | AUC for MK3 |
 |---|---|---|---|---|---|---|---|---|
@@ -63,7 +63,7 @@
 | Qwen2.5-14B | D (logged) | low closes | +0.143 | 50 | +0.143 |  |  | 1.000 |
 | Qwen2.5-14B | random gate |  | +0.058 |  |  | +0.085 |  |  |
 
-### B1-T2: Pre-registered decision rule, three main models
+### Pre-registered decision rule, three main models
 
 | signal | models with D above | models with signal above | verdict |
 |---|---|---|---|
@@ -79,7 +79,7 @@
 | kl@0.125 | 3/3 | 0/3 | D has an advantage |
 | top1_same@0.125 | 3/3 | 0/3 | D has an advantage |
 
-### B1-T3: Against per-input harm, in the orientation that closes MK3
+### Against per-input harm, in the orientation that closes MK3
 
 | model | b | signal | harmed | pooled AUC | within-task AUC |
 |---|---|---|---|---|---|
@@ -166,7 +166,7 @@
 
 A pooled AUC well below 0.5 means the opposite orientation predicts pooled harm. That is a secondary reading, outside the pre-registered rule.
 
-### B1-T4: Secondary: b = 1/16 versions of the signals as gates, both orientations, D's closed count
+### Secondary: b = 1/16 versions of the signals as gates, both orientations, D's closed count
 
 | model | signal | gain, low closes | MK3 closed | gain, high closes | MK3 closed | D gain |
 |---|---|---|---|---|---|---|

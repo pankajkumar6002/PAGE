@@ -1,21 +1,10 @@
 #!/usr/bin/env python3
-"""Reproduce B8 with a post-hoc finite-bootstrap p-value correction.
-
-The preregistered analysis logic in analyze_b8.py is unchanged. Its path lines
-were edited for this release, so it no longer matches the SHA-256 recorded in
-preregistration/revision/b8_neartie_prereg.sha256 (see README.md in this folder).
-This entry point uses its original data, bootstrap draws, estimates,
-and confidence intervals, then applies an add-one correction to each two-sided
-bootstrap tail probability before the original Holm adjustment.
-
-Usage: python3 -I analyze_b8_corrected.py [results_dir] [logs_dir]
-"""
+"""Table 45: runs the pre-registered analyze_b8.py unchanged and adds one to each two-sided bootstrap tail count before its Holm adjustment. Usage: python3 -I analyze_b8_corrected.py [results_dir] [logs_dir]"""
 from pathlib import Path
 import runpy
 
 
 def corrected_p(original_p, replicates):
-    """Recover the smaller tail count from 2 * count / replicates."""
     tail_count = round(original_p * replicates / 2)
     return min(1.0, 2 * (tail_count + 1) / (replicates + 1))
 

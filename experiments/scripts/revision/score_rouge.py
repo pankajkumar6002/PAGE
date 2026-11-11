@@ -1,14 +1,5 @@
 #!/usr/bin/env python3
-"""Score B2 LongBench gov_report predictions with LongBench's official metric.
-
-LongBench's metrics.py scores gov_report with rouge_score(): ROUGE-L F from the
-`rouge` package (pltrdy, version 1.0.1), maximum over references, and 0.0 when the
-package raises (for example on an empty prediction). This copies that rule and
-counts the exceptions. Run it with a Python that has rouge==1.0.1 installed; this
-round used a scratch venv. Writes one row per (task, id, budget).
-
-Usage: python -I score_rouge.py <in.jsonl> <out.jsonl>
-"""
+"""ROUGE-L F for LongBench gov_report, following LongBench metrics.py. Needs rouge==1.0.1. Usage: python -I score_rouge.py <in.jsonl> <out.jsonl>"""
 import json
 import sys
 
