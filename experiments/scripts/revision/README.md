@@ -1,7 +1,7 @@
 # Revision experiments and checks
 
 This folder reproduces the results added in the revision: the re-checks of published values (Tables 1 and 4,
-Figure 5), the analyses of the released logs (Tables 33 to 40, 42, 46 and 49), and the new GPU runs (Tables 41,
+Figure 4), the analyses of the released logs (Tables 33 to 40, 42, 46 and 49), and the new GPU runs (Tables 41,
 43 to 45, 47 and 48). Every path below is relative to the repository root, and every command is run from there.
 
 ## Layout
@@ -48,8 +48,8 @@ published value fails. `PAGE_RESULTS` overrides the released-log folder for the 
 |---|---|---|---|---|
 | Table 1 | `checks/table1_check.py` | per-cell rho, pooled NIAH-MK3 count | released RULER sweep, gated and partition logs | none |
 | Table 4 | `checks/verify_2026-11-07.py --sections A0` | A0-T1 | released logs | none |
-| Figure 5 | `checks/layer_profile_check.py` | early and late third per task | `drops_*_n100.jsonl`, `drops_llama31_8b_4k.jsonl` | none |
-| Table 33 | `checks/verify_2026-11-07.py --sections A1` | A1-T1 | released 4x4 matrix logs | none |
+| Figure 4 | `checks/layer_profile_check.py` | early and late third per task | `drops_*_n100.jsonl`, `drops_llama31_8b_4k.jsonl` | none |
+| Table 33 | `checks/verify_2026-11-07.py --sections A1` | A1-T1 and A1-T2 | released 4x4 matrix logs | none |
 | Table 34 | `checks/verify_2026-11-07.py --sections A2` | A2-T2 | released 4x4 matrix logs | none |
 | Table 35 | same | A2-T1 | same | none |
 | Table 36 | same | A2-T3 | released logs of the other cells | none |

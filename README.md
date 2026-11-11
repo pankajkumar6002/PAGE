@@ -171,13 +171,13 @@ Key entry points (see each script's `--help`):
 See `experiments/results/README.md` for the complete results index, grouped by what each
 experiment settles, with regeneration commands for every group.
 
-The revision's results (Tables 1 and 4, Figure 5, and Tables 33 to 49) are reproduced from
+The revision's results (Tables 1 and 4, Figure 4, and Tables 33 to 49) are reproduced from
 `experiments/scripts/revision/`. Its CPU-only checks and analyses run on the logs in the repository:
 
 ```bash
 python3 -I experiments/scripts/revision/checks/verify_2026-11-07.py   # Tables 4, 33-40, 42, 46, 49
 python3 -I experiments/scripts/revision/checks/table1_check.py        # Table 1
-python3 -I experiments/scripts/revision/checks/layer_profile_check.py # Figure 5
+python3 -I experiments/scripts/revision/checks/layer_profile_check.py # Figure 4
 python3 -I experiments/scripts/revision/analyze_b.py b1 b2 b2c b3 b5 b6   # Tables 41, 43, 44, 47
 python3 -I experiments/scripts/revision/analyze_b7.py                 # Table 48
 python3 -I experiments/scripts/revision/analyze_b8_corrected.py       # Table 45
